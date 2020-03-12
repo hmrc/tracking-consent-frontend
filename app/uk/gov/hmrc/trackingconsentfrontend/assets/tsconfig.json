@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "outDir": "./dist/",
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "module": "es6",
+    "target": "es2015",
+    "allowJs": true
+  }
+}
