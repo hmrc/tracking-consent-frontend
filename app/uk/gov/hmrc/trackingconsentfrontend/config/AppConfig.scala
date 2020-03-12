@@ -31,8 +31,6 @@ class AppConfig @Inject()(config: Configuration, servicesConfig: ServicesConfig)
   val analyticsToken: String = config.get[String](s"google-analytics.token")
   val analyticsHost: String  = config.get[String](s"google-analytics.host")
 
-  val gtmTag: String  = config.get[String](s"gtm.tag")
-
   val reportAProblemPartialUrl: String = s"$contactBaseUrl/contact/problem_reports_ajax?service=$serviceIdentifier"
   val reportAProblemNonJSUrl: String   = s"$contactBaseUrl/contact/problem_reports_nonjs?service=$serviceIdentifier"
 
