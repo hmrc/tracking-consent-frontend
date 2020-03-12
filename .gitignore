@@ -1,5 +1,6 @@
 .*
 
+!.nvmrc
 !.gitignore
 !.scalafmt.conf
 .cache
