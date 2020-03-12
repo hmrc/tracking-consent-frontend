@@ -1,5 +1,7 @@
 .*
-
+!.nvmrc
+!.babelrc
+!.stylelintrc
 !.gitignore
 !.scalafmt.conf
 .cache
