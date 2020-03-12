@@ -33,3 +33,6 @@ test-result
 tmp
 .idea_modules
 bin
+coverage
+node_modules
+stats.json
