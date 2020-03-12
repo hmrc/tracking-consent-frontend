@@ -1,6 +1,6 @@
-import render from './render'
 import '../styles/styles.scss'
+import renderBanner from './ui/renderBanner'
 
 document.addEventListener('DOMContentLoaded', () => {
-  render()
+  renderBanner()
 })
