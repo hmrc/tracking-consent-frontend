@@ -32,13 +32,13 @@ module.exports = {
     extensions: [ '.ts', '.js' ],
   },
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    contentBase: path.join(__dirname, '../../../../../../public'),
     port: 8081,
     historyApiFallback: true,
   },
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../../../../../../public'),
   },
   optimization: {
     minimizer: [
@@ -49,10 +49,5 @@ module.exports = {
         }
       })
     ]
-  },
-  plugins: [
-    new CopyPlugin([
-      { from: 'public', to: '' },
-    ])
-  ]
+  }
 };
