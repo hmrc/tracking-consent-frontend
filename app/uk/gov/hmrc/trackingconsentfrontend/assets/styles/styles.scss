@@ -1,3 +1,90 @@
-body {
-  font-family: Arial, sans-serif;
+// Basic styles for demonstration purposes only
+// TODO refactor to tidy up and extract constants
+.cookie-banner {
+  color: #0b0c0c;
+  margin: 0;
+  vertical-align: baseline;
+  font-family: "nta", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.1428571429;
+  width: 100%;
+  background-color: #f3f2f1;
+  padding: 20px 15px;
+  box-sizing: border-box;
+  display: block;
+
+  &__button-row:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  &__button-column {
+    @media (min-width: 48.0625em) {
+      width: 50%;
+      float: left;
+    }
+  }
+
+  :focus {
+    border-color: #ffdd00;
+    outline: 3px solid transparent;
+    box-shadow: inset 0 0 0 1px #ffdd00;
+  }
+
+  :focus:not(:active):not(:hover) {
+    border-color: #ffdd00;
+    color: #0b0c0c;
+    background-color: #ffdd00;
+    box-shadow: 0 2px 0 #0b0c0c;
+  }
+}
+
+.cookie-banner button, .cookie-banner a[role=button] {
+  font-family: "nta", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.1875;
+  box-sizing: border-box;
+  position: relative;
+  margin-top: 0;
+  border: 2px solid transparent;
+  border-radius: 0;
+  color: #ffffff;
+  background-color: #00703c;
+  box-shadow: 0 2px 0 #002d18;
+  text-align: center;
+  cursor: pointer;
+  padding: 9px 10px 6px;
+  display: block;
+  width: 100%;
+  vertical-align: top;
+  margin-bottom: 20px;
+
+  @media (min-width: 48.0625em) {
+    width: 90%;
+  }
+}
+
+.cookie-banner__title {
+  color: #0b0c0c;
+  font-family: "nta", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.1111111111;
+  display: block;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.cookie-banner p {
+  color: #0b0c0c;
+  max-width: 960px;
+  text-transform: none;
+  font-family: "nta", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  margin: 0 0 10px 0;
 }
