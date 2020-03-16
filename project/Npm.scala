@@ -5,8 +5,10 @@ import scala.sys.process.{Process, ProcessBuilder}
 object Npm {
 
   def npmCommand(base: File) = Command.args("npm", "<npm-command>") { (state, args) =>
-    process(base, args:_*) !;
-    state
+    val exitValue = process(base, args:_*) !;
+    if (exitValue != 0)
+      throw new Exception(s"NPM command failed: ${args.mkString(" ")}")
+    else state
   }
 
   def npmProcess(failureMessage: String)(base: File, args: String*): Int = {
