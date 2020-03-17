@@ -32,7 +32,7 @@ object JavaScriptBuild {
     commands ++= javaScriptDirectory { base => Seq(Npm.npmCommand(base)) }.value,
 
     // sbt task wiring:
-    npmInstall := Npm.npmProcess("npm install failed")(javaScriptDirectory.value, "install", "--production"),
+    npmInstall := Npm.npmProcess("npm install failed")(javaScriptDirectory.value, "install"),
     npmTest := Npm.npmProcess("npm test failed")(javaScriptDirectory.value, "test"),
     npmBuild := Npm.npmProcess("npm build failed")(javaScriptDirectory.value, "run", "build"),
 
