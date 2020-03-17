@@ -9,7 +9,7 @@ const userPreferenceFactory = () => ({
       preferences: {
         acceptAll: true
       }
-    }), { secure: true, sameSite: 'strict' })
+    }), { sameSite: 'strict', expires: 3650 })
   }
 })
 

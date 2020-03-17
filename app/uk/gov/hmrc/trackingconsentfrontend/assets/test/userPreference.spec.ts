@@ -41,7 +41,7 @@ describe('User Preference Factory', () => {
 
   it('should set cookie security appropriately', () => {
     userPreferenceFactory().userAcceptsAll()
-    expect(Cookies.set).toHaveBeenCalledWith('userConsent', anything(), { sameSite: 'strict', secure: true })
+    expect(Cookies.set).toHaveBeenCalledWith('userConsent', anything(), { sameSite: 'strict', expires: 3650 })
   })
 
   describe('Meta tests', () => {
