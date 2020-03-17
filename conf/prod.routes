@@ -1,5 +1,5 @@
 # Add all the application routes to the app.routes file
-->         /tracking-consent-frontend              app.Routes
+->         /tracking-consent          app.Routes
 ->         /                          health.Routes
 ->         /template                  template.Routes
 
