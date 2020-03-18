@@ -14,9 +14,15 @@
  * limitations under the License.
  *@
 
-@import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
-@()(implicit request: Request[_], messages: Messages, appConfig: AppConfig)
+@this(
+        govukLayout: GovukLayout,
+        head: head
+)
 
-@main_template(title = "Hello from tracking-consent-frontend", bodyClasses = None) {
-    <h1>Hello from tracking-consent-frontend !</h1>
-}
+@(pageTitle: Option[String] = None,
+        beforeContentBlock: Option[Html] = None)(contentBlock: Html)(implicit request: Request[_], messages: Messages)
+
+@govukLayout(
+    pageTitle = pageTitle,
+    headBlock = Some(head())
+)(contentBlock)

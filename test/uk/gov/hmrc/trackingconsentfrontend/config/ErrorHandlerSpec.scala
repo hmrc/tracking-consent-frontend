@@ -16,15 +16,19 @@
 
 package uk.gov.hmrc.trackingconsentfrontend.config
 
-import javax.inject.{Inject, Singleton}
-import play.api.i18n.MessagesApi
-import play.api.mvc.Request
-import play.twirl.api.Html
-import uk.gov.hmrc.play.bootstrap.http.FrontendErrorHandler
-import uk.gov.hmrc.trackingconsentfrontend.views.html.ErrorTemplate
+import org.scalatest.{Matchers, WordSpec}
+import org.scalatestplus.play.guice.GuiceOneAppPerSuite
+import play.api.test.FakeRequest
+import play.api.test.Helpers._
 
-@Singleton
-class ErrorHandler @Inject()(val messagesApi: MessagesApi, implicit val appConfig: AppConfig, errorTemplate: ErrorTemplate) extends FrontendErrorHandler {
-  override def standardErrorTemplate(pageTitle: String, heading: String, message: String)(implicit request: Request[_]): Html =
-    errorTemplate(pageTitle, heading, message)
+class ErrorHandlerSpec extends WordSpec with Matchers with GuiceOneAppPerSuite {
+  private val fakeRequest = FakeRequest("GET", "/")
+  private val errorHandler = app.injector.instanceOf[ErrorHandler]
+
+  "standardErrorTemplate" should {
+    "show the correct title" in {
+      val result = errorHandler.standardErrorTemplate(pageTitle = "Error occurred", heading = "A heading", message = "A message")(fakeRequest)
+      contentAsString(result) should include ("A heading")
+    }
+  }
 }
