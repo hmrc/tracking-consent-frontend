@@ -24,5 +24,5 @@
 @(pageTitle: String, heading: String, message: String)(implicit request: Request[_], messages: Messages, appConfig: AppConfig)
 @layout(pageTitle = Some(pageTitle)) {
  @h1(content = heading)
- @paragraph(content = Html(message))
+ @paragraph(content = HtmlContent(message))
 }

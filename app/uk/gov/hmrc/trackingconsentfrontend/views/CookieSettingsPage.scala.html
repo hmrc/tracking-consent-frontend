@@ -34,16 +34,16 @@
 @defining(Messages("cookieSettings.title")) { title =>
     @layout(pageTitle = Some(title)) {
         @h1(content = title)
-        @paragraph(content = Html("Cookies are files saved on your phone, tablet or computer when you visit a website"))
-        @paragraph(content = Html("We use cookies to store information about how you use HMRC services, such as the pages you visit."))
-        @paragraph(content = Html("We use 4 types of cookie. You can choose which cookies you're happy for us to use."))
+        @paragraph(content = Text(messages("cookieSettings.main.paragraph1")))
+        @paragraph(content = Text("We use cookies to store information about how you use HMRC services, such as the pages you visit."))
+        @paragraph(content = Text("We use 4 types of cookie. You can choose which cookies you're happy for us to use."))
         @usageRadio()
         @campaignsRadio()
         @settingsRadio()
         @h2(content = "Strictly necessary cookies")
-        @paragraph(content = Html("These essential cookies do things like remember your progress through a form (for example a licence application)"))
-        @paragraph(content = Html("They always need to be on."))
-        @paragraph(content = findOutMoreLink)
+        @paragraph(content = Text("These essential cookies do things like remember your progress through a form (for example a licence application)"))
+        @paragraph(content = Text("They always need to be on."))
+        @paragraph(content = HtmlContent(findOutMoreLink))
         @govukButton(Button(
             content = Text("Save changes")
         ))
