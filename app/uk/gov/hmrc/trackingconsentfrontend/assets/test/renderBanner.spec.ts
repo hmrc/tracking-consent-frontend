@@ -22,7 +22,7 @@ describe('index', () => {
   afterEach(reset)
 
   it('should render a banner', () => {
-    renderBanner(userPreferenceFactory())
+    renderBanner({})
 
     expect(queryByText(document.body, /Tell us whether you accept cookies/)).toBeTruthy()
   })
