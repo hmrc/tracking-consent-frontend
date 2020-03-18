@@ -28,18 +28,18 @@ class CookieSettingsControllerSpec extends WordSpec with Matchers with GuiceOneA
 
   "cookie_settings" should {
     "return 200" in {
-      val result = controller.cookie_settings(fakeRequest)
+      val result = controller.cookieSettings(fakeRequest)
       status(result) shouldBe Status.OK
     }
 
     "return HTML" in {
-      val result = controller.cookie_settings(fakeRequest)
+      val result = controller.cookieSettings(fakeRequest)
       contentType(result) shouldBe Some("text/html")
       charset(result)     shouldBe Some("utf-8")
     }
 
     "show the correct title" in {
-      val result = controller.cookie_settings(fakeRequest)
+      val result = controller.cookieSettings(fakeRequest)
       contentAsString(result) should include ("Cookie settings on HMRC services")
     }
   }
