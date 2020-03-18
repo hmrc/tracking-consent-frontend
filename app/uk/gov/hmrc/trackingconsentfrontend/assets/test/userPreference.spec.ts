@@ -19,7 +19,7 @@ describe('User Preference Factory', () => {
   it('should set the cookie body with the JSON format', () => {
     userPreferenceFactory().userAcceptsAll()
     expectTrackingPreferenceToHaveBeenSetWith({
-      version: '2020-01-01',
+      version: '2020-03-01',
       dateSet: fakeDateTime,
       preferences: {
         acceptAll: true
@@ -31,7 +31,7 @@ describe('User Preference Factory', () => {
     fakeDateTime = 987654321
     userPreferenceFactory().userAcceptsAll()
     expectTrackingPreferenceToHaveBeenSetWith({
-      version: '2020-01-01',
+      version: '2020-03-01',
       dateSet: 987654321,
       preferences: {
         acceptAll: true

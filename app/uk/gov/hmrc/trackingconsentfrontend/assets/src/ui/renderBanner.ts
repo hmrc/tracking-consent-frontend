@@ -6,7 +6,7 @@ const renderBanner = (userPreference) => {
     banner.className = banner.className + ' cookie-banner';
     banner.innerHTML = bannerHtml
     banner.querySelectorAll('.acceptAll').forEach(acceptAllButton => {
-        (acceptAllButton).addEventListener('click', e => {
+        acceptAllButton.addEventListener('click', e => {
             e.preventDefault()
             userPreference.userAcceptsAll()
         })
