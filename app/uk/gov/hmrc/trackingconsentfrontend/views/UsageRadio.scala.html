@@ -16,46 +16,41 @@
 
 @this(govukRadios : GovukRadios)
 
-@()
-
-@usageText = {
-    <h2 class="govuk-heading-m">Cookies that measure website use</h2>
-}
+@(messages: Messages, paragraph: Paragraph, h2: H2)
 
 @hintText = {
-    <p>We use Google Analytics to measure how you use the website so we can improve it based on user needs. We do
-        not allow Google to use or share the data about how you use this site.
-    </p>
-    <p>Google Analytics sets cookies that store anonymised information about:
+    @paragraph(content = Text(messages("cookieSettings.usage.paragraph1")))
+    @paragraph(content = Text(messages("cookieSettings.usage.paragraph2")))
+
 
     </p>
     <ul class="govuk-list govuk-list--bullet">
-        <li>how you got to the site</li>
-        <li>the pages you visit on HMRC services and how long you spend on each page</li>
-        <li>what you click on while you're visiting the site</li>
+        <li>@messages("cookieSettings.usage.bullet1")</li>
+        <li>@messages("cookieSettings.usage.bullet2")</li>
+        <li>@messages("cookieSettings.usage.bullet3")</li>
     </ul>
 }
 
 @govukRadios(Radios(
     fieldset = Some(Fieldset(
         legend = Some(Legend(
-            content = HtmlContent(usageText),
+            content = HtmlContent(h2(Text(messages("cookieSettings.usage.title")))),
             isPageHeading = false
         ))
     )),
     hint = Some(Hint(
         content = HtmlContent(hintText)
     )),
-    idPrefix = Some("cookies-usage"),
-    name = "cookies-usage",
+    idPrefix = Some(messages("cookieSettings.usage.settingid")),
+    name = messages("cookieSettings.usage.settingid"),
     items = Seq(
         RadioItem(
-            content = Text("Use cookies that measure my website use"),
-            value = Some("on")
+            content = Text(messages("cookieSettings.usage.settinglabel.on")),
+            value = Some(messages("cookieSettings.onValue"))
         ),
         RadioItem(
-            content = Text("Do not use cookies that measure my website use"),
-            value = Some("off")
+            content = Text(messages("cookieSettings.usage.settinglabel.on")),
+            value = Some(messages("cookieSettings.offValue"))
         )
     )
 ))

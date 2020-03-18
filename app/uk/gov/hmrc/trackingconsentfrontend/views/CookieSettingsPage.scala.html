@@ -26,26 +26,28 @@
 @()(implicit request: Request[_], messages: Messages)
 
 @findOutMoreLink = {
-    <a href="https://www.tax.service.gov.uk/help/cookies">
-        Find out more about cookies on HMRC services
+    <a href="@messages("cookieSettings.necessary.link.url")">
+        @messages("cookieSettings.necessary.link.text")
     </a>
 }
 
 @defining(Messages("cookieSettings.title")) { title =>
     @layout(pageTitle = Some(title)) {
-        @h1(content = title)
-        @paragraph(content = Text(messages("cookieSettings.main.paragraph1")))
-        @paragraph(content = Text("We use cookies to store information about how you use HMRC services, such as the pages you visit."))
-        @paragraph(content = Text("We use 4 types of cookie. You can choose which cookies you're happy for us to use."))
-        @usageRadio()
-        @campaignsRadio()
-        @settingsRadio()
-        @h2(content = "Strictly necessary cookies")
-        @paragraph(content = Text("These essential cookies do things like remember your progress through a form (for example a licence application)"))
-        @paragraph(content = Text("They always need to be on."))
-        @paragraph(content = HtmlContent(findOutMoreLink))
-        @govukButton(Button(
-            content = Text("Save changes")
-        ))
+        @h1(content = Text(title))
+        @paragraph(content = Text(messages("cookieSettings.intro.paragraph1")))
+        @paragraph(content = Text(messages("cookieSettings.intro.paragraph2")))
+        @paragraph(content = Text(messages("cookieSettings.intro.paragraph2")))
+        <form data-module="cookie-settings" data-on-value="@messages("cookieSettings.onValue")" data-off-value="@messages("cookieSettings.offValue")">
+            @usageRadio(messages, paragraph, h2)
+            @campaignsRadio(messages, paragraph, h2)
+            @settingsRadio(messages, paragraph, h2)
+            @h2(content = Text(messages("cookieSettings.necessary.title")))
+            @paragraph(content = Text(messages("cookieSettings.necessary.paragraph1")))
+            @paragraph(content = Text(messages("cookieSettings.necessary.paragraph2")))
+            @paragraph(content = HtmlContent(paragraph(HtmlContent(findOutMoreLink))))
+            @govukButton(Button(
+                content = Text(messages("cookieSettings.saveButton"))
+            ))
+        </form>
     }
 }

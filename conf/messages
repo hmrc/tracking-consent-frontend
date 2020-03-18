@@ -1,3 +1,40 @@
 cookieSettings.title = Cookie settings on HMRC services
-cookieSettings.main.paragraph1 = Cookies are files saved on your phone, tablet or computer when you visit a website
-service.name =
+
+cookieSettings.intro.paragraph1 = Cookies are files saved on your phone, tablet or computer when you visit a website
+cookieSettings.intro.paragraph2 = We use cookies to store information about how you use HMRC services, such as the pages you visit.
+cookieSettings.intro.paragraph3 = We use 4 types of cookie. You can choose which cookies you're happy for us to use.\
+        
+cookieSettings.usage.title = Cookies that measure website use
+cookieSettings.usage.paragraph1 = We use Google Analytics to measure how you use the website so we can improve it based on user needs. We do not allow Google to use or share the data about how you use this site.
+cookieSettings.usage.paragraph2 = Google Analytics sets cookies that store anonymised information about:
+cookieSettings.usage.bullet1 = how you got to the site
+cookieSettings.usage.bullet2 = the pages you visit on HMRC services and how long you spend on each page
+cookieSettings.usage.bullet3 = what you click on while you're visiting the site
+cookieSettings.usage.settinglabel.on = Use cookies that measure my website use
+cookieSettings.usage.settinglabel.off = Do not use cookies that measure my website use
+cookieSettings.usage.settingid = usage
+
+cookieSettings.campaigns.title = Cookies that help with our communications and marketing
+cookieSettings.campaigns.paragraph1 = These cookies may be set by third party websites and do things like measure how you view YouTube videos that are on HMRC services.
+cookieSettings.campaigns.settinglabel.on = Use cookies that help with communications and marketing
+cookieSettings.campaigns.settinglabel.off = Do not use cookies that help with communications and marketing
+cookieSettings.campaigns.settingid = campaigns
+
+cookieSettings.settings.title = Cookies that remember your settings
+cookieSettings.settings.paragraph1 = These cookies do things like remember your preferences and the choices you make, to personalise your experience of using the site.
+cookieSettings.settings.settinglabel.on = Use cookies that remember my settings on the site
+cookieSettings.settings.settinglabel.off = Do not use cookies that remember my settings on the site
+cookieSettings.settings.settingid = settings
+
+cookieSettings.necessary.title = Strictly necessary cookies
+cookieSettings.necessary.paragraph1 = These essential cookies do things like remember your progress through a form (for example a licence application)
+cookieSettings.necessary.paragraph2 =They always need to be on.
+cookieSettings.necessary.link.text = Find out more about cookies on HMRC services
+cookieSettings.necessary.link.url = /help/cookies?abc=def&ghi=jkl
+
+
+cookieSettings.onValue = on
+cookieSettings.offValue = off
+cookieSettings.saveButton = Save changes
+
+service.name = Tracking Consent

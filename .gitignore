@@ -38,4 +38,5 @@ bin
 coverage
 node_modules
 stats.json
-bundle.js
+public/bundle.js
+public/cookieSettingsPage.js

@@ -16,16 +16,10 @@
 
 @this(govukRadios : GovukRadios)
 
-@()
+@(messages: Messages, paragraph: Paragraph, h2: H2)
 
 @usageText = {
-    <h2 class="govuk-heading-m">Cookies that help with our communications and marketing</h2>
-}
-
-@hintText = {
-    <p>These cookies may be set by third party websites and do things like measure how you view YouTube videos that
-        are on HMRC services.
-    </p>
+    @h2(Text(messages("cookieSettings.campaigns.title")))
 }
 
 @govukRadios(Radios(
@@ -36,18 +30,18 @@
         ))
     )),
     hint = Some(Hint(
-        content = HtmlContent(hintText)
+        content = Text(messages("cookieSettings.campaigns.paragraph1"))
     )),
-    idPrefix = Some("cookies-campaigns"),
-    name = "cookies-campaigns",
+    idPrefix = Some(messages("cookieSettings.campaigns.settingid")),
+    name = messages("cookieSettings.campaigns.settingid"),
     items = Seq(
         RadioItem(
-            content = Text("Use cookies that help with communications and marketing"),
-            value = Some("on")
+            content = Text(messages("cookieSettings.settings.settinglabel.on")),
+            value = Some(messages("cookieSettings.onValue"))
         ),
         RadioItem(
-            content = Text("Do not use cookies that help with communications and marketing"),
-            value = Some("off")
+            content = Text(messages("cookieSettings.settings.settinglabel.off")),
+            value = Some(messages("cookieSettings.offValue"))
         )
     )
 ))

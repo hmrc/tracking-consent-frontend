@@ -14,15 +14,7 @@
  * limitations under the License.
  *@
 
-@import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
+@this()
 
-@this(
- layout: Layout,
- paragraph: Paragraph,
- h1: H1
-)
-@(pageTitle: String, heading: String, message: String)(implicit request: Request[_], messages: Messages, appConfig: AppConfig)
-@layout(pageTitle = Some(pageTitle)) {
- @h1(content = Text(heading))
- @paragraph(content = Text(message))
-}
+@()
+<script src="assets/cookieSettingsPage.js"></script>
