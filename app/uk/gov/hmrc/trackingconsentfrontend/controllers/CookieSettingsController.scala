@@ -17,22 +17,20 @@
 package uk.gov.hmrc.trackingconsentfrontend.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import play.api.mvc._
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
-import uk.gov.hmrc.trackingconsentfrontend.views.html.hello_world
+import uk.gov.hmrc.trackingconsentfrontend.views.html.CookieSettingsPage
 
 import scala.concurrent.Future
 
 @Singleton
-class HelloWorldController @Inject()(appConfig: AppConfig, mcc: MessagesControllerComponents)
+class CookieSettingsController @Inject()(appConfig: AppConfig, mcc: MessagesControllerComponents, cookieSettingsPage: CookieSettingsPage)
     extends FrontendController(mcc) {
 
   implicit val config: AppConfig = appConfig
 
-  val helloWorld: Action[AnyContent] = Action.async { implicit request =>
-    Future.successful(Ok(hello_world()))
+  val cookieSettings: Action[AnyContent] = Action.async { implicit request =>
+    Future.successful(Ok(cookieSettingsPage()))
   }
-
 }

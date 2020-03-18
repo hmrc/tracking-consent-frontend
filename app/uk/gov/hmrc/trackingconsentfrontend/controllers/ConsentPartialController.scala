@@ -20,17 +20,17 @@ import javax.inject.{Inject, Singleton}
 import play.api.mvc._
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
-import uk.gov.hmrc.trackingconsentfrontend.views.html.consent_head
+import uk.gov.hmrc.trackingconsentfrontend.views.html.ConsentHead
 
 import scala.concurrent.Future
 
 @Singleton
-class ConsentPartialController @Inject()(appConfig: AppConfig, mcc: MessagesControllerComponents)
+class ConsentPartialController @Inject()(appConfig: AppConfig, mcc: MessagesControllerComponents, consentHead: ConsentHead)
     extends FrontendController(mcc) {
 
   implicit val config: AppConfig = appConfig
 
   val head: Action[AnyContent] = Action.async { implicit request =>
-    Future.successful(Ok(consent_head()))
+    Future.successful(Ok(consentHead()))
   }
 }
