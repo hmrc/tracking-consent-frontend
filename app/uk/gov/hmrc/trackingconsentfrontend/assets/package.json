@@ -8,7 +8,8 @@
   "scripts": {
     "start": "NODE_ENV=develop webpack-dev-server --config ./webpack.config.js --mode development",
     "build": "webpack --mode production",
-    "lint": "stylelint --fix \"**/*.scss\" && standardx --fix **/*.ts",
+    "lint": "stylelint \"**/*.scss\" && standardx **/*.ts",
+    "fixlint": "stylelint --fix \"**/*.scss\" && standardx --fix **/*.ts",
     "test": "jest --collectCoverage",
     "analyze": "webpack --mode production --profile --json > stats.json && webpack-bundle-analyzer stats.json"
   },
@@ -54,6 +55,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^25.1.0",
     "jest-environment-jsdom-fourteen": "^1.0.1",
+    "js-cookie": "^2.2.1",
     "node-sass": "^4.13.1",
     "sass-loader": "^8.0.2",
     "standardx": "^5.0.0",
@@ -64,9 +66,9 @@
     "ts-jest": "^25.2.1",
     "ts-loader": "^6.2.1",
     "typescript": "^3.8.3",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.42.0",
     "webpack-bundle-analyzer": "^3.6.0",
-    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
   }
