@@ -10,6 +10,15 @@ const userPreferenceFactory = () => ({
         acceptAll: true
       }
     }), { sameSite: 'strict', expires: 3650 })
+  },
+  getPreferences: () => {
+    const rawCookie = Cookies.get('userConsent')
+    // const parsedCookie = rawCookie ? JSON.parse(rawCookie) : undefined
+    return rawCookie ? {
+      usage: true,
+      campaigns: true,
+      settings: true
+    } : undefined
   }
 })
 
