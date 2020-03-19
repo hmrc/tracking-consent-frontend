@@ -3,7 +3,10 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: {
+    bundle: './src/bundle.ts',
+    cookieSettingsPage: './src/cookieSettingsPage.ts'
+  },
   module: {
     rules: [
       {
@@ -37,7 +40,6 @@ module.exports = {
     historyApiFallback: true,
   },
   output: {
-    filename: 'bundle.js',
     path: path.resolve(__dirname, '../../../../../../public'),
   },
   optimization: {

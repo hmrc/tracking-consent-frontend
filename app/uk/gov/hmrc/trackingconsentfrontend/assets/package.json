@@ -10,7 +10,7 @@
     "build": "webpack --mode production",
     "lint": "stylelint \"**/*.scss\" && standardx **/*.ts",
     "fixlint": "stylelint --fix \"**/*.scss\" && standardx --fix **/*.ts",
-    "test": "jest --collectCoverage",
+    "test": "npm run lint && jest --collectCoverage",
     "analyze": "webpack --mode production --profile --json > stats.json && webpack-bundle-analyzer stats.json"
   },
   "eslintConfig": {

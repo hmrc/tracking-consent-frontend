@@ -16,7 +16,7 @@
 
 @this()
 
-@(content: String)
-<h1 class="govuk-heading-m">
- @content
-</h1>
+@(content: Content)
+<h2 class="govuk-heading-m">
+ @content.asHtml
+</h2>
