@@ -83,6 +83,94 @@ describe('User Preference Factory', () => {
         settings: true
       })
     })
+    it('should return each category when each category is set (function call)', () => {
+      const userPreference = userPreferenceFactory()
+      userPreference.setPreferences({
+        usage: true,
+        campaigns: true,
+        settings: true
+      })
+
+      expect(userPreference.getPreferences()).toEqual({
+        usage: true,
+        campaigns: true,
+        settings: true
+      })
+    })
+    it('should return each category when each category is declined (function call)', () => {
+      const userPreference = userPreferenceFactory()
+      userPreference.setPreferences({
+        usage: false,
+        campaigns: false,
+        settings: false
+      })
+
+      expect(userPreference.getPreferences()).toEqual({
+        usage: false,
+        campaigns: false,
+        settings: false
+      })
+    })
+    it('should return each category when only some categories are set (function call)', () => {
+      const userPreference = userPreferenceFactory()
+      userPreference.setPreferences({
+        usage: true,
+        campaigns: false
+      })
+
+      expect(userPreference.getPreferences()).toEqual({
+        usage: true,
+        campaigns: false,
+        settings: false
+      })
+    })
+  })
+
+  describe('Save Preferences', () => {
+    it('should save preferences to the cookie', () => {
+      userPreferenceFactory().setPreferences({
+        usage: true,
+        campaigns: false,
+        settings: true
+      })
+      expect(Cookies.set).toHaveBeenCalledWith('userConsent', JSON.stringify({
+        version: '2020-03-01',
+        dateSet: testScope.fakeDatetime,
+        preferences: {
+          usage: true,
+          campaigns: false,
+          settings: true
+        }
+      }), { sameSite: 'strict', expires: 3650 })
+    })
+    it('should save other preferences to the cookie', () => {
+      userPreferenceFactory().setPreferences({
+        usage: false,
+        campaigns: false,
+        settings: true
+      })
+      expect(Cookies.set).toHaveBeenCalledWith('userConsent', JSON.stringify({
+        version: '2020-03-01',
+        dateSet: testScope.fakeDatetime,
+        preferences: {
+          usage: false,
+          campaigns: false,
+          settings: true
+        }
+      }), { sameSite: 'strict', expires: 3650 })
+    })
+    it('should save only preferences specified', () => {
+      userPreferenceFactory().setPreferences({
+        usage: true
+      })
+      expect(Cookies.set).toHaveBeenCalledWith('userConsent', JSON.stringify({
+        version: '2020-03-01',
+        dateSet: testScope.fakeDatetime,
+        preferences: {
+          usage: true
+        }
+      }), { sameSite: 'strict', expires: 3650 })
+    })
   })
 
   describe('Meta tests', () => {
@@ -90,6 +178,11 @@ describe('User Preference Factory', () => {
       expect(new Date().getTime()).toEqual(testScope.fakeDatetime)
       testScope.fakeDatetime = 123
       expect(new Date().getTime()).toEqual(123)
+    })
+    it('cookies should be settable and gettable', () => {
+      expect(Cookies.get('abcdef')).toBeUndefined()
+      Cookies.set('abcdef', 'this is my cookie value')
+      expect(Cookies.get('abcdef')).toBe('this is my cookie value')
     })
   })
 })

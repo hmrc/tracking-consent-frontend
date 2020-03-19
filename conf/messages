@@ -30,7 +30,7 @@ cookieSettings.necessary.title = Strictly necessary cookies
 cookieSettings.necessary.paragraph1 = These essential cookies do things like remember your progress through a form (for example a licence application)
 cookieSettings.necessary.paragraph2 =They always need to be on.
 cookieSettings.necessary.link.text = Find out more about cookies on HMRC services
-cookieSettings.necessary.link.url = /help/cookies?abc=def&ghi=jkl
+cookieSettings.necessary.link.url = /help/cookies
 
 
 cookieSettings.onValue = on
