@@ -1,4 +1,4 @@
-@*
+/*
  * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,20 +12,18 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *@
+ */
 
-@this(
-        govukLayout: GovukLayout,
-        head: Head,
-        scripts: Scripts
-)
+package uk.gov.hmrc.trackingconsentfrontend
 
-@(pageTitle: Option[String] = None,
-        headBlock: Option[Html] = None
-)(contentBlock: Html)(implicit request: Request[_], messages: Messages)
+import play.api.{Configuration, Environment}
+import play.api.inject.{Binding, Module}
+import uk.gov.hmrc.http.CoreGet
+import uk.gov.hmrc.play.bootstrap.http.DefaultHttpClient
 
-@govukLayout(
-    pageTitle = pageTitle,
-    headBlock = Some(head(headBlock)),
-    scriptsBlock = Some(scripts())
-)(contentBlock)
+/** This module will be put into bootstrap-play at some point */
+class CookieModule extends Module {
+  override def bindings(environment: Environment, configuration: Configuration): Seq[Binding[_]] = Seq(
+    bind[CoreGet].to[DefaultHttpClient]
+  )
+}
