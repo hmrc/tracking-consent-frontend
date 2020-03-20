@@ -5,7 +5,7 @@ const path = require('path');
 module.exports = {
   entry: {
     bundle: './src/bundle.ts',
-    cookieSettingsPage: './src/cookieSettingsPage.ts'
+    settingsPage: './src/settingsPage.ts'
   },
   module: {
     rules: [
