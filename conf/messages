@@ -1,4 +1,5 @@
 cookieSettings.title = Cookie settings on HMRC services
+testPage.title = Service test page
 
 cookieSettings.intro.paragraph1 = Cookies are files saved on your phone, tablet or computer when you visit a website
 cookieSettings.intro.paragraph2 = We use cookies to store information about how you use HMRC services, such as the pages you visit.

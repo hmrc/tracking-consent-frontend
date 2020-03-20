@@ -14,18 +14,19 @@
  * limitations under the License.
  *@
 
+@import uk.gov.hmrc.cookiebanner.CookieBanner
+
 @this(
-        govukLayout: GovukLayout,
-        head: Head,
-        scripts: Scripts
+    layout: Layout,
+    paragraph: Paragraph,
+    h1: H1,
+    cookieBanner: CookieBanner
 )
+@()(implicit request: Request[_], messages: Messages)
 
-@(pageTitle: Option[String] = None,
-        headBlock: Option[Html] = None
-)(contentBlock: Html)(implicit request: Request[_], messages: Messages)
-
-@govukLayout(
-    pageTitle = pageTitle,
-    headBlock = Some(head(headBlock)),
-    scriptsBlock = Some(scripts())
-)(contentBlock)
+@defining(Messages("testPage.title")) { title =>
+    @layout(pageTitle = Some(title), headBlock = Some(cookieBanner.cookieBanner)) {
+        @h1(content = Text(title))
+        @paragraph(content = HtmlContent("Service test page"))
+    }
+}
