@@ -1,31 +1,52 @@
-import castToArray from './castToArray'
+import callIfNotNull from './common/callIfNotNull'
+import { UserPreferences } from '../types/UserPreferences'
+import fromEntries from './common/fromEntries'
 
-const settingsFormHandler = (document, userPreferences) => {
-  document.addEventListener('DOMContentLoaded', () => {
-    userPreferences.getPreferences()
-    castToArray(document.querySelectorAll('[data-module="cookie-settings"]')).forEach(cookieSettingsForm => {
-      const onValue = cookieSettingsForm.getAttribute('data-on-value')
-      const offValue = cookieSettingsForm.getAttribute('data-off-value')
-      const currentSettings = userPreferences.getPreferences()
-      if (currentSettings) {
-        Object.keys(currentSettings).forEach(setting => {
-          const isOn = currentSettings[setting]
-          cookieSettingsForm.querySelectorAll('input[name=' + setting + '][value=' + (isOn ? onValue : offValue) + ']').forEach(option => {
-            option.checked = true
-          })
-        })
-      }
+const cookieTypes = ['usage', 'campaigns', 'settings']
 
-      cookieSettingsForm.addEventListener('submit', (e) => {
-        e.preventDefault()
-        userPreferences.setPreferences({
-          usage: !!cookieSettingsForm.querySelector('input[name=usage][value=' + onValue + ']').checked,
-          campaigns: !!cookieSettingsForm.querySelector('input[name=campaigns][value=' + onValue + ']').checked,
-          settings: !!cookieSettingsForm.querySelector('input[name=settings][value=' + onValue + ']').checked
-        })
-      })
+const setAsChecked = element => {
+  element.checked = true
+}
+
+const hydrateForm = (userPreferences: UserPreferences) => (form: HTMLFormElement) => {
+  const onValue = form.getAttribute('data-on-value') || ''
+  const offValue = form.getAttribute('data-off-value') || ''
+  const preferences = userPreferences.getPreferences()
+
+  const mapPreferencesToForm = () => {
+    if (!preferences) {
+      return
+    }
+    cookieTypes.forEach(cookieType => {
+      const radioValue = preferences[cookieType] ? onValue : offValue
+
+      const input: HTMLInputElement | null = form.querySelector(`input[name=${cookieType}][value=${radioValue}]`)
+      callIfNotNull(input, setAsChecked)
     })
-  })
+  }
+
+  const mapFormToPreferences = () => {
+    const entries: [string, boolean][] = cookieTypes.map(cookieType => {
+      const input: HTMLInputElement | null = form.querySelector(`input[name=${cookieType}][value=${onValue}`)
+      return [cookieType, input !== null ? input.checked : false]
+    })
+
+    return fromEntries(entries)
+  }
+
+  const submitHandler = (event: InputEvent) => {
+    event.preventDefault()
+
+    userPreferences.setPreferences(mapFormToPreferences())
+  }
+
+  mapPreferencesToForm()
+  form.addEventListener('submit', submitHandler)
+}
+
+const settingsFormHandler: (HTMLDocument, UserPreferences) => void = (document, userPreferences) => {
+  const cookieSettingsForm = document.querySelector('[data-module="cookie-settings"]')
+  callIfNotNull(cookieSettingsForm, hydrateForm(userPreferences))
 }
 
 export default settingsFormHandler

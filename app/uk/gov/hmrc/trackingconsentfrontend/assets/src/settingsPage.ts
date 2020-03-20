@@ -1,4 +1,6 @@
 import settingsFormHandler from './settingsFormHandler'
 import userPreferenceFactory from './userPreferenceFactory'
 
-settingsFormHandler(document, userPreferenceFactory())
+document.addEventListener('DOMContentLoaded', () => {
+  settingsFormHandler(document, userPreferenceFactory())
+})
