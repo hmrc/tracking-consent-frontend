@@ -20,6 +20,20 @@ describe('User Preference Factory', () => {
     expect(Cookies.set).toHaveBeenCalledTimes(1)
   }
 
+  describe('getTrackingPreferencesSaved', () => {
+    it('should determine if tracking preferences have been set', () => {
+      setConsentCookie({ preferences: { acceptAll: true } })
+
+      expect(userPreferenceFactory().getUserHasSavedCookiePreferences()).toEqual(true)
+    })
+
+    it('should determine if tracking preferences have been set', () => {
+      delete testScope.userConsent
+
+      expect(userPreferenceFactory().getUserHasSavedCookiePreferences()).toEqual(false)
+    })
+  })
+
   describe('Accept All', () => {
     it('should set the cookie body with the JSON format', () => {
       userPreferenceFactory().userAcceptsAll()
@@ -64,6 +78,7 @@ describe('User Preference Factory', () => {
 
       expect(userPreferenceFactory().getPreferences()).toEqual(undefined)
     })
+
     it('should return each category when AcceptAll is set (fake data)', () => {
       setConsentCookie(getFakeAcceptAll())
 

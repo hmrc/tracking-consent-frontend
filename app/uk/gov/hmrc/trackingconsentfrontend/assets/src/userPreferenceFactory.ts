@@ -9,40 +9,49 @@ function storePreferences (preferences) {
   }), { sameSite: 'strict', expires: 3650 })
 }
 
-const userPreferenceFactory = () => ({
-  userAcceptsAll: () => {
-    storePreferences({
-      acceptAll: true
-    })
-  },
-  setPreferences: (preferencesIn) => {
-    storePreferences({
-      usage: preferencesIn.usage,
-      campaigns: preferencesIn.campaigns,
-      settings: preferencesIn.settings
-    })
-  },
-  getPreferences: () => {
-    const rawCookie = Cookies.get('userConsent')
-    if (rawCookie) {
-      const parsedCookie = JSON.parse(rawCookie)
-      const pref = parsedCookie.preferences
-      if (pref.acceptAll) {
-        return {
-          usage: true,
-          campaigns: true,
-          settings: true
-        }
-      }
+const userAcceptsAll = () => {
+  storePreferences({
+    acceptAll: true
+  })
+}
+
+const setPreferences = preferencesIn => {
+  storePreferences({
+    usage: preferencesIn.usage,
+    campaigns: preferencesIn.campaigns,
+    settings: preferencesIn.settings
+  })
+}
+
+const getPreferences = () => {
+  const rawCookie = Cookies.get('userConsent')
+  if (rawCookie) {
+    const parsedCookie = JSON.parse(rawCookie)
+    const pref = parsedCookie.preferences
+    if (pref.acceptAll) {
       return {
-        usage: !!pref.usage,
-        campaigns: !!pref.campaigns,
-        settings: !!pref.settings
+        usage: true,
+        campaigns: true,
+        settings: true
       }
-    } else {
-      return undefined
     }
+    return {
+      usage: !!pref.usage,
+      campaigns: !!pref.campaigns,
+      settings: !!pref.settings
+    }
+  } else {
+    return undefined
   }
+}
+
+const getUserHasSavedCookiePreferences = () => getPreferences() !== undefined
+
+const userPreferenceFactory = () => ({
+  userAcceptsAll,
+  setPreferences,
+  getUserHasSavedCookiePreferences,
+  getPreferences
 })
 
 export default userPreferenceFactory

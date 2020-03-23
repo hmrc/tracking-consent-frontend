@@ -18,7 +18,7 @@ const hideQuestion = () => {
     callIfNotNull(question, element => removeElement(question))
 }
 
-const renderBanner = (userPreference) => {
+const insertBanner = (userPreference) => {
     const banner = document.createElement('div')
     banner.className = COOKIE_BANNER_CLASS;
     banner.innerHTML = bannerHtml
@@ -27,6 +27,12 @@ const renderBanner = (userPreference) => {
 
     const parentNode = document.body
     parentNode.insertBefore(banner, parentNode.firstChild)
+}
+
+const renderBanner = (userPreference) => {
+    if (!userPreference.getUserHasSavedCookiePreferences()) {
+        insertBanner(userPreference)
+    }
 }
 
 export default renderBanner
