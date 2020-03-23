@@ -9,8 +9,20 @@ import '@testing-library/jest-dom/extend-expect'
 import renderBanner from '../../src/ui/renderBanner'
 
 describe('renderBanner', () => {
+
+  const userAcceptsAll = jest.fn()
+  const getUserHasSavedCookiePreferences = jest.fn()
+  const userPreference = {
+    userAcceptsAll,
+    getUserHasSavedCookiePreferences
+  }
+
+  const tellUsYouAcceptAllMatcher = /Tell us whether you accept cookies/
+  const youveAcceptedAllMatcher = /You’ve accepted all cookies/
+
   const reset = () => {
     document.getElementsByTagName('html')[0].innerHTML = ''
+    userPreference.getUserHasSavedCookiePreferences.mockReturnValue(false)
   }
 
   const assume = expect
@@ -18,13 +30,6 @@ describe('renderBanner', () => {
   beforeAll(reset)
   afterEach(reset)
 
-  const userAcceptsAll = jest.fn()
-  const userPreference = {
-    userAcceptsAll
-  }
-
-  const tellUsYouAcceptAllMatcher = /Tell us whether you accept cookies/
-  const youveAcceptedAllMatcher = /You’ve accepted all cookies/
 
   const clickAcceptAll = () => {
     // getByText will fail the test if the text is not found
@@ -37,7 +42,7 @@ describe('renderBanner', () => {
   }
 
   it('should render a banner', () => {
-    renderBanner({})
+    renderBanner(userPreference)
 
     expect(queryByText(document.body, tellUsYouAcceptAllMatcher)).toBeTruthy()
   })
@@ -80,6 +85,14 @@ describe('renderBanner', () => {
     expect(queryByText(document.body, tellUsYouAcceptAllMatcher)).toBeFalsy()
     expect(queryByText(document.body, youveAcceptedAllMatcher)).toBeFalsy()
   })
+
+  it('should not render a banner if the cookie has been set', () => {
+    userPreference.getUserHasSavedCookiePreferences.mockReturnValue( true)
+    renderBanner(userPreference)
+
+    expect(queryByText(document.body, /Tell us whether you accept cookies/)).not.toBeTruthy()
+  })
+
 
   describe('Meta tests', () => {
     it('should reset state between tests', () => {
