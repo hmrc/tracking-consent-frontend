@@ -39,4 +39,5 @@ coverage
 node_modules
 stats.json
 public/bundle.js
-public/cookieSettingsPage.js
+public/settingsPage.js
+

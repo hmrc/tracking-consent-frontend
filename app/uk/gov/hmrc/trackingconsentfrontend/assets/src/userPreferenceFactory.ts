@@ -26,7 +26,7 @@ const setPreferences = preferencesIn => {
 const getPreferences = () => {
   const rawCookie = Cookies.get('userConsent')
   if (rawCookie) {
-    const parsedCookie = rawCookie ? JSON.parse(rawCookie) : undefined
+    const parsedCookie = JSON.parse(rawCookie)
     const pref = parsedCookie.preferences
     if (pref.acceptAll) {
       return {
