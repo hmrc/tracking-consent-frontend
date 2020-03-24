@@ -12,7 +12,7 @@ describe('User Preference Factory', () => {
     spyOn(Date.prototype, 'getTime').and.callFake(() => testScope.fakeDatetime)
   })
 
-  const setConsentCookie = obj => { testScope.cookieData.userConsent = obj }
+  const setConsentCookie = obj => { testScope.cookieData.userConsent = { version: '2020-03-01', ...obj } }
 
   const expectTrackingPreferenceToHaveBeenSetWith = (preference) => {
     expect(Cookies.set).toHaveBeenCalledWith('userConsent', preference, expect.anything())
@@ -130,14 +130,35 @@ describe('User Preference Factory', () => {
       })
     })
 
-    it('should not return each category when AcceptAll is non-boolean but truthy', () => {
+    it('should return undefined if AcceptAll is non-boolean but truthy', () => {
       setConsentCookie({
         preferences: {
           acceptAll: 'abc'
         }
       })
 
-      expect(userPreferenceFactory().getPreferences()).toEqual({})
+      expect(userPreferenceFactory().getPreferences()).toEqual(undefined)
+    })
+
+    it('should return undefined if there are no valid preferences', () => {
+      setConsentCookie({
+        preferences: {
+          notRecognised: true
+        }
+      })
+
+      expect(userPreferenceFactory().getPreferences()).toEqual(undefined)
+    })
+
+    it('should return undefined if the version is not recognised', () => {
+      setConsentCookie({
+        version: '2010-01-01',
+        preferences: {
+          acceptAll: true
+        }
+      })
+
+      expect(userPreferenceFactory().getPreferences()).toEqual(undefined)
     })
 
     it('should return each category when AcceptAll is set (function call)', () => {
@@ -238,6 +259,10 @@ describe('User Preference Factory', () => {
       expect(Cookies.getJSON('abcdef')).toBeUndefined()
       Cookies.set('abcdef', 'this is my cookie value')
       expect(Cookies.getJSON('abcdef')).toBe('this is my cookie value')
+    })
+    it('cookies should be settable with an object', () => {
+      Cookies.set('abcdef', { thisIs: 'AnObject' })
+      expect(Cookies.getJSON('abcdef')).toEqual({ thisIs: 'AnObject' })
     })
   })
 })

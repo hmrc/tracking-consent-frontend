@@ -2,7 +2,7 @@
 import Cookies from 'js-cookie'
 import cookieTypes from '../constants/cookieTypes'
 import fromEntries from '../common/fromEntries'
-import { COOKIE_CONSENT } from '../constants/cookies'
+import {COOKIE_CONSENT, COOKIE_VERSION} from '../constants/cookies'
 
 function storePreferences (preferences) {
   Cookies.set(COOKIE_CONSENT, {
@@ -26,16 +26,16 @@ const setPreferences = preferencesIn => {
   })
 }
 
-const sanitizePreferences = preferences => {
-  const entries: [string, boolean][] = cookieTypes.reduce((accumulator, cookieType) => {
+const isPreferenceStrictlyBoolean = ([, value]) => typeof value === 'boolean'
+
+const getSanitisedPreferences = preferences => {
+  const entries: [string, boolean][] = cookieTypes.map(cookieType => {
     const { [cookieType]: value } = preferences
 
-    // If value is strictly not boolean, then do not assume either way
-    // Otherwise, return boolean as-is
-    return typeof value !== 'boolean' ? accumulator : [...accumulator, [cookieType, value]]
+    return [cookieType, value]
   }, [])
 
-  return fromEntries(entries)
+  return entries.filter(isPreferenceStrictlyBoolean)
 }
 
 const allThePreferences = () => fromEntries(cookieTypes.map(cookieType => [cookieType, true]))
@@ -46,16 +46,19 @@ const getPreferences = () => {
     return undefined
   }
 
-  // If user has 'Accepted All', then return all categories as true
-  // regardless of whether new categories have been added since they
-  // originally accepted all
+  const { version } = cookie
+  if (version !== COOKIE_VERSION) {
+    return undefined
+  }
+
   const { preferences } = cookie
   if (preferences.acceptAll === true) {
     return allThePreferences()
   }
 
-  // Otherwise sanitize preferences
-  return sanitizePreferences(preferences)
+  const sanitisedPreferences = getSanitisedPreferences(preferences)
+
+  return sanitisedPreferences.length > 0 ? fromEntries(sanitisedPreferences) : undefined
 }
 
 const getUserHasSavedCookiePreferences = () => getPreferences() !== undefined
