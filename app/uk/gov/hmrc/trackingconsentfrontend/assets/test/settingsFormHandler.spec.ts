@@ -4,9 +4,9 @@ import { JSDOM } from 'jsdom'
 import * as fs from 'fs'
 import * as path from 'path'
 import { fireEvent } from '@testing-library/dom'
-import settingsFormHandler from '../src/settingsFormHandler'
-import userPreferenceFactory from '../src/userPreferenceFactory'
-import castToArray from '../src/castToArray'
+import settingsFormHandler from '../src/ui/settingsFormHandler'
+import userPreferenceFactory from '../src/domain/userPreferenceFactory'
+import castToArray from '../src/common/castToArray'
 
 describe('User Preference Factory', () => {
   let testScope

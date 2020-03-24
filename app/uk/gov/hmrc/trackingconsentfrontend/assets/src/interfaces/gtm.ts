@@ -1,4 +1,4 @@
-const enableGtm = () => {
+const gtm = () => {
   (function (w, d, s, l, i) {
     w[l] = w[l] || []
     w[l].push({
@@ -19,4 +19,4 @@ const enableGtm = () => {
   })(window, document, 'script', 'dataLayer', 'GTM-TGKSS46')
 }
 
-export default enableGtm
+export default gtm

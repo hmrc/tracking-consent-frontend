@@ -4,8 +4,8 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    bundle: './src/bundle.ts',
-    settingsPage: './src/settingsPage.ts'
+    bundle: './src/entrypoints/servicePage.ts',
+    settingsPage: './src/entrypoints/settingsPage.ts'
   },
   module: {
     rules: [
