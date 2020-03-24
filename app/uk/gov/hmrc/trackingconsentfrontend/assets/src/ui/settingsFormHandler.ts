@@ -1,6 +1,6 @@
-import callIfNotNull from './common/callIfNotNull'
-import { UserPreferences } from '../types/UserPreferences'
-import fromEntries from './common/fromEntries'
+import callIfNotNull from '../common/callIfNotNull'
+import { UserPreferences } from '../../types/UserPreferences'
+import fromEntries from '../common/fromEntries'
 
 const cookieTypes = ['usage', 'campaigns', 'settings']
 

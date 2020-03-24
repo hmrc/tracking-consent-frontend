@@ -1,6 +1,6 @@
 /* global jasmine, spyOn */
 import Cookies from 'js-cookie'
-import userPreferenceFactory from '../src/userPreferenceFactory'
+import userPreferenceFactory from '../src/domain/userPreferenceFactory'
 import anything = jasmine.anything;
 
 describe('User Preference Factory', () => {
