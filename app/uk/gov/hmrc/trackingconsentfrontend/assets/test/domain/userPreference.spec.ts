@@ -1,7 +1,6 @@
-/* global jasmine, spyOn */
+/* global spyOn */
 import Cookies from 'js-cookie'
-import userPreferenceFactory from '../src/domain/userPreferenceFactory'
-import anything = jasmine.anything;
+import userPreferenceFactory from '../../src/domain/userPreferenceFactory'
 
 describe('User Preference Factory', () => {
   let testScope
@@ -9,14 +8,14 @@ describe('User Preference Factory', () => {
   beforeEach(() => {
     testScope = { fakeDatetime: 1591234567890, cookieData: {} }
     spyOn(Cookies, 'set').and.callFake((cookieName, value) => { testScope.cookieData[cookieName] = value })
-    spyOn(Cookies, 'get').and.callFake(cookieName => testScope.cookieData[cookieName])
+    spyOn(Cookies, 'getJSON').and.callFake(cookieName => testScope.cookieData[cookieName])
     spyOn(Date.prototype, 'getTime').and.callFake(() => testScope.fakeDatetime)
   })
 
-  const setConsentCookie = obj => { testScope.cookieData.userConsent = JSON.stringify(obj) }
+  const setConsentCookie = obj => { testScope.cookieData.userConsent = obj }
 
   const expectTrackingPreferenceToHaveBeenSetWith = (preference) => {
-    expect(Cookies.set).toHaveBeenCalledWith('userConsent', JSON.stringify(preference), anything())
+    expect(Cookies.set).toHaveBeenCalledWith('userConsent', preference, expect.anything())
     expect(Cookies.set).toHaveBeenCalledTimes(1)
   }
 
@@ -60,11 +59,11 @@ describe('User Preference Factory', () => {
 
     it('should set cookie security appropriately', () => {
       userPreferenceFactory().userAcceptsAll()
-      expect(Cookies.set).toHaveBeenCalledWith('userConsent', anything(), { sameSite: 'strict', expires: 3650 })
+      expect(Cookies.set).toHaveBeenCalledWith('userConsent', expect.anything(), { sameSite: 'strict', expires: 3650 })
     })
   })
 
-  describe('Get Preferences', () => {
+  describe('getPreferences', () => {
     const getFakeAcceptAll = () => ({
       version: '2020-03-01',
       dateSet: testScope.fakeDatetime,
@@ -74,9 +73,51 @@ describe('User Preference Factory', () => {
     })
 
     it('should return undefined when no preferences set', () => {
-      testScope.cookieData.userConsent = undefined
+      setConsentCookie(undefined)
 
       expect(userPreferenceFactory().getPreferences()).toEqual(undefined)
+    })
+
+    it('should return undefined when cookie value is not an object', () => {
+      setConsentCookie('abc')
+
+      expect(userPreferenceFactory().getPreferences()).toEqual(undefined)
+    })
+
+    it('should return undefined when cookie value is the wrong shape', () => {
+      setConsentCookie({ abc: 'abc' })
+
+      expect(userPreferenceFactory().getPreferences()).toEqual(undefined)
+    })
+
+    it('should only return partial data if partial data exists in the cookie', () => {
+      setConsentCookie({ preferences: { usage: true } })
+
+      expect(userPreferenceFactory().getPreferences()).toEqual({ usage: true })
+    })
+
+    it('should interpret boolean false correctly', () => {
+      setConsentCookie({ preferences: { usage: true, settings: false } })
+
+      expect(userPreferenceFactory().getPreferences()).toEqual({ usage: true, settings: false })
+    })
+
+    it('should ignore any non-boolean data', () => {
+      setConsentCookie({ preferences: { usage: true, settings: 'abc' } })
+
+      expect(userPreferenceFactory().getPreferences()).toEqual({ usage: true })
+    })
+
+    it('should ignore any null values', () => {
+      setConsentCookie({ preferences: { usage: true, settings: null } })
+
+      expect(userPreferenceFactory().getPreferences()).toEqual({ usage: true })
+    })
+
+    it('should ignore any undefined values', () => {
+      setConsentCookie({ preferences: { usage: true, settings: undefined } })
+
+      expect(userPreferenceFactory().getPreferences()).toEqual({ usage: true })
     })
 
     it('should return each category when AcceptAll is set (fake data)', () => {
@@ -88,6 +129,17 @@ describe('User Preference Factory', () => {
         settings: true
       })
     })
+
+    it('should not return each category when AcceptAll is non-boolean but truthy', () => {
+      setConsentCookie({
+        preferences: {
+          acceptAll: 'abc'
+        }
+      })
+
+      expect(userPreferenceFactory().getPreferences()).toEqual({})
+    })
+
     it('should return each category when AcceptAll is set (function call)', () => {
       const userPreference = userPreferenceFactory()
       userPreference.userAcceptsAll()
@@ -98,6 +150,7 @@ describe('User Preference Factory', () => {
         settings: true
       })
     })
+
     it('should return each category when each category is set (function call)', () => {
       const userPreference = userPreferenceFactory()
       userPreference.setPreferences({
@@ -126,19 +179,6 @@ describe('User Preference Factory', () => {
         settings: false
       })
     })
-    it('should return each category when only some categories are set (function call)', () => {
-      const userPreference = userPreferenceFactory()
-      userPreference.setPreferences({
-        usage: true,
-        campaigns: false
-      })
-
-      expect(userPreference.getPreferences()).toEqual({
-        usage: true,
-        campaigns: false,
-        settings: false
-      })
-    })
   })
 
   describe('Save Preferences', () => {
@@ -148,7 +188,7 @@ describe('User Preference Factory', () => {
         campaigns: false,
         settings: true
       })
-      expect(Cookies.set).toHaveBeenCalledWith('userConsent', JSON.stringify({
+      expect(Cookies.set).toHaveBeenCalledWith('userConsent', {
         version: '2020-03-01',
         dateSet: testScope.fakeDatetime,
         preferences: {
@@ -156,7 +196,7 @@ describe('User Preference Factory', () => {
           campaigns: false,
           settings: true
         }
-      }), { sameSite: 'strict', expires: 3650 })
+      }, { sameSite: 'strict', expires: 3650 })
     })
     it('should save other preferences to the cookie', () => {
       userPreferenceFactory().setPreferences({
@@ -164,7 +204,7 @@ describe('User Preference Factory', () => {
         campaigns: false,
         settings: true
       })
-      expect(Cookies.set).toHaveBeenCalledWith('userConsent', JSON.stringify({
+      expect(Cookies.set).toHaveBeenCalledWith('userConsent', {
         version: '2020-03-01',
         dateSet: testScope.fakeDatetime,
         preferences: {
@@ -172,19 +212,19 @@ describe('User Preference Factory', () => {
           campaigns: false,
           settings: true
         }
-      }), { sameSite: 'strict', expires: 3650 })
+      }, { sameSite: 'strict', expires: 3650 })
     })
     it('should save only preferences specified', () => {
       userPreferenceFactory().setPreferences({
         usage: true
       })
-      expect(Cookies.set).toHaveBeenCalledWith('userConsent', JSON.stringify({
+      expect(Cookies.set).toHaveBeenCalledWith('userConsent', {
         version: '2020-03-01',
         dateSet: testScope.fakeDatetime,
         preferences: {
           usage: true
         }
-      }), { sameSite: 'strict', expires: 3650 })
+      }, { sameSite: 'strict', expires: 3650 })
     })
   })
 
@@ -195,9 +235,9 @@ describe('User Preference Factory', () => {
       expect(new Date().getTime()).toEqual(123)
     })
     it('cookies should be settable and gettable', () => {
-      expect(Cookies.get('abcdef')).toBeUndefined()
+      expect(Cookies.getJSON('abcdef')).toBeUndefined()
       Cookies.set('abcdef', 'this is my cookie value')
-      expect(Cookies.get('abcdef')).toBe('this is my cookie value')
+      expect(Cookies.getJSON('abcdef')).toBe('this is my cookie value')
     })
   })
 })
