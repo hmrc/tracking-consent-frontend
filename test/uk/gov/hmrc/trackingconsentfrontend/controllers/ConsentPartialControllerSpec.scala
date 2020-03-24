@@ -17,25 +17,41 @@
 package uk.gov.hmrc.trackingconsentfrontend.controllers
 
 import org.scalatest.{Matchers, WordSpec}
-import org.scalatestplus.play.guice.GuiceOneAppPerSuite
+import org.scalatestplus.play.{MixedFixtures, MixedPlaySpec}
+import play.api.Application
 import play.api.http.Status
+import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
 
-class ConsentPartialControllerSpec extends WordSpec with Matchers with GuiceOneAppPerSuite {
-  private val fakeRequest = FakeRequest("GET", "/")
-  private val controller = app.injector.instanceOf[ConsentPartialController]
+class ConsentPartialControllerSpec extends MixedPlaySpec {
 
-  "head" should {
-    "return 200" in {
-      val result = controller.head(fakeRequest)
-      status(result) shouldBe Status.OK
+  def buildApp[A](elems: (String, String)*): Application =
+    GuiceApplicationBuilder()
+      .configure(Map(elems: _*))
+      .build()
+
+  def makeRequest(app: Application) = {
+    val fakeRequest = FakeRequest("GET", "/")
+    val controller = app.injector.instanceOf[ConsentPartialController]
+    controller.head(fakeRequest)
+  }
+
+  "head" must {
+    "return 200" in new App() {
+      val result = makeRequest(app)
+      status(result) mustBe Status.OK
     }
 
-    "return HTML" in {
-      val result = controller.head(fakeRequest)
-      contentType(result) shouldBe Some("text/html")
-      charset(result)     shouldBe Some("utf-8")
+    "return HTML" in new App() {
+      val result = makeRequest(app)
+      contentType(result) mustBe Some("text/html")
+      charset(result)     mustBe Some("utf-8")
+    }
+
+    "return assets prefixed for local-development" in new App(buildApp("cookie-banner.assets-prefix" -> "http://localhost:12345")) {
+      val result = makeRequest(app)
+      contentAsString(result) must include ("""src="http://localhost:12345/tracking-consent/assets/bundle.js""")
     }
   }
 }
