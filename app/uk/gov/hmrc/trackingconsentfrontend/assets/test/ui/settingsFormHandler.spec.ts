@@ -1,12 +1,12 @@
 // @ts-ignore
 /* global spyOn */
 import { JSDOM } from 'jsdom'
-import * as fs from 'fs'
-import * as path from 'path'
 import { fireEvent } from '@testing-library/dom'
-import settingsFormHandler from '../src/ui/settingsFormHandler'
-import userPreferenceFactory from '../src/domain/userPreferenceFactory'
-import castToArray from '../src/common/castToArray'
+import settingsFormHandler from '../../src/ui/settingsFormHandler'
+import userPreferenceFactory from '../../src/domain/userPreferenceFactory'
+import castToArray from '../../src/common/castToArray'
+// @ts-ignore
+import fixture from '../fixtures/settingsForm.html'
 
 describe('User Preference Factory', () => {
   let testScope
@@ -19,7 +19,6 @@ describe('User Preference Factory', () => {
   }
 
   beforeEach(() => {
-    const fixture = fs.readFileSync(path.join(__dirname, 'fixtures', 'settingsForm.html'), 'utf8')
     const dom = new JSDOM(fixture)
     testScope = {
       document: dom.window.document

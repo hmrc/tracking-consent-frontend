@@ -1,8 +1,7 @@
 import callIfNotNull from '../common/callIfNotNull'
 import { UserPreferences } from '../../types/UserPreferences'
 import fromEntries from '../common/fromEntries'
-
-const cookieTypes = ['usage', 'campaigns', 'settings']
+import cookieTypes from '../constants/cookieTypes'
 
 const setAsChecked = element => {
   element.checked = true
