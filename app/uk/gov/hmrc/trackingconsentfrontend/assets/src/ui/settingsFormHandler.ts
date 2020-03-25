@@ -2,6 +2,7 @@ import callIfNotNull from '../common/callIfNotNull'
 import { UserPreferences } from '../../types/UserPreferences'
 import fromEntries from '../common/fromEntries'
 import cookieTypes from '../constants/cookieTypes'
+import renderSettingsSaveConfirmationMessage from "./renderSettingsSaveConfirmationMessage";
 
 const setAsChecked = element => {
   element.checked = true
@@ -53,6 +54,7 @@ const hydrateForm = (userPreferences: UserPreferences) => (form: HTMLFormElement
     event.preventDefault()
 
     userPreferences.setPreferences(mapFormToPreferences())
+    renderSettingsSaveConfirmationMessage()
   }
 
   mapPreferencesToForm()

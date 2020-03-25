@@ -1,5 +1,8 @@
 export const COOKIE_BANNER_CLASS = 'cookie-banner'
 export const COOKIE_BANNER_QUESTION_CLASS = 'cookie-banner__question'
 export const COOKIE_BANNER_CONFIRMATION_CLASS = 'cookie-banner__confirmation-message'
+export const COOKIE_SETTINGS_CONFIRMATION_CLASS = 'cookie-settings__confirmation'
+export const COOKIE_SETTINGS_WRAPPER_CLASS = 'govuk-grid-column-two-thirds'
 export const ACCEPT_ALL_CLASS = 'acceptAll'
 export const HIDE_BUTTON_CLASS = 'cookie-banner__hide-button'
+export const GOV_UK_LINK = 'govuk-link'
