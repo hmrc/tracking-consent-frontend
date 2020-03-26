@@ -51,7 +51,7 @@ class ConsentPartialControllerSpec extends MixedPlaySpec {
 
     "return assets prefixed for local-development" in new App(buildApp("cookie-banner.assets-prefix" -> "http://localhost:12345")) {
       val result = makeRequest(app)
-      contentAsString(result) must include ("""src="http://localhost:12345/tracking-consent/assets/bundle.js""")
+      contentAsString(result) must include ("""src="http://localhost:12345/tracking-consent/assets/servicePage.js""")
     }
   }
 }
