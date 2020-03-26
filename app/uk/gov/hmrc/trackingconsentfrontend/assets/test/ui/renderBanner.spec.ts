@@ -30,7 +30,6 @@ describe('renderBanner', () => {
   beforeAll(reset)
   afterEach(reset)
 
-
   const clickAcceptAll = () => {
     // getByText will fail the test if the text is not found
     // Finding elements by text makes the tests similar to how a user would interact with the page
@@ -92,7 +91,6 @@ describe('renderBanner', () => {
 
     expect(queryByText(document.body, /Tell us whether you accept cookies/)).not.toBeTruthy()
   })
-
 
   describe('Meta tests', () => {
     it('should reset state between tests', () => {

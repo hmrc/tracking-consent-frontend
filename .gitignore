@@ -38,6 +38,6 @@ bin
 coverage
 node_modules
 stats.json
-public/bundle.js
+public/servicePage.js
 public/settingsPage.js
 

@@ -7,6 +7,7 @@ import userPreferenceFactory from '../../src/domain/userPreferenceFactory'
 import castToArray from '../../src/common/castToArray'
 // @ts-ignore
 import fixture from '../fixtures/settingsForm.html'
+import * as renderSettingsSaveConfirmationMessage from "../../src/ui/renderSettingsSaveConfirmationMessage";
 
 describe('User Preference Factory', () => {
   let testScope
@@ -136,6 +137,7 @@ describe('User Preference Factory', () => {
   describe('saving preferences', () => {
     beforeEach(() => {
       spyOn(testScope.userPref, 'setPreferences')
+      spyOn(renderSettingsSaveConfirmationMessage, 'default')
     })
 
     it('should save when usage only is granted', () => {
@@ -174,6 +176,16 @@ describe('User Preference Factory', () => {
       expect(testScope.userPref.setPreferences).toHaveBeenCalledWith({
         settings: false
       })
+    })
+
+    it('should call renderSaveConfirmation', () => {
+      settingsFormHandler(testScope.document, testScope.userPref)
+      pageLoad()
+
+      fireEvent.click(testScope.document.querySelector('[name=settings][value=off]'))
+      fireEvent.submit(testScope.document.querySelector('form'))
+
+      expect(renderSettingsSaveConfirmationMessage.default).toHaveBeenCalledTimes(1)
     })
   })
   describe('Technical details', () => {
