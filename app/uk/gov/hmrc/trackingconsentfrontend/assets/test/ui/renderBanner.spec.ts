@@ -58,7 +58,7 @@ describe('renderBanner', () => {
     const skipLink = document.querySelector('.govuk-skip-link')
 
     // @ts-ignore
-    expect(skipLink.nextSibling.classList).toContain('cookie-banner')
+    expect(skipLink.nextSibling.classList).toContain('cbanner-cookie-banner')
   })
 
   it('should render the banner after the govuk toolkit skiplink container', () => {
@@ -68,7 +68,7 @@ describe('renderBanner', () => {
     const skipLink = document.querySelector('#skiplink-container')
 
     // @ts-ignore
-    expect(skipLink.nextSibling.classList).toContain('cookie-banner')
+    expect(skipLink.nextSibling.classList).toContain('cbanner-cookie-banner')
   })
 
   it('should render the banner at the top of the body element if no skiplink tag exists', () => {
@@ -77,7 +77,7 @@ describe('renderBanner', () => {
     renderBanner(userPreference)
 
     // @ts-ignore
-    expect(document.body.firstChild.classList).toContain('cookie-banner')
+    expect(document.body.firstChild.classList).toContain('cbanner-cookie-banner')
   })
 
   it('should call preference manager when user accepts', () => {

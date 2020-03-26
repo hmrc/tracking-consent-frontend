@@ -1,4 +1,4 @@
-import '../../styles/styles.scss'
+import '../../styles/service-page.scss'
 import renderBanner from '../ui/renderBanner'
 import userPreferenceFactory from '../domain/userPreferenceFactory'
 import enableGtm from '../interfaces/gtm'

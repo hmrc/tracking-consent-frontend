@@ -1,6 +1,11 @@
 // @ts-ignore
 import confirmationHtml from './confirmation.html';
-import { COOKIE_BANNER_CONFIRMATION_CLASS, COOKIE_BANNER_CLASS, HIDE_BUTTON_CLASS } from '../constants/cssClasses';
+import {
+    COOKIE_BANNER_CONFIRMATION_CLASS,
+    COOKIE_BANNER_CLASS,
+    HIDE_BUTTON_CLASS,
+    COOKIE_BANNER_GOV_UK_WIDTH_CONTAINER_CLASS
+} from '../constants/cssClasses';
 import removeElement from '../common/removeElement';
 import callIfNotNull from '../common/callIfNotNull';
 
@@ -13,7 +18,7 @@ const handleHideClick = event => {
 
 const renderConfirmationMessage = () => {
     const message = document.createElement('div')
-    message.className = COOKIE_BANNER_CONFIRMATION_CLASS
+    message.className = `${COOKIE_BANNER_GOV_UK_WIDTH_CONTAINER_CLASS} ${COOKIE_BANNER_CONFIRMATION_CLASS}`
     message.innerHTML = confirmationHtml
 
     const hideButton = message.querySelector(`.${HIDE_BUTTON_CLASS}`)
