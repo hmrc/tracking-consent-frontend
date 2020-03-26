@@ -33,6 +33,13 @@ describe('renderSettingsSaveConfirmationMessage', () => {
         expect(scrollToTop.default).toHaveBeenCalledTimes(1)
     })
 
+    it('should scroll to top twice if called two times', () => {
+        renderSettingsSaveConfirmationMessage()
+        renderSettingsSaveConfirmationMessage()
+
+        expect(scrollToTop.default).toHaveBeenCalledTimes(2)
+    })
+
     it('should set the link to the document referrer', () => {
         renderSettingsSaveConfirmationMessage()
 
@@ -41,13 +48,28 @@ describe('renderSettingsSaveConfirmationMessage', () => {
         expect(backLink.href).toEqual('http://localhost/another-service')
     })
 
-    it('should render the link inside the notice element', () => {
+    it('should render the link inside a paragraph element', () => {
         renderSettingsSaveConfirmationMessage()
 
         // @ts-ignore
         const link = getByText(document.body, /Go back to the page you were looking at/)
 
         const container = link.parentElement
+        expect(container).not.toEqual(null)
+        // @ts-ignore
+        expect(container.tagName).toEqual('P')
+        // @ts-ignore
+        expect(container.classList).toContain('govuk-body')
+    })
+
+    it('should render the link inside the notice element', () => {
+        renderSettingsSaveConfirmationMessage()
+
+        // @ts-ignore
+        const link = getByText(document.body, /Go back to the page you were looking at/)
+
+        // @ts-ignore
+        const container = link.parentElement.parentElement
         expect(container).not.toEqual(null)
         // @ts-ignore
         expect(container.classList).toContain('cookie-settings__notice')
