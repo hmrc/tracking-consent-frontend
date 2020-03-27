@@ -1,7 +1,12 @@
 // @ts-ignore
 import bannerHtml from './banner.html';
 import renderConfirmationMessage from './renderConfirmationMessage';
-import { COOKIE_BANNER_QUESTION_CLASS, COOKIE_BANNER_CLASS, ACCEPT_ALL_CLASS } from '../constants/cssClasses';
+import {
+    COOKIE_BANNER_QUESTION_CLASS,
+    COOKIE_BANNER_CLASS,
+    ACCEPT_ALL_CLASS,
+    GOV_UK_SKIP_LINK_CLASS, SKIP_LINK_CONTAINER_ID
+} from '../constants/cssClasses';
 import removeElement from '../common/removeElement';
 import callIfNotNull from '../common/callIfNotNull';
 
@@ -18,6 +23,20 @@ const hideQuestion = () => {
     callIfNotNull(question, element => removeElement(question))
 }
 
+const insertAtTopOfBody = banner => {
+    const parentNode = document.body
+    parentNode.insertBefore(banner, parentNode.firstChild)
+}
+
+const insertAfterSkipLink = banner => {
+    const skipLink = document.querySelector(`#${SKIP_LINK_CONTAINER_ID}, .${GOV_UK_SKIP_LINK_CLASS}`)
+    if (skipLink !== null) {
+        skipLink.insertAdjacentElement('afterend', banner)
+    } else {
+        insertAtTopOfBody(banner)
+    }
+}
+
 const insertBanner = (userPreference) => {
     const banner = document.createElement('div')
     banner.className = COOKIE_BANNER_CLASS;
@@ -25,8 +44,7 @@ const insertBanner = (userPreference) => {
     const acceptAllButton = banner.querySelector(`.${ACCEPT_ALL_CLASS}`)
     callIfNotNull(acceptAllButton, element => element.addEventListener('click', handleAcceptAllClick(userPreference)))
 
-    const parentNode = document.body
-    parentNode.insertBefore(banner, parentNode.firstChild)
+    insertAfterSkipLink(banner)
 }
 
 const renderBanner = (userPreference) => {
