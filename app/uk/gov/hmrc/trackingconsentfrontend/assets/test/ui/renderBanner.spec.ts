@@ -7,6 +7,12 @@ import {
 } from '@testing-library/dom'
 import '@testing-library/jest-dom/extend-expect'
 import renderBanner from '../../src/ui/renderBanner'
+// @ts-ignore
+import fixture from '../fixtures/servicePage.html'
+// @ts-ignore
+import fixtureFrontendToolkit from '../fixtures/servicePageFrontendToolkit.html'
+// @ts-ignore
+import fixtureClassic from '../fixtures/servicePageClassic.html'
 
 describe('renderBanner', () => {
 
@@ -21,7 +27,7 @@ describe('renderBanner', () => {
   const youveAcceptedAllMatcher = /You’ve accepted all cookies/
 
   const reset = () => {
-    document.getElementsByTagName('html')[0].innerHTML = ''
+    document.getElementsByTagName('html')[0].innerHTML = fixture
     userPreference.getUserHasSavedCookiePreferences.mockReturnValue(false)
   }
 
@@ -44,6 +50,34 @@ describe('renderBanner', () => {
     renderBanner(userPreference)
 
     expect(queryByText(document.body, tellUsYouAcceptAllMatcher)).toBeTruthy()
+  })
+
+  it('should render the banner after the govuk-frontend skiplink link', () => {
+    renderBanner(userPreference)
+
+    const skipLink = document.querySelector('.govuk-skip-link')
+
+    // @ts-ignore
+    expect(skipLink.nextSibling.classList).toContain('cookie-banner')
+  })
+
+  it('should render the banner after the govuk toolkit skiplink container', () => {
+    document.getElementsByTagName('html')[0].innerHTML = fixtureFrontendToolkit
+    renderBanner(userPreference)
+
+    const skipLink = document.querySelector('#skiplink-container')
+
+    // @ts-ignore
+    expect(skipLink.nextSibling.classList).toContain('cookie-banner')
+  })
+
+  it('should render the banner at the top of the body element if no skiplink tag exists', () => {
+    document.getElementsByTagName('html')[0].innerHTML = fixtureClassic
+
+    renderBanner(userPreference)
+
+    // @ts-ignore
+    expect(document.body.firstChild.classList).toContain('cookie-banner')
   })
 
   it('should call preference manager when user accepts', () => {
