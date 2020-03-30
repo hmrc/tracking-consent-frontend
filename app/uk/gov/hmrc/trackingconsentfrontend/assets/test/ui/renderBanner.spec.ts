@@ -53,6 +53,15 @@ describe('renderBanner', () => {
     expect(queryByText(document.body, tellUsYouAcceptAllMatcher)).toBeTruthy()
   })
 
+  it('should render a submit button', () => {
+    renderBanner(userPreference)
+
+    const button = queryByText(document.body, 'Accept all cookies')
+    expect(button).toBeTruthy()
+    // @ts-ignore
+    expect(button.getAttribute('type')).toEqual('submit')
+  })
+
   it('should render the banner after the govuk-frontend skiplink link', () => {
     renderBanner(userPreference)
 
@@ -86,7 +95,7 @@ describe('renderBanner', () => {
 
     renderBanner(userPreference)
 
-    expect(getByRole(document.body, 'banner', { name: 'Cookie Banner' })).toBeTruthy()
+    expect(getByRole(document.body, 'region', { name: 'Cookie Banner' })).toBeTruthy()
   })
 
   it('should call preference manager when user accepts', () => {

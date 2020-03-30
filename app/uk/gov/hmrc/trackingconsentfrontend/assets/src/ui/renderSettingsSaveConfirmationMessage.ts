@@ -10,6 +10,7 @@ import callIfNotNull from "../common/callIfNotNull";
 import scrollToTop from "../common/scrollToTop";
 import getReferrer from "../common/getReferrer";
 import {GO_BACK_TO_PREVIOUS_PAGE} from "../constants/messages";
+import getPathname from "../common/getPathname";
 
 const getReferrerLink = (referrer): HTMLAnchorElement => {
     const link = document.createElement('a')
@@ -34,7 +35,7 @@ const insertReferrerLink = (notice: HTMLElement, referrer: string) => {
 
 const insertReferrerLinkIfNecessary = (message) => {
     const referrer = getReferrer()
-    if (referrer) {
+    if (referrer && referrer !== getPathname()) {
         const notice = message.querySelector('.cookie-settings__notice')
         callIfNotNull(notice, element => insertReferrerLink(element, referrer))
     }

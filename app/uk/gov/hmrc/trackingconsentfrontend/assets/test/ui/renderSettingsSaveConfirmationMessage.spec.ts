@@ -4,6 +4,7 @@ import renderSettingsSaveConfirmationMessage from "../../src/ui/renderSettingsSa
 import fixture from '../fixtures/settingsFormMinimal.html';
 import * as scrollToTop from "../../src/common/scrollToTop";
 import * as getReferrer from "../../src/common/getReferrer";
+import * as getPathname from "../../src/common/getPathname";
 
 describe('renderSettingsSaveConfirmationMessage', () => {
     let referrer = '/another-service'
@@ -12,6 +13,7 @@ describe('renderSettingsSaveConfirmationMessage', () => {
         document.getElementsByTagName('html')[0].innerHTML = fixture
         spyOn(scrollToTop, 'default')
         spyOn(getReferrer, 'default').and.callFake(() => referrer)
+        spyOn(getPathname, 'default').and.callFake(() => '/tracking-consent/cookie-settings')
     })
 
     it('should render the save confirmation', () => {
@@ -77,6 +79,14 @@ describe('renderSettingsSaveConfirmationMessage', () => {
 
     it('should not render the referrer link if not set (to be consistent with Gov.UK implementation)', () => {
         referrer = ''
+        renderSettingsSaveConfirmationMessage()
+
+        expect(queryAllByText(document.body, /Go back to the page you were looking at/).length).toEqual(0)
+    })
+
+    it('should not render the referrer link if it is the same as the settings page (to be consistent with Gov.UK implementation)', () => {
+        referrer = '/tracking-consent/cookie-settings'
+
         renderSettingsSaveConfirmationMessage()
 
         expect(queryAllByText(document.body, /Go back to the page you were looking at/).length).toEqual(0)
