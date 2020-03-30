@@ -41,6 +41,8 @@ const insertBanner = (userPreference) => {
     const banner = document.createElement('div')
     banner.className = COOKIE_BANNER_CLASS;
     banner.innerHTML = bannerHtml
+    banner.setAttribute('role', 'banner')
+    banner.setAttribute('aria-label', 'Cookie Banner')
     const acceptAllButton = banner.querySelector(`.${ACCEPT_ALL_CLASS}`)
     callIfNotNull(acceptAllButton, element => element.addEventListener('click', handleAcceptAllClick(userPreference)))
 

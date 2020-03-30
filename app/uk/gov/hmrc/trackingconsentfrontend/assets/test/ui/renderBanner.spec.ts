@@ -3,7 +3,8 @@
 import {
   queryByText,
   getByText,
-  fireEvent
+  fireEvent,
+  getByRole
 } from '@testing-library/dom'
 import '@testing-library/jest-dom/extend-expect'
 import renderBanner from '../../src/ui/renderBanner'
@@ -78,6 +79,14 @@ describe('renderBanner', () => {
 
     // @ts-ignore
     expect(document.body.firstChild.classList).toContain('cookie-banner')
+  })
+
+  it('should render a role and aria-label attribute for the cookie banner', () => {
+    document.getElementsByTagName('html')[0].innerHTML = fixtureClassic
+
+    renderBanner(userPreference)
+
+    expect(getByRole(document.body, 'banner', { name: 'Cookie Banner' })).toBeTruthy()
   })
 
   it('should call preference manager when user accepts', () => {
