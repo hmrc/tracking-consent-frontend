@@ -37,8 +37,8 @@ const hydrateForm = (userPreferences: UserPreferences) => (form: HTMLFormElement
 
   const mapFormToPreferences = () => {
     const entries: [string, boolean][] = cookieTypes.reduce((accumulator, cookieType) => {
-      const onInput: HTMLInputElement | null = form.querySelector(`input[name=${cookieType}][value=${onValue}`)
-      const offInput: HTMLInputElement | null = form.querySelector(`input[name=${cookieType}][value=${offValue}`)
+      const onInput: HTMLInputElement | null = form.querySelector(`input[name=${cookieType}][value=${onValue}]`)
+      const offInput: HTMLInputElement | null = form.querySelector(`input[name=${cookieType}][value=${offValue}]`)
 
       // If form inputs are missing or user has not specified consent either way, do not set a preference,
       // Otherwise the preference is determined by checking whether the on input is checked
