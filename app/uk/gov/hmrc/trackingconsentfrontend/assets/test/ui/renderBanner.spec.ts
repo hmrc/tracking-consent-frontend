@@ -130,18 +130,6 @@ describe('renderBanner', () => {
     expect(queryByText(document.body, tellUsYouAcceptAllMatcher)).toBeFalsy()
   })
 
-  it('should hide the confirmation message when user clicks hide', () => {
-    renderBanner(userPreference)
-    clickAcceptAll()
-    expect(queryByText(document.body, tellUsYouAcceptAllMatcher)).toBeFalsy()
-    expect(queryByText(document.body, youveAcceptedAllMatcher)).toBeTruthy()
-
-    clickHide()
-
-    expect(queryByText(document.body, tellUsYouAcceptAllMatcher)).toBeFalsy()
-    expect(queryByText(document.body, youveAcceptedAllMatcher)).toBeFalsy()
-  })
-
   it('should not render a banner if the cookie has been set', () => {
     userPreference.getUserHasSavedCookiePreferences.mockReturnValue( true)
     renderBanner(userPreference)
