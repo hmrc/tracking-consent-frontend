@@ -63,6 +63,7 @@
     "stylelint": "^13.2.1",
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-config-standard": "^20.0.0",
+    "stylelint-scss": "^3.16.0",
     "ts-jest": "^25.2.1",
     "ts-loader": "^6.2.1",
     "typescript": "^3.8.3",
@@ -70,6 +71,7 @@
     "webpack": "^4.42.0",
     "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
+    "webpack-dev-server": "^3.10.3",
+    "govuk-frontend": "^3.6.0"
   }
 }

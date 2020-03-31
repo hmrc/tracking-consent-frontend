@@ -1,8 +1,7 @@
 import {
-    COOKIE_SETTINGS_CONFIRMATION_CLASS,
+    COOKIE_SETTINGS_CONFIRMATION_CLASS, COOKIE_SETTINGS_NOTICE_CLASS,
     COOKIE_SETTINGS_WRAPPER_CLASS,
-    GOV_UK_BODY,
-    GOV_UK_LINK
+    GOV_UK_BODY_CLASS, GOV_UK_LINK_CLASS
 } from "../constants/cssClasses";
 // @ts-ignore
 import confirmationHtml from './cookieSettingsConfirmation.html'
@@ -13,7 +12,7 @@ import {GO_BACK_TO_PREVIOUS_PAGE} from "../constants/messages";
 
 const getReferrerLink = (referrer): HTMLAnchorElement => {
     const link = document.createElement('a')
-    link.className = GOV_UK_LINK
+    link.className = GOV_UK_LINK_CLASS
     link.innerHTML = GO_BACK_TO_PREVIOUS_PAGE
     link.href = referrer
     return link
@@ -21,7 +20,7 @@ const getReferrerLink = (referrer): HTMLAnchorElement => {
 
 const getParagraph = (link): HTMLParagraphElement => {
     const paragraph = document.createElement('p')
-    paragraph.className = GOV_UK_BODY
+    paragraph.className = GOV_UK_BODY_CLASS
     paragraph.appendChild(link)
     return paragraph
 }
@@ -35,7 +34,7 @@ const insertReferrerLink = (notice: HTMLElement, referrer: string) => {
 const insertReferrerLinkIfNecessary = (message) => {
     const referrer = getReferrer()
     if (referrer) {
-        const notice = message.querySelector('.cookie-settings__notice')
+        const notice = message.querySelector(`.${COOKIE_SETTINGS_NOTICE_CLASS}`)
         callIfNotNull(notice, element => insertReferrerLink(element, referrer))
     }
 }
