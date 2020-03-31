@@ -1,6 +1,10 @@
 // @ts-ignore
 import confirmationHtml from './confirmation.html';
-import { COOKIE_BANNER_CONFIRMATION_CLASS, COOKIE_BANNER_CLASS, HIDE_BUTTON_CLASS } from '../constants/cssClasses';
+import {
+    COOKIE_BANNER_CONFIRMATION_CLASS,
+    COOKIE_BANNER_CLASS,
+    HIDE_BUTTON_CLASS
+} from '../constants/cssClasses';
 import removeElement from '../common/removeElement';
 import callIfNotNull from '../common/callIfNotNull';
 

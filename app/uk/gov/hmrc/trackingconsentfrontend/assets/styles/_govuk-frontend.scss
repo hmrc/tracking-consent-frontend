@@ -1,0 +1,49 @@
+// Cut down version of Gov UK Frontend 3.6.0
+// Styles prefixed to ensure banner is insulated from any other styles
+// in the page
+@import "node_modules/govuk-frontend/govuk/settings/all";
+@import "node_modules/govuk-frontend/govuk/helpers/all";
+@import "node_modules/govuk-frontend/govuk/tools/all";
+@import "button";
+@import "links";
+@import "width-container";
+@import "typography";
+
+@mixin cbanner-govuk-frontend {
+
+  @include cbanner-govuk-button;
+
+  .cbanner-govuk-width-container {
+    @include govuk-width-container;
+  }
+
+  .cbanner-govuk-link {
+    @extend %govuk-link;
+  }
+
+  .cbanner-govuk-grid-row {
+    @include govuk-clearfix;
+    margin-right: - ($govuk-gutter-half);
+    margin-left: - ($govuk-gutter-half);
+  }
+
+  .cbanner-govuk-grid-column-two-thirds {
+    @include govuk-grid-column(two-thirds)
+  }
+
+  .cbanner-govuk-grid-column-full {
+    @include govuk-grid-column(full)
+  }
+
+  .cbanner-govuk-grid-column-one-half-from-desktop {
+    @include govuk-grid-column(one-half, $at: desktop)
+  }
+
+  .cbanner-govuk-heading-m {
+    @extend %govuk-heading-m;
+  }
+
+  .cbanner-govuk-body {
+    @extend %govuk-body-m;
+  }
+}

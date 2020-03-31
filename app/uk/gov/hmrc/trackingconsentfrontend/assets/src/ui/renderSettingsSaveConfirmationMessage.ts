@@ -1,7 +1,7 @@
 import {
-    GOV_UK_BODY,
-    GOV_UK_LINK,
-    COOKIE_SETTINGS_NOTICE_WRAPPER_CLASS, COOKIE_SETTINGS_NOTICE_CLASS
+    COOKIE_SETTINGS_NOTICE_CLASS,
+    GOV_UK_BODY_CLASS, GOV_UK_LINK_CLASS,
+    COOKIE_SETTINGS_NOTICE_WRAPPER_CLASS
 } from "../constants/cssClasses";
 // @ts-ignore
 import confirmationHtml from './cookieSettingsConfirmation.html'
@@ -14,7 +14,7 @@ import focusIfNotNull from "../common/focusIfNotNull";
 
 const getReferrerLink = (referrer): HTMLAnchorElement => {
     const link = document.createElement('a')
-    link.className = GOV_UK_LINK
+    link.className = GOV_UK_LINK_CLASS
     link.innerHTML = GO_BACK_TO_PREVIOUS_PAGE
     link.href = referrer
     return link
@@ -22,7 +22,7 @@ const getReferrerLink = (referrer): HTMLAnchorElement => {
 
 const getParagraph = (link): HTMLParagraphElement => {
     const paragraph = document.createElement('p')
-    paragraph.className = GOV_UK_BODY
+    paragraph.className = GOV_UK_BODY_CLASS
     paragraph.appendChild(link)
     return paragraph
 }

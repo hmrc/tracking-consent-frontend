@@ -1,0 +1,7 @@
+@import "node_modules/govuk-frontend/govuk/helpers/colour";
+
+.cookie-settings__notice {
+  border: 5px solid govuk-colour("blue");
+  padding: 15px;
+  margin-bottom: 30px;
+}

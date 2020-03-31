@@ -14,13 +14,18 @@ import fixture from '../fixtures/servicePage.html'
 import fixtureFrontendToolkit from '../fixtures/servicePageFrontendToolkit.html'
 // @ts-ignore
 import fixtureClassic from '../fixtures/servicePageClassic.html'
+import {Preferences} from "../../types/Preferences";
 
 describe('renderBanner', () => {
 
   const userAcceptsAll = jest.fn()
+  const getPreferences = jest.fn()
+  const setPreferences = jest.fn()
   const getUserHasSavedCookiePreferences = jest.fn()
   const userPreference = {
     userAcceptsAll,
+    getPreferences,
+    setPreferences,
     getUserHasSavedCookiePreferences
   }
 
@@ -68,7 +73,7 @@ describe('renderBanner', () => {
     const skipLink = document.querySelector('.govuk-skip-link')
 
     // @ts-ignore
-    expect(skipLink.nextSibling.classList).toContain('cookie-banner')
+    expect(skipLink.nextSibling.classList).toContain('cbanner-cookie-banner')
   })
 
   it('should render the banner after the govuk toolkit skiplink container', () => {
@@ -78,7 +83,7 @@ describe('renderBanner', () => {
     const skipLink = document.querySelector('#skiplink-container')
 
     // @ts-ignore
-    expect(skipLink.nextSibling.classList).toContain('cookie-banner')
+    expect(skipLink.nextSibling.classList).toContain('cbanner-cookie-banner')
   })
 
   it('should render the banner at the top of the body element if no skiplink tag exists', () => {
@@ -87,7 +92,7 @@ describe('renderBanner', () => {
     renderBanner(userPreference)
 
     // @ts-ignore
-    expect(document.body.firstChild.classList).toContain('cookie-banner')
+    expect(document.body.firstChild.classList).toContain('cbanner-cookie-banner')
   })
 
   it('should render a role and aria-label attribute for the cookie banner', () => {
