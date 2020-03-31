@@ -1,4 +1,4 @@
-import { getByText, queryByText, queryAllByText } from '@testing-library/dom'
+import { getByText, queryByText, queryAllByText, getByRole } from '@testing-library/dom'
 import renderSettingsSaveConfirmationMessage from "../../src/ui/renderSettingsSaveConfirmationMessage";
 // @ts-ignore
 import fixture from '../fixtures/settingsFormMinimal.html';
@@ -90,5 +90,30 @@ describe('renderSettingsSaveConfirmationMessage', () => {
         renderSettingsSaveConfirmationMessage()
 
         expect(queryAllByText(document.body, /Go back to the page you were looking at/).length).toEqual(0)
+    })
+
+    it('should have tabindex of -1 so it\'s programmatically focusable for screenreader purposes', () => {
+        renderSettingsSaveConfirmationMessage()
+
+        // @ts-ignore
+        const confirmationMessage = getByText(document.body, /Your cookie settings were saved/).parentNode.parentNode
+
+        // @ts-ignore
+        expect(confirmationMessage.tabIndex).toEqual(-1)
+    })
+
+    it('should have the correct role and label', () => {
+        renderSettingsSaveConfirmationMessage()
+
+        expect(getByRole(document.body, 'region', { name: 'Notice' })).toBeTruthy()
+    })
+
+    it('should have the focus after it is rendered', () => {
+        renderSettingsSaveConfirmationMessage()
+
+        // @ts-ignore
+        const confirmationMessage = getByText(document.body, /Your cookie settings were saved/).parentNode
+
+        expect(document.activeElement).toEqual(confirmationMessage)
     })
 })

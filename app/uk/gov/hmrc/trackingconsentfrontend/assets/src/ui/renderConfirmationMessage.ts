@@ -4,7 +4,7 @@ import { COOKIE_BANNER_CONFIRMATION_CLASS, COOKIE_BANNER_CLASS, HIDE_BUTTON_CLAS
 import removeElement from '../common/removeElement';
 import callIfNotNull from '../common/callIfNotNull';
 
-const handleHideClick = event => {
+const handleHideClick = (event: Event) => {
     event.preventDefault()
 
     const banner = document.querySelector(`.${COOKIE_BANNER_CLASS}`)
