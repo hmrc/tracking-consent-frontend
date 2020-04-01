@@ -7,6 +7,7 @@ import userPreferenceFactory from '../../src/domain/userPreferenceFactory'
 import castToArray from '../../src/common/castToArray'
 // @ts-ignore
 import fixture from '../fixtures/settingsForm.html'
+import preferenceCommunicatorFactory from "../../src/interfaces/preferenceCommunicatorFactory";
 import * as renderSettingsSaveConfirmationMessage from "../../src/ui/renderSettingsSaveConfirmationMessage";
 
 describe('User Preference Factory', () => {
@@ -22,13 +23,15 @@ describe('User Preference Factory', () => {
   beforeEach(() => {
     const dom = new JSDOM(fixture)
     testScope = {
+      window: dom.window,
       document: dom.window.document
     }
     const allOnOptions = castToArray(testScope.document.querySelectorAll('[value=on]'))
     const allOffOptions = castToArray(testScope.document.querySelectorAll('[value=off]'))
     assume(allOnOptions.length).toBe(3)
     assume(allOffOptions.length).toBe(3)
-    testScope.userPref = userPreferenceFactory()
+    testScope.preferenceCommunicator = preferenceCommunicatorFactory(testScope.window)
+    testScope.userPref = userPreferenceFactory(testScope.preferenceCommunicator)
     allOnOptions.forEach(option => {
       assume(option.checked).toBeFalsy()
     })

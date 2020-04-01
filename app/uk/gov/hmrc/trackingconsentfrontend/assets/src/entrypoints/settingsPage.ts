@@ -1,5 +1,11 @@
 import '../../styles/settings-page.scss'
 import settingsFormHandler from '../ui/settingsFormHandler'
 import userPreferenceFactory from '../domain/userPreferenceFactory'
+import preferenceCommunicatorFactory from "../interfaces/preferenceCommunicatorFactory"
+import enableGtm from '../interfaces/gtm'
 
-settingsFormHandler(document, userPreferenceFactory())
+const userPreference = userPreferenceFactory(preferenceCommunicatorFactory(window))
+
+enableGtm()
+userPreference.sendPreferences()
+settingsFormHandler(document, userPreference)

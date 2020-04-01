@@ -28,6 +28,10 @@ describe('renderBanner', () => {
     setPreferences,
     getUserHasSavedCookiePreferences
   }
+  const sendPreferences = jest.fn()
+  const preferenceCommunicator = {
+    sendPreferences
+  }
 
   const tellUsYouAcceptAllMatcher = /Tell us whether you accept cookies/
   const youveAcceptedAllMatcher = /You’ve accepted all cookies/
@@ -35,6 +39,8 @@ describe('renderBanner', () => {
   const reset = () => {
     document.getElementsByTagName('html')[0].innerHTML = fixture
     userPreference.getUserHasSavedCookiePreferences.mockReturnValue(false)
+    userAcceptsAll.mockReset()
+    preferenceCommunicator.sendPreferences.mockReset()
   }
 
   const assume = expect
