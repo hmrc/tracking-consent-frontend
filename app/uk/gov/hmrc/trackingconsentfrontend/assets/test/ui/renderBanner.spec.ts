@@ -17,10 +17,16 @@ import fixtureClassic from '../fixtures/servicePageClassic.html'
 describe('renderBanner', () => {
 
   const userAcceptsAll = jest.fn()
+  const getPreferences = jest.fn()
   const getUserHasSavedCookiePreferences = jest.fn()
   const userPreference = {
     userAcceptsAll,
+    getPreferences,
     getUserHasSavedCookiePreferences
+  }
+  const sendPreferences = jest.fn()
+  const preferenceCommunicator = {
+    sendPreferences
   }
 
   const tellUsYouAcceptAllMatcher = /Tell us whether you accept cookies/
@@ -29,6 +35,8 @@ describe('renderBanner', () => {
   const reset = () => {
     document.getElementsByTagName('html')[0].innerHTML = fixture
     userPreference.getUserHasSavedCookiePreferences.mockReturnValue(false)
+    userAcceptsAll.mockReset()
+    preferenceCommunicator.sendPreferences.mockReset()
   }
 
   const assume = expect

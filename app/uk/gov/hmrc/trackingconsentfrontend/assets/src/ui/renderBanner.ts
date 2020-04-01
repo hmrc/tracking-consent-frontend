@@ -10,7 +10,7 @@ import {
 import removeElement from '../common/removeElement';
 import callIfNotNull from '../common/callIfNotNull';
 
-const handleAcceptAllClick = userPreference => event => {
+const handleAcceptAllClick = (userPreference) => event => {
     event.preventDefault()
 
     userPreference.userAcceptsAll()
