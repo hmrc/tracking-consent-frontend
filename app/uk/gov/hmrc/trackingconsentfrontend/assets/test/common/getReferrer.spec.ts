@@ -18,4 +18,13 @@ describe('getReferrer', () => {
 
         expect(referrer).toEqual('')
     })
+
+    it('should return an empty string if the URL is not a function (for IE10 compatibility)', () => {
+        documentReferrer = 'http://example.com/abc'
+        // @ts-ignore
+        window.URL = {}
+        const referrer = getReferrer()
+
+        expect(referrer).toEqual('')
+    })
 })

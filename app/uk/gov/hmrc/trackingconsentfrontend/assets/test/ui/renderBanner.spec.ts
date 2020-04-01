@@ -3,7 +3,8 @@
 import {
   queryByText,
   getByText,
-  fireEvent
+  fireEvent,
+  getByRole
 } from '@testing-library/dom'
 import '@testing-library/jest-dom/extend-expect'
 import renderBanner from '../../src/ui/renderBanner'
@@ -13,15 +14,18 @@ import fixture from '../fixtures/servicePage.html'
 import fixtureFrontendToolkit from '../fixtures/servicePageFrontendToolkit.html'
 // @ts-ignore
 import fixtureClassic from '../fixtures/servicePageClassic.html'
+import {Preferences} from "../../types/Preferences";
 
 describe('renderBanner', () => {
 
   const userAcceptsAll = jest.fn()
   const getPreferences = jest.fn()
+  const setPreferences = jest.fn()
   const getUserHasSavedCookiePreferences = jest.fn()
   const userPreference = {
     userAcceptsAll,
     getPreferences,
+    setPreferences,
     getUserHasSavedCookiePreferences
   }
   const sendPreferences = jest.fn()
@@ -60,6 +64,15 @@ describe('renderBanner', () => {
     expect(queryByText(document.body, tellUsYouAcceptAllMatcher)).toBeTruthy()
   })
 
+  it('should render a submit button', () => {
+    renderBanner(userPreference)
+
+    const button = queryByText(document.body, 'Accept all cookies')
+    expect(button).toBeTruthy()
+    // @ts-ignore
+    expect(button.getAttribute('type')).toEqual('submit')
+  })
+
   it('should render the banner after the govuk-frontend skiplink link', () => {
     renderBanner(userPreference)
 
@@ -88,6 +101,14 @@ describe('renderBanner', () => {
     expect(document.body.firstChild.classList).toContain('cbanner-cookie-banner')
   })
 
+  it('should render a role and aria-label attribute for the cookie banner', () => {
+    document.getElementsByTagName('html')[0].innerHTML = fixtureClassic
+
+    renderBanner(userPreference)
+
+    expect(getByRole(document.body, 'region', { name: 'Cookie Banner' })).toBeTruthy()
+  })
+
   it('should call preference manager when user accepts', () => {
     renderBanner(userPreference)
     assume(userAcceptsAll).not.toHaveBeenCalled()
@@ -113,18 +134,6 @@ describe('renderBanner', () => {
     clickAcceptAll()
 
     expect(queryByText(document.body, tellUsYouAcceptAllMatcher)).toBeFalsy()
-  })
-
-  it('should hide the confirmation message when user clicks hide', () => {
-    renderBanner(userPreference)
-    clickAcceptAll()
-    expect(queryByText(document.body, tellUsYouAcceptAllMatcher)).toBeFalsy()
-    expect(queryByText(document.body, youveAcceptedAllMatcher)).toBeTruthy()
-
-    clickHide()
-
-    expect(queryByText(document.body, tellUsYouAcceptAllMatcher)).toBeFalsy()
-    expect(queryByText(document.body, youveAcceptedAllMatcher)).toBeFalsy()
   })
 
   it('should not render a banner if the cookie has been set', () => {

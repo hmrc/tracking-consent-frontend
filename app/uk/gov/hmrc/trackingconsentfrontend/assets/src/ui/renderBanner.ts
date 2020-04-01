@@ -9,8 +9,9 @@ import {
 } from '../constants/cssClasses';
 import removeElement from '../common/removeElement';
 import callIfNotNull from '../common/callIfNotNull';
+import {UserPreferences} from "../../types/UserPreferences";
 
-const handleAcceptAllClick = (userPreference) => event => {
+const handleAcceptAllClick = (userPreference: UserPreferences) => (event: Event) => {
     event.preventDefault()
 
     userPreference.userAcceptsAll()
@@ -23,12 +24,12 @@ const hideQuestion = () => {
     callIfNotNull(question, element => removeElement(question))
 }
 
-const insertAtTopOfBody = banner => {
+const insertAtTopOfBody = (banner: HTMLElement) => {
     const parentNode = document.body
     parentNode.insertBefore(banner, parentNode.firstChild)
 }
 
-const insertAfterSkipLink = banner => {
+const insertAfterSkipLink = (banner: HTMLElement) => {
     const skipLink = document.querySelector(`#${SKIP_LINK_CONTAINER_ID}, .${GOV_UK_SKIP_LINK_CLASS}`)
     if (skipLink !== null) {
         skipLink.insertAdjacentElement('afterend', banner)
@@ -37,17 +38,19 @@ const insertAfterSkipLink = banner => {
     }
 }
 
-const insertBanner = (userPreference) => {
+const insertBanner = (userPreference: UserPreferences) => {
     const banner = document.createElement('div')
     banner.className = COOKIE_BANNER_CLASS;
     banner.innerHTML = bannerHtml
+    banner.setAttribute('role', 'region')
+    banner.setAttribute('aria-label', 'Cookie Banner')
     const acceptAllButton = banner.querySelector(`.${ACCEPT_ALL_CLASS}`)
     callIfNotNull(acceptAllButton, element => element.addEventListener('click', handleAcceptAllClick(userPreference)))
 
     insertAfterSkipLink(banner)
 }
 
-const renderBanner = (userPreference) => {
+const renderBanner = (userPreference: UserPreferences) => {
     if (!userPreference.getUserHasSavedCookiePreferences()) {
         insertBanner(userPreference)
     }
