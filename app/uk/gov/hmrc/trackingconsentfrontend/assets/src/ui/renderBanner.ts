@@ -11,9 +11,9 @@ import removeElement from '../common/removeElement';
 import callIfNotNull from '../common/callIfNotNull';
 import {UserPreferences} from "../../types/UserPreferences";
 
-export const renderBanner = (document: HTMLDocument, userPreference: UserPreferences) => {
+const renderBanner = (document: HTMLDocument, userPreference: UserPreferences) => {
 
-    const handleAcceptAllClick = (userPreference: UserPreferences) => (event: Event) => {
+    const handleAcceptAllClick = (event: Event) => {
         event.preventDefault()
 
         userPreference.userAcceptsAll()
@@ -40,20 +40,20 @@ export const renderBanner = (document: HTMLDocument, userPreference: UserPrefere
         }
     }
 
-    const insertBanner = (userPreference: UserPreferences) => {
+    const insertBanner = () => {
         const banner = document.createElement('div')
         banner.className = COOKIE_BANNER_CLASS;
         banner.innerHTML = bannerHtml
         banner.setAttribute('role', 'region')
         banner.setAttribute('aria-label', 'Cookie Banner')
         const acceptAllButton = banner.querySelector(`.${ACCEPT_ALL_CLASS}`)
-        callIfNotNull(acceptAllButton, element => element.addEventListener('click', handleAcceptAllClick(userPreference)))
+        callIfNotNull(acceptAllButton, element => element.addEventListener('click', handleAcceptAllClick))
 
         insertAfterSkipLink(banner)
     }
 
     if (!userPreference.getUserHasSavedCookiePreferences()) {
-        insertBanner(userPreference)
+        insertBanner()
     }
 }
 

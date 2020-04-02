@@ -7,7 +7,7 @@ import {
   getByRole
 } from '@testing-library/dom'
 import '@testing-library/jest-dom/extend-expect'
-import { renderBanner } from '../../src/ui/renderBanner'
+import renderBanner from '../../src/ui/renderBanner'
 // @ts-ignore
 import fixture from '../fixtures/servicePage.html'
 // @ts-ignore
