@@ -11,3 +11,4 @@
 
 # Add all the application routes to the prod.routes file
 ->         /                          prod.Routes
+GET        /test-only/                uk.gov.hmrc.trackingconsentfrontend.controllers.TestController.test
