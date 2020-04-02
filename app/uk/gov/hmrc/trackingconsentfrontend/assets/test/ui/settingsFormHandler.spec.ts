@@ -41,22 +41,6 @@ describe('User Preference Factory', () => {
   })
 
   describe('Initial state', () => {
-    it('should not fill before page load event fires', () => {
-      spyOn(testScope.userPref, 'getPreferences').and.returnValue({
-        usage: true,
-        campaigns: true,
-        settings: true
-      })
-      settingsFormHandler(testScope.document, testScope.userPref)
-
-      expect(testScope.document.querySelector('[name=usage][value=on]').checked).toBeFalsy()
-      expect(testScope.document.querySelector('[name=campaigns][value=on]').checked).toBeFalsy()
-      expect(testScope.document.querySelector('[name=settings][value=on]').checked).toBeFalsy()
-
-      expect(testScope.document.querySelector('[name=usage][value=off]').checked).toBeFalsy()
-      expect(testScope.document.querySelector('[name=campaigns][value=off]').checked).toBeFalsy()
-      expect(testScope.document.querySelector('[name=settings][value=off]').checked).toBeFalsy()
-    })
     it('should select all for user who has allowed all', () => {
       spyOn(testScope.userPref, 'getPreferences').and.returnValue({
         usage: true,
@@ -206,27 +190,27 @@ describe('User Preference Factory', () => {
 
     it('should error if the form doesn\'t have on value', () => {
       testScope.document.querySelector('form[data-module=cookie-settings]').removeAttribute('data-on-value')
-      settingsFormHandler(testScope.document, testScope.userPref)
+
 
       expect(() => {
-        pageLoadSync()
+        settingsFormHandler(testScope.document, testScope.userPref)
       }).toThrowError(new Error('Could not initiate form without on value being set'))
     })
     it('should error if the form doesn\'t have off value', () => {
       testScope.document.querySelector('form[data-module=cookie-settings]').removeAttribute('data-off-value')
-      settingsFormHandler(testScope.document, testScope.userPref)
+
 
       expect(() => {
-        pageLoadSync()
+        settingsFormHandler(testScope.document, testScope.userPref)
       }).toThrowError(new Error('Could not initiate form without off value being set'))
     })
     it('should default to the error message for the on value', () => {
       testScope.document.querySelector('form[data-module=cookie-settings]').removeAttribute('data-off-value')
       testScope.document.querySelector('form[data-module=cookie-settings]').removeAttribute('data-on-value')
-      settingsFormHandler(testScope.document, testScope.userPref)
+
 
       expect(() => {
-        pageLoadSync()
+        settingsFormHandler(testScope.document, testScope.userPref)
       }).toThrowError(new Error('Could not initiate form without on value being set'))
     })
   })

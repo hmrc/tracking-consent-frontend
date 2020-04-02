@@ -67,4 +67,4 @@ const settingsFormHandler: (HTMLDocument, UserPreferences) => void = (document, 
   callIfNotNull(cookieSettingsForm, hydrateForm(userPreferences))
 }
 
-export default withContentLoaded(settingsFormHandler)
+export default settingsFormHandler

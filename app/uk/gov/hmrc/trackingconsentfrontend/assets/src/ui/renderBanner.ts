@@ -57,4 +57,4 @@ export const renderBanner = (_, userPreference: UserPreferences) => {
     }
 }
 
-export default withContentLoaded(renderBanner)
+export default renderBanner
