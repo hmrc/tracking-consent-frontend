@@ -10,6 +10,7 @@ import {
 import removeElement from '../common/removeElement';
 import callIfNotNull from '../common/callIfNotNull';
 import {UserPreferences} from "../../types/UserPreferences";
+import withContentLoaded from "../common/withContentLoaded";
 
 const handleAcceptAllClick = (userPreference: UserPreferences) => (event: Event) => {
     event.preventDefault()
@@ -50,10 +51,10 @@ const insertBanner = (userPreference: UserPreferences) => {
     insertAfterSkipLink(banner)
 }
 
-const renderBanner = (userPreference: UserPreferences) => {
+export const renderBanner = (_, userPreference: UserPreferences) => {
     if (!userPreference.getUserHasSavedCookiePreferences()) {
         insertBanner(userPreference)
     }
 }
 
-export default renderBanner
+export default withContentLoaded(renderBanner)

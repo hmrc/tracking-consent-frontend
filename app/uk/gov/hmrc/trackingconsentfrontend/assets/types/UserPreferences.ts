@@ -4,5 +4,6 @@ export type UserPreferences = {
     userAcceptsAll: () => void,
     setPreferences: (Preferences) => void,
     getPreferences: () => Preferences | undefined,
-    getUserHasSavedCookiePreferences: () => boolean
+    getUserHasSavedCookiePreferences: () => boolean,
+    sendPreferences: () => void
 }

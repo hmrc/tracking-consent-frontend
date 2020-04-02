@@ -23,7 +23,8 @@
         campaignsRadio: CampaignsRadio,
         settingsRadio: SettingsRadio,
         noticeWrapper: NoticeWrapper,
-        govukButton: GovukButton)
+        govukButton: GovukButton,
+        settingsPageScripts: SettingsPageScripts)
 @()(implicit request: Request[_], messages: Messages)
 
 @findOutMoreLink = {
@@ -33,7 +34,7 @@
 }
 
 @defining(Messages("cookieSettings.title")) { title =>
-    @layout(pageTitle = Some(title)) {
+    @layout(pageTitle = Some(title), scriptsBlock = Some(settingsPageScripts())) {
         @noticeWrapper()
         @h1(content = Text(title))
         @paragraph(content = Text(messages("cookieSettings.intro.paragraph1")))

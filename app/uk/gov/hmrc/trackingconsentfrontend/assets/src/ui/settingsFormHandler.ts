@@ -3,6 +3,7 @@ import { UserPreferences } from '../../types/UserPreferences'
 import fromEntries from '../common/fromEntries'
 import cookieTypes from '../constants/cookieTypes'
 import renderSettingsSaveConfirmationMessage from "./renderSettingsSaveConfirmationMessage";
+import withContentLoaded from "../common/withContentLoaded";
 
 const setAsChecked = element => {
   element.checked = true
@@ -62,10 +63,8 @@ const hydrateForm = (userPreferences: UserPreferences) => (form: HTMLFormElement
 }
 
 const settingsFormHandler: (HTMLDocument, UserPreferences) => void = (document, userPreferences) => {
-  document.addEventListener('DOMContentLoaded', () => {
-    const cookieSettingsForm = document.querySelector('[data-module="cookie-settings"]')
-    callIfNotNull(cookieSettingsForm, hydrateForm(userPreferences))
-  })
+  const cookieSettingsForm = document.querySelector('[data-module="cookie-settings"]')
+  callIfNotNull(cookieSettingsForm, hydrateForm(userPreferences))
 }
 
-export default settingsFormHandler
+export default withContentLoaded(settingsFormHandler)
