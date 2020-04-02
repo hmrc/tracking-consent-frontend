@@ -1,10 +1,11 @@
 import enableGtm from "../interfaces/gtm";
 import {UserPreferences} from "../../types/UserPreferences";
+import withContentLoaded from "./withContentLoaded";
 
-const pageHandler = (userPreference: UserPreferences, pageRenderer) => {
+const pageHandler = (document, userPreference: UserPreferences, pageRenderer) => {
     enableGtm()
     userPreference.sendPreferences()
-    pageRenderer(document, userPreference)
+    withContentLoaded(pageRenderer)(document, userPreference)
 }
 
 export default pageHandler

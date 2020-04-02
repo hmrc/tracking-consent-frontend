@@ -4,4 +4,4 @@ import pageHandler from "../common/pageHandler";
 import userPreferenceFactory from "../domain/userPreferenceFactory";
 import preferenceCommunicatorFactory from "../interfaces/preferenceCommunicatorFactory";
 
-pageHandler(userPreferenceFactory(preferenceCommunicatorFactory(window)), renderBanner)
+pageHandler(document, userPreferenceFactory(preferenceCommunicatorFactory(window)), renderBanner)
