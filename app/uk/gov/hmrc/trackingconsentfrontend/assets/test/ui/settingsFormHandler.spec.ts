@@ -14,12 +14,6 @@ describe('User Preference Factory', () => {
   let testScope
   const assume = expect
 
-  const pageLoad = () => {
-    const event = testScope.document.createEvent('HTMLEvents')
-    event.initEvent('DOMContentLoaded', true, true)
-    testScope.document.dispatchEvent(event)
-  }
-
   beforeEach(() => {
     const dom = new JSDOM(fixture)
     testScope = {
@@ -48,7 +42,6 @@ describe('User Preference Factory', () => {
         settings: true
       })
       settingsFormHandler(testScope.document, testScope.userPref)
-      pageLoad()
 
       expect(testScope.document.querySelector('[name=usage][value=on]').checked).toBeTruthy()
       expect(testScope.document.querySelector('[name=campaigns][value=on]').checked).toBeTruthy()
@@ -65,7 +58,6 @@ describe('User Preference Factory', () => {
         settings: false
       })
       settingsFormHandler(testScope.document, testScope.userPref)
-      pageLoad()
 
       expect(testScope.document.querySelector('[name=usage][value=on]').checked).toBeFalsy()
       expect(testScope.document.querySelector('[name=campaigns][value=on]').checked).toBeFalsy()
@@ -78,7 +70,6 @@ describe('User Preference Factory', () => {
     it('should not select any for user who has not stored a preference', () => {
       spyOn(testScope.userPref, 'getPreferences').and.returnValue(undefined)
       settingsFormHandler(testScope.document, testScope.userPref)
-      pageLoad()
 
       expect(testScope.document.querySelector('[name=usage][value=on]').checked).toBeFalsy()
       expect(testScope.document.querySelector('[name=campaigns][value=on]').checked).toBeFalsy()
@@ -95,7 +86,6 @@ describe('User Preference Factory', () => {
         settings: true
       })
       settingsFormHandler(testScope.document, testScope.userPref)
-      pageLoad()
 
       expect(testScope.document.querySelector('[name=usage][value=on]').checked).toBeTruthy()
       expect(testScope.document.querySelector('[name=campaigns][value=on]').checked).toBeFalsy()
@@ -110,7 +100,6 @@ describe('User Preference Factory', () => {
         usage: true
       })
       settingsFormHandler(testScope.document, testScope.userPref)
-      pageLoad()
 
       expect(testScope.document.querySelector('[name=usage][value=on]').checked).toBeTruthy()
       expect(testScope.document.querySelector('[name=campaigns][value=on]').checked).toBeFalsy()
@@ -129,7 +118,6 @@ describe('User Preference Factory', () => {
 
     it('should save when usage only is granted', () => {
       settingsFormHandler(testScope.document, testScope.userPref)
-      pageLoad()
 
       fireEvent.click(testScope.document.querySelector('[name=usage][value=on]'))
       fireEvent.submit(testScope.document.querySelector('form'))
@@ -140,7 +128,6 @@ describe('User Preference Factory', () => {
     })
     it('should save when campaigns only is granted', () => {
       settingsFormHandler(testScope.document, testScope.userPref)
-      pageLoad()
 
       fireEvent.click(testScope.document.querySelector('[name=campaigns][value=on]'))
       fireEvent.submit(testScope.document.querySelector('form'))
@@ -151,7 +138,6 @@ describe('User Preference Factory', () => {
     })
     it('should not store a value for items which don\'t appear in the form', () => {
       settingsFormHandler(testScope.document, testScope.userPref)
-      pageLoad()
 
       testScope.document.querySelectorAll('input[type=radio]:not([name=settings])').forEach(elem => {
         elem.parentNode.removeChild(elem)
@@ -167,7 +153,6 @@ describe('User Preference Factory', () => {
 
     it('should call renderSaveConfirmation', () => {
       settingsFormHandler(testScope.document, testScope.userPref)
-      pageLoad()
 
       fireEvent.click(testScope.document.querySelector('[name=settings][value=off]'))
       fireEvent.submit(testScope.document.querySelector('form'))
@@ -176,21 +161,8 @@ describe('User Preference Factory', () => {
     })
   })
   describe('Technical details', () => {
-    let pageLoadSync = () => {
-      throw new Error('No page load event to fire')
-    }
-
-    beforeEach(() => {
-      spyOn(testScope.document, 'addEventListener').and.callFake((name, fn) => {
-        // if (name === 'DOMContentLoaded') {
-        pageLoadSync = fn
-        // }
-      })
-    })
-
     it('should error if the form doesn\'t have on value', () => {
       testScope.document.querySelector('form[data-module=cookie-settings]').removeAttribute('data-on-value')
-
 
       expect(() => {
         settingsFormHandler(testScope.document, testScope.userPref)
@@ -199,7 +171,6 @@ describe('User Preference Factory', () => {
     it('should error if the form doesn\'t have off value', () => {
       testScope.document.querySelector('form[data-module=cookie-settings]').removeAttribute('data-off-value')
 
-
       expect(() => {
         settingsFormHandler(testScope.document, testScope.userPref)
       }).toThrowError(new Error('Could not initiate form without off value being set'))
@@ -207,7 +178,6 @@ describe('User Preference Factory', () => {
     it('should default to the error message for the on value', () => {
       testScope.document.querySelector('form[data-module=cookie-settings]').removeAttribute('data-off-value')
       testScope.document.querySelector('form[data-module=cookie-settings]').removeAttribute('data-on-value')
-
 
       expect(() => {
         settingsFormHandler(testScope.document, testScope.userPref)
