@@ -7,7 +7,7 @@ import {
   getByRole
 } from '@testing-library/dom'
 import '@testing-library/jest-dom/extend-expect'
-import renderBanner from '../../src/ui/renderBanner'
+import { renderBanner } from '../../src/ui/renderBanner'
 // @ts-ignore
 import fixture from '../fixtures/servicePage.html'
 // @ts-ignore
@@ -22,13 +22,14 @@ describe('renderBanner', () => {
   const getPreferences = jest.fn()
   const setPreferences = jest.fn()
   const getUserHasSavedCookiePreferences = jest.fn()
+  const sendPreferences = jest.fn()
   const userPreference = {
     userAcceptsAll,
     getPreferences,
     setPreferences,
-    getUserHasSavedCookiePreferences
+    getUserHasSavedCookiePreferences,
+    sendPreferences
   }
-  const sendPreferences = jest.fn()
   const preferenceCommunicator = {
     sendPreferences
   }
@@ -59,13 +60,13 @@ describe('renderBanner', () => {
   }
 
   it('should render a banner', () => {
-    renderBanner(userPreference)
+    renderBanner(document, userPreference)
 
     expect(queryByText(document.body, tellUsYouAcceptAllMatcher)).toBeTruthy()
   })
 
   it('should render a submit button', () => {
-    renderBanner(userPreference)
+    renderBanner(document, userPreference)
 
     const button = queryByText(document.body, 'Accept all cookies')
     expect(button).toBeTruthy()
@@ -74,7 +75,7 @@ describe('renderBanner', () => {
   })
 
   it('should render the banner after the govuk-frontend skiplink link', () => {
-    renderBanner(userPreference)
+    renderBanner(document, userPreference)
 
     const skipLink = document.querySelector('.govuk-skip-link')
 
@@ -84,7 +85,7 @@ describe('renderBanner', () => {
 
   it('should render the banner after the govuk toolkit skiplink container', () => {
     document.getElementsByTagName('html')[0].innerHTML = fixtureFrontendToolkit
-    renderBanner(userPreference)
+    renderBanner(document, userPreference)
 
     const skipLink = document.querySelector('#skiplink-container')
 
@@ -95,7 +96,7 @@ describe('renderBanner', () => {
   it('should render the banner at the top of the body element if no skiplink tag exists', () => {
     document.getElementsByTagName('html')[0].innerHTML = fixtureClassic
 
-    renderBanner(userPreference)
+    renderBanner(document, userPreference)
 
     // @ts-ignore
     expect(document.body.firstChild.classList).toContain('cbanner-cookie-banner')
@@ -104,13 +105,13 @@ describe('renderBanner', () => {
   it('should render a role and aria-label attribute for the cookie banner', () => {
     document.getElementsByTagName('html')[0].innerHTML = fixtureClassic
 
-    renderBanner(userPreference)
+    renderBanner(document, userPreference)
 
     expect(getByRole(document.body, 'region', { name: 'Cookie Banner' })).toBeTruthy()
   })
 
   it('should call preference manager when user accepts', () => {
-    renderBanner(userPreference)
+    renderBanner(document, userPreference)
     assume(userAcceptsAll).not.toHaveBeenCalled()
 
     clickAcceptAll()
@@ -119,7 +120,7 @@ describe('renderBanner', () => {
   })
 
   it('should show a save confirmation when user accepts', () => {
-    renderBanner(userPreference)
+    renderBanner(document, userPreference)
     expect(queryByText(document.body, youveAcceptedAllMatcher)).toBeFalsy()
 
     clickAcceptAll()
@@ -128,7 +129,7 @@ describe('renderBanner', () => {
   })
 
   it('should hide the accept all question when user accepts', () => {
-    renderBanner(userPreference)
+    renderBanner(document, userPreference)
     expect(queryByText(document.body, tellUsYouAcceptAllMatcher)).toBeTruthy()
 
     clickAcceptAll()
@@ -138,7 +139,7 @@ describe('renderBanner', () => {
 
   it('should not render a banner if the cookie has been set', () => {
     userPreference.getUserHasSavedCookiePreferences.mockReturnValue( true)
-    renderBanner(userPreference)
+    renderBanner(document, userPreference)
 
     expect(queryByText(document.body, /Tell us whether you accept cookies/)).not.toBeTruthy()
   })

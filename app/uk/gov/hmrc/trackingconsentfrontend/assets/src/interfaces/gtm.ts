@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 const gtm = () => {
   (function (w, d, s, l, i) {
     w[l] = w[l] || []

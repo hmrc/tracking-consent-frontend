@@ -14,18 +14,20 @@
  * limitations under the License.
  *@
 
+@import uk.gov.hmrc.trackingconsentfrontend.views.html.Head
+
 @this(
         govukLayout: GovukLayout,
-        head: Head,
-        scripts: Scripts
+        head: Head
 )
 
 @(pageTitle: Option[String] = None,
-        headBlock: Option[Html] = None
+        headBlock: Option[Html] = None,
+        scriptsBlock: Option[Html] = None
 )(contentBlock: Html)(implicit request: Request[_], messages: Messages)
 
 @govukLayout(
     pageTitle = pageTitle,
     headBlock = Some(head(headBlock)),
-    scriptsBlock = Some(scripts())
+    scriptsBlock = scriptsBlock
 )(contentBlock)
