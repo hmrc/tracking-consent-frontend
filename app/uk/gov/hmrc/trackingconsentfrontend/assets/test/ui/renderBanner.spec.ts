@@ -1,11 +1,6 @@
 /* global spyOn */
 
-import {
-  queryByText,
-  getByText,
-  fireEvent,
-  getByRole
-} from '@testing-library/dom'
+import {fireEvent, getByRole, getByText, queryByText} from '@testing-library/dom'
 import '@testing-library/jest-dom/extend-expect'
 import renderBanner from '../../src/ui/renderBanner'
 // @ts-ignore
@@ -14,7 +9,6 @@ import fixture from '../fixtures/servicePage.html'
 import fixtureFrontendToolkit from '../fixtures/servicePageFrontendToolkit.html'
 // @ts-ignore
 import fixtureClassic from '../fixtures/servicePageClassic.html'
-import {Preferences} from "../../types/Preferences";
 
 describe('renderBanner', () => {
 
@@ -37,17 +31,14 @@ describe('renderBanner', () => {
   const tellUsYouAcceptAllMatcher = /Tell us whether you accept cookies/
   const youveAcceptedAllMatcher = /You’ve accepted all cookies/
 
-  const reset = () => {
+  const assume = expect
+
+  beforeEach(() => {
     document.getElementsByTagName('html')[0].innerHTML = fixture
     userPreference.getUserHasSavedCookiePreferences.mockReturnValue(false)
     userAcceptsAll.mockReset()
     preferenceCommunicator.sendPreferences.mockReset()
-  }
-
-  const assume = expect
-
-  beforeAll(reset)
-  afterEach(reset)
+  })
 
   const clickAcceptAll = () => {
     // getByText will fail the test if the text is not found

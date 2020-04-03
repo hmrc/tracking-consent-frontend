@@ -1,6 +1,5 @@
 // @ts-ignore
 /* global spyOn */
-import { JSDOM } from 'jsdom'
 import { fireEvent } from '@testing-library/dom'
 import settingsFormHandler from '../../src/ui/settingsFormHandler'
 import userPreferenceFactory from '../../src/domain/userPreferenceFactory'
@@ -15,10 +14,11 @@ describe('User Preference Factory', () => {
   const assume = expect
 
   beforeEach(() => {
-    const dom = new JSDOM(fixture)
+    document.getElementsByTagName('html')[0].innerHTML = fixture
+
     testScope = {
-      window: dom.window,
-      document: dom.window.document
+      window,
+      document
     }
     const allOnOptions = castToArray(testScope.document.querySelectorAll('[value=on]'))
     const allOffOptions = castToArray(testScope.document.querySelectorAll('[value=off]'))

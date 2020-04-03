@@ -2,13 +2,12 @@ import * as gtm from "../../src/interfaces/gtm";
 import clearAllMocks = jest.clearAllMocks;
 import pageHandler from "../../src/common/pageHandler";
 import { JSDOM } from 'jsdom'
+import userPreferenceFactory from "../../src/domain/userPreferenceFactory";
 
 describe('pageHandler', () => {
-    const userPreferences = {
-        sendPreferences: jest.fn()
-    }
     const pageRenderer = jest.fn()
     let thisDocument
+    let testScope
 
     const pageLoad = () => {
         const event = thisDocument.createEvent('HTMLEvents')
@@ -20,8 +19,13 @@ describe('pageHandler', () => {
         // create a new Document on each test so event listeners are not added
         // multiple times
         const dom = new JSDOM('<html></html>')
+        testScope = {
+            document,
+            userPreferences: userPreferenceFactory(dom.window)
+        }
         thisDocument = dom.window.document
         spyOn(gtm, 'default')
+        spyOn(testScope.userPreferences, 'sendPreferences').and.returnValue(undefined)
         clearAllMocks();
     })
 
@@ -30,23 +34,23 @@ describe('pageHandler', () => {
         expect(gtm.default).not.toHaveBeenCalled()
 
         // @ts-ignore
-        pageHandler(thisDocument, userPreferences, pageRenderer)
+        pageHandler(thisDocument, testScope.userPreferences, pageRenderer)
 
         expect(gtm.default).toHaveBeenCalledTimes(1)
     })
 
     it ('should send the preferences', () => {
-        expect(userPreferences.sendPreferences).not.toHaveBeenCalled()
+        expect(testScope.userPreferences.sendPreferences).not.toHaveBeenCalled()
 
         // @ts-ignore
-        pageHandler(thisDocument, userPreferences, pageRenderer)
+        pageHandler(thisDocument, testScope.userPreferences, pageRenderer)
 
-        expect(userPreferences.sendPreferences).toHaveBeenCalledTimes(1)
+        expect(testScope.userPreferences.sendPreferences).toHaveBeenCalledTimes(1)
     })
 
     it('should call not call the page renderer if the DOM ContentReady event has not been fired', () => {
         // @ts-ignore
-        pageHandler(thisDocument, userPreferences, pageRenderer)
+        pageHandler(thisDocument, testScope.userPreferences, pageRenderer)
 
         expect(pageRenderer).not.toHaveBeenCalled()
     })
@@ -55,10 +59,17 @@ describe('pageHandler', () => {
         expect(pageRenderer).not.toHaveBeenCalled()
 
         // @ts-ignore
-        pageHandler(thisDocument, userPreferences, pageRenderer)
+        pageHandler(thisDocument, testScope.userPreferences, pageRenderer)
         pageLoad()
 
         expect(pageRenderer).toHaveBeenCalledTimes(1)
+    })
+
+    it('should pass through userPreference to pageRenderer', () => {
+        pageHandler(thisDocument, testScope.userPreferences, pageRenderer)
+        pageLoad()
+
+        expect(pageRenderer).toHaveBeenCalledWith(thisDocument, testScope.userPreferences)
     })
 
 })
