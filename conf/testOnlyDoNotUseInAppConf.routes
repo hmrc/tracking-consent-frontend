@@ -10,5 +10,5 @@
 # Failing to follow this rule may result in test routes deployed in production.
 
 # Add all the application routes to the prod.routes file
-GET        /test-only/tracking-consent/test        uk.gov.hmrc.trackingconsentfrontend.controllers.TestController.test
-->         /                                       prod.Routes
+->         /                             prod.Routes
+GET        /tracking-consent/test        uk.gov.hmrc.trackingconsentfrontend.controllers.TestController.test

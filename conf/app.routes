@@ -4,4 +4,3 @@
 GET        /consent-head            uk.gov.hmrc.trackingconsentfrontend.controllers.ConsentPartialController.head
 GET        /cookie-settings         uk.gov.hmrc.trackingconsentfrontend.controllers.CookieSettingsController.cookieSettings
 GET        /assets/*file            controllers.Assets.versioned(path = "/public", file: Asset)
-GET        /test                    uk.gov.hmrc.trackingconsentfrontend.controllers.TestController.test
