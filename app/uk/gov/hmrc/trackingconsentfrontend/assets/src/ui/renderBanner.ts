@@ -11,7 +11,7 @@ import removeElement from '../common/removeElement';
 import callIfNotNull from '../common/callIfNotNull';
 import {UserPreferences} from "../../types/UserPreferences";
 
-const renderBanner = (document: HTMLDocument, userPreference: UserPreferences) => {
+const renderBanner = (userPreference: UserPreferences) => {
 
     const handleAcceptAllClick = (event: Event) => {
         event.preventDefault()

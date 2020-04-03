@@ -69,7 +69,7 @@ describe('pageHandler', () => {
         pageHandler(thisDocument, testScope.userPreferences, pageRenderer)
         pageLoad()
 
-        expect(pageRenderer).toHaveBeenCalledWith(thisDocument, testScope.userPreferences)
+        expect(pageRenderer).toHaveBeenCalledWith(testScope.userPreferences)
     })
 
 })

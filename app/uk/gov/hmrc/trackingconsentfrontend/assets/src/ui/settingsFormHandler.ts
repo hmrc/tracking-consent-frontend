@@ -61,7 +61,7 @@ const hydrateForm = (userPreferences: UserPreferences) => (form: HTMLFormElement
   form.addEventListener('submit', submitHandler)
 }
 
-const settingsFormHandler: (HTMLDocument, UserPreferences) => void = (document, userPreferences) => {
+const settingsFormHandler: (UserPreferences) => void = (userPreferences) => {
   const cookieSettingsForm = document.querySelector('[data-module="cookie-settings"]')
   callIfNotNull(cookieSettingsForm, hydrateForm(userPreferences))
 }
