@@ -153,6 +153,7 @@ describe('User Preference Factory', () => {
 
     it('should call renderSaveConfirmation', () => {
       settingsFormHandler(testScope.userPref)
+      assume(renderSettingsSaveConfirmationMessage.default).not.toHaveBeenCalled()
 
       fireEvent.click(getByText(document.body, /Save changes/))
 
