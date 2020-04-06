@@ -14,20 +14,28 @@
  * limitations under the License.
  *@
 
-@import uk.gov.hmrc.trackingconsentfrontend.views.html.Head
+@import uk.gov.hmrc.trackingconsentfrontend.views.FooterLinks
+@import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
 
 @this(
         govukLayout: GovukLayout,
-        head: Head
+        head: Head,
+        hmrcBanner: HmrcBanner
 )
 
 @(pageTitle: Option[String] = None,
         headBlock: Option[Html] = None,
         scriptsBlock: Option[Html] = None
-)(contentBlock: Html)(implicit request: Request[_], messages: Messages)
+)(contentBlock: Html)(implicit request: Request[_], messages: Messages, appConfig: AppConfig)
+
+@beforeContentBlock = {
+    @hmrcBanner(Banner())
+}
 
 @govukLayout(
     pageTitle = pageTitle,
     headBlock = Some(head(headBlock)),
-    scriptsBlock = scriptsBlock
+    scriptsBlock = scriptsBlock,
+    beforeContentBlock = Some(beforeContentBlock),
+    footerItems = FooterLinks()
 )(contentBlock)

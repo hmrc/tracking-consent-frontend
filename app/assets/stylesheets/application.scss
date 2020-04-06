@@ -1,3 +1,12 @@
-$govuk-assets-path: "/tracking-consent-frontend/assets/lib/govuk-frontend/govuk/assets/";
+$govuk-assets-path: "/tracking-consent/assets/lib/govuk-frontend/govuk/assets/";
+$hmrc-assets-path: "/tracking-consent/assets/lib/hmrc-frontend/hmrc/";
 
 @import "lib/govuk-frontend/govuk/all";
+@import "lib/hmrc-frontend/hmrc/components/banner/banner";
+
+.cookie-settings__notice {
+  border: 5px solid govuk-colour("blue");
+  padding: 15px;
+  margin-bottom: 30px;
+  outline: none;
+}

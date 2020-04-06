@@ -1,6 +1,6 @@
 // Cut down from node_modules/govuk-frontend/govuk/components/button
 // Removed IE8-specific rules and added
-// !important tags on link hover for compatibility with classic services
+// Added !important on colour for compatibility with classic services
 // Added cbanner- prefixes to govuk-button
 @import "node_modules/govuk-frontend/govuk/settings/all";
 @import "node_modules/govuk-frontend/govuk/helpers/all";
@@ -42,7 +42,7 @@
     padding: (govuk-spacing(2) - $govuk-border-width-form-element) govuk-spacing(2) (govuk-spacing(2) - $govuk-border-width-form-element - ($button-shadow-size / 2)); // s1
     border: $govuk-border-width-form-element solid transparent;
     border-radius: 0;
-    color: $govuk-button-text-colour;
+    color: $govuk-button-text-colour!important; // Needed for classic service compatibility
     background-color: $govuk-button-colour;
     box-shadow: 0 $button-shadow-size 0 $govuk-button-shadow-colour; // s0
     text-align: center;
@@ -61,13 +61,12 @@
     }
 
     // Ensure that any global link styles are overridden
-    // Unfortunately the !important annotation is required for classic service compatibility
     &:link,
     &:visited,
     &:active,
     &:hover {
-      color: $govuk-button-text-colour!important;
-      text-decoration: none!important;
+      color: $govuk-button-text-colour!important; // Needed for classic service compatibility
+      text-decoration: none!important; // Needed for classic service compatibility
     }
 
     &:hover {
@@ -91,13 +90,13 @@
     // text when focussed.
     @include govuk-compatibility(govuk_template) {
       &:link:focus {
-        color: $govuk-button-text-colour;
+        color: $govuk-button-text-colour!important; // Needed for classic service compatibility
       }
     }
 
     &:focus:not(:active):not(:hover) {
       border-color: $govuk-focus-colour;
-      color: $govuk-focus-text-colour;
+      color: $govuk-focus-text-colour!important; // Needed for classic service compatibility
       background-color: $govuk-focus-colour;
       box-shadow: 0 2px 0 $govuk-focus-text-colour;
     }
