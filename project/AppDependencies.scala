@@ -6,9 +6,9 @@ import sbt._
 object AppDependencies {
 
   val compile = Seq(
-    "uk.gov.hmrc"             %% "play-ui"                  % "8.8.0-play-26",
     "uk.gov.hmrc"             %% "bootstrap-play-26"        % "1.7.0",
-    "uk.gov.hmrc"             %% "play-frontend-govuk"      % "0.40.0-play-26"
+    "uk.gov.hmrc"             %% "play-frontend-govuk"      % "0.40.0-play-26",
+    "uk.gov.hmrc"             %% "play-frontend-hmrc"       % "0.12.0-play-26"
   )
 
   val test = Seq(
@@ -19,5 +19,4 @@ object AppDependencies {
     "org.pegdown"             %  "pegdown"                  % "1.6.0"                 % "test, it",
     "org.scalatestplus.play"  %% "scalatestplus-play"       % "3.1.2"                 % "test, it"
   )
-
 }

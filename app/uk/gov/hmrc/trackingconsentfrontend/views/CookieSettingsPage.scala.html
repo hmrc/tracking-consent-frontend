@@ -14,6 +14,8 @@
  * limitations under the License.
  *@
 
+@import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
+
 @this(
         layout: Layout,
         paragraph: Paragraph,
@@ -24,8 +26,9 @@
         settingsRadio: SettingsRadio,
         noticeWrapper: NoticeWrapper,
         govukButton: GovukButton,
-        settingsPageScripts: SettingsPageScripts)
-@()(implicit request: Request[_], messages: Messages)
+        settingsPageScripts: SettingsPageScripts,
+        hmrcBanner: HmrcBanner)
+@()(implicit request: Request[_], messages: Messages, appConfig: AppConfig)
 
 @findOutMoreLink = {
     <a href="@messages("cookieSettings.necessary.link.url")">

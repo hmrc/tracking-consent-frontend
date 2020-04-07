@@ -17,4 +17,6 @@
 @this()
 
 @()
-<script src="assets/settingsPage.js"></script>
+<!--[if !IE]>-->
+<script type="text/javascript" src="@routes.Assets.versioned("settingsPage.js")"></script>
+<!--<![endif]-->

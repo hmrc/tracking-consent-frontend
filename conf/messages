@@ -1,5 +1,6 @@
 cookieSettings.title = Cookie settings on HMRC services
 testPage.title = Service test page
+service.homePageUrl = https://www.gov.uk
 
 cookieSettings.intro.paragraph1 = Cookies are files saved on your phone, tablet or computer when you visit a website
 cookieSettings.intro.paragraph2 = We use cookies to store information about how you use HMRC services, such as the pages you visit.
@@ -32,9 +33,17 @@ cookieSettings.necessary.paragraph2 =They always need to be on.
 cookieSettings.necessary.link.text = Find out more about cookies on HMRC services
 cookieSettings.necessary.link.url = /help/cookies
 
-
 cookieSettings.onValue = on
 cookieSettings.offValue = off
 cookieSettings.saveButton = Save changes
 
 service.name = Tracking Consent
+
+footer.cookies.text = Cookies
+footer.cookies.url = /help/cookies
+footer.privacy.text = Privacy policy
+footer.privacy.url = /help/privacy
+footer.termsConditions.text = Terms and conditions
+footer.termsConditions.url = /help/terms-and-conditions
+footer.govukHelp.text = Help using GOV.UK
+footer.govukHelp.url = https://www.gov.uk/help
