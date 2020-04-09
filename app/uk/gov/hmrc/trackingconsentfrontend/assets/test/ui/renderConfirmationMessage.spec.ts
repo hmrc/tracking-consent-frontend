@@ -49,6 +49,16 @@ describe('renderConfirmationMessage', () => {
     expect(confirmationMessage.tabIndex).toEqual(-1)
   })
 
+  it('should have the govuk-width-container class', () => {
+    renderConfirmationMessage()
+
+    // @ts-ignore
+    const confirmationMessage = getByText(document.body, /You’ve accepted all cookies/).parentNode
+
+    // @ts-ignore
+    expect(confirmationMessage.classList).toContain('cbanner-govuk-width-container')
+  })
+
   it('should have the focus after it is rendered', () => {
     renderConfirmationMessage()
 
