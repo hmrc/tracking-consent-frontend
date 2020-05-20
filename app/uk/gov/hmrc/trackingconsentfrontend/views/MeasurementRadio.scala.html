@@ -18,29 +18,38 @@
 
 @(messages: Messages, paragraph: Paragraph, h2: H2)
 
-@usageText = {
-    @h2(Text(messages("cookieSettings.campaigns.title")))
+@hintText = {
+    @paragraph(content = Text(messages("cookieSettings.measurement.paragraph1")))
+    @paragraph(content = Text(messages("cookieSettings.measurement.paragraph2")))
+
+
+    </p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>@messages("cookieSettings.measurement.bullet1")</li>
+        <li>@messages("cookieSettings.measurement.bullet2")</li>
+        <li>@messages("cookieSettings.measurement.bullet3")</li>
+    </ul>
 }
 
 @govukRadios(Radios(
     fieldset = Some(Fieldset(
         legend = Some(Legend(
-            content = HtmlContent(usageText),
+            content = HtmlContent(h2(Text(messages("cookieSettings.measurement.title")))),
             isPageHeading = false
         ))
     )),
     hint = Some(Hint(
-        content = Text(messages("cookieSettings.campaigns.paragraph1"))
+        content = HtmlContent(hintText)
     )),
-    idPrefix = Some(messages("cookieSettings.campaigns.settingid")),
-    name = messages("cookieSettings.campaigns.settingid"),
+    idPrefix = Some(messages("cookieSettings.measurement.settingid")),
+    name = messages("cookieSettings.measurement.settingid"),
     items = Seq(
         RadioItem(
-            content = Text(messages("cookieSettings.campaigns.settinglabel.on")),
+            content = Text(messages("cookieSettings.measurement.settinglabel.on")),
             value = Some(messages("cookieSettings.onValue"))
         ),
         RadioItem(
-            content = Text(messages("cookieSettings.campaigns.settinglabel.off")),
+            content = Text(messages("cookieSettings.measurement.settinglabel.off")),
             value = Some(messages("cookieSettings.offValue"))
         )
     )

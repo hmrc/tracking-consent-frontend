@@ -1,5 +1,5 @@
 import callIfNotNull from '../common/callIfNotNull'
-import { UserPreferences } from '../../types/UserPreferences'
+import {UserPreferences} from '../../types/UserPreferences'
 import fromEntries from '../common/fromEntries'
 import cookieTypes from '../constants/cookieTypes'
 import renderSettingsSaveConfirmationMessage from "./renderSettingsSaveConfirmationMessage";

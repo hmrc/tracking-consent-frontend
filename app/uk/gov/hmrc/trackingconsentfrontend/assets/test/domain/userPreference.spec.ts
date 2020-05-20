@@ -16,11 +16,11 @@ describe('User Preference Factory', () => {
       testScope.cookieData[cookieName] = value
     })
     spyOn(Cookies, 'getJSON').and.callFake(cookieName => testScope.cookieData[cookieName])
-    spyOn(Date.prototype, 'getTime').and.callFake(() => testScope.fakeDatetime)
+    spyOn(Date.prototype, 'toISOString').and.callFake(() => testScope.fakeDatetime)
   })
 
   const setConsentCookie = obj => {
-    testScope.cookieData.userConsent = {version: '2020-03-01', ...obj}
+    testScope.cookieData.userConsent = {version: '2020.1', ...obj}
   }
 
   const expectTrackingPreferenceToHaveBeenSetWith = (preference) => {
@@ -46,8 +46,8 @@ describe('User Preference Factory', () => {
     it('should set the cookie body with the JSON format', () => {
       testScope.userPreference.userAcceptsAll()
       expectTrackingPreferenceToHaveBeenSetWith({
-        version: '2020-03-01',
-        dateSet: testScope.fakeDatetime,
+        version: '2020.1',
+        datetimeSet: testScope.fakeDatetime,
         preferences: {
           acceptAll: true
         }
@@ -58,8 +58,8 @@ describe('User Preference Factory', () => {
       testScope.fakeDatetime = 987654321
       testScope.userPreference.userAcceptsAll()
       expectTrackingPreferenceToHaveBeenSetWith({
-        version: '2020-03-01',
-        dateSet: 987654321,
+        version: '2020.1',
+        datetimeSet: 987654321,
         preferences: {
           acceptAll: true
         }
@@ -81,8 +81,8 @@ describe('User Preference Factory', () => {
     it('should call preference communicator after preferences were set', () => {
       testScope.preferenceCommunicator.sendPreferences.and.callFake(userPreference => {
         expect(userPreference.getPreferences()).toEqual({
-          usage: true,
-          campaigns: true,
+          measurement: true,
+          marketing: true,
           settings: true
         })
       })
@@ -94,8 +94,8 @@ describe('User Preference Factory', () => {
 
   describe('getPreferences', () => {
     const getFakeAcceptAll = () => ({
-      version: '2020-03-01',
-      dateSet: testScope.fakeDatetime,
+      version: '2020.1',
+      datetimeSet: testScope.fakeDatetime,
       preferences: {
         acceptAll: true
       }
@@ -120,41 +120,41 @@ describe('User Preference Factory', () => {
     })
 
     it('should only return partial data if partial data exists in the cookie', () => {
-      setConsentCookie({preferences: {usage: true}})
+      setConsentCookie({preferences: {measurement: true}})
 
-      expect(testScope.userPreference.getPreferences()).toEqual({usage: true})
+      expect(testScope.userPreference.getPreferences()).toEqual({measurement: true})
     })
 
     it('should interpret boolean false correctly', () => {
-      setConsentCookie({preferences: {usage: true, settings: false}})
+      setConsentCookie({preferences: {measurement: true, settings: false}})
 
-      expect(testScope.userPreference.getPreferences()).toEqual({usage: true, settings: false})
+      expect(testScope.userPreference.getPreferences()).toEqual({measurement: true, settings: false})
     })
 
     it('should ignore any non-boolean data', () => {
-      setConsentCookie({preferences: {usage: true, settings: 'abc'}})
+      setConsentCookie({preferences: {measurement: true, settings: 'abc'}})
 
-      expect(testScope.userPreference.getPreferences()).toEqual({usage: true})
+      expect(testScope.userPreference.getPreferences()).toEqual({measurement: true})
     })
 
     it('should ignore any null values', () => {
-      setConsentCookie({preferences: {usage: true, settings: null}})
+      setConsentCookie({preferences: {measurement: true, settings: null}})
 
-      expect(testScope.userPreference.getPreferences()).toEqual({usage: true})
+      expect(testScope.userPreference.getPreferences()).toEqual({measurement: true})
     })
 
     it('should ignore any undefined values', () => {
-      setConsentCookie({preferences: {usage: true, settings: undefined}})
+      setConsentCookie({preferences: {measurement: true, settings: undefined}})
 
-      expect(testScope.userPreference.getPreferences()).toEqual({usage: true})
+      expect(testScope.userPreference.getPreferences()).toEqual({measurement: true})
     })
 
     it('should return each category when AcceptAll is set (fake data)', () => {
       setConsentCookie(getFakeAcceptAll())
 
       expect(testScope.userPreference.getPreferences()).toEqual({
-        usage: true,
-        campaigns: true,
+        measurement: true,
+        marketing: true,
         settings: true
       })
     })
@@ -181,7 +181,7 @@ describe('User Preference Factory', () => {
 
     it('should return undefined if the version is not recognised', () => {
       setConsentCookie({
-        version: '2010-01-01',
+        version: '2010.1',
         preferences: {
           acceptAll: true
         }
@@ -195,8 +195,8 @@ describe('User Preference Factory', () => {
       userPreference.userAcceptsAll()
 
       expect(userPreference.getPreferences()).toEqual({
-        usage: true,
-        campaigns: true,
+        measurement: true,
+        marketing: true,
         settings: true
       })
     })
@@ -204,28 +204,28 @@ describe('User Preference Factory', () => {
     it('should return each category when each category is set (function call)', () => {
       const userPreference = testScope.userPreference
       userPreference.setPreferences({
-        usage: true,
-        campaigns: true,
+        measurement: true,
+        marketing: true,
         settings: true
       })
 
       expect(userPreference.getPreferences()).toEqual({
-        usage: true,
-        campaigns: true,
+        measurement: true,
+        marketing: true,
         settings: true
       })
     })
     it('should return each category when each category is declined (function call)', () => {
       const userPreference = testScope.userPreference
       userPreference.setPreferences({
-        usage: false,
-        campaigns: false,
+        measurement: false,
+        marketing: false,
         settings: false
       })
 
       expect(userPreference.getPreferences()).toEqual({
-        usage: false,
-        campaigns: false,
+        measurement: false,
+        marketing: false,
         settings: false
       })
     })
@@ -234,45 +234,45 @@ describe('User Preference Factory', () => {
   describe('Save Preferences', () => {
     it('should save preferences to the cookie', () => {
       testScope.userPreference.setPreferences({
-        usage: true,
-        campaigns: false,
+        measurement: true,
+        marketing: false,
         settings: true
       })
       expect(Cookies.set).toHaveBeenCalledWith('userConsent', {
-        version: '2020-03-01',
-        dateSet: testScope.fakeDatetime,
+        version: '2020.1',
+        datetimeSet: testScope.fakeDatetime,
         preferences: {
-          usage: true,
-          campaigns: false,
+          measurement: true,
+          marketing: false,
           settings: true
         }
       }, {sameSite: 'strict', expires: 3650})
     })
     it('should save other preferences to the cookie', () => {
       testScope.userPreference.setPreferences({
-        usage: false,
-        campaigns: false,
+        measurement: false,
+        marketing: false,
         settings: true
       })
       expect(Cookies.set).toHaveBeenCalledWith('userConsent', {
-        version: '2020-03-01',
-        dateSet: testScope.fakeDatetime,
+        version: '2020.1',
+        datetimeSet: testScope.fakeDatetime,
         preferences: {
-          usage: false,
-          campaigns: false,
+          measurement: false,
+          marketing: false,
           settings: true
         }
       }, {sameSite: 'strict', expires: 3650})
     })
     it('should save only preferences specified', () => {
       testScope.userPreference.setPreferences({
-        usage: true
+        measurement: true
       })
       expect(Cookies.set).toHaveBeenCalledWith('userConsent', {
-        version: '2020-03-01',
-        dateSet: testScope.fakeDatetime,
+        version: '2020.1',
+        datetimeSet: testScope.fakeDatetime,
         preferences: {
-          usage: true
+          measurement: true
         }
       }, {sameSite: 'strict', expires: 3650})
     })
@@ -281,7 +281,7 @@ describe('User Preference Factory', () => {
       assume(testScope.preferenceCommunicator.sendPreferences).not.toHaveBeenCalled()
 
       testScope.userPreference.setPreferences({
-        usage: true
+        measurement: true
       })
 
       expect(testScope.preferenceCommunicator.sendPreferences).toHaveBeenCalledWith(testScope.userPreference)
@@ -290,15 +290,15 @@ describe('User Preference Factory', () => {
     it('should call preference communicator after preferences were set', () => {
       testScope.preferenceCommunicator.sendPreferences.and.callFake(userPreference => {
         expect(userPreference.getPreferences()).toEqual({
-          usage: false,
-          campaigns: false,
+          measurement: false,
+          marketing: false,
           settings: true
         })
       })
 
       testScope.userPreference.setPreferences({
-        usage: false,
-        campaigns: false,
+        measurement: false,
+        marketing: false,
         settings: true
       })
 
@@ -308,15 +308,15 @@ describe('User Preference Factory', () => {
     it('should call preference communicator after preferences were set', () => {
       testScope.preferenceCommunicator.sendPreferences.and.callFake(userPreference => {
         expect(userPreference.getPreferences()).toEqual({
-          usage: true,
-          campaigns: false,
+          measurement: true,
+          marketing: false,
           settings: false
         })
       })
 
       testScope.userPreference.setPreferences({
-        usage: true,
-        campaigns: false,
+        measurement: true,
+        marketing: false,
         settings: false
       })
 
@@ -335,9 +335,9 @@ describe('User Preference Factory', () => {
 
   describe('Meta tests', () => {
     it('datetime should be settable', () => {
-      expect(new Date().getTime()).toEqual(testScope.fakeDatetime)
+      expect(new Date().toISOString()).toEqual(testScope.fakeDatetime)
       testScope.fakeDatetime = 123
-      expect(new Date().getTime()).toEqual(123)
+      expect(new Date().toISOString()).toEqual(123)
     })
     it('cookies should be settable and gettable', () => {
       expect(Cookies.getJSON('abcdef')).toBeUndefined()
