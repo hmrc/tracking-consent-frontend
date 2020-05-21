@@ -32,26 +32,14 @@ describe('User Preference Factory', () => {
   })
 
   describe('Initial state', () => {
-    it('should include the noscript content from the DOM', () => {
-      expect(document.querySelectorAll('.cookie-settings__unsupported-browser--hide').length).toEqual(0)
+    it('should initially include the content for unsupported browsers', () => {
+      expect(document.querySelectorAll('.cookie-settings__body--browser-supported').length).toEqual(0)
     })
 
-    it('should hide the content for unsupported browsers from the DOM', () => {
+    it('should subsequently hide the content for unsupported browsers', () => {
       settingsFormHandler(testScope.userPref)
 
-      expect(document.querySelectorAll('.cookie-settings__unsupported-browser--hide').length).toEqual(1)
-    })
-
-    it('should initially have the content for supported browsers hidden', () => {
-      // @ts-ignore
-      expect(document.querySelectorAll('.cookie-settings__supported-browser--hide').length).toEqual(1)
-    })
-
-    it('should reveal the content for supported browsers hidden', () => {
-      settingsFormHandler(testScope.userPref)
-
-      // @ts-ignore
-      expect(document.querySelectorAll('.cookie-settings__supported-browser--hide').length).toEqual(0)
+      expect(document.querySelectorAll('.cookie-settings__body--browser-supported').length).toEqual(1)
     })
 
     it('should select all for user who has allowed all', () => {

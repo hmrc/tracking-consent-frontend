@@ -24,7 +24,7 @@
         findOutMoreLink: FindOutMoreLink)
 @()(implicit request: Request[_], messages: Messages)
 
-<div class="cookie-settings__supported-browser cookie-settings__supported-browser--hide">
+<div class="cookie-settings__supported-browser">
     @paragraph(content = Text(messages("cookieSettings.intro.paragraph3")))
     <form data-module="cookie-settings" data-on-value="@messages("cookieSettings.onValue")" data-off-value="@messages("cookieSettings.offValue")">
         @measurementRadio(messages, paragraph, h2)

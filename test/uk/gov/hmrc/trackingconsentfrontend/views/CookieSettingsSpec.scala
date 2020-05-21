@@ -48,7 +48,7 @@ class CookieSettingsSpec extends SpecBase {
     }
 
     "initially hide the content for supported browsers" in {
-      content.select(".cookie-settings__supported-browser--hide") must have size 1
+      content.select(".cookie-settings__body--browser-supported") must have size 0
     }
   }
 }
