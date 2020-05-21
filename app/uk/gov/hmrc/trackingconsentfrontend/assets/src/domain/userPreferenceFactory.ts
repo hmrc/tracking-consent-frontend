@@ -8,8 +8,8 @@ import {COOKIE_CONSENT, COOKIE_VERSION} from '../constants/cookies'
 const userPreferenceFactory = (preferenceCommunicator) => {
   function storePreferences (preferences) {
     Cookies.set(COOKIE_CONSENT, {
-      version: '2020-03-01',
-      dateSet: new Date().getTime(),
+      version: '2020.1',
+      datetimeSet: new Date().toISOString(),
       preferences: preferences
     }, { sameSite: 'strict', expires: 3650 })
   }
@@ -23,8 +23,8 @@ const userPreferenceFactory = (preferenceCommunicator) => {
 
   const setPreferences = preferencesIn => {
     storePreferences({
-      usage: preferencesIn.usage,
-      campaigns: preferencesIn.campaigns,
+      measurement: preferencesIn.measurement,
+      marketing: preferencesIn.marketing,
       settings: preferencesIn.settings
     })
     preferenceCommunicator.sendPreferences(self)

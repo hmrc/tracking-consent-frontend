@@ -34,76 +34,76 @@ describe('User Preference Factory', () => {
   describe('Initial state', () => {
     it('should select all for user who has allowed all', () => {
       spyOn(testScope.userPref, 'getPreferences').and.returnValue({
-        usage: true,
-        campaigns: true,
+        measurement: true,
+        marketing: true,
         settings: true
       })
       settingsFormHandler(testScope.userPref)
 
-      expect(document.querySelector('[name=usage][value=on]:checked')).toBeTruthy()
-      expect(document.querySelector('[name=campaigns][value=on]:checked')).toBeTruthy()
+      expect(document.querySelector('[name=measurement][value=on]:checked')).toBeTruthy()
+      expect(document.querySelector('[name=marketing][value=on]:checked')).toBeTruthy()
       expect(document.querySelector('[name=settings][value=on]:checked')).toBeTruthy()
 
-      expect(document.querySelector('[name=usage][value=off]:checked')).toBeFalsy()
-      expect(document.querySelector('[name=campaigns][value=off]:checked')).toBeFalsy()
+      expect(document.querySelector('[name=measurement][value=off]:checked')).toBeFalsy()
+      expect(document.querySelector('[name=marketing][value=off]:checked')).toBeFalsy()
       expect(document.querySelector('[name=settings][value=off]:checked')).toBeFalsy()
     })
     it('should select all for user who has declined all', () => {
       spyOn(testScope.userPref, 'getPreferences').and.returnValue({
-        usage: false,
-        campaigns: false,
+        measurement: false,
+        marketing: false,
         settings: false
       })
       settingsFormHandler(testScope.userPref)
 
-      expect(document.querySelector('[name=usage][value=on]:checked')).toBeFalsy()
-      expect(document.querySelector('[name=campaigns][value=on]:checked')).toBeFalsy()
+      expect(document.querySelector('[name=measurement][value=on]:checked')).toBeFalsy()
+      expect(document.querySelector('[name=marketing][value=on]:checked')).toBeFalsy()
       expect(document.querySelector('[name=settings][value=on]:checked')).toBeFalsy()
 
-      expect(document.querySelector('[name=usage][value=off]:checked')).toBeTruthy()
-      expect(document.querySelector('[name=campaigns][value=off]:checked')).toBeTruthy()
+      expect(document.querySelector('[name=measurement][value=off]:checked')).toBeTruthy()
+      expect(document.querySelector('[name=marketing][value=off]:checked')).toBeTruthy()
       expect(document.querySelector('[name=settings][value=off]:checked')).toBeTruthy()
     })
     it('should not select any for user who has not stored a preference', () => {
       spyOn(testScope.userPref, 'getPreferences').and.returnValue(undefined)
       settingsFormHandler(testScope.userPref)
 
-      expect(document.querySelector('[name=usage][value=on]:checked')).toBeFalsy()
-      expect(document.querySelector('[name=campaigns][value=on]:checked')).toBeFalsy()
+      expect(document.querySelector('[name=measurement][value=on]:checked')).toBeFalsy()
+      expect(document.querySelector('[name=marketing][value=on]:checked')).toBeFalsy()
       expect(document.querySelector('[name=settings][value=on]:checked')).toBeFalsy()
 
-      expect(document.querySelector('[name=usage][value=off]:checked')).toBeFalsy()
-      expect(document.querySelector('[name=campaigns][value=off]:checked')).toBeFalsy()
+      expect(document.querySelector('[name=measurement][value=off]:checked')).toBeFalsy()
+      expect(document.querySelector('[name=marketing][value=off]:checked')).toBeFalsy()
       expect(document.querySelector('[name=settings][value=off]:checked')).toBeFalsy()
     })
     it('should select specific items for user who stored a varied preference', () => {
       spyOn(testScope.userPref, 'getPreferences').and.returnValue({
-        usage: true,
-        campaigns: false,
+        measurement: true,
+        marketing: false,
         settings: true
       })
       settingsFormHandler(testScope.userPref)
 
-      expect(document.querySelector('[name=usage][value=on]:checked')).toBeTruthy()
-      expect(document.querySelector('[name=campaigns][value=on]:checked')).toBeFalsy()
+      expect(document.querySelector('[name=measurement][value=on]:checked')).toBeTruthy()
+      expect(document.querySelector('[name=marketing][value=on]:checked')).toBeFalsy()
       expect(document.querySelector('[name=settings][value=on]:checked')).toBeTruthy()
 
-      expect(document.querySelector('[name=usage][value=off]:checked')).toBeFalsy()
-      expect(document.querySelector('[name=campaigns][value=off]:checked')).toBeTruthy()
+      expect(document.querySelector('[name=measurement][value=off]:checked')).toBeFalsy()
+      expect(document.querySelector('[name=marketing][value=off]:checked')).toBeTruthy()
       expect(document.querySelector('[name=settings][value=off]:checked')).toBeFalsy()
     })
     it('should select specific items for user who stored only a partial preference', () => {
       spyOn(testScope.userPref, 'getPreferences').and.returnValue({
-        usage: true
+        measurement: true
       })
       settingsFormHandler(testScope.userPref)
 
-      expect(document.querySelector('[name=usage][value=on]:checked')).toBeTruthy()
-      expect(document.querySelector('[name=campaigns][value=on]:checked')).toBeFalsy()
+      expect(document.querySelector('[name=measurement][value=on]:checked')).toBeTruthy()
+      expect(document.querySelector('[name=marketing][value=on]:checked')).toBeFalsy()
       expect(document.querySelector('[name=settings][value=on]:checked')).toBeFalsy()
 
-      expect(document.querySelector('[name=usage][value=off]:checked')).toBeFalsy()
-      expect(document.querySelector('[name=campaigns][value=off]:checked')).toBeFalsy()
+      expect(document.querySelector('[name=measurement][value=off]:checked')).toBeFalsy()
+      expect(document.querySelector('[name=marketing][value=off]:checked')).toBeFalsy()
       expect(document.querySelector('[name=settings][value=off]:checked')).toBeFalsy()
     })
   })
@@ -113,24 +113,24 @@ describe('User Preference Factory', () => {
       spyOn(renderSettingsSaveConfirmationMessage, 'default')
     })
 
-    it('should save when usage only is granted', () => {
+    it('should save when measurement only is granted', () => {
       settingsFormHandler(testScope.userPref)
 
       fireEvent.click(getByText(document.body, /Use cookies that measure my website use/))
       fireEvent.click(getByText(document.body, /Save changes/))
 
       expect(testScope.userPref.setPreferences).toHaveBeenCalledWith({
-        usage: true
+        measurement: true
       })
     })
-    it('should save when campaigns only is granted', () => {
+    it('should save when marketing only is granted', () => {
       settingsFormHandler(testScope.userPref)
 
       fireEvent.click(getByText(document.body, /Use cookies that help with communications and marketing/))
       fireEvent.click(getByText(document.body, /Save changes/))
 
       expect(testScope.userPref.setPreferences).toHaveBeenCalledWith({
-        campaigns: true
+        marketing: true
       })
     })
     it('should not store a value for items which don\'t appear in the form', () => {

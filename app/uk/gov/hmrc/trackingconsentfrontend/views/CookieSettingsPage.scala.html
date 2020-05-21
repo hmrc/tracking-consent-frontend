@@ -21,8 +21,8 @@
         paragraph: Paragraph,
         h1: H1,
         h2: H2,
-        usageRadio: UsageRadio,
-        campaignsRadio: CampaignsRadio,
+        measurementRadio: MeasurementRadio,
+        marketingRadio: MarketingRadio,
         settingsRadio: SettingsRadio,
         noticeWrapper: NoticeWrapper,
         govukButton: GovukButton,
@@ -44,8 +44,8 @@
         @paragraph(content = Text(messages("cookieSettings.intro.paragraph2")))
         @paragraph(content = Text(messages("cookieSettings.intro.paragraph3")))
         <form data-module="cookie-settings" data-on-value="@messages("cookieSettings.onValue")" data-off-value="@messages("cookieSettings.offValue")">
-            @usageRadio(messages, paragraph, h2)
-            @campaignsRadio(messages, paragraph, h2)
+            @measurementRadio(messages, paragraph, h2)
+            @marketingRadio(messages, paragraph, h2)
             @settingsRadio(messages, paragraph, h2)
             @h2(content = Text(messages("cookieSettings.necessary.title")))
             @paragraph(content = Text(messages("cookieSettings.necessary.paragraph1")))

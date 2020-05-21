@@ -8,7 +8,7 @@ import {
 import '@testing-library/jest-dom/extend-expect'
 // @ts-ignore
 import fixture from '../fixtures/servicePageWithBannerMinimal.html'
-import renderConfirmationMessage from "../../src/ui/renderConfirmationMessage";
+import renderConfirmationMessage from "../../src/ui/renderConfirmationMessage"
 
 describe('renderConfirmationMessage', () => {
 

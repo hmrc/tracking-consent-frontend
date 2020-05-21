@@ -18,38 +18,29 @@
 
 @(messages: Messages, paragraph: Paragraph, h2: H2)
 
-@hintText = {
-    @paragraph(content = Text(messages("cookieSettings.usage.paragraph1")))
-    @paragraph(content = Text(messages("cookieSettings.usage.paragraph2")))
-
-
-    </p>
-    <ul class="govuk-list govuk-list--bullet">
-        <li>@messages("cookieSettings.usage.bullet1")</li>
-        <li>@messages("cookieSettings.usage.bullet2")</li>
-        <li>@messages("cookieSettings.usage.bullet3")</li>
-    </ul>
+@usageText = {
+    @h2(Text(messages("cookieSettings.marketing.title")))
 }
 
 @govukRadios(Radios(
     fieldset = Some(Fieldset(
         legend = Some(Legend(
-            content = HtmlContent(h2(Text(messages("cookieSettings.usage.title")))),
+            content = HtmlContent(usageText),
             isPageHeading = false
         ))
     )),
     hint = Some(Hint(
-        content = HtmlContent(hintText)
+        content = Text(messages("cookieSettings.marketing.paragraph1"))
     )),
-    idPrefix = Some(messages("cookieSettings.usage.settingid")),
-    name = messages("cookieSettings.usage.settingid"),
+    idPrefix = Some(messages("cookieSettings.marketing.settingid")),
+    name = messages("cookieSettings.marketing.settingid"),
     items = Seq(
         RadioItem(
-            content = Text(messages("cookieSettings.usage.settinglabel.on")),
+            content = Text(messages("cookieSettings.marketing.settinglabel.on")),
             value = Some(messages("cookieSettings.onValue"))
         ),
         RadioItem(
-            content = Text(messages("cookieSettings.usage.settinglabel.off")),
+            content = Text(messages("cookieSettings.marketing.settinglabel.off")),
             value = Some(messages("cookieSettings.offValue"))
         )
     )

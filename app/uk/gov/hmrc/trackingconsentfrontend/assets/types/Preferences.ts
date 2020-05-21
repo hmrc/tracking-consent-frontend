@@ -1,6 +1,6 @@
 export type Preferences = {
     acceptAll?: boolean,
-    usage?: boolean,
-    campaigns?: boolean,
+    measurement?: boolean,
+    marketing?: boolean,
     settings?: boolean
 }
