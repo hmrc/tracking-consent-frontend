@@ -14,46 +14,19 @@
  * limitations under the License.
  *@
 
-@import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
-
 @this(
         layout: Layout,
-        paragraph: Paragraph,
-        h1: H1,
-        h2: H2,
-        measurementRadio: MeasurementRadio,
-        marketingRadio: MarketingRadio,
-        settingsRadio: SettingsRadio,
-        noticeWrapper: NoticeWrapper,
-        govukButton: GovukButton,
         settingsPageScripts: SettingsPageScripts,
-        hmrcBanner: HmrcBanner)
+        cookieSettingsIntro: CookieSettingsIntro,
+        unsupportedBrowser: UnsupportedBrowser,
+        supportedBrowser: SupportedBrowser)
+
 @()(implicit request: Request[_], messages: Messages, appConfig: AppConfig)
 
-@findOutMoreLink = {
-    <a href="@messages("cookieSettings.necessary.link.url")">
-        @messages("cookieSettings.necessary.link.text")
-    </a>
-}
-
-@defining(Messages("cookieSettings.title")) { title =>
+@defining(messages("cookieSettings.title")) { title =>
     @layout(pageTitle = Some(title), scriptsBlock = Some(settingsPageScripts())) {
-        @noticeWrapper()
-        @h1(content = Text(title))
-        @paragraph(content = Text(messages("cookieSettings.intro.paragraph1")))
-        @paragraph(content = Text(messages("cookieSettings.intro.paragraph2")))
-        @paragraph(content = Text(messages("cookieSettings.intro.paragraph3")))
-        <form data-module="cookie-settings" data-on-value="@messages("cookieSettings.onValue")" data-off-value="@messages("cookieSettings.offValue")">
-            @measurementRadio(messages, paragraph, h2)
-            @marketingRadio(messages, paragraph, h2)
-            @settingsRadio(messages, paragraph, h2)
-            @h2(content = Text(messages("cookieSettings.necessary.title")))
-            @paragraph(content = Text(messages("cookieSettings.necessary.paragraph1")))
-            @paragraph(content = Text(messages("cookieSettings.necessary.paragraph2")))
-            @paragraph(content = HtmlContent(paragraph(HtmlContent(findOutMoreLink))))
-            @govukButton(Button(
-                content = Text(messages("cookieSettings.saveButton"))
-            ))
-        </form>
+        @cookieSettingsIntro()
+        @unsupportedBrowser()
+        @supportedBrowser()
     }
 }

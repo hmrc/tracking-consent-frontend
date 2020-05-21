@@ -5,6 +5,12 @@ service.homePageUrl = https://www.gov.uk
 cookieSettings.intro.paragraph1 = Cookies are files saved on your phone, tablet or computer when you visit a website
 cookieSettings.intro.paragraph2 = We use cookies to store information about how you use HMRC services, such as the pages you visit.
 cookieSettings.intro.paragraph3 = We use 4 types of cookie. You can choose which cookies you''re happy for us to use.
+
+cookieSettings.noscript.title = Cookie settings
+cookieSettings.noscript.paragraph1 = We use Javascript to set most of our cookies. Unfortunately Javascript is not running on your browser, so you cannot change your settings. You can try:
+cookieSettings.noscript.bullet1 = reloading the page
+cookieSettings.noscript.bullet2 = turning on Javascript in your browser
+
 cookieSettings.measurement.title = Cookies that measure website use
 cookieSettings.measurement.paragraph1 = We use Google Analytics to measure how you use the website so we can improve it based on user needs. We do not allow Google to use or share the data about how you use this site.
 cookieSettings.measurement.paragraph2 = Google Analytics sets cookies that store anonymised information about:

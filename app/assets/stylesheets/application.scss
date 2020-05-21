@@ -10,3 +10,11 @@ $hmrc-assets-path: "/tracking-consent/assets/lib/hmrc-frontend/hmrc/";
   margin-bottom: 30px;
   outline: none;
 }
+
+.cookie-settings__unsupported-browser--hide {
+  display: none;
+}
+
+.cookie-settings__supported-browser--hide {
+  display: none;
+}

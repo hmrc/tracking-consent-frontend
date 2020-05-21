@@ -16,24 +16,17 @@
 
 package uk.gov.hmrc.trackingconsentfrontend.views
 
-import org.scalatestplus.play.PlaySpec
-import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.Application
 import play.api.i18n.{DefaultMessagesApi, Messages}
 import play.api.inject.guice.GuiceApplicationBuilder
-import play.api.test.FakeRequest
 import uk.gov.hmrc.govukfrontend.views.viewmodels.footer.FooterItem
-import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
+import uk.gov.hmrc.trackingconsentfrontend.SpecBase
 
-class FooterLinksSpec extends PlaySpec with GuiceOneAppPerSuite {
-
-  private val fakeRequest = FakeRequest("GET", "/cookie-settings")
+class FooterLinksSpec extends SpecBase {
 
   override def fakeApplication(): Application = {
     GuiceApplicationBuilder().configure(Map("footerLinkItems" -> Seq("one", "two", "three"))).build()
   }
-
-  implicit val appConfig: AppConfig = app.injector.instanceOf[AppConfig]
 
   "FooterLinks" must {
     "Return the correct links for the item keys defined" in {
