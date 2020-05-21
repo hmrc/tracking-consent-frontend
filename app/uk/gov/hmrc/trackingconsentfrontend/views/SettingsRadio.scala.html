@@ -18,14 +18,14 @@
 
 @(messages: Messages, paragraph: Paragraph, h2: H2)
 
-@usageText = {
+@settingsText = {
     <h2 class="govuk-heading-m">@messages("cookieSettings.settings.title")</h2>
 }
 
 @govukRadios(Radios(
     fieldset = Some(Fieldset(
         legend = Some(Legend(
-            content = HtmlContent(usageText),
+            content = HtmlContent(settingsText),
             isPageHeading = false
         ))
     )),
