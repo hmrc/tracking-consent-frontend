@@ -16,31 +16,28 @@
 
 package uk.gov.hmrc.trackingconsentfrontend.controllers
 
-import org.scalatest.{Matchers, WordSpec}
-import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.http.Status
-import play.api.test.FakeRequest
 import play.api.test.Helpers._
+import uk.gov.hmrc.trackingconsentfrontend.SpecBase
 
-class TestControllerSpec extends WordSpec with Matchers with GuiceOneAppPerSuite {
-  private val fakeRequest = FakeRequest("GET", "/test")
+class TestControllerSpec extends SpecBase {
   private val controller = app.injector.instanceOf[TestController]
 
   "test" should {
     "return 200" in {
       val result = controller.test(fakeRequest)
-      status(result) shouldBe Status.OK
+      status(result) mustBe Status.OK
     }
 
     "return HTML" in {
       val result = controller.test(fakeRequest)
-      contentType(result) shouldBe Some("text/html")
-      charset(result)     shouldBe Some("utf-8")
+      contentType(result) mustBe Some("text/html")
+      charset(result)     mustBe Some("utf-8")
     }
 
     "show the correct title" in {
       val result = controller.test(fakeRequest)
-      contentAsString(result) should include ("Service test page")
+      contentAsString(result) must include ("Service test page")
     }
   }
 }

@@ -32,6 +32,16 @@ describe('User Preference Factory', () => {
   })
 
   describe('Initial state', () => {
+    it('should initially include the content for unsupported browsers', () => {
+      expect(document.querySelectorAll('.cookie-settings__body--browser-supported').length).toEqual(0)
+    })
+
+    it('should subsequently hide the content for unsupported browsers', () => {
+      settingsFormHandler(testScope.userPref)
+
+      expect(document.querySelectorAll('.cookie-settings__body--browser-supported').length).toEqual(1)
+    })
+
     it('should select all for user who has allowed all', () => {
       spyOn(testScope.userPref, 'getPreferences').and.returnValue({
         measurement: true,

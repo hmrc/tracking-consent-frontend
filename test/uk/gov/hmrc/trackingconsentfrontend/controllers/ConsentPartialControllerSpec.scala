@@ -16,42 +16,35 @@
 
 package uk.gov.hmrc.trackingconsentfrontend.controllers
 
-import org.scalatest.{Matchers, WordSpec}
-import org.scalatestplus.play.{MixedFixtures, MixedPlaySpec}
 import play.api.Application
 import play.api.http.Status
 import play.api.inject.guice.GuiceApplicationBuilder
-import play.api.test.FakeRequest
 import play.api.test.Helpers._
+import uk.gov.hmrc.trackingconsentfrontend.SpecBase
 
-class ConsentPartialControllerSpec extends MixedPlaySpec {
+class ConsentPartialControllerSpec extends SpecBase {
+  private val controller = app.injector.instanceOf[ConsentPartialController]
 
-  def buildApp[A](elems: (String, String)*): Application =
-    GuiceApplicationBuilder()
-      .configure(Map(elems: _*))
-      .build()
-
-  def makeRequest(app: Application) = {
-    val fakeRequest = FakeRequest("GET", "/")
-    val controller = app.injector.instanceOf[ConsentPartialController]
-    controller.head(fakeRequest)
+  override def fakeApplication(): Application = {
+    GuiceApplicationBuilder().configure(Map("cookie-banner.assets-prefix" -> "http://foo:54321")).build()
   }
 
   "head" must {
     "return 200" in new App() {
-      val result = makeRequest(app)
+      val result = controller.head(fakeRequest)
       status(result) mustBe Status.OK
     }
 
     "return HTML" in new App() {
-      val result = makeRequest(app)
+      val result = controller.head(fakeRequest)
       contentType(result) mustBe Some("text/html")
       charset(result)     mustBe Some("utf-8")
     }
 
-    "return assets prefixed for local-development" in new App(buildApp("cookie-banner.assets-prefix" -> "http://localhost:12345")) {
-      val result = makeRequest(app)
-      contentAsString(result) must include ("""src="http://localhost:12345/tracking-consent/assets/servicePage.js""")
+    "return assets prefixed for local-development" in {
+      val result = controller.head(fakeRequest)
+
+      contentAsString(result) must include ("""src="http://foo:54321/tracking-consent/assets/servicePage.js""")
     }
   }
 }

@@ -61,7 +61,12 @@ const hydrateForm = (userPreferences: UserPreferences) => (form: HTMLFormElement
   form.addEventListener('submit', submitHandler)
 }
 
+const hideUnsupportedBrowserContent = () => {
+  document.body.className = `${document.body.className} cookie-settings__body--browser-supported`
+}
+
 const settingsFormHandler: (UserPreferences) => void = (userPreferences) => {
+  hideUnsupportedBrowserContent()
   const cookieSettingsForm = document.querySelector('[data-module="cookie-settings"]')
   callIfNotNull(cookieSettingsForm, hydrateForm(userPreferences))
 }

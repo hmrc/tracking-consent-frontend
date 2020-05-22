@@ -1,4 +1,4 @@
-/*
+@*
  * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,20 +12,12 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *@
 
-package uk.gov.hmrc.trackingconsentfrontend.config
-
-import play.api.test.Helpers._
-import uk.gov.hmrc.trackingconsentfrontend.SpecBase
-
-class ErrorHandlerSpec extends SpecBase {
-  private val errorHandler = app.injector.instanceOf[ErrorHandler]
-
-  "standardErrorTemplate" should {
-    "show the correct title" in {
-      val result = errorHandler.standardErrorTemplate(pageTitle = "Error occurred", heading = "A heading", message = "A message")(fakeRequest)
-      contentAsString(result) must include ("A heading")
-    }
-  }
-}
+@this()
+@()(implicit request: Request[_], messages: Messages)
+<p class="govuk-body">
+    <a href="@messages("cookieSettings.necessary.link.url")" class="govuk-link">
+        @messages("cookieSettings.necessary.link.text")
+    </a>
+</p>
