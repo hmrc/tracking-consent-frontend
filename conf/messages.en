@@ -2,6 +2,20 @@ cookieSettings.title = Cookie settings on HMRC services
 testPage.title = Service test page
 service.homePageUrl = https://www.gov.uk
 
+banner.title = Tell us whether you accept cookies
+banner.paragraph1.beforeLink = We use
+banner.paragraph1.link.text = cookies to collect information
+banner.paragraph1.link.url = /tracking-consent/cookie-settings
+banner.paragraph1.afterLink = about how you use HMRC services. We use this information to make them work as well as possible and improve them.
+banner.acceptAllButton = Accept all cookies
+banner.setCookiePreferencesButton = Set cookie preferences
+
+banner.saveConfirmation.paragraph1.beforeLink = You’ve accepted all cookies. You can 
+banner.saveConfirmation.paragraph1.link.text =  change your cookie settings
+banner.saveConfirmation.paragraph1.link.url =  /tracking-consent/cookie-settings
+banner.saveConfirmation.paragraph1.afterLink = at any time.
+banner.saveConfirmation.hideButton = Hide
+
 cookieSettings.intro.paragraph1 = Cookies are files saved on your phone, tablet or computer when you visit a website.
 cookieSettings.intro.paragraph2 = We use cookies to store information about how you use HMRC services, such as the pages you visit.
 cookieSettings.intro.paragraph3 = We use 4 types of cookie. You can choose which cookies you''re happy for us to use.
@@ -47,6 +61,10 @@ cookieSettings.necessary.link.url = /help/cookies
 cookieSettings.onValue = on
 cookieSettings.offValue = off
 cookieSettings.saveButton = Save changes
+
+cookieSettings.saveConfirmation.title = Your cookie settings were saved
+cookieSettings.saveConfirmation.paragraph1 = Other government services may set additional cookies and, if so, will have their own cookie policy and banner.
+cookieSettings.saveConfirmation.link.text =  Go back to the page you were looking at
 
 service.name = Tracking Consent
 

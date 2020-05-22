@@ -28,11 +28,21 @@ module.exports = {
           // Compiles Sass to CSS
           'sass-loader',
         ],
+      },
+      {
+        test: /messages\.(en|cy)$/,
+        loader: 'message-format-loader'
       }
     ],
   },
   resolve: {
     extensions: [ '.ts', '.js' ],
+  },
+  resolveLoader: {
+    modules: [
+      'node_modules',
+      path.resolve(__dirname, 'src/loaders')
+    ]
   },
   devServer: {
     contentBase: path.join(__dirname, '../../../../../../public'),

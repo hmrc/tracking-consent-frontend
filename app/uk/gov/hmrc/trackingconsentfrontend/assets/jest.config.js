@@ -5,7 +5,8 @@ module.exports = {
   testPathIgnorePatterns: ['/node_modules/'],
   transform: {
     "^.+\\.[t|j]sx?$": "ts-jest",
-    "^.+\\.html?$": "html-loader-jest"
+    "^.+\\.html?$": "html-loader-jest",
+    "^.+\\.en?$": "./test/messageFormatJestTransformer.js",
   },
   moduleNameMapper: {
     '\\.s?css$': 'identity-obj-proxy'
