@@ -20,12 +20,23 @@
         findOutMoreLink: FindOutMoreLink)
 @()(implicit request: Request[_], messages: Messages)
 
+@updateYourBrowser = {
+    <p class="govuk-body">
+        @messages("cookieSettings.unsupported.paragraph3")
+        <a href="@messages("cookieSettings.unsupported.paragraph3.link.url")" class="govuk-link">
+            @messages("cookieSettings.unsupported.paragraph3.link.text")</a>.
+    </p>
+}
+
 <div class="cookie-settings__unsupported-browser">
-    @h2(content = Text(messages("cookieSettings.noscript.title")))
-    @paragraph(content = Text(messages("cookieSettings.noscript.paragraph1")))
+    @paragraph(content = Text(messages("cookieSettings.unsupported.paragraph1")))
     <ul class="govuk-list govuk-list--bullet">
-        <li>@messages("cookieSettings.noscript.bullet1")</li>
-        <li>@messages("cookieSettings.noscript.bullet2")</li>
+        <li>@messages("cookieSettings.unsupported.bullet1")</li>
+        <li>@messages("cookieSettings.unsupported.bullet2")</li>
     </ul>
+    @h2(content = Text(messages("cookieSettings.unsupported.title")))
+    @paragraph(content = Text(messages("cookieSettings.unsupported.paragraph2")))
+    @updateYourBrowser
+    @paragraph(content = Text(messages("cookieSettings.unsupported.paragraph4")))
     @findOutMoreLink()
 </div>

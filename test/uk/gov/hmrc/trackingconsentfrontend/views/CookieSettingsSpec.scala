@@ -40,7 +40,7 @@ class CookieSettingsSpec extends SpecBase {
     }
 
     "return the content for unsupported browsers" in {
-      contentAsString(content) must include("Unfortunately Javascript is not running on your browser")
+      contentAsString(content) must include("Javascript is not running on your browser")
     }
 
     "return the content for supported browsers" in {
