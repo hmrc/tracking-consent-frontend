@@ -6,7 +6,7 @@ module.exports = {
   transform: {
     "^.+\\.[t|j]sx?$": "ts-jest",
     "^.+\\.html?$": "html-loader-jest",
-    "^.+\\.en?$": "./test/messageFormatJestTransformer.js",
+    "^.+\\.(en|cy|conf)?$": "./test/messageFormatJestTransformer.js",
   },
   moduleNameMapper: {
     '\\.s?css$': 'identity-obj-proxy'

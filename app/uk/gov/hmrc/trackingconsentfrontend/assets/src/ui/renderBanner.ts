@@ -10,8 +10,7 @@ import {
 import removeElement from '../common/removeElement';
 import callIfNotNull from '../common/callIfNotNull';
 import {UserPreferences} from "../../types/UserPreferences";
-// @ts-ignore
-import messages from '../../../../../../../../conf/messages.en';
+import getMessages from "../interfaces/getMessages";
 
 const renderBanner = (userPreference: UserPreferences) => {
 
@@ -45,7 +44,7 @@ const renderBanner = (userPreference: UserPreferences) => {
     const insertBanner = () => {
         const banner = document.createElement('div')
         banner.className = COOKIE_BANNER_CLASS;
-        banner.innerHTML = bannerTemplate(messages)
+        banner.innerHTML = bannerTemplate(getMessages())
         banner.setAttribute('role', 'region')
         banner.setAttribute('aria-label', 'Cookie Banner')
         const acceptAllButton = banner.querySelector(`.${ACCEPT_ALL_CLASS}`)
