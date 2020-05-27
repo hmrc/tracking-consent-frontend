@@ -49,6 +49,8 @@
     "babel-preset-env": "^1.7.0",
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.4.2",
+    "dot-properties": "^1.0.1",
+    "govuk-frontend": "^3.6.0",
     "html-loader": "^0.5.5",
     "html-loader-jest": "^0.2.1",
     "husky": "^4.2.3",
@@ -71,7 +73,6 @@
     "webpack": "^4.42.0",
     "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3",
-    "govuk-frontend": "^3.6.0"
+    "webpack-dev-server": "^3.10.3"
   }
 }

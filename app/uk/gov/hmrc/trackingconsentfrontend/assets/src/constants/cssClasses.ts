@@ -8,6 +8,7 @@ export const COOKIE_BANNER_GOV_UK_WIDTH_CONTAINER_CLASS = 'cbanner-govuk-width-c
 
 // Cookie settings related (uses standard Gov UK Frontend)
 export const COOKIE_SETTINGS_NOTICE_CLASS = 'cookie-settings__notice'
+export const COOKIE_SETTINGS_CONFIRMATION_CLASS = 'cookie-settings__confirmation'
 export const COOKIE_SETTINGS_NOTICE_WRAPPER_CLASS = 'cookie-settings__notice-wrapper'
 
 // Gov UK frontend

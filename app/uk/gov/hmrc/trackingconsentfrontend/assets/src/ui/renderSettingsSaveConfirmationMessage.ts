@@ -1,21 +1,22 @@
 import {
     COOKIE_SETTINGS_NOTICE_CLASS,
     GOV_UK_BODY_CLASS, GOV_UK_LINK_CLASS,
-    COOKIE_SETTINGS_NOTICE_WRAPPER_CLASS
+    COOKIE_SETTINGS_NOTICE_WRAPPER_CLASS, COOKIE_SETTINGS_CONFIRMATION_CLASS
 } from "../constants/cssClasses";
 // @ts-ignore
-import confirmationHtml from './cookieSettingsConfirmation.html'
 import callIfNotNull from "../common/callIfNotNull";
 import scrollToTop from "../common/scrollToTop";
 import getReferrer from "../common/getReferrer";
-import {GO_BACK_TO_PREVIOUS_PAGE} from "../constants/messages";
+// @ts-ignore
+import messages from '../../../../../../../../conf/messages.en';
 import getPathname from "../common/getPathname";
 import focusIfNotNull from "../common/focusIfNotNull";
+import cookieSettingsConfirmation from "./cookieSettingsConfirmation"
 
 const getReferrerLink = (referrer): HTMLAnchorElement => {
     const link = document.createElement('a')
     link.className = GOV_UK_LINK_CLASS
-    link.innerHTML = GO_BACK_TO_PREVIOUS_PAGE
+    link.innerHTML = messages['cookieSettings.saveConfirmation.link.text']
     link.href = referrer
     return link
 }
@@ -33,20 +34,18 @@ const insertReferrerLink = (notice: HTMLElement, referrer: string) => {
     notice.appendChild(paragraph)
 }
 
-const insertReferrerLinkIfNecessary = (notice: HTMLElement) => {
+const insertReferrerLinkIfNecessary = (message: HTMLElement) => {
     const referrer = getReferrer()
     if (referrer && referrer !== getPathname()) {
-        insertReferrerLink(notice, referrer)
+        const notice = message.querySelector(`.${COOKIE_SETTINGS_NOTICE_CLASS}`)
+        callIfNotNull(notice, element => insertReferrerLink(element, referrer))
     }
 }
 
 const getConfirmation = (): HTMLElement => {
-    const message = document.createElement('section')
-    message.className = COOKIE_SETTINGS_NOTICE_CLASS
-    message.tabIndex = -1
-    message.setAttribute('role', 'region')
-    message.setAttribute('aria-label', 'Notice')
-    message.innerHTML = confirmationHtml
+    const message = document.createElement('div')
+    message.className = COOKIE_SETTINGS_CONFIRMATION_CLASS
+    message.innerHTML = cookieSettingsConfirmation(messages)
     insertReferrerLinkIfNecessary(message)
     return message
 }
