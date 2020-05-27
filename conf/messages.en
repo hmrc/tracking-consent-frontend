@@ -19,7 +19,7 @@ banner.saveConfirmation.hideButton.label = Hide the cookie banner
 
 cookieSettings.intro.paragraph1 = Cookies are files saved on your phone, tablet or computer when you visit a website.
 cookieSettings.intro.paragraph2 = We use cookies to store information about how you use HMRC services, such as the pages you visit.
-cookieSettings.intro.paragraph3 = We use 4 types of cookie. You can choose which cookies you''re happy for us to use.
+cookieSettings.intro.paragraph3 = We use 4 types of cookie. You can choose which cookies you’re happy for us to use.
 
 cookieSettings.unsupported.paragraph1 = You cannot change your cookie settings because:
 cookieSettings.unsupported.bullet1 = your web browser (the software you use to access the internet) is unsupported
@@ -36,7 +36,7 @@ cookieSettings.measurement.paragraph1 = We use Google Analytics to measure how y
 cookieSettings.measurement.paragraph2 = Google Analytics sets cookies that store anonymised information about:
 cookieSettings.measurement.bullet1 = how you got to the site
 cookieSettings.measurement.bullet2 = the pages you visit on HMRC services and how long you spend on each page
-cookieSettings.measurement.bullet3 = what you click on while you''re visiting the site
+cookieSettings.measurement.bullet3 = what you click on while you’re visiting the site
 cookieSettings.measurement.settinglabel.on = Use cookies that measure my website use
 cookieSettings.measurement.settinglabel.off = Do not use cookies that measure my website use
 cookieSettings.measurement.settingid = usage
