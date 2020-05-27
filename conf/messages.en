@@ -14,7 +14,8 @@ banner.saveConfirmation.paragraph1.beforeLink = You’ve accepted all cookies. Y
 banner.saveConfirmation.paragraph1.link.text =  change your cookie settings
 banner.saveConfirmation.paragraph1.link.url =  /tracking-consent/cookie-settings
 banner.saveConfirmation.paragraph1.afterLink = at any time.
-banner.saveConfirmation.hideButton = Hide
+banner.saveConfirmation.hideButton.text = Hide
+banner.saveConfirmation.hideButton.label = Hide the cookie banner
 
 cookieSettings.intro.paragraph1 = Cookies are files saved on your phone, tablet or computer when you visit a website.
 cookieSettings.intro.paragraph2 = We use cookies to store information about how you use HMRC services, such as the pages you visit.

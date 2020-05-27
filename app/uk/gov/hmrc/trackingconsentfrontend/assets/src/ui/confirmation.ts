@@ -7,8 +7,8 @@ const confirmation = messages => `
     ${messages['banner.saveConfirmation.paragraph1.afterLink']}
 </p>
 <p class="cbanner-govuk-body cbanner-cookie-banner__hide-button-container">
-    <button class="cbanner-govuk-link cbanner-cookie-banner__hide-button" role="button">
-            ${messages['banner.saveConfirmation.hideButton']}
+    <button class="cbanner-govuk-link cbanner-cookie-banner__hide-button" aria-label="${messages['banner.saveConfirmation.hideButton.label']}">
+            ${messages['banner.saveConfirmation.hideButton.text']}
     </button>
 </p>`
 
