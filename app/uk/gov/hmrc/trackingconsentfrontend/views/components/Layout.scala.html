@@ -14,12 +14,15 @@
  * limitations under the License.
  *@
 
-@import uk.gov.hmrc.trackingconsentfrontend.views.FooterLinks
+@import uk.gov.hmrc.trackingconsentfrontend.views.components.FooterLinks
+@import uk.gov.hmrc.trackingconsentfrontend.views.html.components.LanguageSelect
 
 @this(
         govukLayout: GovukLayout,
         head: Head,
-        hmrcBanner: HmrcBanner
+        hmrcBanner: HmrcBanner,
+        hmrcLanguageSelect: HmrcLanguageSelect,
+        languageSelect: LanguageSelect
 )
 
 @(pageTitle: Option[String] = None,
@@ -29,6 +32,7 @@
 
 @beforeContentBlock = {
     @hmrcBanner(Banner())
+    @languageSelect()
 }
 
 @govukLayout(

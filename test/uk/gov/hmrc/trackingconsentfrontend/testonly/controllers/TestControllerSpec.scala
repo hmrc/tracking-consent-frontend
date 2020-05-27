@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.trackingconsentfrontend.controllers
+package uk.gov.hmrc.trackingconsentfrontend.testonly.controllers
 
 import play.api.http.Status
 import play.api.test.Helpers._

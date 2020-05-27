@@ -14,22 +14,23 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.trackingconsentfrontend.views
+package uk.gov.hmrc.trackingconsentfrontend.testonly.controllers
 
-import play.api.i18n.Messages
-import uk.gov.hmrc.govukfrontend.views.viewmodels.footer.FooterItem
+import javax.inject.{Inject, Singleton}
+import play.api.mvc._
+import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
+import uk.gov.hmrc.trackingconsentfrontend.testonly.views.html.TestPage
 
-object FooterLinks {
-  def apply()(implicit messages: Messages, appConfig: AppConfig): Seq[FooterItem] = appConfig.footerLinkItems.flatMap { item =>
-    val keyPrefix = s"footer.$item"
-    val textKey = s"$keyPrefix.text"
-    val urlKey = s"$keyPrefix.url"
-    if (
-      messages.isDefinedAt(textKey) && messages.isDefinedAt(urlKey)
-    ) Some(FooterItem(
-      text = Some(messages(textKey)),
-      href = Some(messages(urlKey))
-    )) else None
+import scala.concurrent.Future
+
+@Singleton
+class TestController @Inject()(appConfig: AppConfig, mcc: MessagesControllerComponents, testPage: TestPage)
+  extends FrontendController(mcc) {
+
+  implicit val config: AppConfig = appConfig
+
+  val test: Action[AnyContent] = Action.async { implicit request =>
+    Future.successful(Ok(testPage()))
   }
 }
