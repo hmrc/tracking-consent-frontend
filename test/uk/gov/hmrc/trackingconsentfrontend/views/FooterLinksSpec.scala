@@ -21,6 +21,7 @@ import play.api.i18n.{DefaultMessagesApi, Messages}
 import play.api.inject.guice.GuiceApplicationBuilder
 import uk.gov.hmrc.govukfrontend.views.viewmodels.footer.FooterItem
 import uk.gov.hmrc.trackingconsentfrontend.SpecBase
+import uk.gov.hmrc.trackingconsentfrontend.views.components.FooterLinks
 
 class FooterLinksSpec extends SpecBase {
 

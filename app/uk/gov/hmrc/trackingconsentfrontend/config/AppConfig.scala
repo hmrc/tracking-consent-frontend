@@ -24,4 +24,5 @@ import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 class AppConfig @Inject()(config: Configuration, servicesConfig: ServicesConfig) {
   val cookieBannerAssetsPrefix: String = config.getOptional[String]("cookie-banner.assets-prefix").getOrElse("")
   val footerLinkItems: Seq[String] = config.getOptional[Seq[String]]("footerLinkItems").getOrElse(Seq())
+  val welshLanguageSupportEnabled: Boolean = config.getOptional[Boolean]("features.welsh-language-support").getOrElse(false)
 }
