@@ -1,6 +1,5 @@
 /* global spyOn */
-
-import {fireEvent, getByRole, getByText, queryByText} from '@testing-library/dom'
+import { fireEvent, getByRole, getByText, queryByText } from '@testing-library/dom'
 import '@testing-library/jest-dom/extend-expect'
 import renderBanner from '../../src/ui/renderBanner'
 // @ts-ignore
@@ -9,9 +8,9 @@ import fixture from '../fixtures/servicePage.html'
 import fixtureFrontendToolkit from '../fixtures/servicePageFrontendToolkit.html'
 // @ts-ignore
 import fixtureClassic from '../fixtures/servicePageClassic.html'
+import * as getLanguage from '../../src/interfaces/getLanguage'
 
 describe('renderBanner', () => {
-
   const userAcceptsAll = jest.fn()
   const getPreferences = jest.fn()
   const setPreferences = jest.fn()
@@ -33,11 +32,14 @@ describe('renderBanner', () => {
 
   const assume = expect
 
+  let spy
+
   beforeEach(() => {
     document.getElementsByTagName('html')[0].innerHTML = fixture
     userPreference.getUserHasSavedCookiePreferences.mockReturnValue(false)
     userAcceptsAll.mockReset()
     preferenceCommunicator.sendPreferences.mockReset()
+    spy = spyOn(getLanguage, 'default').and.returnValue('en')
   })
 
   const clickAcceptAll = () => {
@@ -46,14 +48,18 @@ describe('renderBanner', () => {
     fireEvent.click(getByText(document.body, 'Accept all cookies'))
   }
 
-  const clickHide = () => {
-    fireEvent.click(getByText(document.body, 'Hide'))
-  }
-
   it('should render a banner', () => {
     renderBanner(userPreference)
 
     expect(queryByText(document.body, tellUsYouAcceptAllMatcher)).toBeTruthy()
+  })
+
+  it('should render the Welsh version of the banner', () => {
+    spy.and.returnValue('cy')
+
+    renderBanner(userPreference)
+
+    expect(queryByText(document.body, /Lorem ipsum/)).toBeTruthy()
   })
 
   it('should render a submit button', () => {
@@ -129,7 +135,7 @@ describe('renderBanner', () => {
   })
 
   it('should not render a banner if the cookie has been set', () => {
-    userPreference.getUserHasSavedCookiePreferences.mockReturnValue( true)
+    userPreference.getUserHasSavedCookiePreferences.mockReturnValue(true)
     renderBanner(userPreference)
 
     expect(queryByText(document.body, /Tell us whether you accept cookies/)).not.toBeTruthy()
