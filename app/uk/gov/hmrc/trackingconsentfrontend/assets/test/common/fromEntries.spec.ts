@@ -1,4 +1,4 @@
-import fromEntries from "../../src/common/fromEntries";
+import fromEntries from '../../src/common/fromEntries'
 
 describe('fromEntries', () => {
   it('should convert an array of key value pairs to an object', () => {

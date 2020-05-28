@@ -1,11 +1,11 @@
-/* global jasmine, spyOn */
-import preferenceCommunicatorFactory from "../../src/interfaces/preferenceCommunicatorFactory";
-import userPreferenceFactory from "../../src/domain/userPreferenceFactory";
+/* global spyOn */
+import preferenceCommunicatorFactory from '../../src/interfaces/preferenceCommunicatorFactory'
+import userPreferenceFactory from '../../src/domain/userPreferenceFactory'
 
 describe('sendPreferences', () => {
   let testScope
   beforeEach(() => {
-    testScope = {window: {}}
+    testScope = { window: {} }
     testScope.preferenceCommunicator = preferenceCommunicatorFactory(testScope.window)
     testScope.userPreferences = userPreferenceFactory({})
   })
@@ -18,13 +18,13 @@ describe('sendPreferences', () => {
     testScope.preferenceCommunicator.sendPreferences(testScope.userPreferences)
 
     expect(testScope.window.dataLayer).toEqual([
-      {event: 'hmrc-measurement-allowed'},
-      {event: 'hmrc-marketing-allowed'},
-      {event: 'hmrc-settings-allowed'}
+      { event: 'hmrc-measurement-allowed' },
+      { event: 'hmrc-marketing-allowed' },
+      { event: 'hmrc-settings-allowed' }
     ])
   })
   it('should add to existing datalayer where it already exists', () => {
-    testScope.window.dataLayer = [{event: 'my-custom-event'}]
+    testScope.window.dataLayer = [{ event: 'my-custom-event' }]
     spyOn(testScope.userPreferences, 'getPreferences').and.returnValue({
       measurement: true,
       marketing: true,
@@ -33,10 +33,10 @@ describe('sendPreferences', () => {
     testScope.preferenceCommunicator.sendPreferences(testScope.userPreferences)
 
     expect(testScope.window.dataLayer).toEqual([
-      {event: 'my-custom-event'},
-      {event: 'hmrc-measurement-allowed'},
-      {event: 'hmrc-marketing-allowed'},
-      {event: 'hmrc-settings-allowed'}
+      { event: 'my-custom-event' },
+      { event: 'hmrc-measurement-allowed' },
+      { event: 'hmrc-marketing-allowed' },
+      { event: 'hmrc-settings-allowed' }
     ])
   })
   it('should send only measurement when the others are false', () => {
@@ -48,7 +48,7 @@ describe('sendPreferences', () => {
     testScope.preferenceCommunicator.sendPreferences(testScope.userPreferences)
 
     expect(testScope.window.dataLayer).toEqual([
-      {event: 'hmrc-measurement-allowed'},
+      { event: 'hmrc-measurement-allowed' }
     ])
   })
   it('should send only marketing when the others are false', () => {
@@ -60,7 +60,7 @@ describe('sendPreferences', () => {
     testScope.preferenceCommunicator.sendPreferences(testScope.userPreferences)
 
     expect(testScope.window.dataLayer).toEqual([
-      {event: 'hmrc-marketing-allowed'},
+      { event: 'hmrc-marketing-allowed' }
     ])
   })
   it('should send only settings when the others are false', () => {
@@ -72,7 +72,7 @@ describe('sendPreferences', () => {
     testScope.preferenceCommunicator.sendPreferences(testScope.userPreferences)
 
     expect(testScope.window.dataLayer).toEqual([
-      {event: 'hmrc-settings-allowed'},
+      { event: 'hmrc-settings-allowed' }
     ])
   })
   it('should not replace the existing datalayer where it exists', () => {
@@ -94,32 +94,32 @@ describe('sendPreferences', () => {
     testScope.preferenceCommunicator.sendPreferences(testScope.userPreferences)
 
     expect(testScope.window.dataLayer).toEqual([
-      {event: 'hmrc-measurement-allowed'},
+      { event: 'hmrc-measurement-allowed' }
     ])
   })
   it('should ignore any marketing and settings values which are not boolean true', () => {
     spyOn(testScope.userPreferences, 'getPreferences').and.returnValue({
       measurement: true,
-      marketing: "yes please",
-      settings: "sure, why not"
+      marketing: 'yes please',
+      settings: 'sure, why not'
     })
     testScope.preferenceCommunicator.sendPreferences((testScope.userPreferences))
 
     expect(testScope.window.dataLayer).toEqual([
-      {event: 'hmrc-measurement-allowed'},
+      { event: 'hmrc-measurement-allowed' }
     ])
   })
   it('should ignore measurement values which are not boolean true', () => {
     spyOn(testScope.userPreferences, 'getPreferences').and.returnValue({
-      measurement: "yes please",
+      measurement: 'yes please',
       marketing: true,
       settings: true
     })
     testScope.preferenceCommunicator.sendPreferences((testScope.userPreferences))
 
     expect(testScope.window.dataLayer).toEqual([
-      {event: 'hmrc-marketing-allowed'},
-      {event: 'hmrc-settings-allowed'},
+      { event: 'hmrc-marketing-allowed' },
+      { event: 'hmrc-settings-allowed' }
     ])
   })
   it('should fire no events when no preferences are stored', () => {

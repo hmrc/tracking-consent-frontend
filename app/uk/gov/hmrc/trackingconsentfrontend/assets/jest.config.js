@@ -1,7 +1,6 @@
 module.exports = {
   modulePathIgnorePatterns: ['<rootDir>/node_modules/'],
   moduleFileExtensions: ['js', 'ts', 'jsx'],
-  testEnvironment: 'jest-environment-jsdom-fourteen',
   testPathIgnorePatterns: ['/node_modules/'],
   transform: {
     "^.+\\.[t|j]sx?$": "ts-jest",
