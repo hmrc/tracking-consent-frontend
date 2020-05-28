@@ -4,6 +4,7 @@
 !.stylelintrc
 !.gitignore
 !.scalafmt.conf
+!.browserslistrc
 .cache
 /.classpath
 db
