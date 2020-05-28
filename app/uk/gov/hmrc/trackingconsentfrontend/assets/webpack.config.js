@@ -30,7 +30,7 @@ module.exports = {
         ],
       },
       {
-        test: /messages\.(en|cy)$/,
+        test: /.+\.(en|cy|conf)$/,
         loader: 'message-format-loader'
       }
     ],
