@@ -6,6 +6,7 @@
   "author": "HMRC",
   "license": "Apache-2.0",
   "scripts": {
+    "start": "webpack --mode production --watch",
     "build": "webpack --mode production",
     "lint": "stylelint \"**/*.scss\" && standardx **/*.ts **/*.spec.ts",
     "fixlint": "stylelint --fix \"**/*.scss\" && standardx --fix **/*.ts **/*.spec.ts",

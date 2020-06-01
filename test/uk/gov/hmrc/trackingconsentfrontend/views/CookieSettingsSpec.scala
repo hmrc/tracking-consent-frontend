@@ -50,5 +50,17 @@ class CookieSettingsSpec extends SpecBase {
     "initially hide the content for supported browsers" in {
       content.select(".cookie-settings__body--browser-supported") must have size 0
     }
+
+    "include the measurement radio inputs" in {
+      content.select("input[name=measurement]") must have size 2
+    }
+
+    "include the marketing radio inputs" in {
+      content.select("input[name=marketing]") must have size 2
+    }
+
+    "include the settings radio inputs" in {
+      content.select("input[name=settings]") must have size 2
+    }
   }
 }
