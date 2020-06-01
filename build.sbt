@@ -4,6 +4,7 @@ import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin.publishingSettings
 import play.sbt.PlayImport.PlayKeys.playDefaultPort
 
 val appName = "tracking-consent-frontend"
+val javaScriptDirectory = SettingKey[File]("javascriptDirectory")
 
 lazy val microservice = Project(appName, file("."))
   .enablePlugins(play.sbt.PlayScala, SbtAutoBuildPlugin, SbtGitVersioning, SbtDistributablesPlugin, SbtArtifactory)
@@ -22,6 +23,9 @@ lazy val microservice = Project(appName, file("."))
       "uk.gov.hmrc.govukfrontend.views.html.helpers._",
       "uk.gov.hmrc.hmrcfrontend.views.html.components._"
     )
+  )
+  .settings(
+    PlayKeys.playRunHooks += Webpack(JavaScriptBuild.javaScriptDirectory.value)
   )
   .settings(publishingSettings: _*)
   .configs(IntegrationTest)

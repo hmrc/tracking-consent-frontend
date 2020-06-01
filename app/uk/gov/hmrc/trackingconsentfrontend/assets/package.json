@@ -6,7 +6,7 @@
   "author": "HMRC",
   "license": "Apache-2.0",
   "scripts": {
-    "start": "NODE_ENV=develop webpack-dev-server --config ./webpack.config.js --mode development",
+    "start": "webpack --mode production --watch",
     "build": "webpack --mode production",
     "lint": "stylelint \"**/*.scss\" && standardx **/*.ts",
     "fixlint": "stylelint --fix \"**/*.scss\" && standardx --fix **/*.ts",
