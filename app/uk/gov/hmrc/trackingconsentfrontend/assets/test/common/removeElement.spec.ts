@@ -15,7 +15,6 @@ describe('removeElement', () => {
     }
   }
 
-
   const ie10ElementNoParent = {}
 
   it('should execute the remove method on the element if it exists', () => {

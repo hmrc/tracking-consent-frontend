@@ -6,8 +6,8 @@ import userPreferenceFactory from '../../src/domain/userPreferenceFactory'
 import castToArray from '../../src/common/castToArray'
 // @ts-ignore
 import fixture from '../fixtures/settingsForm.html'
-import preferenceCommunicatorFactory from "../../src/interfaces/preferenceCommunicatorFactory";
-import * as renderSettingsSaveConfirmationMessage from "../../src/ui/renderSettingsSaveConfirmationMessage";
+import preferenceCommunicatorFactory from '../../src/interfaces/preferenceCommunicatorFactory'
+import * as renderSettingsSaveConfirmationMessage from '../../src/ui/renderSettingsSaveConfirmationMessage'
 
 describe('User Preference Factory', () => {
   let testScope
@@ -147,7 +147,7 @@ describe('User Preference Factory', () => {
       settingsFormHandler(testScope.userPref)
 
       document.querySelectorAll('input[type=radio]:not([name=settings])').forEach(elem => {
-        const parentNode = elem.parentNode;
+        const parentNode = elem.parentNode
         if (parentNode) {
           parentNode.removeChild(elem)
         }
@@ -172,7 +172,7 @@ describe('User Preference Factory', () => {
   })
   describe('Technical details', () => {
     it('should error if the form doesn\'t have on value', () => {
-      const querySelector = document.querySelector('form[data-module=cookie-settings]');
+      const querySelector = document.querySelector('form[data-module=cookie-settings]')
       if (querySelector) {
         querySelector.removeAttribute('data-on-value')
       }
@@ -182,7 +182,7 @@ describe('User Preference Factory', () => {
       }).toThrowError(new Error('Could not initiate form without on value being set'))
     })
     it('should error if the form doesn\'t have off value', () => {
-      const querySelector = document.querySelector('form[data-module=cookie-settings]');
+      const querySelector = document.querySelector('form[data-module=cookie-settings]')
       if (querySelector) {
         querySelector.removeAttribute('data-off-value')
       }
@@ -192,8 +192,8 @@ describe('User Preference Factory', () => {
       }).toThrowError(new Error('Could not initiate form without off value being set'))
     })
     it('should default to the error message for the on value', () => {
-      const querySelector = document.querySelector('form[data-module=cookie-settings]');
-      const querySelector2 = document.querySelector('form[data-module=cookie-settings]');
+      const querySelector = document.querySelector('form[data-module=cookie-settings]')
+      const querySelector2 = document.querySelector('form[data-module=cookie-settings]')
       if (querySelector) {
         querySelector.removeAttribute('data-off-value')
       }

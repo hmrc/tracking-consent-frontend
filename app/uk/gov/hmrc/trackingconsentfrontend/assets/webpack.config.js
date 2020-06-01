@@ -1,5 +1,3 @@
-const CopyPlugin = require('copy-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -44,22 +42,7 @@ module.exports = {
       path.resolve(__dirname, 'src/loaders')
     ]
   },
-  devServer: {
-    contentBase: path.join(__dirname, '../../../../../../public'),
-    port: 8081,
-    historyApiFallback: true,
-  },
   output: {
     path: path.resolve(__dirname, '../../../../../../public'),
-  },
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        sourceMap: true,
-        uglifyOptions: {
-          ie8: true,
-        }
-      })
-    ]
   }
 };
