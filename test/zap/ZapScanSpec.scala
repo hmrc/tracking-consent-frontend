@@ -1,4 +1,4 @@
-@*
+/*
  * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,10 +12,24 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *@
+ */
 
-@this()
-@()(implicit appConfig: AppConfig)
-<!--[if !IE]>-->
-<script type="text/javascript" src="@appConfig.cookieBannerAssetsPrefix@routes.Assets.versioned("servicePage.js")"></script>
-<!--<![endif]-->
+package zap
+
+import com.typesafe.config.{Config, ConfigFactory}
+import org.scalatest.WordSpec
+import support.TestServer
+import uk.gov.hmrc.zap.ZapTest
+import uk.gov.hmrc.zap.config.ZapConfiguration
+
+class ZapScanSpec extends WordSpec with ZapTest with TestServer {
+  val zapConfig: Config = ConfigFactory.load().getConfig("zap-automation-config")
+
+  override val zapConfiguration: ZapConfiguration = new ZapConfiguration(zapConfig)
+
+  "Kicking off the zap scan" should {
+    "should complete successfully" in {
+      triggerZapScan()
+    }
+  }
+}

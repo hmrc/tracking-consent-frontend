@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.trackingconsentfrontend.views
+package unit.views
 
 import play.api.Application
 import play.api.i18n.{DefaultMessagesApi, Messages}
 import play.api.inject.guice.GuiceApplicationBuilder
 import uk.gov.hmrc.govukfrontend.views.viewmodels.footer.FooterItem
-import uk.gov.hmrc.trackingconsentfrontend.SpecBase
 import uk.gov.hmrc.trackingconsentfrontend.views.components.FooterLinks
+import unit.SpecBase
 
 class FooterLinksSpec extends SpecBase {
 

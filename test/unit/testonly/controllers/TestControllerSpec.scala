@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.trackingconsentfrontend.testonly.controllers
+package unit.testonly.controllers
 
 import play.api.http.Status
 import play.api.test.Helpers._
-import uk.gov.hmrc.trackingconsentfrontend.SpecBase
+import uk.gov.hmrc.trackingconsentfrontend.testonly.controllers.TestController
+import unit.SpecBase
 
 class TestControllerSpec extends SpecBase {
   private val controller = app.injector.instanceOf[TestController]

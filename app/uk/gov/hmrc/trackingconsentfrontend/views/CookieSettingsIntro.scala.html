@@ -18,7 +18,7 @@
         paragraph: Paragraph,
         h1: H1,
         noticeWrapper: NoticeWrapper)
-@()(implicit request: Request[_], messages: Messages)
+@()(implicit messages: Messages)
 
 @noticeWrapper()
 @h1(content = Text(messages("cookieSettings.title")))

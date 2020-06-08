@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.trackingconsentfrontend.controllers
+package unit.controllers
 
 import play.api.http.Status
 import play.api.test.Helpers._
-import uk.gov.hmrc.trackingconsentfrontend.SpecBase
+import uk.gov.hmrc.trackingconsentfrontend.controllers.CookieSettingsController
+import unit.SpecBase
 
 class CookieSettingsControllerSpec extends SpecBase {
   private val controller = app.injector.instanceOf[CookieSettingsController]

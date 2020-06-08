@@ -22,7 +22,7 @@
         settingsRadio: SettingsRadio,
         govukButton: GovukButton,
         findOutMoreLink: FindOutMoreLink)
-@()(implicit request: Request[_], messages: Messages)
+@()(implicit messages: Messages)
 
 <div class="cookie-settings__supported-browser">
     @paragraph(content = Text(messages("cookieSettings.intro.paragraph3")))

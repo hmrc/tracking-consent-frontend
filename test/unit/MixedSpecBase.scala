@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.trackingconsentfrontend
+package unit
 
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document

@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.trackingconsentfrontend.views
+package unit.views
 
 import play.api.test.Helpers._
-import html.CookieSettingsPage
-import uk.gov.hmrc.trackingconsentfrontend.SpecBase
+import uk.gov.hmrc.trackingconsentfrontend.views.html.CookieSettingsPage
+import unit.SpecBase
 
 class CookieSettingsSpec extends SpecBase {
   "the cookie settings page" must {

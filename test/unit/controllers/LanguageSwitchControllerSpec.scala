@@ -14,11 +14,13 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.trackingconsentfrontend.controllers
+package unit.controllers
+
 import play.api.Application
 import play.api.http.{HeaderNames, Status}
 import play.api.test.Helpers._
-import uk.gov.hmrc.trackingconsentfrontend.{MixedSpecBase}
+import uk.gov.hmrc.trackingconsentfrontend.controllers.LanguageSwitchController
+import unit.MixedSpecBase
 
 class LanguageSwitchControllerSpec extends MixedSpecBase {
 
