@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.trackingconsentfrontend.views
+package unit.views
 
 import play.api.Application
 import play.api.mvc.{Cookie, Request}
 import play.api.test.FakeRequest
 import play.twirl.api.Html
-import uk.gov.hmrc.trackingconsentfrontend.MixedSpecBase
 import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
 import uk.gov.hmrc.trackingconsentfrontend.views.html.components.LanguageSelect
+import unit.MixedSpecBase
 
 class LanguageSelectSpec extends MixedSpecBase {
 

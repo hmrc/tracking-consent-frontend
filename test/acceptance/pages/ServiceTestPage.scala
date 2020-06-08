@@ -1,4 +1,4 @@
-@*
+/*
  * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,10 +12,19 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *@
+ */
 
-@this()
-@()(implicit appConfig: AppConfig)
-<!--[if !IE]>-->
-<script type="text/javascript" src="@appConfig.cookieBannerAssetsPrefix@routes.Assets.versioned("servicePage.js")"></script>
-<!--<![endif]-->
+package acceptance.pages
+
+import acceptance.conf.TestConfiguration
+import org.openqa.selenium.WebElement
+
+object ServiceTestPage extends BasePage {
+  val url: String          = TestConfiguration.url("tracking-consent-frontend") + "/test-only"
+  val title                = "Service test page"
+  val acceptAllCookies     = "Accept all cookies"
+  val setCookiePreferences = "Set cookie preferences"
+
+  def acceptAllCookiesButton: WebElement     = findButtonByPartialText(acceptAllCookies)
+  def setCookiePreferencesButton: WebElement = findLabelByPartialText(setCookiePreferences)
+}

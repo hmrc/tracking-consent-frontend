@@ -14,24 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.trackingconsentfrontend
+package unit.config
 
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
-import org.jsoup.select.Elements
-import play.twirl.api.Html
+import play.api.test.Helpers._
+import uk.gov.hmrc.trackingconsentfrontend.config.ErrorHandler
+import unit.SpecBase
 
-trait JsoupHelpers {
+class ErrorHandlerSpec extends SpecBase {
+  private val errorHandler = app.injector.instanceOf[ErrorHandler]
 
-  implicit class RichHtml(html: Html) {
-    def select(cssQuery: String): Elements =
-      parseNoPrettyPrinting(html).select(cssQuery)
-  }
-
-  // otherwise Jsoup inserts linefeed https://stackoverflow.com/questions/12503117/jsoup-line-feed
-  def parseNoPrettyPrinting(html: Html): Document = {
-    val doc = Jsoup.parse(html.body)
-    doc.outputSettings().prettyPrint(false)
-    doc
+  "standardErrorTemplate" should {
+    "show the correct title" in {
+      val result = errorHandler.standardErrorTemplate(pageTitle = "Error occurred", heading = "A heading", message = "A message")(fakeRequest)
+      contentAsString(result) must include ("A heading")
+    }
   }
 }

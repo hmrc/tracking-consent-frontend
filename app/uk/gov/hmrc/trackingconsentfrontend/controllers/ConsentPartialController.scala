@@ -30,7 +30,7 @@ class ConsentPartialController @Inject()(appConfig: AppConfig, mcc: MessagesCont
 
   implicit val config: AppConfig = appConfig
 
-  val head: Action[AnyContent] = Action.async { implicit request =>
+  val head: Action[AnyContent] = Action.async {
     Future.successful(Ok(consentHead()))
   }
 }

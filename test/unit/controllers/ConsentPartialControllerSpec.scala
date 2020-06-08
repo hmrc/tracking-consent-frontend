@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.trackingconsentfrontend.controllers
+package unit.controllers
 
 import play.api.Application
 import play.api.http.Status
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.test.Helpers._
-import uk.gov.hmrc.trackingconsentfrontend.SpecBase
+import uk.gov.hmrc.trackingconsentfrontend.controllers.ConsentPartialController
+import unit.SpecBase
 
 class ConsentPartialControllerSpec extends SpecBase {
   private val controller = app.injector.instanceOf[ConsentPartialController]
