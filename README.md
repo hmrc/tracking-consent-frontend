@@ -33,7 +33,7 @@ repository.
 To run the UI acceptance tests locally, you will need a copy of Chrome
 and the Chrome browser driver installed at /usr/local/bin/chromedriver
 ```
-sbt -Dapplication.router=testOnlyDoNotUseInAppConf.Routes -Dbrowser=chrome acceptance:test
+./run_acceptance_tests.sh
 ```
 
 The Chrome driver is available at https://chromedriver.chromium.org/
