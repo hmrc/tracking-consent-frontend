@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package acceptance.conf
+package support
 
 import com.typesafe.config.{Config, ConfigFactory}
 

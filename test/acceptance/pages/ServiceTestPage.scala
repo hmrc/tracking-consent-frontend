@@ -16,8 +16,8 @@
 
 package acceptance.pages
 
-import acceptance.conf.TestConfiguration
 import org.openqa.selenium.WebElement
+import support.TestConfiguration
 
 object ServiceTestPage extends BasePage {
   val url: String          = TestConfiguration.url("tracking-consent-frontend") + "/test-only"
