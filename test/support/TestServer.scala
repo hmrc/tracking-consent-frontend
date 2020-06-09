@@ -30,7 +30,8 @@ trait TestServer extends BaseOneServerPerSuite with GuiceFakeApplicationFactory 
     .configure(
       Map(
         "metrics.enabled"  -> false,
-        "auditing.enabled" -> false
+        "auditing.enabled" -> false,
+        "cookie-banner.port" -> port
       )
     )
     .disable[com.kenshoo.play.metrics.PlayModule]
