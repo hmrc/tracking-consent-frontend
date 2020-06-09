@@ -21,15 +21,17 @@ import org.scalatestplus.play.BaseOneServerPerSuite
 import org.scalatestplus.play.guice.GuiceFakeApplicationFactory
 import play.api.Application
 import play.api.inject.guice.GuiceApplicationBuilder
+import TestConfiguration._
 
 trait TestServer extends BaseOneServerPerSuite with GuiceFakeApplicationFactory { this: TestSuite =>
-  override lazy val port = 12345
+  override lazy val port = servicePort("tracking-consent-frontend").toInt
 
   override implicit lazy val app: Application = new GuiceApplicationBuilder()
     .configure(
       Map(
         "metrics.enabled"  -> false,
-        "auditing.enabled" -> false
+        "auditing.enabled" -> false,
+        "cookie-banner.port" -> port
       )
     )
     .disable[com.kenshoo.play.metrics.PlayModule]
