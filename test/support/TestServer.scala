@@ -16,17 +16,17 @@
 
 package support
 
-import org.scalatest.TestSuite
-import org.scalatestplus.play.BaseOneServerPerSuite
+import org.scalatest.{Args, Status, TestSuite, TestSuiteMixin}
 import org.scalatestplus.play.guice.GuiceFakeApplicationFactory
 import play.api.Application
 import play.api.inject.guice.GuiceApplicationBuilder
 import TestConfiguration._
+import play.api.test.TestServer
 
-trait TestServer extends BaseOneServerPerSuite with GuiceFakeApplicationFactory { this: TestSuite =>
-  override lazy val port = servicePort("tracking-consent-frontend").toInt
+trait TestServer extends TestSuiteMixin with GuiceFakeApplicationFactory { this: TestSuite =>
+  lazy val port = servicePort("tracking-consent-frontend").toInt
 
-  override implicit lazy val app: Application = new GuiceApplicationBuilder()
+  implicit lazy val app: Application = new GuiceApplicationBuilder()
     .configure(
       Map(
         "metrics.enabled"  -> false,
@@ -36,4 +36,31 @@ trait TestServer extends BaseOneServerPerSuite with GuiceFakeApplicationFactory 
     )
     .disable[com.kenshoo.play.metrics.PlayModule]
     .build()
+
+  private def runSuiteWithTestServer(testName: Option[String], args: Args): Status = {
+    val testServer = TestServer(port, app)
+    testServer.start()
+    try {
+      val status = super.run(testName, args)
+      status.whenCompleted { _ => testServer.stop() }
+      status
+    } catch {
+      case exception: Throwable =>
+        testServer.stop()
+        throw exception
+    }
+  }
+
+  /**
+   * Invoke suite with a test server if running locally.
+   * See org.scalatest.SuiteMixin.run
+   *
+   */
+  abstract override def run(testName: Option[String], args: Args): Status = {
+    if (env == "local") {
+      runSuiteWithTestServer(testName, args)
+    } else {
+      super.run(testName, args)
+    }
+  }
 }
