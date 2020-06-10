@@ -24,13 +24,7 @@ object TestConfiguration {
   val defaultConfig: Config = config.getConfig("local")
   val envConfig: Config     = config.getConfig(env).withFallback(defaultConfig)
 
-  def url(service: String): String = {
-    val host = env match {
-      case "local" => s"$environmentHost:${servicePort(service)}"
-      case _       => s"${envConfig.getString(s"services.host")}"
-    }
-    s"$host${serviceRoute(service)}"
-  }
+  def url(service: String): String = s"$environmentHost:${servicePort(service)}${serviceRoute(service)}"
 
   def environmentHost: String = envConfig.getString("services.host")
 
