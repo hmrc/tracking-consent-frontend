@@ -20,7 +20,7 @@ import java.net.{HttpURLConnection, URL}
 
 import org.scalatest.{BeforeAndAfterAll, Matchers, TryValues, WordSpec}
 import support.TestServer
-
+import support.TestConfiguration.env
 import scala.util.Try
 
 class TestServerSpec extends WordSpec with TestServer with Matchers with TryValues with BeforeAndAfterAll {
@@ -48,10 +48,24 @@ class TestServerSpec extends WordSpec with TestServer with Matchers with TryValu
   }
 
   "TestServer" should {
-    "create an HTTP endpoint" in {
-      val connectionTry = Try { getTestPageResponseCode }
+    "create an HTTP endpoint if running locally" in {
+      val connectionTry = Try {
+        getTestPageResponseCode
+      }
 
-      connectionTry.success.value should be (200)
+      if (env == "local") {
+        connectionTry.success.value should be(200)
+      }
+    }
+
+    "not create an HTTP endpoint if not running locally" in {
+      val connectionTry = Try {
+        getTestPageResponseCode
+      }
+
+      if (env != "local") {
+        connectionTry.failure.exception should have message expectedFailureMessage
+      }
     }
   }
 }
