@@ -15,7 +15,8 @@
  *@
 
 @this()
+
 @()(implicit appConfig: AppConfig)
 <!--[if !IE]>-->
-<script type="text/javascript" src="@appConfig.cookieBannerAssetsPrefix@routes.Assets.versioned("servicePage.js")"></script>
+<script type="text/javascript" src="@appConfig.trackingConsentUrl"></script>
 <!--<![endif]-->

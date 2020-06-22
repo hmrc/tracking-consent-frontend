@@ -17,7 +17,7 @@ const gtm = () => {
             'https://www.googletagmanager.com/gtm.js?id=' + i + dl
     // @ts-ignore
     f.parentNode.insertBefore(j, f)
-  })(window, document, 'script', 'dataLayer', 'GTM-TGKSS46')
+  })(window, document, 'script', 'dataLayer', 'GTM-NDJKHWK')
 }
 
 export default gtm

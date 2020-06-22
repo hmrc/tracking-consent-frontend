@@ -39,6 +39,6 @@ bin
 coverage
 node_modules
 stats.json
-public/servicePage.js
+public/tracking.js
 public/settingsPage.js
 

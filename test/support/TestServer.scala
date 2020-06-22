@@ -31,7 +31,7 @@ trait TestServer extends TestSuiteMixin with GuiceFakeApplicationFactory { this:
       Map(
         "metrics.enabled"  -> false,
         "auditing.enabled" -> false,
-        "cookie-banner.port" -> port
+        "tracking-consent-frontend.url" -> s"http://localhost:$port/tracking-consent/tracking.js"
       )
     )
     .disable[com.kenshoo.play.metrics.PlayModule]

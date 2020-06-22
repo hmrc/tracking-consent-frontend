@@ -2,7 +2,7 @@
 
 ->         /govuk-frontend          govuk.Routes
 ->         /hmrc-frontend           hmrcfrontend.Routes
-GET        /consent-head            uk.gov.hmrc.trackingconsentfrontend.controllers.ConsentPartialController.head
+GET        /tracking.js             controllers.Assets.at(path="/public", file="tracking.js")
 GET        /cookie-settings         uk.gov.hmrc.trackingconsentfrontend.controllers.CookieSettingsController.cookieSettings
 GET        /language/english        uk.gov.hmrc.trackingconsentfrontend.controllers.LanguageSwitchController.switchToEnglish
 GET        /language/cymraeg        uk.gov.hmrc.trackingconsentfrontend.controllers.LanguageSwitchController.switchToWelsh
