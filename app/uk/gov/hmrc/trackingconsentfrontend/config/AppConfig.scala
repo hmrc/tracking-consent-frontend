@@ -22,7 +22,12 @@ import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 
 @Singleton
 class AppConfig @Inject()(config: Configuration, servicesConfig: ServicesConfig) {
-  val cookieBannerAssetsPrefix: String = config.getOptional[String]("cookie-banner.assets-prefix").getOrElse("")
+  private def loadConfig(key: String): String =
+    config
+      .getOptional[String](key)
+      .getOrElse(throw new Exception(s"Missing configuration key: $key"))
+
   val footerLinkItems: Seq[String] = config.getOptional[Seq[String]]("footerLinkItems").getOrElse(Seq())
+  val trackingConsentUrl: String = loadConfig("tracking-consent-frontend.url")
   val welshLanguageSupportEnabled: Boolean = config.getOptional[Boolean]("features.welsh-language-support").getOrElse(false)
 }
