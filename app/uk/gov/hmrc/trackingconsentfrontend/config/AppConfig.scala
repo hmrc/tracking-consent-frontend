@@ -28,6 +28,8 @@ class AppConfig @Inject()(config: Configuration, servicesConfig: ServicesConfig)
       .getOrElse(throw new Exception(s"Missing configuration key: $key"))
 
   val footerLinkItems: Seq[String] = config.getOptional[Seq[String]]("footerLinkItems").getOrElse(Seq())
-  val trackingConsentUrl: String = loadConfig("tracking-consent-frontend.url")
+  val trackingConsentPath: String = loadConfig("microservice.services.tracking-consent-frontend.path")
+  val trackingConsentBaseUrl: String = servicesConfig.baseUrl("tracking-consent-frontend")
+  val trackingConsentUrl: String = s"$trackingConsentBaseUrl$trackingConsentPath"
   val welshLanguageSupportEnabled: Boolean = config.getOptional[Boolean]("features.welsh-language-support").getOrElse(false)
 }
