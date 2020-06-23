@@ -22,13 +22,8 @@ import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 
 @Singleton
 class AppConfig @Inject()(config: Configuration, servicesConfig: ServicesConfig) {
-  private def loadConfig(key: String): String =
-    config
-      .getOptional[String](key)
-      .getOrElse(throw new Exception(s"Missing configuration key: $key"))
-
   val footerLinkItems: Seq[String] = config.getOptional[Seq[String]]("footerLinkItems").getOrElse(Seq())
-  val trackingConsentPath: String = loadConfig("microservice.services.tracking-consent-frontend.path")
+  val trackingConsentPath: String = servicesConfig.getString("microservice.services.tracking-consent-frontend.script-path")
   val trackingConsentBaseUrl: String = servicesConfig.baseUrl("tracking-consent-frontend")
   val trackingConsentUrl: String = s"$trackingConsentBaseUrl$trackingConsentPath"
   val welshLanguageSupportEnabled: Boolean = config.getOptional[Boolean]("features.welsh-language-support").getOrElse(false)

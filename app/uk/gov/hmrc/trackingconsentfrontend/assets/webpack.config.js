@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    servicePage: './src/entrypoints/servicePage.ts',
+    tracking: './src/entrypoints/tracking.ts',
     settingsPage: './src/entrypoints/settingsPage.ts'
   },
   module: {
