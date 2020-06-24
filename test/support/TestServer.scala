@@ -22,6 +22,8 @@ import play.api.Application
 import play.api.inject.guice.GuiceApplicationBuilder
 import TestConfiguration._
 import play.api.test.TestServer
+import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
+import play.api.inject.bind
 
 trait TestServer extends TestSuiteMixin with GuiceFakeApplicationFactory { this: TestSuite =>
   lazy val port = servicePort("tracking-consent-frontend").toInt
@@ -31,9 +33,13 @@ trait TestServer extends TestSuiteMixin with GuiceFakeApplicationFactory { this:
       Map(
         "metrics.enabled"  -> false,
         "auditing.enabled" -> false,
-        "microservice.services.tracking-consent-frontend.port" -> port
+        "microservice.services.tracking-consent-frontend.port" -> port,
+        "microservice.services.tracking-consent-frontend.protocol" -> "http",
+        "microservice.services.tracking-consent-frontend.host" -> "localhost",
+        "microservice.services.tracking-consent-frontend.script-path" -> "/tracking-consent/tracking.js"
       )
     )
+    .overrides(bind[AppConfig].to[TestAppConfig])
     .disable[com.kenshoo.play.metrics.PlayModule]
     .build()
 

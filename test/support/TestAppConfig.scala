@@ -14,15 +14,18 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.trackingconsentfrontend.config
+package support
 
-import javax.inject.{Inject, Singleton}
+import javax.inject.Inject
 import play.api.Configuration
 import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
+import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
 
-@Singleton
-class AppConfig @Inject()(config: Configuration, servicesConfig: ServicesConfig) {
-  val footerLinkItems: Seq[String] = config.getOptional[Seq[String]]("footerLinkItems").getOrElse(Seq())
-  val trackingConsentUrl: String = servicesConfig.getString("trackingConsentFrontend.url")
-  val welshLanguageSupportEnabled: Boolean = config.getOptional[Boolean]("features.welsh-language-support").getOrElse(false)
+class TestAppConfig @Inject()(config: Configuration, servicesConfig: ServicesConfig)
+  extends AppConfig(config, servicesConfig) {
+
+  private val trackingConsentPath: String = servicesConfig.getString("microservice.services.tracking-consent-frontend.script-path")
+  private val trackingConsentBaseUrl: String = servicesConfig.baseUrl("tracking-consent-frontend")
+
+  override val trackingConsentUrl: String = s"$trackingConsentBaseUrl$trackingConsentPath"
 }

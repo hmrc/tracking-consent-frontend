@@ -27,7 +27,7 @@ class TestServerSpec extends WordSpec with TestServer with Matchers with TryValu
   override lazy val port = 6001
 
   val url = new URL(s"http://localhost:$port/tracking-consent/cookie-settings")
-  val expectedFailureMessage = "Connection refused (Connection refused)"
+  val expectedFailureMessage = "Connection refused"
 
   private def getTestPageResponseCode = {
     val con = url.openConnection().asInstanceOf[HttpURLConnection]
@@ -38,13 +38,13 @@ class TestServerSpec extends WordSpec with TestServer with Matchers with TryValu
   override def beforeAll() {
     val connectionTry = Try { getTestPageResponseCode }
 
-    connectionTry.failure.exception should have message expectedFailureMessage
+    connectionTry.failure.exception.getMessage should include(expectedFailureMessage)
   }
 
   override def afterAll() {
     val connectionTry = Try { getTestPageResponseCode }
 
-    connectionTry.failure.exception should have message expectedFailureMessage
+    connectionTry.failure.exception.getMessage should include(expectedFailureMessage)
   }
 
   "TestServer" should {
