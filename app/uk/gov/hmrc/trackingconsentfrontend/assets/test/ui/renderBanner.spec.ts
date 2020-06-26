@@ -9,6 +9,7 @@ import fixtureFrontendToolkit from '../fixtures/servicePageFrontendToolkit.html'
 // @ts-ignore
 import fixtureClassic from '../fixtures/servicePageClassic.html'
 import * as getLanguage from '../../src/interfaces/getLanguage'
+import * as isFeatureEnabled from '../../src/interfaces/isFeatureEnabled'
 
 describe('renderBanner', () => {
   const userAcceptsAll = jest.fn()
@@ -32,14 +33,16 @@ describe('renderBanner', () => {
 
   const assume = expect
 
-  let spy
+  let languageSpy
+  let featureEnabledSpy
 
   beforeEach(() => {
     document.getElementsByTagName('html')[0].innerHTML = fixture
     userPreference.getUserHasSavedCookiePreferences.mockReturnValue(false)
     userAcceptsAll.mockReset()
     preferenceCommunicator.sendPreferences.mockReset()
-    spy = spyOn(getLanguage, 'default').and.returnValue('en')
+    languageSpy = spyOn(getLanguage, 'default').and.returnValue('en')
+    featureEnabledSpy = spyOn(isFeatureEnabled, 'default').and.returnValue(true)
   })
 
   const clickAcceptAll = () => {
@@ -55,7 +58,7 @@ describe('renderBanner', () => {
   })
 
   xit('should render the Welsh version of the banner', () => {
-    spy.and.returnValue('cy')
+    languageSpy.and.returnValue('cy')
 
     renderBanner(userPreference)
 
@@ -136,6 +139,13 @@ describe('renderBanner', () => {
 
   it('should not render a banner if the cookie has been set', () => {
     userPreference.getUserHasSavedCookiePreferences.mockReturnValue(true)
+    renderBanner(userPreference)
+
+    expect(queryByText(document.body, /Tell us whether you accept cookies/)).not.toBeTruthy()
+  })
+
+  it('should not render a banner if the feature toggle is not enabled in the URL', () => {
+    featureEnabledSpy.and.returnValue(false)
     renderBanner(userPreference)
 
     expect(queryByText(document.body, /Tell us whether you accept cookies/)).not.toBeTruthy()
