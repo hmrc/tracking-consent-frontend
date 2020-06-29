@@ -18,7 +18,7 @@ The cookie banner should be available at http://localhost:12345/tracking-consent
 
 If you do not initially include the `?enableTrackingConsent=true` section of the URL, the consent banner will not be displayed.
 
-Once you have visited the page with `?enableTrackingConsent=true` once, a cookie will be set to display the banner on 
+Once you have visited the page with `?enableTrackingConsent=true` once, a cookie will be set to enable the banner functionality on 
 all future pages until the cookie is cleared.
 
 Any changes to the Scala or Javascript should trigger a rebuild.
