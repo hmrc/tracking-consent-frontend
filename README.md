@@ -14,7 +14,12 @@ To install multiple versions of Node.js, you may find it easier to use a node ve
 sbt -Dapplication.router=testOnlyDoNotUseInAppConf.Routes run
 ```
 
-The cookie banner should be available at http://localhost:12345/tracking-consent/test-only
+The cookie banner should be available at http://localhost:12345/tracking-consent/test-only?enableTrackingConsent=true
+
+If you do not initially include the `?enableTrackingConsent=true` section of the URL, the consent banner will not be displayed.
+
+Once you have visited the page with `?enableTrackingConsent=true` once, a cookie will be set to display the banner on 
+all future pages until the cookie is cleared.
 
 Any changes to the Scala or Javascript should trigger a rebuild.
 
@@ -87,6 +92,10 @@ sbt \
 ```
 
 More information on HMRC's ZAP scanning automation library can be found at https://github.com/hmrc/zap-automation
+
+### Troubleshooting
+If you are not seeing the consent banner on the test page, check that you have included the `?enableTrackingConsent=true` 
+parameters. If you wish to reset behaviour on this page, please clear your cookies.
 
 ### License
 
