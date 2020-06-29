@@ -31,7 +31,7 @@ trait ServiceTestPage extends BasePage {
 
 object ServiceTestPageFeatureEnabled extends ServiceTestPage {
   val url: String =
-    TestConfiguration.url("tracking-consent-frontend") + "/test-only" + "?featureTrackingConsent=true"
+    TestConfiguration.url("tracking-consent-frontend") + "/test-only" + "?enableTrackingConsent=true"
 }
 
 object ServiceTestPageFeatureDisabled extends ServiceTestPage {

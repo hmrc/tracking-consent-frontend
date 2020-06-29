@@ -1,1 +1,1 @@
-export const enableTrackingConsent = 'featureTrackingConsent'
+export const enableTrackingConsent = 'enableTrackingConsent'

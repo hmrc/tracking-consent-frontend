@@ -1,9 +1,22 @@
+import Cookies from 'js-cookie'
+
 const isFeatureEnabled = (featureName: String) => {
-    function getEnabledFlagFromQuery(featureName: String) {
-        return (window.location.search.includes(featureName.concat('=true')))
+    function getEnabledFlagFromCookie(featureName: String) {
+        return (Cookies.get(featureName) == 'true')
     }
 
-    return getEnabledFlagFromQuery(featureName)
+    function getEnabledFlagFromQuery(featureName: String) {
+        return window.location.search.includes(featureName.concat('=true'))
+    }
+
+    if (getEnabledFlagFromCookie(featureName)) {
+        return true
+    } else if (getEnabledFlagFromQuery(featureName)) {
+        Cookies.set(featureName, 'true')
+        return true
+    } else {
+        return false
+    }
 }
 
 export default isFeatureEnabled
