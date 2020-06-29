@@ -16,8 +16,8 @@
 
 package acceptance.specs
 
-import acceptance.pages.ServiceTestPage
-import acceptance.pages.ServiceTestPage._
+import acceptance.pages.ServiceTestPageFeatureEnabled
+import acceptance.pages.ServiceTestPageFeatureEnabled._
 
 class ServiceTestPageSpec extends BaseAcceptanceSpec {
   feature("Service Test page") {
@@ -26,7 +26,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       deleteAllCookies
 
       When("the user visits the service test page")
-      go to ServiceTestPage
+      go to ServiceTestPageFeatureEnabled
 
       Then("the dataLayer does not contain the 'hmrc-measurement-allowed' event")
       measurementAllowedGtmEvent should be(null)
@@ -43,7 +43,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       deleteAllCookies
 
       When("the user visits the service test page")
-      go to ServiceTestPage
+      go to ServiceTestPageFeatureEnabled
       eventually {
         tagName("h2").element.text shouldBe "Tell us whether you accept cookies"
       }
@@ -66,7 +66,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       deleteAllCookies
 
       When("the user visits the service test page")
-      go to ServiceTestPage
+      go to ServiceTestPageFeatureEnabled
 
       When("the user clicks 'Accept all cookies'")
       click on acceptAllCookiesButton
