@@ -29,7 +29,6 @@ class TestServerSpec extends WordSpec with TestServer with Matchers with TryValu
 
   val url = new URL(s"http://localhost:$port/tracking-consent/cookie-settings")
   val expectedFailureMessage = "Connection refused"
-    //"Connection refused (Connection refused)"
 
   private def getTestPageResponseCode = {
     val con = url.openConnection().asInstanceOf[HttpURLConnection]
@@ -38,12 +37,13 @@ class TestServerSpec extends WordSpec with TestServer with Matchers with TryValu
   }
 
   override def beforeAll() {
-    the[ConnectException] thrownBy getTestPageResponseCode should have message expectedFailureMessage
+    val connectException = the[ConnectException] thrownBy getTestPageResponseCode
+    connectException.getMessage should include(expectedFailureMessage)
   }
 
   override def afterAll() {
-    the[ConnectException] thrownBy getTestPageResponseCode should have message expectedFailureMessage
-  }
+    val connectException = the[ConnectException] thrownBy getTestPageResponseCode
+    connectException.getMessage should include(expectedFailureMessage)  }
 
   "TestServer" should {
     "create an HTTP endpoint if running locally" in {
@@ -58,8 +58,8 @@ class TestServerSpec extends WordSpec with TestServer with Matchers with TryValu
 
     "not create an HTTP endpoint if not running locally" in {
       if (env != "local") {
-        the[ConnectException] thrownBy getTestPageResponseCode should have message expectedFailureMessage
-      }
+        val connectException = the[ConnectException] thrownBy getTestPageResponseCode
+        connectException.getMessage should include(expectedFailureMessage)      }
     }
   }
 }
