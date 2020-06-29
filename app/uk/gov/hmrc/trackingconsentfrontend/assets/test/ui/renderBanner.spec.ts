@@ -144,7 +144,14 @@ describe('renderBanner', () => {
     expect(queryByText(document.body, /Tell us whether you accept cookies/)).not.toBeTruthy()
   })
 
-  it('should not render a banner if the feature toggle is not enabled in the URL', () => {
+  it('should render the banner if the feature enableTrackingConsent is enabled', () => {
+    featureEnabledSpy.and.returnValue(true)
+    renderBanner(userPreference)
+
+    expect(queryByText(document.body, /Tell us whether you accept cookies/)).toBeTruthy()
+  })
+
+  it('should not render a banner if the feature enableTrackingConsent is not enabled', () => {
     featureEnabledSpy.and.returnValue(false)
     renderBanner(userPreference)
 
