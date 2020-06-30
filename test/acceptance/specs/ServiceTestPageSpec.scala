@@ -16,8 +16,10 @@
 
 package acceptance.specs
 
-import acceptance.pages.ServiceTestPage
-import acceptance.pages.ServiceTestPage._
+import acceptance.pages.ServiceTestPageFeatureEnabled
+import acceptance.pages.ServiceTestPageFeatureEnabled._
+import acceptance.pages.ServiceTestPageFeatureDisabled
+import org.openqa.selenium.{NoSuchElementException => WebDriverNoSuchElementException}
 
 class ServiceTestPageSpec extends BaseAcceptanceSpec {
   feature("Service Test page") {
@@ -25,8 +27,8 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       Given("Given the user clears their cookies")
       deleteAllCookies
 
-      When("the user visits the service test page")
-      go to ServiceTestPage
+      When("the user visits the service test page with enable tracking consent parameter")
+      go to ServiceTestPageFeatureEnabled
 
       Then("the dataLayer does not contain the 'hmrc-measurement-allowed' event")
       measurementAllowedGtmEvent should be(null)
@@ -42,8 +44,8 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       Given("the user clears their cookies")
       deleteAllCookies
 
-      When("the user visits the service test page")
-      go to ServiceTestPage
+      When("the user visits the service test page with enable tracking consent parameter")
+      go to ServiceTestPageFeatureEnabled
       eventually {
         tagName("h2").element.text shouldBe "Tell us whether you accept cookies"
       }
@@ -65,14 +67,45 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       Given("the user clears their cookies")
       deleteAllCookies
 
-      When("the user visits the service test page")
-      go to ServiceTestPage
+      When("the user visits the service test page with enable tracking consent parameter")
+      go to ServiceTestPageFeatureEnabled
 
       When("the user clicks 'Accept all cookies'")
       click on acceptAllCookiesButton
 
       Then("the userConsent cookie is set")
       userConsentCookie.getValue should include("%22preferences%22:{%22acceptAll%22:true}}")
+    }
+
+    scenario("The user visits a page without tracking consent enabled") {
+      Given("the user clears their cookies")
+      deleteAllCookies
+
+      When("the user visits the service test page without enable tracking consent parameter")
+      go to ServiceTestPageFeatureDisabled
+
+      Then("there should be no button 'Accept all cookies'")
+      tagName("h2").element.text shouldNot be ("Tell us whether you accept cookies")
+      a[WebDriverNoSuchElementException] should be thrownBy acceptAllCookiesButton
+    }
+
+    scenario("The user visits a page enables tracking consent enabled via cookie") {
+      Given("the user clears their cookies")
+      deleteAllCookies
+
+      When("the user visits the service test page with enable tracking consent parameter")
+      go to ServiceTestPageFeatureEnabled
+
+      Then("there should be a button 'Accept all cookies'")
+      eventually {
+        tagName("h2").element.text shouldBe "Tell us whether you accept cookies"
+      }
+
+      And("navigating to a page without the tracking consent parameter should also show the banner")
+      go to ServiceTestPageFeatureDisabled
+      eventually {
+        tagName("h2").element.text shouldBe "Tell us whether you accept cookies"
+      }
     }
   }
 }
