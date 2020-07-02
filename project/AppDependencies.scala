@@ -14,7 +14,7 @@ object AppDependencies {
     "org.jsoup"              % "jsoup"               % "1.10.2" % "test",
     "com.typesafe.play"      %% "play-test"          % current  % "test",
     "org.pegdown"            % "pegdown"             % "1.6.0"  % "test",
-    "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2"  % "test",
+    "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2"  % "it,test",
     "org.scalatest"          %% "scalatest"          % "3.0.7"  % "it,test",
     "uk.gov.hmrc"            %% "webdriver-factory"  % "0.11.0" % "it,test",
     "uk.gov.hmrc"            %% "zap-automation"     % "2.6.0"  % "it,test",

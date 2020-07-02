@@ -42,6 +42,9 @@ object JavaScriptBuild {
 
     // sbt task wiring - 'sbt test' will run 'npm test' first
     (test in Test) := (test in Test).dependsOn(npmTest).value,
-    npmTest := (npmTest dependsOn npmInstall).value
+    npmTest := (npmTest dependsOn npmInstall).value,
+
+    // sbt task wiring - 'sbt it:test' will run 'npm build' first
+    (test in IntegrationTest) := (test in IntegrationTest).dependsOn(npmBuild).value
   )
 }

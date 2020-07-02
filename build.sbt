@@ -59,5 +59,8 @@ lazy val microservice = Project(appName, file("."))
     zapTestSettings,
     integrationTestSettings,
     publishingSettings,
-    javaScriptSettings
+    javaScriptSettings,
+    // Required to add the assets to the classpath for integration tests
+    (managedClasspath in IntegrationTest) += (packageBin in Assets).value
   )
+
