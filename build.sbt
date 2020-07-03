@@ -14,6 +14,17 @@ lazy val unitTestSettings =
       addTestReportOption(Test, "test-reports")
     )
 
+lazy val IntegrationTest = config("it") extend (Test)
+lazy val integrationTestSettings =
+  inConfig(IntegrationTest)(Defaults.testTasks) ++
+    Seq(
+      // The following is needed due to https://stackoverflow.com/questions/24791992/assets-are-not-loaded-in-functional-test-mode
+      (managedClasspath in IntegrationTest) += (packageBin in Assets).value,
+      (test in IntegrationTest) := (test in IntegrationTest).dependsOn(npmBuild).value,
+      (testOptions in IntegrationTest) := Seq(Tests.Filter(_ startsWith "it")),
+      addTestReportOption(IntegrationTest, "it-test-reports")
+    )
+
 lazy val AcceptanceTest = config("acceptance") extend (Test)
 lazy val acceptanceTestSettings =
   inConfig(AcceptanceTest)(Defaults.testTasks) ++
@@ -59,8 +70,5 @@ lazy val microservice = Project(appName, file("."))
     zapTestSettings,
     integrationTestSettings,
     publishingSettings,
-    javaScriptSettings,
-    // Required to add the assets to the classpath for integration tests
-    (managedClasspath in IntegrationTest) += (packageBin in Assets).value
+    javaScriptSettings
   )
-
