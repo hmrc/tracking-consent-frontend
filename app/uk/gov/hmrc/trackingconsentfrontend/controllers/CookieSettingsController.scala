@@ -18,7 +18,7 @@ package uk.gov.hmrc.trackingconsentfrontend.controllers
 
 import javax.inject.{Inject, Singleton}
 import play.api.mvc._
-import uk.gov.hmrc.play.bootstrap.controller.FrontendController
+import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
 import uk.gov.hmrc.trackingconsentfrontend.views.html.CookieSettingsPage
 
