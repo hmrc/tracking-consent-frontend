@@ -1,5 +1,6 @@
 cookieSettings.title = Cookie settings on HMRC services
 testPage.title = Service test page
+transitionalTestPage.title = Transitional service test page
 service.homePageUrl = https://www.gov.uk
 
 banner.title = Tell us whether you accept cookies

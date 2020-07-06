@@ -17,7 +17,7 @@
 package acceptance.pages
 
 import acceptance.driver.BrowserDriver
-import org.openqa.selenium.Cookie
+import org.openqa.selenium.{By, Cookie, WebElement}
 import org.scalatest.Matchers
 import org.scalatestplus.selenium.{Page, WebBrowser}
 
@@ -26,9 +26,13 @@ trait BasePage extends Matchers with Page with WebBrowser with BrowserDriver {
 
   def userConsentCookie: Cookie = driver.manage().getCookieNamed("userConsent")
 
+  def windowLoadedGtmEvent: AnyRef = findDataLayerEvent("gtm.load")
+
   def measurementAllowedGtmEvent: AnyRef = findDataLayerEvent("hmrc-measurement-allowed")
 
   def marketingAllowedGtmEvent: AnyRef = findDataLayerEvent("hmrc-marketing-allowed")
 
   def settingsAllowedGtmEvent: AnyRef = findDataLayerEvent("hmrc-settings-allowed")
+
+  def h1Element: WebElement = findBy(By.cssSelector("h1"))
 }

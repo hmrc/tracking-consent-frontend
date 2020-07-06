@@ -11,7 +11,7 @@ To install multiple versions of Node.js, you may find it easier to use a node ve
 ## To run locally
 
 ```
-sbt -Dapplication.router=testOnlyDoNotUseInAppConf.Routes run
+./run.sh
 ```
 
 The cookie banner should be available at http://localhost:12345/tracking-consent/test-only?enableTrackingConsent=true
@@ -84,11 +84,7 @@ following options configured:
 * under API, check 'Disable the API key'
 
 ```
-sbt \
-  -Dapplication.router=testOnlyDoNotUseInAppConf.Routes \
-  -Dbrowser=chrome \
-  -Dzap.proxy=true \
-  acceptance:test zap:test
+./run_zap_tests.sh
 ```
 
 More information on HMRC's ZAP scanning automation library can be found at https://github.com/hmrc/zap-automation
