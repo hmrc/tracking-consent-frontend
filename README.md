@@ -92,15 +92,7 @@ following options configured:
 * under API, check 'Disable the API key'
 
 ```
-<<<<<<< HEAD
 ./run_zap_tests.sh
-=======
-sbt \
-  -Dplay.http.router=testOnlyDoNotUseInAppConf.Routes \
-  -Dbrowser=chrome \
-  -Dzap.proxy=true \
-  acceptance:test zap:test
->>>>>>> 0dd1d8f... PLATUI-551: Upgrading dependencies
 ```
 
 More information on HMRC's ZAP scanning automation library can be found at https://github.com/hmrc/zap-automation
