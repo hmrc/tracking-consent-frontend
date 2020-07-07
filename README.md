@@ -10,6 +10,8 @@ To install multiple versions of Node.js, you may find it easier to use a node ve
 
 ## To run locally
 
+To run the application locally with the test-only endpoints enabled,
+
 ```
 ./run.sh
 ```
@@ -22,6 +24,12 @@ Once you have visited the page with `?enableTrackingConsent=true` once, a cookie
 all future pages until the cookie is cleared.
 
 Any changes to the Scala or Javascript should trigger a rebuild.
+
+To run the application without test routes enabled, simply do,
+
+```
+sbt run
+```
 
 ## Running all Scala and Javascript unit tests together
 
