@@ -31,7 +31,7 @@ trait TestServer extends TestSuiteMixin with GuiceFakeApplicationFactory { this:
       Map(
         "metrics.enabled"  -> false,
         "auditing.enabled" -> false,
-        "application.router" -> "testOnlyDoNotUseInAppConf.Routes",
+        "play.http.router" -> "testOnlyDoNotUseInAppConf.Routes",
         "tracking-consent-frontend.url" -> s"http://localhost:$port/tracking-consent/tracking.js",
         "tracking-consent-frontend.transitional-url" -> s"http://localhost:$port/tracking-consent/tracking-transitional.js"
       )

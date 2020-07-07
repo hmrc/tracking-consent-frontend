@@ -7,12 +7,12 @@ resolvers += Resolver.typesafeRepo("releases")
 
 addSbtPlugin("org.irundaia.sbt" % "sbt-sassify" % "1.4.11")
 
-addSbtPlugin("uk.gov.hmrc" % "sbt-auto-build" % "2.6.0")
+addSbtPlugin("uk.gov.hmrc" % "sbt-auto-build" % "2.9.0")
 
 addSbtPlugin("uk.gov.hmrc" % "sbt-git-versioning" % "2.1.0")
 
-addSbtPlugin("uk.gov.hmrc" % "sbt-artifactory" % "1.2.0")
+addSbtPlugin("uk.gov.hmrc" % "sbt-artifactory" % "1.3.0")
 
 addSbtPlugin("uk.gov.hmrc" % "sbt-distributables" % "2.0.0")
 
-addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.6.20")
+addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.7.5")

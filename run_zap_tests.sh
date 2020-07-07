@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 sbt \
-  -Dapplication.router=testOnlyDoNotUseInAppConf.Routes \
+  -Dplay.http.router=testOnlyDoNotUseInAppConf.Routes \
   -Dbrowser=chrome \
   -Dzap.proxy=true \
   acceptance:test zap:test

@@ -51,7 +51,7 @@ class TestPageISpec extends WordSpecLike with Matchers {
         Map(
           "metrics.enabled"  -> false,
           "auditing.enabled" -> false,
-          "application.router" -> "testOnlyDoNotUseInAppConf.Routes"
+          "play.http.router" -> "testOnlyDoNotUseInAppConf.Routes"
         )
       )
       .disable[com.kenshoo.play.metrics.PlayModule]
