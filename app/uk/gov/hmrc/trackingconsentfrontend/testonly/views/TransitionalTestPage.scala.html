@@ -18,12 +18,12 @@
     layout: Layout,
     paragraph: Paragraph,
     h1: H1,
-    cookieHead: CookieHead
+    transitionalTrackingHead: TransitionalTrackingHead
 )
 @()(implicit request: Request[_], messages: Messages, appConfig: AppConfig)
 
-@defining(Messages("testPage.title")) { title =>
-    @layout(pageTitle = Some(title), headBlock = Some(cookieHead())) {
+@defining(Messages("transitionalTestPage.title")) { title =>
+    @layout(pageTitle = Some(title), headBlock = Some(transitionalTrackingHead())) {
         @h1(content = Text(title))
         @paragraph(content = HtmlContent(title))
     }

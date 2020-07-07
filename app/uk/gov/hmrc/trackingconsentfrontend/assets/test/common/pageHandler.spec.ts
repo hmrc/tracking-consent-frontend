@@ -34,23 +34,34 @@ describe('pageHandler', () => {
     expect(gtm.default).not.toHaveBeenCalled()
 
     // @ts-ignore
-    pageHandler(thisDocument, testScope.userPreferences, pageRenderer)
+    pageHandler(thisDocument, testScope.userPreferences, pageRenderer, 'GTM-CONTAINER-ID')
 
     expect(gtm.default).toHaveBeenCalledTimes(1)
+    expect(gtm.default).toHaveBeenCalledWith('GTM-CONTAINER-ID')
+  })
+
+  it('should enable GTM with a different container id', () => {
+    expect(gtm.default).not.toHaveBeenCalled()
+
+    // @ts-ignore
+    pageHandler(thisDocument, testScope.userPreferences, pageRenderer, 'GTM-TEST')
+
+    expect(gtm.default).toHaveBeenCalledTimes(1)
+    expect(gtm.default).toHaveBeenCalledWith('GTM-TEST')
   })
 
   it('should send the preferences', () => {
     expect(testScope.userPreferences.sendPreferences).not.toHaveBeenCalled()
 
     // @ts-ignore
-    pageHandler(thisDocument, testScope.userPreferences, pageRenderer)
+    pageHandler(thisDocument, testScope.userPreferences, pageRenderer, 'GTM-CONTAINER-ID')
 
     expect(testScope.userPreferences.sendPreferences).toHaveBeenCalledTimes(1)
   })
 
   it('should call not call the page renderer if the DOM ContentReady event has not been fired', () => {
     // @ts-ignore
-    pageHandler(thisDocument, testScope.userPreferences, pageRenderer)
+    pageHandler(thisDocument, testScope.userPreferences, pageRenderer, 'GTM-CONTAINER-ID')
 
     expect(pageRenderer).not.toHaveBeenCalled()
   })
@@ -59,14 +70,14 @@ describe('pageHandler', () => {
     expect(pageRenderer).not.toHaveBeenCalled()
 
     // @ts-ignore
-    pageHandler(thisDocument, testScope.userPreferences, pageRenderer)
+    pageHandler(thisDocument, testScope.userPreferences, pageRenderer, 'GTM-CONTAINER-ID')
     pageLoad()
 
     expect(pageRenderer).toHaveBeenCalledTimes(1)
   })
 
   it('should pass through userPreference to pageRenderer', () => {
-    pageHandler(thisDocument, testScope.userPreferences, pageRenderer)
+    pageHandler(thisDocument, testScope.userPreferences, pageRenderer, 'GTM-CONTAINER-ID')
     pageLoad()
 
     expect(pageRenderer).toHaveBeenCalledWith(testScope.userPreferences)

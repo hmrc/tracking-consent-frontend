@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
   entry: {
     tracking: './src/entrypoints/tracking.ts',
+    'tracking-transitional': './src/entrypoints/tracking-transitional.ts',
     settingsPage: './src/entrypoints/settingsPage.ts'
   },
   module: {

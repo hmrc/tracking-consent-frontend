@@ -37,6 +37,9 @@ trait BrowserDriver extends LazyLogging {
   def findButtonByPartialText(partialText: String): WebElement =
     findBy(By.xpath(s"""//button[contains(text(),'$partialText')]"""))
 
+  def findGtmScript(containerId: String): WebElement =
+    findBy(By.cssSelector(s"""script[src*="gtm.js?id=$containerId"]"""))
+
   def findDataLayerEvent(event: String): AnyRef =
     driver
       .asInstanceOf[JavascriptExecutor]

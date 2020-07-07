@@ -10,8 +10,10 @@ To install multiple versions of Node.js, you may find it easier to use a node ve
 
 ## To run locally
 
+To run the application locally with the test-only endpoints enabled,
+
 ```
-sbt -Dapplication.router=testOnlyDoNotUseInAppConf.Routes run
+./run.sh
 ```
 
 The cookie banner should be available at http://localhost:12345/tracking-consent/test-only?enableTrackingConsent=true
@@ -22,6 +24,12 @@ Once you have visited the page with `?enableTrackingConsent=true` once, a cookie
 all future pages until the cookie is cleared.
 
 Any changes to the Scala or Javascript should trigger a rebuild.
+
+To run the application without test routes enabled, simply do,
+
+```
+sbt run
+```
 
 ## Running all Scala and Javascript unit tests together
 
@@ -84,11 +92,7 @@ following options configured:
 * under API, check 'Disable the API key'
 
 ```
-sbt \
-  -Dapplication.router=testOnlyDoNotUseInAppConf.Routes \
-  -Dbrowser=chrome \
-  -Dzap.proxy=true \
-  acceptance:test zap:test
+./run_zap_tests.sh
 ```
 
 More information on HMRC's ZAP scanning automation library can be found at https://github.com/hmrc/zap-automation

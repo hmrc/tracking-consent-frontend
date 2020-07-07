@@ -40,5 +40,6 @@ coverage
 node_modules
 stats.json
 public/tracking.js
+public/tracking-transitional.js
 public/settingsPage.js
 
