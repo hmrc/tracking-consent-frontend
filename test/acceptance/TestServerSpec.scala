@@ -27,7 +27,7 @@ import scala.util.Try
 class TestServerSpec extends WordSpec with TestServer with Matchers with TryValues with BeforeAndAfterAll {
   override lazy val port = 6001
 
-  val url = new URL(s"http://localhost:$port/tracking-consent/cookie-settings")
+  val url = new URL(s"http://localhost:$port/tracking-consent/cookie-settings?enableTrackingConsent=true")
   val expectedFailureMessage = "Connection refused"
 
   private def getTestPageResponseCode = {
