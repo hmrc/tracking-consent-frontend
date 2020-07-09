@@ -28,7 +28,7 @@ class CookieSettingsControllerSpec extends SpecBase {
 
   "cookie_settings" should {
     "return 200" in {
-      val result = controller.cookieSettings()(fakeRequest)
+      val result = controller.cookieSettings(None)(fakeRequest)
       status(result) mustBe Status.OK
     }
 
@@ -55,13 +55,13 @@ class CookieSettingsControllerSpec extends SpecBase {
 
     "return 404 if feature toggle not enabled" in {
       val fakeRequest = FakeRequest("GET", "/foo")
-      val result = controller.cookieSettings()(fakeRequest)
+      val result = controller.cookieSettings(None)(fakeRequest)
       status(result) mustBe Status.NOT_FOUND
     }
 
     "return the correct 404 page content if the feature toggle is not enabled" in {
       val fakeWithoutToggleRequest = FakeRequest("GET", "/foo")
-      val result = controller.cookieSettings()(fakeWithoutToggleRequest)
+      val result = controller.cookieSettings(None)(fakeWithoutToggleRequest)
       val content = Jsoup.parse(contentAsString(result))
 
       val headers = content.select("h1")
@@ -70,13 +70,13 @@ class CookieSettingsControllerSpec extends SpecBase {
     }
 
     "return HTML" in {
-      val result = controller.cookieSettings()(fakeRequest)
+      val result = controller.cookieSettings(None)(fakeRequest)
       contentType(result) mustBe Some("text/html")
       charset(result)     mustBe Some("utf-8")
     }
 
     "show the correct title" in {
-      val result = controller.cookieSettings()(fakeRequest)
+      val result = controller.cookieSettings(None)(fakeRequest)
       contentAsString(result) must include ("Cookie settings on HMRC services")
     }
   }

@@ -31,7 +31,7 @@ class LanguageSwitchController @Inject()(configuration: Configuration,
                                          val controllerComponents: MessagesControllerComponents
                                         ) extends FrontendBaseController with I18nSupport {
 
-  private def fallbackURL: String = routes.CookieSettingsController.cookieSettings().url
+  private def fallbackURL: String = routes.CookieSettingsController.cookieSettings(None).url
 
   private def switchToLanguage(lang: Lang): Action[AnyContent] = Action { implicit request =>
     val redirectURL = request.headers.get(REFERER).getOrElse(fallbackURL)

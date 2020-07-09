@@ -37,24 +37,24 @@ class CookieSettingsController @Inject()(
 
   private val featureCookieName   = appConfig.featureCookieName
   private val featureEnabledValue = appConfig.featureEnabledValue
-  private val featureToggleCookie = Cookie(name = featureCookieName, value = featureEnabledValue, httpOnly = false)
+
+  def cookieSettings(enableTrackingConsent: Option[String]): Action[AnyContent] = Action.async { implicit request =>
+    val isFeatureParameterSet = enableTrackingConsent.contains(featureEnabledValue)
+
+    if (isFeatureParameterSet || isFeatureCookieSet) {
+      val featureToggleCookie = Cookie(name = featureCookieName, value = featureEnabledValue, httpOnly = false)
+
+      Future.successful(
+        Ok(cookieSettingsPage())
+          .withCookies(featureToggleCookie)
+      )
+    } else {
+      Future.successful(NotFound(notFoundPage()))
+    }
+  }
 
   private def isFeatureCookieSet(implicit request: Request[_]) =
     request.cookies
-      .get(featureToggleCookie.name)
-      .exists(_.value == featureToggleCookie.value)
-
-  def cookieSettings(enableTrackingConsent: Option[String] = None): Action[AnyContent] = Action.async {
-    implicit request =>
-      val isFeatureParameterSet = enableTrackingConsent.contains(featureEnabledValue)
-
-      if (isFeatureParameterSet || isFeatureCookieSet) {
-        Future.successful(
-          Ok(cookieSettingsPage())
-            .withCookies(featureToggleCookie)
-        )
-      } else {
-        Future.successful(NotFound(notFoundPage()))
-      }
-  }
+      .get(featureCookieName)
+      .exists(_.value == featureEnabledValue)
 }
