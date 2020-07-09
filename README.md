@@ -97,6 +97,12 @@ following options configured:
 
 More information on HMRC's ZAP scanning automation library can be found at https://github.com/hmrc/zap-automation
 
+### NPM versions and security
+
+Modules pulled from npm are pinned in the file packages.json. These are pinned to prevent 
+security vulnerabilities making it into production code via auto-update. If you wish to 
+upgrade a specific dependency, please discuss the implications with the platform security team.
+
 ### Troubleshooting
 If you are not seeing the consent banner on the test page, check that you have included the `?enableTrackingConsent=true` 
 parameters. If you wish to reset behaviour on this page, please clear your cookies.
