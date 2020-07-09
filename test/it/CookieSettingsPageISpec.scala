@@ -37,12 +37,21 @@ class CookieSettingsPageISpec extends WordSpecLike with Matchers with GuiceOneAp
 
   "Given a running instance of tracking consent frontend, calling GET for cookie-settings" should {
     "return OK with expected page" in {
-      val request = FakeRequest(GET, "/tracking-consent/cookie-settings")
+      val request = FakeRequest(GET, "/tracking-consent/cookie-settings?enableTrackingConsent=true")
       val result = route(app, request).get
 
       status(result) shouldBe OK
       contentType(result) shouldBe Some("text/html")
       contentAsString(result) should include("Cookie settings on HMRC services")
+    }
+
+    "return NOT_FOUND without the feature query parameter" in {
+      val request = FakeRequest(GET, "/tracking-consent/cookie-settings")
+      val result = route(app, request).get
+
+      status(result) shouldBe NOT_FOUND
+      contentType(result) shouldBe Some("text/html")
+      contentAsString(result) should include("This page can’t be found")
     }
   }
 }

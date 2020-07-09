@@ -20,7 +20,7 @@ import org.openqa.selenium.WebElement
 import support.TestConfiguration
 
 object CookieSettingsPage extends BasePage {
-  val url: String = TestConfiguration.url("tracking-consent-frontend") + "/cookie-settings"
+  val url: String = TestConfiguration.url("tracking-consent-frontend") + "/cookie-settings?enableTrackingConsent=true"
 
   val useMeasurementCookies                  = "Use cookies that measure my website use"
   def useMeasurementCookiesLabel: WebElement = findLabelByPartialText(useMeasurementCookies)

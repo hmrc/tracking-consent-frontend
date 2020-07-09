@@ -26,4 +26,6 @@ class AppConfig @Inject()(config: Configuration, servicesConfig: ServicesConfig)
   val trackingConsentUrl: String = servicesConfig.getString("tracking-consent-frontend.url")
   val transitionalTrackingConsentUrl: String = servicesConfig.getString("tracking-consent-frontend.transitional-url")
   val welshLanguageSupportEnabled: Boolean = config.getOptional[Boolean]("features.welsh-language-support").getOrElse(false)
+  val featureCookieName: String = servicesConfig.getString("features.feature-cookie-name")
+  val featureEnabledValue: String = servicesConfig.getString("features.feature-enabled-value")
 }

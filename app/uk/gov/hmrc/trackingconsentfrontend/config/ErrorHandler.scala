@@ -21,7 +21,7 @@ import play.api.i18n.MessagesApi
 import play.api.mvc.Request
 import play.twirl.api.Html
 import uk.gov.hmrc.play.bootstrap.frontend.http.FrontendErrorHandler
-import uk.gov.hmrc.trackingconsentfrontend.views.html.ErrorTemplate
+import uk.gov.hmrc.trackingconsentfrontend.views.html.components.ErrorTemplate
 
 @Singleton
 class ErrorHandler @Inject()(val messagesApi: MessagesApi, implicit val appConfig: AppConfig, errorTemplate: ErrorTemplate) extends FrontendErrorHandler {

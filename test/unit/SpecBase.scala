@@ -21,6 +21,7 @@ import org.jsoup.nodes.Document
 import org.scalatestplus.play.PlaySpec
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.i18n.{Messages, MessagesApi}
+import play.api.mvc.{Cookie, Cookies}
 import play.api.test.FakeRequest
 import play.twirl.api.Html
 import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
@@ -29,6 +30,9 @@ trait SpecBase extends PlaySpec with GuiceOneAppPerSuite with JsoupHelpers {
   lazy val messagesApi: MessagesApi = app.injector.instanceOf[MessagesApi]
 
   implicit lazy val fakeRequest = FakeRequest("GET", "/foo")
+    .withCookies(
+      Cookie("enableTrackingConsent", "true")
+    )
 
   implicit lazy val messages: Messages = messagesApi.preferred(fakeRequest)
 

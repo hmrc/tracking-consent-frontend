@@ -21,16 +21,40 @@ import play.api.mvc._
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
 import uk.gov.hmrc.trackingconsentfrontend.views.html.CookieSettingsPage
+import uk.gov.hmrc.trackingconsentfrontend.views.html.NotFoundPage
 
 import scala.concurrent.Future
 
 @Singleton
-class CookieSettingsController @Inject()(appConfig: AppConfig, mcc: MessagesControllerComponents, cookieSettingsPage: CookieSettingsPage)
+class CookieSettingsController @Inject()(
+  appConfig: AppConfig,
+  mcc: MessagesControllerComponents,
+  cookieSettingsPage: CookieSettingsPage,
+  notFoundPage: NotFoundPage)
     extends FrontendController(mcc) {
 
   implicit val config: AppConfig = appConfig
 
-  val cookieSettings: Action[AnyContent] = Action.async { implicit request =>
-    Future.successful(Ok(cookieSettingsPage()))
+  private val featureCookieName   = appConfig.featureCookieName
+  private val featureEnabledValue = appConfig.featureEnabledValue
+
+  def cookieSettings(enableTrackingConsent: Option[String]): Action[AnyContent] = Action.async { implicit request =>
+    val isFeatureParameterSet = enableTrackingConsent.contains(featureEnabledValue)
+
+    if (isFeatureParameterSet || isFeatureCookieSet) {
+      val featureToggleCookie = Cookie(name = featureCookieName, value = featureEnabledValue, httpOnly = false)
+
+      Future.successful(
+        Ok(cookieSettingsPage())
+          .withCookies(featureToggleCookie)
+      )
+    } else {
+      Future.successful(NotFound(notFoundPage()))
+    }
   }
+
+  private def isFeatureCookieSet(implicit request: Request[_]) =
+    request.cookies
+      .get(featureCookieName)
+      .exists(_.value == featureEnabledValue)
 }
