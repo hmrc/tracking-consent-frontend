@@ -1,4 +1,4 @@
-@*
+/*
  * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,16 +12,23 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *@
+ */
 
-@this()
+package support
 
-@()(implicit appConfig: AppConfig)
-<!--[if !IE]>-->
-<script type="text/javascript" src="@appConfig.trackingConsentUrl"></script>
-<!--<![endif]-->
- @appConfig.optimizelyUrl.map { url =>
- <!--[if !IE]>-->
-<script type="text/javascript" src="@url"></script>
- <!--<![endif]-->
+import org.scalatest.TestSuite
+import play.api.Application
+import play.api.inject.guice.GuiceApplicationBuilder
+
+trait WithConfiguredApp extends TestSuite {
+  def appWithConfiguration(configuration: Map[String, Any]): Application = {
+    val sharedConfiguration = Map(
+      "metrics.enabled"  -> false,
+      "auditing.enabled" -> false
+    )
+    new GuiceApplicationBuilder()
+      .configure(sharedConfiguration ++ configuration)
+      .disable[com.kenshoo.play.metrics.PlayModule]
+      .build()
+  }
 }

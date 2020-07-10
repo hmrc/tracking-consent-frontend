@@ -1,17 +1,18 @@
 /* global spyOn */
 import Cookies from 'js-cookie'
-import userPreferenceFactory from '../../src/domain/userPreferenceFactory'
-import preferenceCommunicatorFactory from '../../src/interfaces/preferenceCommunicatorFactory'
+import userPreferencesFactory from '../../src/domain/userPreferencesFactory'
+import gtmCommunicatorFactory from '../../src/interfaces/gtmCommunicatorFactory'
 
-describe('User Preference Factory', () => {
+describe('userPreferencesFactory', () => {
   const assume = expect
   let testScope
 
   beforeEach(() => {
-    testScope = { fakeDatetime: 1591234567890, cookieData: {} }
-    testScope.preferenceCommunicator = preferenceCommunicatorFactory({})
+    testScope = { fakeDatetime: 1591234567890, cookieData: {}, window: {} }
+    testScope.preferenceCommunicator = gtmCommunicatorFactory(testScope.window)
     spyOn(testScope.preferenceCommunicator, 'sendPreferences')
-    testScope.userPreference = userPreferenceFactory(testScope.preferenceCommunicator)
+    testScope.userPreference = userPreferencesFactory()
+    testScope.userPreference.subscribe(testScope.preferenceCommunicator)
     spyOn(Cookies, 'set').and.callFake((cookieName, value) => {
       testScope.cookieData[cookieName] = value
     })

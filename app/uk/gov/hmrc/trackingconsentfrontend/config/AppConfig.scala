@@ -28,4 +28,11 @@ class AppConfig @Inject()(config: Configuration, servicesConfig: ServicesConfig)
   val welshLanguageSupportEnabled: Boolean = config.getOptional[Boolean]("features.welsh-language-support").getOrElse(false)
   val featureCookieName: String = servicesConfig.getString("features.feature-cookie-name")
   val featureEnabledValue: String = servicesConfig.getString("features.feature-enabled-value")
+  val optimizelyUrl: Option[String] =
+    for {
+      baseUrl   <- config.getOptional[String]("optimizely.url")
+      projectId <- config.getOptional[String]("optimizely.projectId")
+    } yield {
+      s"$baseUrl$projectId.js"
+    }
 }

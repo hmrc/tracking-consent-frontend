@@ -22,6 +22,7 @@ import play.api.Application
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.test.FakeRequest
 import play.api.test.Helpers.{GET, route, _}
+import support.WithConfiguredApp
 
 class CookieSettingsPageISpec extends WordSpecLike with Matchers with GuiceOneAppPerSuite {
 
@@ -29,11 +30,16 @@ class CookieSettingsPageISpec extends WordSpecLike with Matchers with GuiceOneAp
     .configure(
       Map(
         "metrics.enabled"  -> false,
-        "auditing.enabled" -> false
+        "auditing.enabled" -> false,
       )
     )
     .disable[com.kenshoo.play.metrics.PlayModule]
     .build()
+
+  val configuration = Map(
+    "metrics.enabled"  -> false,
+    "auditing.enabled" -> false,
+  )
 
   "Given a running instance of tracking consent frontend, calling GET for cookie-settings" should {
     "return OK with expected page" in {
@@ -52,6 +58,23 @@ class CookieSettingsPageISpec extends WordSpecLike with Matchers with GuiceOneAp
       status(result) shouldBe NOT_FOUND
       contentType(result) shouldBe Some("text/html")
       contentAsString(result) should include("This page can’t be found")
+    }
+  }
+
+  "Given a running instance of tracking consent frontend, calling GET with Optimizely configured" should {
+    "return OK with expected page with Optimizely snippet" in new WithConfiguredApp {
+      val configuration = Map(
+        "play.http.router" -> "testOnlyDoNotUseInAppConf.Routes",
+        "optimizely.url" -> "https://cdn.optimizely.com/js/",
+        "optimizely.projectId" -> "a1b2c3d4e5"
+      )
+      val request = FakeRequest(GET, "/tracking-consent/cookie-settings?enableTrackingConsent=true")
+      val result = route(appWithConfiguration(configuration), request).get
+
+      status(result) shouldBe OK
+      contentType(result) shouldBe Some("text/html")
+      contentAsString(result) should include("Cookie settings on HMRC services")
+      contentAsString(result) should include("""<script type="text/javascript" src="https://cdn.optimizely.com/js/a1b2c3d4e5.js"></script>""")
     }
   }
 }

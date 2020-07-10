@@ -18,10 +18,8 @@
 
 @()(implicit appConfig: AppConfig)
 <!--[if !IE]>-->
-<script type="text/javascript" src="@appConfig.trackingConsentUrl"></script>
-<!--<![endif]-->
- @appConfig.optimizelyUrl.map { url =>
- <!--[if !IE]>-->
+@appConfig.optimizelyUrl.map { url =>
+<!--[if !IE]>-->
 <script type="text/javascript" src="@url"></script>
- <!--<![endif]-->
+<!--<![endif]-->
 }
