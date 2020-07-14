@@ -14,19 +14,9 @@
  * limitations under the License.
  *@
 
-@this(
-        layout: Layout,
-        settingsPageScripts: SettingsPageScripts,
-        cookieSettingsIntro: CookieSettingsIntro,
-        unsupportedBrowser: UnsupportedBrowser,
-        supportedBrowser: SupportedBrowser,
-        cookieSettingsHead: CookieSettingsHead)
-@()(implicit request: Request[_], messages: Messages, appConfig: AppConfig)
+@this()
 
-@defining(messages("cookieSettings.title")) { title =>
-    @layout(pageTitle = Some(title), headBlock = Some(cookieSettingsHead())) {
-        @cookieSettingsIntro()
-        @unsupportedBrowser()
-        @supportedBrowser()
-    }
-}
+@()
+<!--[if !IE]>-->
+<script type="text/javascript" src="@routes.Assets.versioned("settingsPage.js")"></script>
+    <!--<![endif]-->

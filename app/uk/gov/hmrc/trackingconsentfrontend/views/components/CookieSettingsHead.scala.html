@@ -14,9 +14,9 @@
  * limitations under the License.
  *@
 
-@this()
+@this(optimizelySnippet: OptimizelySnippet, settingsPageScripts: SettingsPageScripts)
 
-@()
-<!--[if !IE]>-->
-<script type="text/javascript" src="@routes.Assets.versioned("settingsPage.js")"></script>
-<!--<![endif]-->
+@()(implicit appConfig: AppConfig)
+
+@optimizelySnippet()
+@settingsPageScripts()
