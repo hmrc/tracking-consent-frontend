@@ -4,13 +4,17 @@ import { UserPreferences } from '../../types/UserPreferences'
 const optimizelyCommunicatorFactory = (window: Window): Communicator => ({
   sendPreferences: (userPreferences: UserPreferences) => {
 
-    const setOptimizelyOptOut = (optOut: Boolean) => {
-      window.optimizely.push({ 'type': 'optOut', 'isOptOut': optOut });
+    const setOptimizelyOptOut = (isOptOut: Boolean) => {
+      window.optimizely.push({ 'type': 'optOut', isOptOut });
     }
 
     window.optimizely = window.optimizely || [];
     const preferences = userPreferences.getPreferences() || {}
-    preferences.measurement === true ? setOptimizelyOptOut(false) : setOptimizelyOptOut(true)
+    if (preferences.measurement === true) {
+      setOptimizelyOptOut(false)
+    } else {
+      setOptimizelyOptOut(true)
+    }
   }
 })
 

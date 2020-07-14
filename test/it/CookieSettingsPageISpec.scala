@@ -36,11 +36,6 @@ class CookieSettingsPageISpec extends WordSpecLike with Matchers with GuiceOneAp
     .disable[com.kenshoo.play.metrics.PlayModule]
     .build()
 
-  val configuration = Map(
-    "metrics.enabled"  -> false,
-    "auditing.enabled" -> false,
-  )
-
   "Given a running instance of tracking consent frontend, calling GET for cookie-settings" should {
     "return OK with expected page" in {
       val request = FakeRequest(GET, "/tracking-consent/cookie-settings?enableTrackingConsent=true")

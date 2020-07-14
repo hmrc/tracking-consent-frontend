@@ -13,10 +13,22 @@ describe('sendPreferences', () => {
     })
   })
 
-  it('should send measurement, marketing and settings when all tracking is allowed', () => {
+  it('should set optOut to true when measurement is set to false', () => {
     testScope.preferenceCommunicator.sendPreferences(testScope.userPreferences)
     expect(testScope.window.optimizely).toEqual([
       { type: 'optOut', isOptOut: true }
+    ])
+  })
+
+  it('should set optOut to false when measurement setting is set to true', () => {
+    testScope.userPreferences.getPreferences.mockReturnValue({
+      measurement: true,
+      marketing: false,
+      settings: false
+    })
+    testScope.preferenceCommunicator.sendPreferences(testScope.userPreferences)
+    expect(testScope.window.optimizely).toEqual([
+      { type: 'optOut', isOptOut: false }
     ])
   })
 
@@ -26,18 +38,6 @@ describe('sendPreferences', () => {
     expect(testScope.window.optimizely).toEqual([
       { event: 'some-prior-event' },
       { type: 'optOut', isOptOut: true }
-    ])
-  })
-
-  it('should set optOut to false if the measurement setting is allowed', () => {
-    testScope.userPreferences.getPreferences.mockReturnValue({
-      measurement: true,
-      marketing: false,
-      settings: false
-    })
-    testScope.preferenceCommunicator.sendPreferences(testScope.userPreferences)
-    expect(testScope.window.optimizely).toEqual([
-      { type: 'optOut', isOptOut: false }
     ])
   })
 
