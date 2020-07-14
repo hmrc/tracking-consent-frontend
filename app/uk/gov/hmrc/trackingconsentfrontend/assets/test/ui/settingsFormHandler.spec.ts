@@ -2,11 +2,11 @@
 /* global spyOn */
 import { getByText, fireEvent } from '@testing-library/dom'
 import settingsFormHandler from '../../src/ui/settingsFormHandler'
-import userPreferenceFactory from '../../src/domain/userPreferenceFactory'
+import userPreferencesFactory from '../../src/domain/userPreferencesFactory'
 import castToArray from '../../src/common/castToArray'
 // @ts-ignore
 import fixture from '../fixtures/settingsForm.html'
-import preferenceCommunicatorFactory from '../../src/interfaces/preferenceCommunicatorFactory'
+import gtmCommunicatorFactory from '../../src/interfaces/gtmCommunicatorFactory'
 import * as renderSettingsSaveConfirmationMessage from '../../src/ui/renderSettingsSaveConfirmationMessage'
 
 describe('User Preference Factory', () => {
@@ -27,8 +27,8 @@ describe('User Preference Factory', () => {
       assume(option.checked).toBeFalsy()
     })
 
-    testScope.preferenceCommunicator = preferenceCommunicatorFactory(window)
-    testScope.userPref = userPreferenceFactory(testScope.preferenceCommunicator)
+    testScope.preferenceCommunicator = gtmCommunicatorFactory(window)
+    testScope.userPref = userPreferencesFactory()
   })
 
   describe('Initial state', () => {

@@ -1,8 +1,8 @@
 /* global spyOn */
 import * as gtm from '../../src/interfaces/gtm'
 import pageHandler from '../../src/common/pageHandler'
+import userPreferencesFactory from '../../src/domain/userPreferencesFactory'
 import { JSDOM } from 'jsdom'
-import userPreferenceFactory from '../../src/domain/userPreferenceFactory'
 import clearAllMocks = jest.clearAllMocks;
 
 describe('pageHandler', () => {
@@ -22,7 +22,8 @@ describe('pageHandler', () => {
     const dom = new JSDOM('<html></html>')
     testScope = {
       document,
-      userPreferences: userPreferenceFactory(dom.window)
+      window,
+      userPreferences: userPreferencesFactory()
     }
     thisDocument = dom.window.document
     spyOn(gtm, 'default')

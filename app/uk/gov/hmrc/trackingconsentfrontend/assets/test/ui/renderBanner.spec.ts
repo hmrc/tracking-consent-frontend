@@ -17,12 +17,14 @@ describe('renderBanner', () => {
   const setPreferences = jest.fn()
   const getUserHasSavedCookiePreferences = jest.fn()
   const sendPreferences = jest.fn()
+  const subscribe = jest.fn()
   const userPreference = {
     userAcceptsAll,
     getPreferences,
     setPreferences,
     getUserHasSavedCookiePreferences,
-    sendPreferences
+    sendPreferences,
+    subscribe
   }
   const preferenceCommunicator = {
     sendPreferences

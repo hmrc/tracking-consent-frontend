@@ -14,10 +14,12 @@
  * limitations under the License.
  *@
 
-@this(optimizelySnippet: OptimizelySnippet)
+@this()
 
 @()(implicit appConfig: AppConfig)
 <!--[if !IE]>-->
-<script type="text/javascript" src="@appConfig.trackingConsentUrl"></script>
+@appConfig.optimizelyUrl.map { url =>
+<!--[if !IE]>-->
+<script type="text/javascript" src="@url"></script>
 <!--<![endif]-->
-@optimizelySnippet()
+}

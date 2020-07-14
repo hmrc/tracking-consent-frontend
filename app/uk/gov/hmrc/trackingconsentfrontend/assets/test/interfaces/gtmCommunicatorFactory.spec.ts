@@ -1,13 +1,14 @@
 /* global spyOn */
-import preferenceCommunicatorFactory from '../../src/interfaces/preferenceCommunicatorFactory'
-import userPreferenceFactory from '../../src/domain/userPreferenceFactory'
+import gtmCommunicatorFactory from '../../src/interfaces/gtmCommunicatorFactory'
+import userPreferencesFactory from '../../src/domain/userPreferencesFactory'
 
 describe('sendPreferences', () => {
   let testScope
   beforeEach(() => {
     testScope = { window: {} }
-    testScope.preferenceCommunicator = preferenceCommunicatorFactory(testScope.window)
-    testScope.userPreferences = userPreferenceFactory({})
+    testScope.preferenceCommunicator = gtmCommunicatorFactory(testScope.window)
+    testScope.userPreferences = userPreferencesFactory()
+    testScope.userPreferences.subscribe(testScope.preferenceCommunicator)
   })
   it('should send measurement, marketing and settings when all tracking is allowed', () => {
     spyOn(testScope.userPreferences, 'getPreferences').and.returnValue({

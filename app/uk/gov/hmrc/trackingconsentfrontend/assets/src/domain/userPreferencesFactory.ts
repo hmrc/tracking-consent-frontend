@@ -3,10 +3,18 @@ import Cookies from 'js-cookie'
 import cookieTypes from '../constants/cookieTypes'
 import fromEntries from '../common/fromEntries'
 import {COOKIE_CONSENT, COOKIE_VERSION} from '../constants/cookies'
+import { UserPreferences } from '../../types/UserPreferences'
+import { Communicator } from '../../types/Communicator'
 
+const userPreferencesFactory = (): UserPreferences => {
 
-const userPreferenceFactory = (preferenceCommunicator) => {
-  function storePreferences (preferences) {
+  const subscribers: Communicator[] = []
+
+  const subscribe = (preferenceCommunicator) => {
+    subscribers.push(preferenceCommunicator)
+  }
+
+  const storePreferences = (preferences) => {
     Cookies.set(COOKIE_CONSENT, {
       version: '2020.1',
       datetimeSet: new Date().toISOString(),
@@ -18,7 +26,7 @@ const userPreferenceFactory = (preferenceCommunicator) => {
     storePreferences({
       acceptAll: true
     })
-    preferenceCommunicator.sendPreferences(self)
+    sendPreferences()
   }
 
   const setPreferences = preferencesIn => {
@@ -27,7 +35,7 @@ const userPreferenceFactory = (preferenceCommunicator) => {
       marketing: preferencesIn.marketing,
       settings: preferencesIn.settings
     })
-    preferenceCommunicator.sendPreferences(self)
+    sendPreferences()
   }
 
   const isPreferenceStrictlyBoolean = ([, value]) => typeof value === 'boolean'
@@ -67,17 +75,20 @@ const userPreferenceFactory = (preferenceCommunicator) => {
 
   const getUserHasSavedCookiePreferences = () => getPreferences() !== undefined
 
-  const sendPreferences = () => preferenceCommunicator.sendPreferences(self)
+  const sendPreferences = () => {
+    subscribers.forEach(subscriber => subscriber.sendPreferences(self))
+  }
 
   const self = {
     userAcceptsAll,
     setPreferences,
     getUserHasSavedCookiePreferences,
     getPreferences,
-    sendPreferences
+    sendPreferences,
+    subscribe
   }
 
   return self
 }
 
-export default userPreferenceFactory
+export default userPreferencesFactory
