@@ -30,7 +30,7 @@ class CookieSettingsPageISpec extends WordSpecLike with Matchers with GuiceOneAp
     .configure(
       Map(
         "metrics.enabled"  -> false,
-        "auditing.enabled" -> false,
+        "auditing.enabled" -> false
       )
     )
     .disable[com.kenshoo.play.metrics.PlayModule]
