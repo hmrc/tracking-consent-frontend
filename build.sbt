@@ -65,6 +65,7 @@ lazy val microservice = Project(appName, file("."))
     ),
     PlayKeys.playRunHooks += Webpack(javaScriptDirectory.value),
     PlayKeys.devSettings ++= Seq("metrics.enabled"  -> "false", "auditing.enabled" -> "false"),
+    pipelineStages in Assets := Seq(gzip),
     acceptanceTestSettings,
     unitTestSettings,
     zapTestSettings,
