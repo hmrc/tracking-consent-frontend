@@ -1,7 +1,9 @@
+import getNonce from "../common/getNonce";
+
 const dataLayer = 'dataLayer'
 const gtmBaseUrl = 'https://www.googletagmanager.com/gtm.js?id='
 
-const gtm = (containerId: string) => {
+const enableGtm = (containerId: string) => {
   (function (window: Window, document: Document, containerId: string) {
     window[dataLayer] = window[dataLayer] || []
     window[dataLayer].push({
@@ -16,6 +18,10 @@ const gtm = (containerId: string) => {
     if (scriptElement !== undefined && scriptElement.parentNode !== null) {
       const asyncScriptElement: HTMLScriptElement = document.createElement('script');
 
+      const nonce = getNonce()
+      if (nonce !== undefined) {
+        asyncScriptElement.setAttribute('nonce',nonce);
+      }
       asyncScriptElement.async = true
       asyncScriptElement.src = `${gtmBaseUrl}${containerId}`
       scriptElement.parentNode.insertBefore(asyncScriptElement, scriptElement)
@@ -23,4 +29,4 @@ const gtm = (containerId: string) => {
   })(window, document, containerId)
 }
 
-export default gtm
+export default enableGtm

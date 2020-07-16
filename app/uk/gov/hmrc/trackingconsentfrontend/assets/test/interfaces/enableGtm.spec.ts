@@ -1,5 +1,5 @@
 /* eslint-disable dot-notation */
-import enableGtm from '../../src/interfaces/gtm'
+import enableGtm from '../../src/interfaces/enableGtm'
 
 describe('enableGtm', () => {
   beforeEach(() => {
@@ -20,6 +20,16 @@ describe('enableGtm', () => {
     const scriptElement: HTMLScriptElement = document.querySelector('script')
     expect(scriptElement.src).toEqual('https://www.googletagmanager.com/gtm.js?id=GTM-CONTAINER-ID')
     expect(scriptElement.async).toEqual(true)
+  })
+
+  it('should inject an async script tag with the correct nonce', () => {
+    document.getElementsByTagName('html')[0].innerHTML = '<head><script nonce="abcdefg"/></head>'
+
+    enableGtm('GTM-CONTAINER-ID')
+
+    // @ts-ignore
+    const scriptElement: HTMLScriptElement = document.querySelector('script')
+    expect(scriptElement.nonce).toEqual('abcdefg')
   })
 
   it('should initialise the dataLayer', () => {

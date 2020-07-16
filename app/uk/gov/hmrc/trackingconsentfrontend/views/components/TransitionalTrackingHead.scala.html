@@ -16,7 +16,7 @@
 
 @this()
 
-@()(implicit appConfig: AppConfig)
+@()(implicit appConfig: AppConfig, request: RequestHeader)
 <!--[if !IE]>-->
-<script type="text/javascript" src="@appConfig.transitionalTrackingConsentUrl"></script>
+<script @{CSPNonce.attr} type="text/javascript" src="@appConfig.transitionalTrackingConsentUrl"></script>
 <!--<![endif]-->

@@ -61,7 +61,7 @@ class TestPageISpec extends WordSpecLike with Matchers {
 
       status(result) shouldBe OK
       contentType(result) shouldBe Some("text/html")
-      contentAsString(result) should include("""<script type="text/javascript" src="https://cdn.optimizely.com/js/a1b2c3d4e5.js"></script>""")
+      contentAsString(result) should include regex """<script nonce="[a-zA-Z0-9+/=]+" type="text/javascript" src="https://cdn.optimizely.com/js/a1b2c3d4e5.js"></script>"""
     }
   }
 

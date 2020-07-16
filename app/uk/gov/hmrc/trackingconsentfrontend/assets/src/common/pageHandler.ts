@@ -1,4 +1,4 @@
-import enableGtm from '../interfaces/gtm'
+import enableGtm from '../interfaces/enableGtm'
 import { UserPreferences } from '../../types/UserPreferences'
 
 const pageHandler = (document: HTMLDocument, userPreference: UserPreferences, pageRenderer, containerId) => {

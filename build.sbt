@@ -57,6 +57,7 @@ lazy val microservice = Project(appName, file("."))
     resolvers += Resolver.jcenterRepo,
     libraryDependencies ++= AppDependencies.compile ++ AppDependencies.test,
     TwirlKeys.templateImports ++= Seq(
+      "views.html.helper.CSPNonce",
       "uk.gov.hmrc.trackingconsentfrontend.config.AppConfig",
       "uk.gov.hmrc.trackingconsentfrontend.views.html.components._",
       "uk.gov.hmrc.govukfrontend.views.html.components._",

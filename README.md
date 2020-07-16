@@ -31,10 +31,10 @@ To run the application without test routes enabled, simply do,
 sbt run
 ```
 
-## Running all Scala and Javascript unit tests together
+## Running all Scala and Javascript unit and integration tests together
 
 ```
-sbt test
+sbt test it:test
 ```
 
 ## Running UI acceptance tests
