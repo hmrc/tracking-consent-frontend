@@ -1,4 +1,4 @@
-@*
+/*
  * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,11 +12,15 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *@
+ */
 
-@this()
+package uk.gov.hmrc.trackingconsentfrontend.config
 
-@()(implicit request: RequestHeader)
-<!--[if !IE]>-->
-<script @{CSPNonce.attr} type="text/javascript" src="@routes.Assets.versioned("settingsPage.js")"></script>
-<!--<![endif]-->
+import javax.inject.{Inject, Singleton}
+import play.api.http.DefaultHttpFilters
+import play.filters.csp.CSPFilter
+import uk.gov.hmrc.play.bootstrap.frontend.filters.FrontendFilters
+
+@Singleton
+class FrontendFiltersWithCSP @Inject()(defaultFilters: FrontendFilters, cspFilter: CSPFilter)
+  extends DefaultHttpFilters(cspFilter +: defaultFilters.filters : _*)

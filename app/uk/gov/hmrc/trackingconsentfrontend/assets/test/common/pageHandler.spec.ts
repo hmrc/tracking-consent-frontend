@@ -1,5 +1,5 @@
 /* global spyOn */
-import * as gtm from '../../src/interfaces/gtm'
+import * as enableGtm from '../../src/interfaces/enableGtm'
 import pageHandler from '../../src/common/pageHandler'
 import userPreferencesFactory from '../../src/domain/userPreferencesFactory'
 import { JSDOM } from 'jsdom'
@@ -26,29 +26,29 @@ describe('pageHandler', () => {
       userPreferences: userPreferencesFactory()
     }
     thisDocument = dom.window.document
-    spyOn(gtm, 'default')
+    spyOn(enableGtm, 'default')
     spyOn(testScope.userPreferences, 'sendPreferences').and.returnValue(undefined)
     clearAllMocks()
   })
 
   it('should enable GTM', () => {
-    expect(gtm.default).not.toHaveBeenCalled()
+    expect(enableGtm.default).not.toHaveBeenCalled()
 
     // @ts-ignore
     pageHandler(thisDocument, testScope.userPreferences, pageRenderer, 'GTM-CONTAINER-ID')
 
-    expect(gtm.default).toHaveBeenCalledTimes(1)
-    expect(gtm.default).toHaveBeenCalledWith('GTM-CONTAINER-ID')
+    expect(enableGtm.default).toHaveBeenCalledTimes(1)
+    expect(enableGtm.default).toHaveBeenCalledWith('GTM-CONTAINER-ID')
   })
 
   it('should enable GTM with a different container id', () => {
-    expect(gtm.default).not.toHaveBeenCalled()
+    expect(enableGtm.default).not.toHaveBeenCalled()
 
     // @ts-ignore
     pageHandler(thisDocument, testScope.userPreferences, pageRenderer, 'GTM-TEST')
 
-    expect(gtm.default).toHaveBeenCalledTimes(1)
-    expect(gtm.default).toHaveBeenCalledWith('GTM-TEST')
+    expect(enableGtm.default).toHaveBeenCalledTimes(1)
+    expect(enableGtm.default).toHaveBeenCalledWith('GTM-TEST')
   })
 
   it('should send the preferences', () => {

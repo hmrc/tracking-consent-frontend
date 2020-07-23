@@ -1,3 +1,4 @@
+import '../common/createNonce'
 import '../../styles/service-page.scss'
 import renderBanner from '../ui/renderBanner'
 import pageHandler from '../common/pageHandler'

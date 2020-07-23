@@ -16,8 +16,8 @@
 
 @this(optimizelySnippet: OptimizelySnippet)
 
-@()(implicit appConfig: AppConfig)
+@()(implicit appConfig: AppConfig, request: RequestHeader)
 <!--[if !IE]>-->
-<script type="text/javascript" src="@appConfig.trackingConsentUrl"></script>
+<script @{CSPNonce.attr} type="text/javascript" src="@appConfig.trackingConsentUrl"></script>
 <!--<![endif]-->
 @optimizelySnippet()

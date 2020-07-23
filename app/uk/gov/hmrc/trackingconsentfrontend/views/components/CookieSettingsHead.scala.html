@@ -16,7 +16,7 @@
 
 @this(optimizelySnippet: OptimizelySnippet, settingsPageScripts: SettingsPageScripts)
 
-@()(implicit appConfig: AppConfig)
+@()(implicit appConfig: AppConfig, request: RequestHeader)
 
 @settingsPageScripts()
 @optimizelySnippet()
