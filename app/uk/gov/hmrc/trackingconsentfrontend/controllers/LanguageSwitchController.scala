@@ -19,30 +19,23 @@ package uk.gov.hmrc.trackingconsentfrontend.controllers
 import com.google.inject.Inject
 import javax.inject.Singleton
 import play.api.Configuration
-import play.api.i18n.{I18nSupport, Lang, MessagesApi}
-import play.api.mvc._
-import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendBaseController
+import play.api.i18n.Lang
+import play.api.mvc.ControllerComponents
 import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
+import uk.gov.hmrc.play.language.{LanguageController, LanguageUtils}
 
 @Singleton
-class LanguageSwitchController @Inject()(configuration: Configuration,
-                                         appConfig: AppConfig,
-                                         override implicit val messagesApi: MessagesApi,
-                                         val controllerComponents: MessagesControllerComponents
-                                        ) extends FrontendBaseController with I18nSupport {
+case class LanguageSwitchController @Inject()(configuration: Configuration,
+                                              languageUtils: LanguageUtils,
+                                              cc: ControllerComponents,
+                                              appConfig: AppConfig) extends LanguageController(configuration, languageUtils, cc) {
 
-  private def fallbackURL: String = routes.CookieSettingsController.cookieSettings(None).url
+  override def fallbackURL: String = routes.CookieSettingsController.cookieSettings(None).url
 
-  private def switchToLanguage(lang: Lang): Action[AnyContent] = Action { implicit request =>
-    val redirectURL = request.headers.get(REFERER).getOrElse(fallbackURL)
-    if (appConfig.welshLanguageSupportEnabled) {
-      Redirect(redirectURL).withLang(Lang.apply(lang.code))
-    } else {
-      Redirect(redirectURL)
-    }
+  override protected def languageMap: Map[String, Lang] = {
+    val enabledLanguages =
+      if (appConfig.welshLanguageSupportEnabled) appConfig.languages
+      else appConfig.languages.filterNot(_ == "cy")
+    enabledLanguages.map(code => code -> Lang(code)).toMap
   }
-
-  def switchToWelsh(): Action[AnyContent] = switchToLanguage(Lang("cy"))
-
-  def switchToEnglish(): Action[AnyContent] = switchToLanguage(Lang("en"))
 }

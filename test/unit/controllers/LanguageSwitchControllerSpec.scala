@@ -26,9 +26,9 @@ class LanguageSwitchControllerSpec extends MixedSpecBase {
 
   def makeController(implicit app: Application) = app.injector.instanceOf[LanguageSwitchController]
 
-  def switchToEnglish(implicit app: Application) = makeController.switchToEnglish()(fakeRequest)
+  def switchToEnglish(implicit app: Application) = makeController.switchToLanguage("en")(fakeRequest)
 
-  def switchToWelsh(implicit app: Application) = makeController.switchToWelsh()(fakeRequest)
+  def switchToWelsh(implicit app: Application) = makeController.switchToLanguage("cy")(fakeRequest)
 
   "LanguageSwitchController" should {
     "return a 303" in new App(buildAppWithWelshLanguageSupport()) {
@@ -45,7 +45,8 @@ class LanguageSwitchControllerSpec extends MixedSpecBase {
     "not set the PLAY_LANG cookie correctly for Welsh if language switching is disabled" in new App(
       buildAppWithWelshLanguageSupport(false)) {
       val result = switchToWelsh
-      cookies(result).get("PLAY_LANG").isDefined mustBe false
+      cookies(result).get("PLAY_LANG").isDefined mustBe true
+      cookies(result).get("PLAY_LANG").get.value mustBe "en"
     }
 
     "set the PLAY_LANG cookie correctly for English" in new App(buildAppWithWelshLanguageSupport()) {
@@ -54,14 +55,20 @@ class LanguageSwitchControllerSpec extends MixedSpecBase {
       cookies(result).get("PLAY_LANG").get.value mustBe "en"
     }
 
-    "redirect to the cookie settings page by default" in new App(buildAppWithWelshLanguageSupport()) {
+    "redirect to the REFERER header url if set" in new App(buildAppWithWelshLanguageSupport()) {
       implicit val fakeRequestWithReferrer = fakeRequest.withHeaders(
-        HeaderNames.REFERER -> "/another-page"
+        HeaderNames.REFERER -> "/some-cookie-page"
       )
       val controller = app.injector.instanceOf[LanguageSwitchController]
       val result =
-        controller.switchToEnglish()(fakeRequestWithReferrer)
-      redirectLocation(result) mustBe Some("/another-page")
+        controller.switchToLanguage("en")(fakeRequestWithReferrer)
+      redirectLocation(result) mustBe Some("/some-cookie-page")
+    }
+
+    "redirect to the default url if no REFERER header set" in new App(buildAppWithWelshLanguageSupport()) {
+      val controller = app.injector.instanceOf[LanguageSwitchController]
+      val result = controller.switchToLanguage("en")(fakeRequest)
+      redirectLocation(result) mustBe Some("/tracking-consent/cookie-settings")
     }
   }
 }
