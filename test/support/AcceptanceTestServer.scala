@@ -23,7 +23,7 @@ import play.api.inject.guice.GuiceApplicationBuilder
 import TestConfiguration._
 import play.api.test.TestServer
 
-trait TestServer extends TestSuiteMixin with GuiceFakeApplicationFactory { this: TestSuite =>
+trait AcceptanceTestServer extends TestSuiteMixin with GuiceFakeApplicationFactory { this: TestSuite =>
   lazy val port = servicePort("tracking-consent-frontend").toInt
 
   implicit lazy val app: Application = new GuiceApplicationBuilder()
