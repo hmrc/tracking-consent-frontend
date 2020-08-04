@@ -18,6 +18,9 @@
 @()(implicit request: Request[_], appConfig: AppConfig)
 <html>
     <head>
+        <!-- Suppress requests for favicon.ico to prevent console errors occurring -->
+        <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+
         @cookieHead()
     </head>
     <body>
