@@ -131,13 +131,13 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     click on submitButton
 
     Then("the dataLayer contains the 'hmrc-measurement-allowed' event")
-    measurementAllowedGtmEvent should not be (null)
+    measurementAllowedGtmEvent should not be null
 
     And("the dataLayer contains the 'hmrc-marketing-allowed' event")
-    marketingAllowedGtmEvent should not be (null)
+    marketingAllowedGtmEvent should not be null
 
     And("the dataLayer contains the 'hmrc-settings-allowed' event")
-    settingsAllowedGtmEvent should not be (null)
+    settingsAllowedGtmEvent should not be null
 
     Then("the userConsent cookie is set")
     userConsentCookie.getValue should include(
@@ -166,5 +166,16 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     Then("the userConsent cookie is set")
     userConsentCookie.getValue should include(
       "%22preferences%22:{%22measurement%22:true%2C%22marketing%22:true%2C%22settings%22:true}")
+  }
+
+  scenario("No Javascript errors occur") {
+    Given("the user clears their cookies")
+    deleteAllCookies
+
+    And("the user visits the cookie settings page")
+    go to CookieSettingsPage
+
+    Then("no Javascript console errors are thrown")
+    consoleErrors should equal (Seq.empty)
   }
 }

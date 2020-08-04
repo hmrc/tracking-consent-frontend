@@ -21,7 +21,7 @@ import org.scalatest.concurrent.Eventually
 import org.scalatest.{BeforeAndAfterAll, FeatureSpec, GivenWhenThen, Matchers}
 import org.scalatestplus.selenium.WebBrowser
 import uk.gov.hmrc.webdriver.SingletonDriver
-import support.TestServer
+import support.AcceptanceTestServer
 
 import scala.util.Try
 
@@ -31,7 +31,7 @@ trait BaseAcceptanceSpec
     with BeforeAndAfterAll
     with Matchers
     with WebBrowser
-    with TestServer
+    with AcceptanceTestServer
     with BrowserDriver
     with Eventually {
 

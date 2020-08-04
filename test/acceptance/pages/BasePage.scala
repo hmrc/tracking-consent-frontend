@@ -20,6 +20,7 @@ import acceptance.driver.BrowserDriver
 import org.openqa.selenium.{By, Cookie, WebElement}
 import org.scalatest.Matchers
 import org.scalatestplus.selenium.{Page, WebBrowser}
+import scala.collection.JavaConverters._
 
 trait BasePage extends Matchers with Page with WebBrowser with BrowserDriver {
   val url: String
@@ -35,4 +36,7 @@ trait BasePage extends Matchers with Page with WebBrowser with BrowserDriver {
   def settingsAllowedGtmEvent: AnyRef = findDataLayerEvent("hmrc-settings-allowed")
 
   def h1Element: WebElement = findBy(By.cssSelector("h1"))
+
+  def consoleErrors: Seq[String] =
+    driver.manage().logs().get("browser").asScala.map(_.getMessage).toSeq
 }

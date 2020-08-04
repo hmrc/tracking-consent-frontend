@@ -21,7 +21,7 @@ import org.jsoup.nodes.Document
 import org.scalatestplus.play.PlaySpec
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.i18n.{Messages, MessagesApi}
-import play.api.mvc.{Cookie, Cookies}
+import play.api.mvc.Cookie
 import play.api.test.FakeRequest
 import play.twirl.api.Html
 import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig

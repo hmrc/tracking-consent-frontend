@@ -1,6 +1,11 @@
 // Cut down version of Gov UK Frontend 3.6.0
 // Styles prefixed to ensure banner is insulated from any other styles
 // in the page
+
+// Do not inject fonts, use the fonts available on the service page
+$govuk-include-default-font-face: false;
+$govuk-font-family: "GDS Transport", "nta", Arial, sans-serif;
+
 @import "node_modules/govuk-frontend/govuk/settings/all";
 @import "node_modules/govuk-frontend/govuk/helpers/all";
 @import "node_modules/govuk-frontend/govuk/tools/all";

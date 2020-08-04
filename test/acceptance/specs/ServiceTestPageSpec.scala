@@ -107,5 +107,21 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
         tagName("h2").element.text shouldBe "Tell us whether you accept cookies"
       }
     }
+
+    scenario("No Javascript errors occur") {
+      Given("the user clears their cookies")
+      deleteAllCookies
+
+      When("the user visits the service test page with enable tracking consent parameter")
+      go to ServiceTestPageFeatureEnabled
+
+      And("the banner should be displayed with the title 'Tell us whether you accept cookies'")
+      eventually {
+        tagName("h2").element.text shouldBe "Tell us whether you accept cookies"
+      }
+
+      And("no Javascript console errors are thrown")
+      consoleErrors should equal (Seq.empty)
+    }
   }
 }

@@ -19,12 +19,12 @@ package acceptance
 import java.net.{ConnectException, HttpURLConnection, URL}
 
 import org.scalatest.{BeforeAndAfterAll, Matchers, TryValues, WordSpec}
-import support.TestServer
+import support.AcceptanceTestServer
 import support.TestConfiguration.env
 
 import scala.util.Try
 
-class TestServerSpec extends WordSpec with TestServer with Matchers with TryValues with BeforeAndAfterAll {
+class AcceptanceTestServerSpec extends WordSpec with AcceptanceTestServer with Matchers with TryValues with BeforeAndAfterAll {
   override lazy val port = 6001
 
   val url = new URL(s"http://localhost:$port/tracking-consent/cookie-settings?enableTrackingConsent=true")
