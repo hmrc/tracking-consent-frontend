@@ -10,6 +10,9 @@
     "build": "webpack --mode production",
     "lint": "stylelint \"**/*.scss\" && standardx **/*.ts **/*.spec.ts",
     "fixlint": "stylelint --fix \"**/*.scss\" && standardx --fix **/*.ts **/*.spec.ts",
+    "backstop": "node test/backstop/backstop.js test",
+    "backstop:server": "node test/backstop/server.js",
+    "backstop:approve": "node test/backstop/backstop.js approve",
     "test": "jest --collectCoverage && npm run lint",
     "analyze": "webpack --mode production --profile --json > stats.json && webpack-bundle-analyzer stats.json"
   },
@@ -35,7 +38,7 @@
     ]
   },
   "dependencies": {
-    "govuk-frontend": "3.6.0",
+    "govuk-frontend": "3.8.1",
     "js-cookie": "2.2.1",
     "@babel/core": "7.10.1",
     "@babel/plugin-transform-runtime": "7.10.1",
@@ -58,6 +61,8 @@
     "@types/jest": "25.1.4",
     "@typescript-eslint/eslint-plugin": "2.23.0",
     "@typescript-eslint/parser": "2.23.0",
+    "backstopjs": "5.0.4",
+    "express": "4.17.1",
     "html-loader-jest": "0.2.1",
     "husky": "4.2.3",
     "identity-obj-proxy": "3.0.0",

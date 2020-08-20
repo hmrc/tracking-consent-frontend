@@ -23,6 +23,7 @@ object JavaScriptBuild {
   // Extra tasks, to make configuring Jenkins easier.
   val npmInstall = TaskKey[Int]("npm-install")
   val npmTest = TaskKey[Int]("npm-test")
+  val npmBackstop = TaskKey[Int]("npm-backstop")
   val npmBuild = TaskKey[Int]("npm-build")
 
   val javaScriptSettings: Seq[Setting[_]] = Seq(
@@ -31,17 +32,18 @@ object JavaScriptBuild {
     // this enables 'sbt "npm <args>"' commands
     commands ++= javaScriptDirectory { base => Seq(Npm.npmCommand(base)) }.value,
 
-    // sbt task wiring:
     npmInstall := Npm.npmProcess("npm install failed")(javaScriptDirectory.value, "install"),
-    npmTest := Npm.npmProcess("npm test failed")(javaScriptDirectory.value, "test"),
+
     npmBuild := Npm.npmProcess("npm build failed")(javaScriptDirectory.value, "run", "build"),
-
-    // sbt task wiring - 'sbt distTgz' runs npmBuild task first
     npmBuild := (npmBuild dependsOn npmInstall).value,
-    dist := (dist dependsOn npmBuild).value,
 
-    // sbt task wiring - 'sbt test' will run 'npm test' first
+    npmTest := Npm.npmProcess("npm test failed")(javaScriptDirectory.value, "test"),
+    npmTest := (npmTest dependsOn npmBuild).value,
+
+    npmBackstop := Npm.npmProcess("npm backstop failed")(javaScriptDirectory.value, "run", "backstop"),
+    npmBackstop := (npmBackstop dependsOn npmBuild).value,
+
     (test in Test) := (test in Test).dependsOn(npmTest).value,
-    npmTest := (npmTest dependsOn npmInstall).value
+    dist := (dist dependsOn npmBackstop).value
   )
 }

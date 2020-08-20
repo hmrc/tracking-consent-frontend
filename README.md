@@ -97,6 +97,36 @@ following options configured:
 
 More information on HMRC's ZAP scanning automation library can be found at https://github.com/hmrc/zap-automation
 
+## Visual regression tests
+
+We are using [backstopJS](https://github.com/garris/BackstopJS) to perform visual regression testing. This renders 
+the cookie banner in a headless Chrome browser and compares against known references. 
+
+We are validating that the cookie banner renders correctly when injected into a service based on:
+* govuk-frontend v3.8.1
+* assets-frontend v3.12.0 and hmrc/govuk-template v5.56.0
+* Classic services
+
+The reference images are stored in `test/backstop/backstop_data/bitmaps_reference` in the Javascript directory.
+
+To run the tests locally, you will need [Docker Desktop](https://www.docker.com/products/docker-desktop). 
+This is because there are subtle differences in rendering between platforms and we want the results to be 
+consistent with CI. To run the tests,
+
+```shell script
+npm run backstop
+```
+
+On completion, Backstop will emit the results as an HTML report in backstop_data/html_report  If a failure is the
+result of a known change to the component, the reference images can be updated by running,
+
+```shell script
+npm run backstop:approve
+```
+
+If any changes are needed to the backstop configuration, for example to test on different device types or add to the
+ list of scenarios, these can be made by editing the file `test/backstop/backstopConfig.js`
+
 ### NPM versions and security
 
 Modules pulled from npm are pinned in the file packages.json. These are pinned to prevent 
