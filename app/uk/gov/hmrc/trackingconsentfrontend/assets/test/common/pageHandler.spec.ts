@@ -3,12 +3,14 @@ import * as enableGtm from '../../src/interfaces/enableGtm'
 import pageHandler from '../../src/common/pageHandler'
 import userPreferencesFactory from '../../src/domain/userPreferencesFactory'
 import { JSDOM } from 'jsdom'
+import * as isFeatureEnabled from '../../src/interfaces/isFeatureEnabled'
 import clearAllMocks = jest.clearAllMocks;
 
 describe('pageHandler', () => {
   const pageRenderer = jest.fn()
   let thisDocument
   let testScope
+  let featureEnabledSpy
 
   const pageLoad = () => {
     const event = thisDocument.createEvent('HTMLEvents')
@@ -29,6 +31,8 @@ describe('pageHandler', () => {
     spyOn(enableGtm, 'default')
     spyOn(testScope.userPreferences, 'sendPreferences').and.returnValue(undefined)
     clearAllMocks()
+    featureEnabledSpy = spyOn(isFeatureEnabled, 'default').and.returnValue(true)
+    featureEnabledSpy.and.returnValue(true)
   })
 
   it('should enable GTM', () => {
@@ -82,5 +86,16 @@ describe('pageHandler', () => {
     pageLoad()
 
     expect(pageRenderer).toHaveBeenCalledWith(testScope.userPreferences)
+  })
+
+  it('should not call the page renderer if the feature toggle is toggled off', () => {
+    featureEnabledSpy.and.returnValue(false)
+    expect(pageRenderer).not.toHaveBeenCalled()
+
+    // @ts-ignore
+    pageHandler(thisDocument, testScope.userPreferences, pageRenderer, 'GTM-CONTAINER-ID')
+    pageLoad()
+
+    expect(pageRenderer).not.toHaveBeenCalled()
   })
 })

@@ -42,6 +42,7 @@ lazy val ZapTest = config("zap") extend (Test)
 lazy val zapTestSettings =
   inConfig(ZapTest)(Defaults.testTasks) ++
     Seq(
+      fork in ZapTest := false,
       testOptions in ZapTest := Seq(Tests.Filter(_ startsWith "zap"))
     )
 

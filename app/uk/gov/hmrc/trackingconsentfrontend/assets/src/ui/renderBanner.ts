@@ -11,11 +11,8 @@ import removeElement from '../common/removeElement';
 import callIfNotNull from '../common/callIfNotNull';
 import {UserPreferences} from "../../types/UserPreferences";
 import getMessages from "../interfaces/getMessages";
-import isFeatureEnabled from "../interfaces/isFeatureEnabled";
-import {enableTrackingConsent} from "../constants/featureNames"
 
 const renderBanner = (userPreference: UserPreferences) => {
-
     const handleAcceptAllClick = (event: Event) => {
         event.preventDefault()
 
@@ -55,7 +52,7 @@ const renderBanner = (userPreference: UserPreferences) => {
         insertAfterSkipLink(banner)
     }
 
-    if (!userPreference.getUserHasSavedCookiePreferences() && isFeatureEnabled(enableTrackingConsent)) {
+    if (!userPreference.getUserHasSavedCookiePreferences()) {
         insertBanner()
     }
 }

@@ -153,13 +153,6 @@ describe('renderBanner', () => {
     expect(queryByText(document.body, /Tell us whether you accept cookies/)).toBeTruthy()
   })
 
-  it('should not render a banner if the feature enableTrackingConsent is not enabled', () => {
-    featureEnabledSpy.and.returnValue(false)
-    renderBanner(userPreference)
-
-    expect(queryByText(document.body, /Tell us whether you accept cookies/)).not.toBeTruthy()
-  })
-
   describe('Meta tests', () => {
     it('should reset state between tests', () => {
       expect(queryByText(document.body, tellUsYouAcceptAllMatcher)).toBeFalsy()
