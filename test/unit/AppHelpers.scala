@@ -16,36 +16,43 @@
 
 package unit
 
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
-import org.scalatestplus.play.MixedPlaySpec
 import play.api.Application
 import play.api.i18n.MessagesApi
 import play.api.inject.guice.GuiceApplicationBuilder
-import play.api.mvc.Request
+import play.api.mvc.{Cookie, Request}
 import play.api.test.FakeRequest
-import play.twirl.api.Html
 import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
 
-trait MixedSpecBase extends MixedPlaySpec with JsoupHelpers {
+trait AppHelpers {
   implicit lazy val fakeRequest = FakeRequest("GET", "/foo")
+    .withCookies(
+      Cookie("enableTrackingConsent", "true")
+    )
 
-  def getMessages(implicit app: Application, request: Request[_]) = {
-    val messagesApi: MessagesApi = app.injector.instanceOf[MessagesApi]
-    messagesApi.preferred(request)
-  }
+  def buildApp[A](elems: (String, _)*) =
+    new GuiceApplicationBuilder()
+      .configure(
+        Map(elems: _*) ++ Map(
+          "metrics.enabled"  -> false,
+          "auditing.enabled" -> false
+        ))
+      .disable[com.kenshoo.play.metrics.PlayModule]
+      .build()
+
+  def buildAppWithWelshLanguageSupport[A](welshLanguageSupport: Boolean = true) =
+    buildApp(
+      "features.welsh-language-support" -> welshLanguageSupport.toString)
 
   def getAppConfig(implicit app: Application) = {
     app.injector.instanceOf[AppConfig]
   }
 
-  def asDocument(html: Html): Document = Jsoup.parse(html.toString())
+  def getMessagesApi(implicit app: Application) = {
+    app.injector.instanceOf[MessagesApi]
+  }
 
-  def buildApp[A](elems: (String, _)*) = new GuiceApplicationBuilder()
-       .configure(Map(elems:_*))
-       .build()
-
-  def buildAppWithWelshLanguageSupport[A](welshLanguageSupport: Boolean = true) =
-    buildApp(
-      "features.welsh-language-support" -> welshLanguageSupport.toString)
+  def getMessages(implicit app: Application, request: Request[_]) = {
+    val messagesApi: MessagesApi = getMessagesApi(app)
+    messagesApi.preferred(request)
+  }
 }

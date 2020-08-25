@@ -16,59 +16,98 @@
 
 package unit.controllers
 
+import com.google.inject.ProvisionException
+import org.scalatestplus.play.PlaySpec
+import org.scalatestplus.play.guice.GuiceOneAppPerTest
 import play.api.Application
 import play.api.http.{HeaderNames, Status}
+import play.api.mvc.{AnyContentAsEmpty, Result}
+import play.api.test.FakeRequest
 import play.api.test.Helpers._
 import uk.gov.hmrc.trackingconsentfrontend.controllers.LanguageSwitchController
-import unit.MixedSpecBase
+import unit.AppHelpers
 
-class LanguageSwitchControllerSpec extends MixedSpecBase {
+import scala.concurrent.Future
 
-  def makeController(implicit app: Application) = app.injector.instanceOf[LanguageSwitchController]
+class LanguageSwitchControllerSpec extends PlaySpec with GuiceOneAppPerTest with AppHelpers {
+  def makeController(implicit app: Application): LanguageSwitchController = app.injector.instanceOf[LanguageSwitchController]
 
-  def switchToEnglish(implicit app: Application) = makeController.switchToLanguage("en")(fakeRequest)
+  def switchToEnglish(implicit app: Application): Future[Result] = makeController.switchToLanguage("en")(fakeRequest)
 
-  def switchToWelsh(implicit app: Application) = makeController.switchToLanguage("cy")(fakeRequest)
+  def switchToWelsh(implicit app: Application): Future[Result] = makeController.switchToLanguage("cy")(fakeRequest)
 
-  "LanguageSwitchController" should {
-    "return a 303" in new App(buildAppWithWelshLanguageSupport()) {
-      val result = switchToEnglish
+  def buildAppWithPlatformFrontendHost[A]: Application =
+    buildApp(
+      "features.welsh-language-support" -> "true",
+      "platform.frontend.host"          -> "https://www.staging.tax.service.gov.uk"
+    )
+
+  "LanguageSwitchController" must {
+    "return a 303" in {
+      val result = switchToEnglish(buildAppWithWelshLanguageSupport())
       status(result) mustBe Status.SEE_OTHER
     }
 
-    "set the PLAY_LANG cookie correctly for Welsh" in new App(buildAppWithWelshLanguageSupport()) {
-      val result = switchToWelsh
+    "set the PLAY_LANG cookie correctly for Welsh" in {
+      val result = switchToWelsh(buildAppWithWelshLanguageSupport())
       cookies(result).get("PLAY_LANG").isDefined mustBe true
       cookies(result).get("PLAY_LANG").get.value mustBe "cy"
     }
 
-    "not set the PLAY_LANG cookie correctly for Welsh if language switching is disabled" in new App(
-      buildAppWithWelshLanguageSupport(false)) {
-      val result = switchToWelsh
+    "not set the PLAY_LANG cookie correctly for Welsh if language switching is disabled" in {
+      val result = switchToWelsh(buildAppWithWelshLanguageSupport(false))
+      cookies(result).get("PLAY_LANG").isDefined mustBe false
+    }
+
+    "set the PLAY_LANG cookie correctly for English" in {
+      val result = switchToEnglish(buildAppWithWelshLanguageSupport())
       cookies(result).get("PLAY_LANG").isDefined mustBe true
       cookies(result).get("PLAY_LANG").get.value mustBe "en"
     }
 
-    "set the PLAY_LANG cookie correctly for English" in new App(buildAppWithWelshLanguageSupport()) {
-      val result = switchToEnglish
-      cookies(result).get("PLAY_LANG").isDefined mustBe true
-      cookies(result).get("PLAY_LANG").get.value mustBe "en"
-    }
-
-    "redirect to the REFERER header url if set" in new App(buildAppWithWelshLanguageSupport()) {
-      implicit val fakeRequestWithReferrer = fakeRequest.withHeaders(
-        HeaderNames.REFERER -> "/some-cookie-page"
+    "redirect to the REFERER header url if set to a localhost URL" in {
+      implicit val fakeRequestWithReferrer: FakeRequest[AnyContentAsEmpty.type] = fakeRequest.withHeaders(
+        HeaderNames.REFERER -> "http://localhost:12345/my-service-page"
       )
-      val controller = app.injector.instanceOf[LanguageSwitchController]
-      val result =
-        controller.switchToLanguage("en")(fakeRequestWithReferrer)
-      redirectLocation(result) mustBe Some("/some-cookie-page")
+      val controller = buildAppWithWelshLanguageSupport().injector.instanceOf[LanguageSwitchController]
+      val result     = controller.switchToLanguage("en")(fakeRequestWithReferrer)
+      redirectLocation(result) mustBe Some("http://localhost:12345/my-service-page")
     }
 
-    "redirect to the default url if no REFERER header set" in new App(buildAppWithWelshLanguageSupport()) {
-      val controller = app.injector.instanceOf[LanguageSwitchController]
+    "redirect to the REFERER header url if set to a platform URL" in {
+      implicit val fakeRequestWithReferrer: FakeRequest[AnyContentAsEmpty.type] = fakeRequest.withHeaders(
+        HeaderNames.REFERER -> "https://www.staging.tax.service.gov.uk/my-service-page"
+      )
+      val controller = buildAppWithPlatformFrontendHost.injector.instanceOf[LanguageSwitchController]
+      val result     = controller.switchToLanguage("en")(fakeRequestWithReferrer)
+      redirectLocation(result) mustBe Some("https://www.staging.tax.service.gov.uk/my-service-page")
+    }
+
+    "redirect to the default url if an unrecognised domain appears in the REFERER header" in {
+      implicit val fakeRequestWithReferrer: FakeRequest[AnyContentAsEmpty.type] = fakeRequest.withHeaders(
+        HeaderNames.REFERER -> "https://www.example.com/naughty"
+      )
+      val controller = buildAppWithPlatformFrontendHost.injector.instanceOf[LanguageSwitchController]
+      val result     = controller.switchToLanguage("en")(fakeRequestWithReferrer)
+      redirectLocation(result) mustBe Some("/tracking-consent/cookie-settings")
+    }
+
+    "redirect to the default url if no REFERER header set" in {
+      val controller = buildAppWithWelshLanguageSupport().injector.instanceOf[LanguageSwitchController]
       val result = controller.switchToLanguage("en")(fakeRequest)
       redirectLocation(result) mustBe Some("/tracking-consent/cookie-settings")
+    }
+
+    "throw an exception on instantiation if neither language-controller.host or platform.frontend.host config keys exist" in {
+      val exception = intercept[ProvisionException] {
+        buildApp(
+          "features.welsh-language-support" -> "true",
+          "platform.frontend.host"          -> null,
+          "language-controller.host"        -> null
+        )
+      }
+
+      exception.getMessage must include("Configuration key 'language-controller.host' is set to null")
     }
   }
 }
