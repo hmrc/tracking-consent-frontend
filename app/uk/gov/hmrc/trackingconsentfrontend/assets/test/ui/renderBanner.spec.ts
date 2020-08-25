@@ -153,6 +153,26 @@ describe('renderBanner', () => {
     expect(queryByText(document.body, /Tell us whether you accept cookies/)).toBeTruthy()
   })
 
+  it('should remove the old cookie banner when user preferences have not been set', () => {
+    userPreference.getUserHasSavedCookiePreferences.mockReturnValue(false)
+    document.getElementsByTagName('html')[0].innerHTML = fixtureFrontendToolkit
+    expect(queryByText(document.body, /GOV.UK uses cookies to make the site simpler/)).toBeTruthy()
+
+    renderBanner(userPreference)
+
+    expect(queryByText(document.body, /GOV.UK uses cookies to make the site simpler/)).toBeFalsy()
+  })
+
+  it('should remove the old cookie banner when user preferences have been set', () => {
+    userPreference.getUserHasSavedCookiePreferences.mockReturnValue(true)
+    document.getElementsByTagName('html')[0].innerHTML = fixtureFrontendToolkit
+    expect(queryByText(document.body, /GOV.UK uses cookies to make the site simpler/)).toBeTruthy()
+
+    renderBanner(userPreference)
+
+    expect(queryByText(document.body, /GOV.UK uses cookies to make the site simpler/)).toBeFalsy()
+  })
+
   describe('Meta tests', () => {
     it('should reset state between tests', () => {
       expect(queryByText(document.body, tellUsYouAcceptAllMatcher)).toBeFalsy()

@@ -16,3 +16,5 @@ export const GOV_UK_BODY_CLASS = 'govuk-body'
 export const GOV_UK_LINK_CLASS = 'govuk-link'
 export const GOV_UK_SKIP_LINK_CLASS = 'govuk-skip-link'
 export const SKIP_LINK_CONTAINER_ID = 'skiplink-container'
+
+export const LEGACY_COOKIE_BANNER_ID = 'global-cookie-message'

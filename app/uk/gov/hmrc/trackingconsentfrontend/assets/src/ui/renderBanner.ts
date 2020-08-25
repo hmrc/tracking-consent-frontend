@@ -5,7 +5,7 @@ import {
     COOKIE_BANNER_QUESTION_CLASS,
     COOKIE_BANNER_CLASS,
     ACCEPT_ALL_CLASS,
-    GOV_UK_SKIP_LINK_CLASS, SKIP_LINK_CONTAINER_ID
+    GOV_UK_SKIP_LINK_CLASS, SKIP_LINK_CONTAINER_ID, LEGACY_COOKIE_BANNER_ID
 } from '../constants/cssClasses';
 import removeElement from '../common/removeElement';
 import callIfNotNull from '../common/callIfNotNull';
@@ -52,6 +52,13 @@ const renderBanner = (userPreference: UserPreferences) => {
         insertAfterSkipLink(banner)
     }
 
+    const removeLegacyCookieBanner = () => {
+        const legacyBanner = document.querySelector(`#${LEGACY_COOKIE_BANNER_ID}`)
+
+        callIfNotNull(legacyBanner, removeElement)
+    }
+
+    removeLegacyCookieBanner()
     if (!userPreference.getUserHasSavedCookiePreferences()) {
         insertBanner()
     }
