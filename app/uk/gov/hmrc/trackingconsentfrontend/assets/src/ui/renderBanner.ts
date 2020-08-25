@@ -58,8 +58,8 @@ const renderBanner = (userPreference: UserPreferences) => {
         callIfNotNull(legacyBanner, removeElement)
     }
 
+    removeLegacyCookieBanner()
     if (!userPreference.getUserHasSavedCookiePreferences()) {
-        removeLegacyCookieBanner()
         insertBanner()
     }
 }
