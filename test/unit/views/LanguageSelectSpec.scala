@@ -16,15 +16,16 @@
 
 package unit.views
 
+import org.scalatestplus.play.MixedPlaySpec
 import play.api.Application
 import play.api.mvc.{Cookie, Request}
 import play.api.test.FakeRequest
 import play.twirl.api.Html
 import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
 import uk.gov.hmrc.trackingconsentfrontend.views.html.components.LanguageSelect
-import unit.MixedSpecBase
+import unit.{AppHelpers, JsoupHelpers}
 
-class LanguageSelectSpec extends MixedSpecBase {
+class LanguageSelectSpec extends MixedPlaySpec with JsoupHelpers with AppHelpers {
 
   def languageSelectContent(implicit app: Application, request: Request[_]) = {
     implicit val appConfig: AppConfig = getAppConfig

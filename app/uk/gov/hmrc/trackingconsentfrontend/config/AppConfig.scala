@@ -35,5 +35,12 @@ class AppConfig @Inject()(config: Configuration, servicesConfig: ServicesConfig)
     } yield {
       s"$baseUrl$projectId.js"
     }
-  val languages: Seq[String] = config.getOptional[Seq[String]]("play.i18n.langs").getOrElse(Seq("en"))
+
+  val en: String            = "en"
+  val cy: String            = "cy"
+
+  private val platformFrontendHost = config.getOptional[String]("platform.frontend.host")
+  val languageControllerHostUrl: String = platformFrontendHost.getOrElse(
+    config.get[String]("language-controller.host")
+  )
 }

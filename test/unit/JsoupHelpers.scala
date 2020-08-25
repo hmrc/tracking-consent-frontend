@@ -22,7 +22,6 @@ import org.jsoup.select.Elements
 import play.twirl.api.Html
 
 trait JsoupHelpers {
-
   implicit class RichHtml(html: Html) {
     def select(cssQuery: String): Elements =
       parseNoPrettyPrinting(html).select(cssQuery)
@@ -34,4 +33,6 @@ trait JsoupHelpers {
     doc.outputSettings().prettyPrint(false)
     doc
   }
+
+  def asDocument(html: Html): Document = Jsoup.parse(html.toString())
 }
