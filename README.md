@@ -91,6 +91,9 @@ following options configured:
 * under HUD, uncheck 'Enable when using the ZAP Desktop' (stops ZAP converting requests to HTTPS)
 * under API, check 'Disable the API key'
 
+You will also need to install additional active and passive scanner rules from https://github.com/zaproxy/zap-extensions
+by following the instructions in the README.
+
 ```
 ./run_zap_tests.sh
 ```
