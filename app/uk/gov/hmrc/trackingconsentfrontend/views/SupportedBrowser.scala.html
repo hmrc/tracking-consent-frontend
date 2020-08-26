@@ -26,7 +26,9 @@
 
 <div class="cookie-settings__supported-browser">
     @paragraph(content = Text(messages("cookieSettings.intro.paragraph3")))
-    <form data-module="cookie-settings" data-on-value="@messages("cookieSettings.onValue")" data-off-value="@messages("cookieSettings.offValue")">
+    @* We include a /dummy action here to avoid warnings about HTTP Parameter Overrides in
+        ZAP security tests *@
+    <form action="/dummy" data-module="cookie-settings" data-on-value="@messages("cookieSettings.onValue")" data-off-value="@messages("cookieSettings.offValue")">
         @measurementRadio(messages, paragraph, h2)
         @marketingRadio(messages, paragraph, h2)
         @settingsRadio(messages, paragraph, h2)
