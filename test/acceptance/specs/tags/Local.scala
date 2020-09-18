@@ -1,4 +1,4 @@
-@*
+/*
  * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,11 +12,10 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *@
+ */
 
-@this()
+package acceptance.specs.tags
 
-@()(implicit appConfig: AppConfig, request: RequestHeader)
-<!--[if !IE]>-->
-<script @{CSPNonce.attr} type="text/javascript" data-id="tracking-consent-frontend" data-port="@appConfig.trackingConsentPort" src="@appConfig.transitionalTrackingConsentUrl"></script>
-<!--<![endif]-->
+import org.scalatest.Tag
+
+object Local extends Tag("Local")

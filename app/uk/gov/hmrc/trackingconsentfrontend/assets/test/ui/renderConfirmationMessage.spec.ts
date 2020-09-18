@@ -64,4 +64,16 @@ describe('renderConfirmationMessage', () => {
 
     expect(document.activeElement).toEqual(confirmationMessage)
   })
+
+  it('should render a cookie settings link with a local url if running locally', () => {
+    // @ts-ignore
+    window.location = {
+      host: 'localhost:9000'
+    }
+    renderConfirmationMessage()
+
+    const button = queryByText(document.body, /change your cookie settings/)
+    // @ts-ignore
+    expect(button.getAttribute('href')).toEqual('http://localhost:12345/tracking-consent/cookie-settings')
+  })
 })

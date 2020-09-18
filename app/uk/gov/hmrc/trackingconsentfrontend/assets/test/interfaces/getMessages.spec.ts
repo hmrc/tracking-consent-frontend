@@ -1,14 +1,14 @@
 /* global spyOn */
 import getMessages from '../../src/interfaces/getMessages'
 import * as getLanguage from '../../src/interfaces/getLanguage'
-import * as getWelshLanguageEnabled from '../../src/interfaces/getWelshLanguageEnabled'
+import * as config from '../../src/config/config'
 
 describe('getMessages', () => {
   let getLanguageSpy
   let getWelshLanguageEnabledSpy
   beforeEach(() => {
     getLanguageSpy = spyOn(getLanguage, 'default').and.returnValue('en')
-    getWelshLanguageEnabledSpy = spyOn(getWelshLanguageEnabled, 'default').and.returnValue(true)
+    getWelshLanguageEnabledSpy = spyOn(config, 'getWelshLanguageEnabled').and.returnValue(true)
   })
 
   it('should return English messages by default', () => {

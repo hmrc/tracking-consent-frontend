@@ -18,9 +18,10 @@ package uk.gov.hmrc.trackingconsentfrontend.config
 
 import javax.inject.{Inject, Singleton}
 import play.api.http.DefaultHttpFilters
+import play.filters.cors.CORSFilter
 import play.filters.csp.CSPFilter
 import uk.gov.hmrc.play.bootstrap.frontend.filters.FrontendFilters
 
 @Singleton
-class FrontendFiltersWithCSP @Inject()(defaultFilters: FrontendFilters, cspFilter: CSPFilter)
-  extends DefaultHttpFilters(cspFilter +: defaultFilters.filters : _*)
+class FrontendFiltersWithCSP @Inject()(defaultFilters: FrontendFilters, cspFilter: CSPFilter, corsFilter: CORSFilter)
+  extends DefaultHttpFilters(cspFilter +: defaultFilters.filters :+ corsFilter : _*)

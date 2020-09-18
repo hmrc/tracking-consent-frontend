@@ -4,6 +4,7 @@ import pageHandler from '../../src/common/pageHandler'
 import userPreferencesFactory from '../../src/domain/userPreferencesFactory'
 import { JSDOM } from 'jsdom'
 import * as isFeatureEnabled from '../../src/interfaces/isFeatureEnabled'
+import { SERVICE_PAGE_LOAD_EVENT } from '../../src/constants/events'
 import clearAllMocks = jest.clearAllMocks;
 
 describe('pageHandler', () => {
@@ -62,6 +63,7 @@ describe('pageHandler', () => {
     pageHandler(thisDocument, testScope.userPreferences, pageRenderer, 'GTM-CONTAINER-ID')
 
     expect(testScope.userPreferences.sendPreferences).toHaveBeenCalledTimes(1)
+    expect(testScope.userPreferences.sendPreferences).toHaveBeenCalledWith(SERVICE_PAGE_LOAD_EVENT)
   })
 
   it('should call not call the page renderer if the DOM ContentReady event has not been fired', () => {

@@ -1,5 +1,4 @@
 import JavaScriptBuild._
-import uk.gov.hmrc.SbtArtifactory
 import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin.publishingSettings
 import play.sbt.PlayImport.PlayKeys.playDefaultPort
 import sbt.Keys.testOptions
@@ -47,14 +46,13 @@ lazy val zapTestSettings =
     )
 
 lazy val microservice = Project(appName, file("."))
-  .enablePlugins(play.sbt.PlayScala, SbtAutoBuildPlugin, SbtGitVersioning, SbtDistributablesPlugin, SbtArtifactory)
+  .enablePlugins(play.sbt.PlayScala, SbtAutoBuildPlugin, SbtGitVersioning, SbtDistributablesPlugin)
   .disablePlugins(JUnitXmlReportPlugin) // Required to prevent https://github.com/scalatest/scalatest/issues/1427
   .configs(AcceptanceTest, IntegrationTest, ZapTest)
   .settings(
     majorVersion := 0,
     scalaVersion := "2.12.11",
     playDefaultPort := 12345,
-    resolvers += "hmrc-releases" at "https://artefacts.tax.service.gov.uk/artifactory/hmrc-releases/",
     resolvers += Resolver.jcenterRepo,
     libraryDependencies ++= AppDependencies.compile ++ AppDependencies.test,
     TwirlKeys.templateImports ++= Seq(
@@ -66,7 +64,7 @@ lazy val microservice = Project(appName, file("."))
       "uk.gov.hmrc.hmrcfrontend.views.html.components._"
     ),
     PlayKeys.playRunHooks += Webpack(javaScriptDirectory.value),
-    PlayKeys.devSettings ++= Seq("metrics.enabled"  -> "false", "auditing.enabled" -> "false"),
+    PlayKeys.devSettings ++= Seq("metrics.enabled"  -> "false"),
     pipelineStages in Assets := Seq(gzip),
     acceptanceTestSettings,
     unitTestSettings,
