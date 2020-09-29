@@ -14,7 +14,6 @@
  * limitations under the License.
  *@
 
-@import uk.gov.hmrc.trackingconsentfrontend.views.components.FooterLinks
 @import uk.gov.hmrc.trackingconsentfrontend.views.html.components.LanguageSelect
 
 @this(
@@ -22,7 +21,8 @@
         head: Head,
         hmrcBanner: HmrcBanner,
         hmrcLanguageSelect: HmrcLanguageSelect,
-        languageSelect: LanguageSelect
+        languageSelect: LanguageSelect,
+        hmrcFooter: HmrcFooter
 )
 
 @(pageTitle: Option[String] = None,
@@ -40,5 +40,5 @@
     headBlock = Some(head(headBlock)),
     scriptsBlock = scriptsBlock,
     beforeContentBlock = Some(beforeContentBlock),
-    footerItems = FooterLinks()
+    footerBlock = Some(hmrcFooter())
 )(contentBlock)

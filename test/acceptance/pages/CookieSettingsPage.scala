@@ -22,6 +22,8 @@ import support.TestConfiguration
 object CookieSettingsPage extends BasePage {
   val url: String = TestConfiguration.url("tracking-consent-frontend") + "/cookie-settings?enableTrackingConsent=true"
 
+  def accessibilityLink: WebElement = findLinkByPartialText("Accessibility statement")
+
   val useMeasurementCookies                  = "Use cookies that measure my website use"
   def useMeasurementCookiesLabel: WebElement = findLabelByPartialText(useMeasurementCookies)
   def useMeasurementCookiesInput: WebElement = findInputByLabelPartialText(useMeasurementCookies)

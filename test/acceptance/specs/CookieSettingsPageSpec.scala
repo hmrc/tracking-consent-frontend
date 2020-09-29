@@ -176,6 +176,19 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     go to CookieSettingsPage
 
     Then("no Javascript console errors are thrown")
-    consoleErrors should equal (Seq.empty)
+    consoleErrors should equal(Seq.empty)
+  }
+
+  scenario("The user can navigate to the accessibility statement page") {
+    Given("the user visits the cookie settings page")
+    go to CookieSettingsPage
+
+    When("the user chooses 'Do not use cookies that measure my website use'")
+    click on accessibilityLink
+
+    Then("the accessibility statement is shown")
+    eventually {
+      tagName("h1").element.text shouldBe "Accessibility statement for Send your loan charge details service"
+    }
   }
 }

@@ -31,6 +31,9 @@ trait BrowserDriver extends LazyLogging {
   def findLabelByPartialText(partialText: String): WebElement =
     findBy(By.xpath(s"""//label[contains(text(),'$partialText')]"""))
 
+  def findLinkByPartialText(partialText: String): WebElement =
+    findBy(By.xpath(s"""//a[contains(text(),'$partialText')]"""))
+
   def findInputByLabelPartialText(partialText: String): WebElement =
     findBy(By.xpath(s"""//input[@id=(//label[contains(text(), '$partialText')]/@for)]"""))
 
