@@ -37,7 +37,7 @@ class TransitionalTestPageSpec extends SpecBase {
     "inject the correct script" in {
       val scripts = content.select("script")
 
-      scripts.get(0).attr("src") must be("http://localhost:12345/tracking-consent/tracking-transitional.js")
+      scripts.get(0).attr("src") must be("http://localhost:12345/tracking-consent/tracking/transitional.js")
     }
   }
 }
