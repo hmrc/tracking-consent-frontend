@@ -3,19 +3,19 @@ import sbt.Keys._
 import sbt._
 
 /**
- * Enables running NPM scripts, if a package.json file exists in the `javaScriptDirectory`.
- * This directory is explicitly configured below.
- *
- * Example usage:
- *     sbt "npm run build"
- *     sbt "npm test"
- *
- * This assumes that NPM is available, up-to-date, configured appropriately, etc. It makes not guarantees apart
- * from being able to invoke NPM with arguments.
- *
- * Additionally to this, there is some wiring to make 'npm test' run whenever 'sbt test' is run, and to
- * run 'npm run build' when doing the dist command (which is part of the distTgz command run in Jenkins)
- */
+  * Enables running NPM scripts, if a package.json file exists in the `javaScriptDirectory`.
+  * This directory is explicitly configured below.
+  *
+  * Example usage:
+  *     sbt "npm run build"
+  *     sbt "npm test"
+  *
+  * This assumes that NPM is available, up-to-date, configured appropriately, etc. It makes not guarantees apart
+  * from being able to invoke NPM with arguments.
+  *
+  * Additionally to this, there is some wiring to make 'npm test' run whenever 'sbt test' is run, and to
+  * run 'npm run build' when doing the dist command (which is part of the distTgz command run in Jenkins)
+  */
 object JavaScriptBuild {
 
   val javaScriptDirectory = SettingKey[File]("javascriptDirectory")
@@ -43,7 +43,6 @@ object JavaScriptBuild {
     npmBackstop := Npm.npmProcess("npm backstop failed")(javaScriptDirectory.value, "run", "backstop"),
     npmBackstop := (npmBackstop dependsOn npmBuild).value,
 
-    (test in Test) := (test in Test).dependsOn(npmTest).value,
-    dist := (dist dependsOn npmBackstop).value
+    (test in Test) := (test in Test).dependsOn(npmTest).value
   )
 }
