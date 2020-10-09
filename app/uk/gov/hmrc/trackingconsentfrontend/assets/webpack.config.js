@@ -2,9 +2,16 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    tracking: './src/entrypoints/tracking.ts',
-    'tracking-transitional': './src/entrypoints/tracking-transitional.ts',
-    settingsPage: './src/entrypoints/settingsPage.ts'
+    transitional: './src/entrypoints/transitional.ts',
+    a: './src/entrypoints/a.ts',
+    b: './src/entrypoints/b.ts',
+    c: './src/entrypoints/c.ts',
+    d: './src/entrypoints/d.ts',
+    e: './src/entrypoints/e.ts',
+    f: './src/entrypoints/f.ts',
+    sdes: './src/entrypoints/sdes.ts',
+    settingsPage: './src/entrypoints/settingsPage.ts',
+    optimizely: './src/entrypoints/optimizely.js'
   },
   module: {
     rules: [

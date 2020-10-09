@@ -2,8 +2,16 @@
 
 ->         /govuk-frontend           govuk.Routes
 ->         /hmrc-frontend            hmrcfrontend.Routes
-GET        /tracking.js              controllers.Assets.at(path="/public", file="tracking.js")
-GET        /tracking-transitional.js controllers.Assets.at(path="/public", file="tracking-transitional.js")
+GET        /tracking.js              controllers.Assets.at(path="/public", file="a.js")
+GET        /tracking/a.js            controllers.Assets.at(path="/public", file="a.js")
+GET        /tracking/b.js            controllers.Assets.at(path="/public", file="b.js")
+GET        /tracking/c.js            controllers.Assets.at(path="/public", file="c.js")
+GET        /tracking/d.js            controllers.Assets.at(path="/public", file="d.js")
+GET        /tracking/e.js            controllers.Assets.at(path="/public", file="e.js")
+GET        /tracking/f.js            controllers.Assets.at(path="/public", file="f.js")
+GET        /tracking/sdes.js         controllers.Assets.at(path="/public", file="sdes.js")
+GET        /tracking/transitional.js controllers.Assets.at(path="/public", file="transitional.js")
+GET        /tracking/optimizely.js   controllers.Assets.at(path="/public", file="optimizely.js")
 GET        /cookie-settings          uk.gov.hmrc.trackingconsentfrontend.controllers.CookieSettingsController.cookieSettings(enableTrackingConsent: Option[String])
 GET        /language/:lang           uk.gov.hmrc.trackingconsentfrontend.controllers.LanguageSwitchController.switchToLanguage(lang: String)
 GET        /assets/*file             controllers.Assets.versioned(path = "/public", file: Asset)

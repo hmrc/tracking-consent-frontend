@@ -29,11 +29,11 @@ trait AcceptanceTestServer extends TestSuiteMixin with GuiceFakeApplicationFacto
   implicit lazy val app: Application = new GuiceApplicationBuilder()
     .configure(
       Map(
-        "metrics.enabled"  -> false,
-        "auditing.enabled" -> false,
-        "play.http.router" -> "testOnlyDoNotUseInAppConf.Routes",
-        "tracking-consent-frontend.url" -> s"http://localhost:$port/tracking-consent/tracking.js",
-        "tracking-consent-frontend.transitional-url" -> s"http://localhost:$port/tracking-consent/tracking-transitional.js"
+        "metrics.enabled"                            -> false,
+        "auditing.enabled"                           -> false,
+        "play.http.router"                           -> "testOnlyDoNotUseInAppConf.Routes",
+        "tracking-consent-frontend.url"              -> s"http://localhost:$port/tracking-consent/tracking.js",
+        "tracking-consent-frontend.transitional-url" -> s"http://localhost:$port/tracking-consent/tracking/transitional.js"
       )
     )
     .disable[com.kenshoo.play.metrics.PlayModule]
@@ -44,7 +44,9 @@ trait AcceptanceTestServer extends TestSuiteMixin with GuiceFakeApplicationFacto
     testServer.start()
     try {
       val status = super.run(testName, args)
-      status.whenCompleted { _ => testServer.stop() }
+      status.whenCompleted { _ =>
+        testServer.stop()
+      }
       status
     } catch {
       case exception: Throwable =>
@@ -54,15 +56,14 @@ trait AcceptanceTestServer extends TestSuiteMixin with GuiceFakeApplicationFacto
   }
 
   /**
-   * Invoke suite with a test server if running locally.
-   * See org.scalatest.SuiteMixin.run
-   *
-   */
-  abstract override def run(testName: Option[String], args: Args): Status = {
+    * Invoke suite with a test server if running locally.
+    * See org.scalatest.SuiteMixin.run
+    *
+    */
+  abstract override def run(testName: Option[String], args: Args): Status =
     if (env == "local") {
       runSuiteWithTestServer(testName, args)
     } else {
       super.run(testName, args)
     }
-  }
 }
