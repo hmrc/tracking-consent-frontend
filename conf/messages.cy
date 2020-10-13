@@ -68,12 +68,3 @@ cookieSettings.saveConfirmation.paragraph1 = Other government services may set a
 cookieSettings.saveConfirmation.link.text =  Go back to the page you were looking at
 
 service.name = Lorem ipsum
-
-footer.cookies.text = Lorem ipsum
-footer.cookies.url = /help/cookies
-footer.privacy.text = Lorem ipsum
-footer.privacy.url = /help/privacy
-footer.termsConditions.text = Lorem ipsum
-footer.termsConditions.url = /help/terms-and-conditions
-footer.govukHelp.text = Lorem ipsum
-footer.govukHelp.url = https://www.gov.uk/help

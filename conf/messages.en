@@ -69,12 +69,3 @@ cookieSettings.saveConfirmation.paragraph1 = Other government services may set a
 cookieSettings.saveConfirmation.link.text =  Go back to the page you were looking at
 
 service.name = Tracking Consent
-
-footer.cookies.text = Cookies
-footer.cookies.url = /help/cookies
-footer.privacy.text = Privacy policy
-footer.privacy.url = /help/privacy
-footer.termsConditions.text = Terms and conditions
-footer.termsConditions.url = /help/terms-and-conditions
-footer.govukHelp.text = Help using GOV.UK
-footer.govukHelp.url = https://www.gov.uk/help
