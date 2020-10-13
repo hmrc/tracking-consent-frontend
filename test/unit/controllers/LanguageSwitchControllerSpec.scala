@@ -54,9 +54,10 @@ class LanguageSwitchControllerSpec extends PlaySpec with GuiceOneAppPerTest with
       cookies(result).get("PLAY_LANG").get.value mustBe "cy"
     }
 
-    "not set the PLAY_LANG cookie correctly for Welsh if language switching is disabled" in {
+    "not set the PLAY_LANG cookie for Welsh if language switching is disabled" in {
       val result = switchToWelsh(buildAppWithWelshLanguageSupport(false))
-      cookies(result).get("PLAY_LANG").isDefined mustBe false
+      cookies(result).get("PLAY_LANG").isDefined mustBe true
+      cookies(result).get("PLAY_LANG").get.value mustBe "en"
     }
 
     "set the PLAY_LANG cookie correctly for English" in {
@@ -65,31 +66,13 @@ class LanguageSwitchControllerSpec extends PlaySpec with GuiceOneAppPerTest with
       cookies(result).get("PLAY_LANG").get.value mustBe "en"
     }
 
-    "redirect to the REFERER header url if set to a localhost URL" in {
+    "redirect to the REFERER header url as a path only" in {
       implicit val fakeRequestWithReferrer: FakeRequest[AnyContentAsEmpty.type] = fakeRequest.withHeaders(
         HeaderNames.REFERER -> "http://localhost:12345/my-service-page"
       )
       val controller = buildAppWithWelshLanguageSupport().injector.instanceOf[LanguageSwitchController]
       val result     = controller.switchToLanguage("en")(fakeRequestWithReferrer)
-      redirectLocation(result) mustBe Some("http://localhost:12345/my-service-page")
-    }
-
-    "redirect to the REFERER header url if set to a platform URL" in {
-      implicit val fakeRequestWithReferrer: FakeRequest[AnyContentAsEmpty.type] = fakeRequest.withHeaders(
-        HeaderNames.REFERER -> "https://www.staging.tax.service.gov.uk/my-service-page"
-      )
-      val controller = buildAppWithPlatformFrontendHost.injector.instanceOf[LanguageSwitchController]
-      val result     = controller.switchToLanguage("en")(fakeRequestWithReferrer)
-      redirectLocation(result) mustBe Some("https://www.staging.tax.service.gov.uk/my-service-page")
-    }
-
-    "redirect to the default url if an unrecognised domain appears in the REFERER header" in {
-      implicit val fakeRequestWithReferrer: FakeRequest[AnyContentAsEmpty.type] = fakeRequest.withHeaders(
-        HeaderNames.REFERER -> "https://www.example.com/naughty"
-      )
-      val controller = buildAppWithPlatformFrontendHost.injector.instanceOf[LanguageSwitchController]
-      val result     = controller.switchToLanguage("en")(fakeRequestWithReferrer)
-      redirectLocation(result) mustBe Some("/tracking-consent/cookie-settings")
+      redirectLocation(result) mustBe Some("/my-service-page")
     }
 
     "redirect to the default url if no REFERER header set" in {

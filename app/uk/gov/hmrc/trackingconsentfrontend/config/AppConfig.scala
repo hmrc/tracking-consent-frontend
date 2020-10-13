@@ -22,7 +22,6 @@ import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 
 @Singleton
 class AppConfig @Inject()(config: Configuration, servicesConfig: ServicesConfig) {
-  val footerLinkItems: Seq[String] = config.getOptional[Seq[String]]("footerLinkItems").getOrElse(Seq())
   val trackingConsentUrl: String = servicesConfig.getString("tracking-consent-frontend.url")
   val transitionalTrackingConsentUrl: String = servicesConfig.getString("tracking-consent-frontend.transitional-url")
   val welshLanguageSupportEnabled: Boolean = config.getOptional[Boolean]("features.welsh-language-support").getOrElse(false)
