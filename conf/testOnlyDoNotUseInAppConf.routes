@@ -10,8 +10,9 @@
 # Failing to follow this rule may result in test routes deployed in production.
 
 # Add all the application routes to the prod.routes file
-GET        /tracking-consent/test-only              uk.gov.hmrc.trackingconsentfrontend.testonly.controllers.TestController.test
-GET        /tracking-consent/test-only-transitional uk.gov.hmrc.trackingconsentfrontend.testonly.controllers.TransitionalTestController.transitionalTest
-GET        /tracking-consent/test-only-legacy       uk.gov.hmrc.trackingconsentfrontend.testonly.controllers.LegacyTestController.legacyTest
+GET        /tracking-consent/test-only                          uk.gov.hmrc.trackingconsentfrontend.testonly.controllers.TestController.test
+GET        /tracking-consent/test-only-transitional             uk.gov.hmrc.trackingconsentfrontend.testonly.controllers.TransitionalTestController.transitionalTest
+GET        /tracking-consent/test-only-legacy                   uk.gov.hmrc.trackingconsentfrontend.testonly.controllers.LegacyTestController.legacyTest
+GET        /tracking-consent/test-only-integration-spike        uk.gov.hmrc.trackingconsentfrontend.testonly.controllers.SpikeTestController.spikeTest
 
-->         /             prod.Routes
+->         /                                                    prod.Routes

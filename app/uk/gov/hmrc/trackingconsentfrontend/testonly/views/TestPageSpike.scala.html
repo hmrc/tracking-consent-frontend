@@ -14,11 +14,17 @@
  * limitations under the License.
  *@
 
-@this(optimizelySnippet: OptimizelySnippet)
+@this(
+    layout: Layout,
+    paragraph: Paragraph,
+    h1: H1,
+    cookieHeadSpike: CookieHeadSpike
+)
+@()(implicit request: Request[_], messages: Messages, appConfig: AppConfig)
 
-@()(implicit appConfig: AppConfig, request: RequestHeader)
-<!-- Mode: separate optimizely snippet [@{appConfig.optimizelyProjectId}] -->
-<!--[if !IE]>-->
-<script @{CSPNonce.attr} type="text/javascript" src="@appConfig.trackingConsentUrl"></script>
-<!--<![endif]-->
-@optimizelySnippet()
+@defining(Messages("testPage.title")) { title =>
+    @layout(pageTitle = Some(title), headBlock = Some(cookieHeadSpike())) {
+        @h1(content = Text(title))
+        @paragraph(content = HtmlContent(title))
+    }
+}

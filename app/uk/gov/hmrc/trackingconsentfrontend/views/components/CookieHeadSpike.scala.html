@@ -17,8 +17,8 @@
 @this(optimizelySnippet: OptimizelySnippet)
 
 @()(implicit appConfig: AppConfig, request: RequestHeader)
-<!-- Mode: separate optimizely snippet [@{appConfig.optimizelyProjectId}] -->
+<!-- Mode: integrated optimizely snippet [@{appConfig.optimizelyProjectId}] -->
 <!--[if !IE]>-->
-<script @{CSPNonce.attr} type="text/javascript" src="@appConfig.trackingConsentUrl"></script>
+<script @{CSPNonce.attr} type="text/javascript" src="@appConfig.trackingConsentUrl"
+ @if(appConfig.optimizelyProjectId.isDefined){ data-optimizely-id="@{appConfig.optimizelyProjectId}" }></script>
 <!--<![endif]-->
-@optimizelySnippet()

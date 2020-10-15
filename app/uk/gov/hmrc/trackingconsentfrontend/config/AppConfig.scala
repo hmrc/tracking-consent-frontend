@@ -22,11 +22,12 @@ import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 
 @Singleton
 class AppConfig @Inject()(config: Configuration, servicesConfig: ServicesConfig) {
-  val footerLinkItems: Seq[String] = config.getOptional[Seq[String]]("footerLinkItems").getOrElse(Seq())
-  val trackingConsentUrl: String = servicesConfig.getString("tracking-consent-frontend.url")
+  val footerLinkItems: Seq[String]           = config.getOptional[Seq[String]]("footerLinkItems").getOrElse(Seq())
+  val trackingConsentUrl: String             = servicesConfig.getString("tracking-consent-frontend.url")
   val transitionalTrackingConsentUrl: String = servicesConfig.getString("tracking-consent-frontend.transitional-url")
-  val welshLanguageSupportEnabled: Boolean = config.getOptional[Boolean]("features.welsh-language-support").getOrElse(false)
-  val featureCookieName: String = servicesConfig.getString("features.feature-cookie-name")
+  val welshLanguageSupportEnabled: Boolean =
+    config.getOptional[Boolean]("features.welsh-language-support").getOrElse(false)
+  val featureCookieName: String   = servicesConfig.getString("features.feature-cookie-name")
   val featureEnabledValue: String = servicesConfig.getString("features.feature-enabled-value")
   val optimizelyUrl: Option[String] =
     for {
@@ -35,9 +36,10 @@ class AppConfig @Inject()(config: Configuration, servicesConfig: ServicesConfig)
     } yield {
       s"$baseUrl$projectId.js"
     }
+  val optimizelyProjectId = config.getOptional[String]("optimizely.projectId")
 
-  val en: String            = "en"
-  val cy: String            = "cy"
+  val en: String = "en"
+  val cy: String = "cy"
 
   private val platformFrontendHost = config.getOptional[String]("platform.frontend.host")
   val languageControllerHostUrl: String = platformFrontendHost.getOrElse(

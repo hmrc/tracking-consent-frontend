@@ -17,7 +17,6 @@
 @this()
 
 @()(implicit appConfig: AppConfig, request: RequestHeader)
-<!--[if !IE]>-->
 @appConfig.optimizelyUrl.map { url =>
 <!--[if !IE]>-->
 <script @{CSPNonce.attr} type="text/javascript" src="@url"></script>
