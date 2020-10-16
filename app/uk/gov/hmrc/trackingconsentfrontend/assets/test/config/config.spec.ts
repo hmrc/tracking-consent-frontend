@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom/extend-expect'
-import { getBaseUrl } from '../../src/config/config'
+import { getLocalBaseUrl } from '../../src/config/config'
 
 describe('config', () => {
   beforeEach(() => {
@@ -17,7 +17,7 @@ describe('config', () => {
 
   describe('getBaseUrl', () => {
     it('should return the port value', () => {
-      const baseUrl = getBaseUrl()
+      const baseUrl = getLocalBaseUrl()
 
       expect(baseUrl).toEqual('http://localhost:54321')
     })
@@ -32,7 +32,7 @@ describe('config', () => {
     </html> 
     `
 
-      const baseUrl = getBaseUrl()
+      const baseUrl = getLocalBaseUrl()
 
       expect(baseUrl).toEqual('')
     })
@@ -48,7 +48,7 @@ describe('config', () => {
     </html> 
     `
 
-      const baseUrl = getBaseUrl()
+      const baseUrl = getLocalBaseUrl()
 
       expect(baseUrl).toEqual('')
     })
@@ -64,7 +64,7 @@ describe('config', () => {
     </html> 
     `
 
-      const baseUrl = getBaseUrl()
+      const baseUrl = getLocalBaseUrl()
 
       expect(baseUrl).toEqual('')
     })

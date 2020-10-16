@@ -1,6 +1,6 @@
 export const getWelshLanguageEnabled = () => false
 
-export const getPort = (): string | undefined => {
+const getPort = (): string | undefined => {
     const scriptTag: HTMLScriptElement | null = document.querySelector('script[data-id="tracking-consent-frontend"]')
     if (scriptTag === null) {
         return undefined
@@ -12,7 +12,7 @@ export const getPort = (): string | undefined => {
     return port
 }
 
-export const getBaseUrl = (): string => {
+export const getLocalBaseUrl = (): string => {
     const port = getPort()
     if (port === undefined) {
         return ''

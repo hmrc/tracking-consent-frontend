@@ -16,7 +16,7 @@ object AppDependencies {
     "org.pegdown"            % "pegdown"             % "1.6.0"  % "test",
     "org.scalatest"          %% "scalatest"          % "3.0.8"  % "test",
     "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.3"  % "test",
-    "uk.gov.hmrc"            %% "webdriver-factory"  % "0.11.0" % "test",
+    "uk.gov.hmrc"            %% "webdriver-factory"  % "0.12.0" % "test",
     "uk.gov.hmrc"            %% "zap-automation"     % "2.7.0"  % "test",
     "com.typesafe"           % "config"              % "1.3.2"  % "test",
     "com.github.tomakehurst" % "wiremock-jre8"       % "2.21.0" % "test"

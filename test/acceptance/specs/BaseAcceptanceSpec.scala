@@ -18,9 +18,12 @@ package acceptance.specs
 
 import acceptance.driver.BrowserDriver
 import org.scalatest.concurrent.Eventually
-import org.scalatest.{FeatureSpec, GivenWhenThen, Matchers}
+import org.scalatest.{BeforeAndAfterAll, FeatureSpec, GivenWhenThen, Matchers}
 import org.scalatestplus.selenium.WebBrowser
 import support.AcceptanceTestServer
+import uk.gov.hmrc.webdriver.SingletonDriver
+
+import scala.util.Try
 
 trait BaseAcceptanceSpec
     extends FeatureSpec
@@ -30,3 +33,17 @@ trait BaseAcceptanceSpec
     with AcceptanceTestServer
     with BrowserDriver
     with Eventually
+    with BeforeAndAfterAll {
+
+  override def beforeAll() {
+    // Ensures the browser is quit only when the JVM exits
+    // Previously this was accomplished via a call to SingletonDriver.quit()
+    // in a afterAll but this resulted in a race-condition
+    // with the driver left in an inconsistent state resulting in
+    // session not found
+    super.beforeAll()
+    sys.addShutdownHook {
+      Try(SingletonDriver.closeInstance())
+    }
+  }
+}
