@@ -4,8 +4,8 @@ import messagesEn from '../../../../../../../../conf/messages.en';
 import messagesCy from '../../../../../../../../conf/messages.cy';
 
 import getLanguage from "./getLanguage";
-import {CY} from "../constants/languages";
-import { getWelshLanguageEnabled } from "../config/config";
+import { CY } from "../constants/languages";
+import getWelshLanguageEnabled from "../common/getWelshLanguageEnabled";
 
 const getMessages = () => {
   const language = getLanguage()

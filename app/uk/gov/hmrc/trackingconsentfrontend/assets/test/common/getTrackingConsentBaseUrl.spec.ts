@@ -21,7 +21,7 @@ describe('getTrackingConsentBaseUrl', () => {
   it('should return "http://localhost:12345" if running under http://localhost:9000/some-service', () => {
     // @ts-ignore
     window.location = {
-      host: 'localhost:12345'
+      host: 'localhost:9000'
     }
     const url = getTrackingConsentBaseUrl()
 

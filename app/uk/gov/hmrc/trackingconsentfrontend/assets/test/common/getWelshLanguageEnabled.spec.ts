@@ -1,4 +1,4 @@
-import { getWelshLanguageEnabled } from '../../src/config/config'
+import getWelshLanguageEnabled from '../../src/common/getWelshLanguageEnabled'
 
 describe('getWelshLanguageEnabled', () => {
   it('should return false by default', () => {

@@ -68,7 +68,7 @@ const userPreferencesFactory = (): UserPreferences => {
       return undefined
     }
 
-    const { version, datetimeSet } = cookie
+    const { version } = cookie
     if (version !== COOKIE_VERSION) {
       return undefined
     }

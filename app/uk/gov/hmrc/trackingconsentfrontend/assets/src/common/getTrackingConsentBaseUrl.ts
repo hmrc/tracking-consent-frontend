@@ -1,4 +1,4 @@
-import { getLocalBaseUrl } from "../config/config";
+import getLocalBaseUrl from "./getLocalBaseUrl";
 
 const getTrackingConsentBaseUrl = () => {
     const host: string = window.location.host
