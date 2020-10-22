@@ -1,5 +1,5 @@
 const getCurrentScript = (): HTMLScriptElement | undefined => {
-    const scriptTag: HTMLScriptElement | null = document.querySelector('script[data-id="tracking-consent-frontend"]')
+    const scriptTag: HTMLScriptElement | null = document.querySelector('script[id="tracking-consent-script-tag"]')
     if (scriptTag === null) {
         return undefined
     }

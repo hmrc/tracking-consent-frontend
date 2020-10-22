@@ -18,6 +18,6 @@
 
 @()(implicit appConfig: AppConfig, request: RequestHeader)
 <!--[if !IE]>-->
-<script @{CSPNonce.attr} type="text/javascript" data-id="tracking-consent-frontend" src="@appConfig.trackingConsentUrl"></script>
+<script @{CSPNonce.attr} type="text/javascript" id="tracking-consent-script-tag" src="@appConfig.trackingConsentUrl"></script>
 <!--<![endif]-->
 @optimizelySnippet()

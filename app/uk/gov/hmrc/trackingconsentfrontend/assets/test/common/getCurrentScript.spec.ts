@@ -6,7 +6,7 @@ describe('getCurrentScript', () => {
     document.getElementsByTagName('html')[0].innerHTML = `<html>
     <head>
         <script src="/another-script.js"></script>
-        <script data-id="tracking-consent-frontend" data-test="some-config"></script>
+        <script id="tracking-consent-script-tag" data-test="some-config"></script>
         <script src="/a-further-script.js"></script>
     </head>
     <body>
