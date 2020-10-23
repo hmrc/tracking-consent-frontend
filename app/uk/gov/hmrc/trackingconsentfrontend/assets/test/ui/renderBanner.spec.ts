@@ -87,7 +87,7 @@ describe('renderBanner', () => {
     const button = queryByText(document.body, 'Set cookie preferences')
     expect(button).toBeTruthy()
     // @ts-ignore
-    expect(button.getAttribute('href')).toEqual('/tracking-consent/cookie-settings')
+    expect(button.getAttribute('href')).toEqual('http://localhost:12345/tracking-consent/cookie-settings')
   })
 
   it('should render a cookie settings button with a local url if running locally', () => {

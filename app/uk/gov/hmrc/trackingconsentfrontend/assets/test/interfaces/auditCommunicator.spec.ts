@@ -30,7 +30,7 @@ describe('auditCommunicator', () => {
   it('should send the cookie preferences to the audit endpoint', () => {
     testScope.communicator.sendPreferences(testScope.userPreferences, CONSENT_UPDATED_EVENT)
 
-    expect(postSpy).toHaveBeenCalledWith('/tracking-consent/audit',
+    expect(postSpy).toHaveBeenCalledWith('http://localhost:12345/tracking-consent/audit',
       { marketing: false, measurement: false, settings: false })
   })
 
@@ -61,7 +61,7 @@ describe('auditCommunicator', () => {
     })
     testScope.communicator.sendPreferences(testScope.userPreferences, CONSENT_UPDATED_EVENT)
 
-    expect(postSpy).toHaveBeenCalledWith('/tracking-consent/audit', {
+    expect(postSpy).toHaveBeenCalledWith('http://localhost:12345/tracking-consent/audit', {
       measurement: false,
       marketing: true,
       settings: false
