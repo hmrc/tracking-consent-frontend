@@ -4,6 +4,7 @@ import pageHandler from '../../src/common/pageHandler'
 import userPreferencesFactory from '../../src/domain/userPreferencesFactory'
 import { JSDOM } from 'jsdom'
 import * as isFeatureEnabled from '../../src/interfaces/isFeatureEnabled'
+import * as getGtmContainer from '../../src/common/getGtmContainerId'
 import { SERVICE_PAGE_LOAD_EVENT } from '../../src/constants/events'
 import clearAllMocks = jest.clearAllMocks;
 
@@ -12,6 +13,7 @@ describe('pageHandler', () => {
   let thisDocument
   let testScope
   let featureEnabledSpy
+  let getGtmContainerSpy
 
   const pageLoad = () => {
     const event = thisDocument.createEvent('HTMLEvents')
@@ -33,7 +35,7 @@ describe('pageHandler', () => {
     spyOn(testScope.userPreferences, 'sendPreferences').and.returnValue(undefined)
     clearAllMocks()
     featureEnabledSpy = spyOn(isFeatureEnabled, 'default').and.returnValue(true)
-    featureEnabledSpy.and.returnValue(true)
+    getGtmContainerSpy = spyOn(getGtmContainer, 'default').and.returnValue(undefined)
   })
 
   it('should enable GTM', () => {
@@ -54,6 +56,28 @@ describe('pageHandler', () => {
 
     expect(enableGtm.default).toHaveBeenCalledTimes(1)
     expect(enableGtm.default).toHaveBeenCalledWith('GTM-TEST')
+  })
+
+  it('should enable GTM with the container id specified as an attribute if not supplied as a parameter', () => {
+    getGtmContainerSpy.and.returnValue('abcdefg')
+    expect(enableGtm.default).not.toHaveBeenCalled()
+
+    // @ts-ignore
+    pageHandler(thisDocument, testScope.userPreferences, pageRenderer)
+
+    expect(enableGtm.default).toHaveBeenCalledTimes(1)
+    expect(enableGtm.default).toHaveBeenCalledWith('abcdefg')
+  })
+
+  it('should use the GTM container specified in the attribute over the one supplied as a parameter', () => {
+    getGtmContainerSpy.and.returnValue('abcdefg')
+    expect(enableGtm.default).not.toHaveBeenCalled()
+
+    // @ts-ignore
+    pageHandler(thisDocument, testScope.userPreferences, pageRenderer, 'GTM-TEST')
+
+    expect(enableGtm.default).toHaveBeenCalledTimes(1)
+    expect(enableGtm.default).toHaveBeenCalledWith('abcdefg')
   })
 
   it('should send the preferences', () => {

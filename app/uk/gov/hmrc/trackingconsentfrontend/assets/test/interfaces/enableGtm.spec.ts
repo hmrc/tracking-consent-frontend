@@ -58,4 +58,8 @@ describe('enableGtm', () => {
 
     enableGtm('GTM-CONTAINER-ID')
   })
+
+  it('throw an error if the container ID has not been defined', () => {
+    expect(() => enableGtm(undefined)).toThrow('Unable to enable GTM because no container has been specified')
+  })
 })
