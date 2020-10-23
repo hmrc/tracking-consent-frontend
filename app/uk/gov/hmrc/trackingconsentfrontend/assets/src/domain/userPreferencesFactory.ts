@@ -1,4 +1,3 @@
-// @ts-ignore
 import Cookies from 'js-cookie'
 import cookieTypes from '../constants/cookieTypes'
 import fromEntries from '../common/fromEntries'
@@ -11,16 +10,20 @@ import { CONSENT_UPDATED_EVENT } from "../constants/events";
 const userPreferencesFactory = (): UserPreferences => {
 
   const subscribers: Communicator[] = []
+  const self = {
+    userAcceptsAll,
+    setPreferences,
+    getUserHasSavedCookiePreferences,
+    getPreferences,
+    sendPreferences,
+    subscribe
+  }
 
   function subscribe(preferenceCommunicator: Communicator) {
     subscribers.push(preferenceCommunicator)
   }
 
-  function sendPreferences(event: string) {
-    subscribers.forEach((subscriber) => subscriber.sendPreferences(this, event))
-  }
-
-  function storePreferences(preferences: Preferences) {
+  const storePreferences = (preferences: Preferences) => {
     Cookies.set(
       COOKIE_CONSENT,
       {
@@ -36,7 +39,7 @@ const userPreferencesFactory = (): UserPreferences => {
     storePreferences({
       acceptAll: true
     })
-    this.sendPreferences(CONSENT_UPDATED_EVENT)
+    sendPreferences(CONSENT_UPDATED_EVENT)
   }
 
   function setPreferences(preferencesIn: Preferences) {
@@ -45,13 +48,13 @@ const userPreferencesFactory = (): UserPreferences => {
       marketing: preferencesIn.marketing,
       settings: preferencesIn.settings
     })
-    this.sendPreferences(CONSENT_UPDATED_EVENT)
+    sendPreferences(CONSENT_UPDATED_EVENT)
   }
 
   const isPreferenceStrictlyBoolean = ([, value]) => typeof value === 'boolean'
 
-  function getSanitisedPreferences(preferences: any) {
-    const entries: [string, boolean][] = cookieTypes.map((cookieType) => {
+  const getSanitisedPreferences = (preferences: any) => {
+    const entries: [string, boolean][] = cookieTypes.map((cookieType: string) => {
       const { [cookieType]: value } = preferences
 
       return [cookieType, value]
@@ -60,7 +63,7 @@ const userPreferencesFactory = (): UserPreferences => {
     return entries.filter(isPreferenceStrictlyBoolean)
   }
 
-  const allThePreferences = () => fromEntries(cookieTypes.map((cookieType) => [cookieType, true]))
+  const allThePreferences = () => fromEntries(cookieTypes.map((cookieType: string) => [cookieType, true]))
 
   function getPreferences(): Preferences | undefined {
     const cookie = Cookies.getJSON(COOKIE_CONSENT)
@@ -83,16 +86,15 @@ const userPreferencesFactory = (): UserPreferences => {
     return sanitisedPreferences.length > 0 ? fromEntries(sanitisedPreferences) : undefined
   }
 
-  const getUserHasSavedCookiePreferences = () => getPreferences() !== undefined
-
-  return {
-    userAcceptsAll,
-    setPreferences,
-    getUserHasSavedCookiePreferences,
-    getPreferences,
-    sendPreferences,
-    subscribe
+  function getUserHasSavedCookiePreferences() {
+    return getPreferences() !== undefined
   }
+
+  function sendPreferences(event: string) {
+    subscribers.forEach((subscriber: Communicator) => subscriber.sendPreferences(self, event))
+  }
+
+  return self
 }
 
 export default userPreferencesFactory
