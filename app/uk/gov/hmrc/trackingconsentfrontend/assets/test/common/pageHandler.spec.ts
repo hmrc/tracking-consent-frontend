@@ -14,6 +14,7 @@ describe('pageHandler', () => {
   let testScope
   let featureEnabledSpy
   let getGtmContainerSpy
+  let consoleSpy
 
   const pageLoad = () => {
     const event = thisDocument.createEvent('HTMLEvents')
@@ -36,22 +37,39 @@ describe('pageHandler', () => {
     clearAllMocks()
     featureEnabledSpy = spyOn(isFeatureEnabled, 'default').and.returnValue(true)
     getGtmContainerSpy = spyOn(getGtmContainer, 'default').and.returnValue(undefined)
+    consoleSpy = spyOn(console, 'warn')
   })
 
   it('should enable GTM', () => {
     expect(enableGtm.default).not.toHaveBeenCalled()
 
-    // @ts-ignore
     pageHandler(thisDocument, testScope.userPreferences, pageRenderer, 'GTM-CONTAINER-ID')
 
     expect(enableGtm.default).toHaveBeenCalledTimes(1)
     expect(enableGtm.default).toHaveBeenCalledWith('GTM-CONTAINER-ID')
   })
 
+  it('should not call console warn if gtm container is specified', () => {
+    getGtmContainerSpy.and.returnValue('abcdefg')
+    expect(enableGtm.default).not.toHaveBeenCalled()
+
+    pageHandler(thisDocument, testScope.userPreferences, pageRenderer, undefined)
+
+    expect(consoleSpy).toHaveBeenCalledTimes(0)
+  })
+
+  it('should log a warning if no gtm attribute is set', () => {
+    expect(enableGtm.default).not.toHaveBeenCalled()
+
+    pageHandler(thisDocument, testScope.userPreferences, pageRenderer, 'GTM-CONTAINER-ID')
+
+    expect(consoleSpy).toHaveBeenCalledTimes(1)
+    expect(consoleSpy).toHaveBeenCalledWith('Deprecation notice: container id not specified in data-gtm-container attribute. The functionality you are currently using will be removed on 03 November 2020')
+  })
+
   it('should enable GTM with a different container id', () => {
     expect(enableGtm.default).not.toHaveBeenCalled()
 
-    // @ts-ignore
     pageHandler(thisDocument, testScope.userPreferences, pageRenderer, 'GTM-TEST')
 
     expect(enableGtm.default).toHaveBeenCalledTimes(1)
@@ -62,8 +80,7 @@ describe('pageHandler', () => {
     getGtmContainerSpy.and.returnValue('abcdefg')
     expect(enableGtm.default).not.toHaveBeenCalled()
 
-    // @ts-ignore
-    pageHandler(thisDocument, testScope.userPreferences, pageRenderer)
+    pageHandler(thisDocument, testScope.userPreferences, pageRenderer, undefined)
 
     expect(enableGtm.default).toHaveBeenCalledTimes(1)
     expect(enableGtm.default).toHaveBeenCalledWith('abcdefg')
@@ -73,7 +90,6 @@ describe('pageHandler', () => {
     getGtmContainerSpy.and.returnValue('abcdefg')
     expect(enableGtm.default).not.toHaveBeenCalled()
 
-    // @ts-ignore
     pageHandler(thisDocument, testScope.userPreferences, pageRenderer, 'GTM-TEST')
 
     expect(enableGtm.default).toHaveBeenCalledTimes(1)
@@ -83,7 +99,6 @@ describe('pageHandler', () => {
   it('should send the preferences', () => {
     expect(testScope.userPreferences.sendPreferences).not.toHaveBeenCalled()
 
-    // @ts-ignore
     pageHandler(thisDocument, testScope.userPreferences, pageRenderer, 'GTM-CONTAINER-ID')
 
     expect(testScope.userPreferences.sendPreferences).toHaveBeenCalledTimes(1)
@@ -100,7 +115,6 @@ describe('pageHandler', () => {
   it('should call the page renderer', () => {
     expect(pageRenderer).not.toHaveBeenCalled()
 
-    // @ts-ignore
     pageHandler(thisDocument, testScope.userPreferences, pageRenderer, 'GTM-CONTAINER-ID')
     pageLoad()
 
@@ -118,7 +132,6 @@ describe('pageHandler', () => {
     featureEnabledSpy.and.returnValue(false)
     expect(pageRenderer).not.toHaveBeenCalled()
 
-    // @ts-ignore
     pageHandler(thisDocument, testScope.userPreferences, pageRenderer, 'GTM-CONTAINER-ID')
     pageLoad()
 

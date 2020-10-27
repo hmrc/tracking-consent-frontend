@@ -18,5 +18,11 @@
 
 @()(implicit request: RequestHeader)
 <!--[if !IE]>-->
-<script @{CSPNonce.attr} type="text/javascript" src="@routes.Assets.versioned("settingsPage.js")"></script>
+<script
+  @{CSPNonce.attr}
+  type="text/javascript"
+  src="@routes.Assets.versioned("settingsPage.js")"
+  id="tracking-consent-script-tag"
+  data-gtm-container="a"
+></script>
 <!--<![endif]-->
