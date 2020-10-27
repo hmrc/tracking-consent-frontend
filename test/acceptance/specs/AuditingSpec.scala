@@ -34,8 +34,8 @@ class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
         "auditing.consumer.baseUri.port"             -> endpointPort,
         "play.http.router"                           -> "testOnlyDoNotUseInAppConf.Routes",
         "tracking-consent-frontend.port"             -> port,
-        "tracking-consent-frontend.url"              -> s"http://localhost:$port/tracking-consent/tracking.js",
-        "tracking-consent-frontend.transitional-url" -> s"http://localhost:$port/tracking-consent/tracking-transitional.js"
+        "tracking-consent-frontend.url"              -> "/tracking-consent/tracking.js",
+        "tracking-consent-frontend.transitional-url" -> "/tracking-consent/tracking-transitional.js"
       )
     )
     .disable[com.kenshoo.play.metrics.PlayModule]
