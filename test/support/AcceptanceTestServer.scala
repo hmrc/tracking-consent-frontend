@@ -33,8 +33,7 @@ trait AcceptanceTestServer extends TestSuiteMixin with GuiceFakeApplicationFacto
         "auditing.enabled"                           -> false,
         "play.http.router"                           -> "testOnlyDoNotUseInAppConf.Routes",
         "tracking-consent-frontend.port"              -> port,
-        "tracking-consent-frontend.url"              -> "/tracking-consent/tracking.js",
-        "tracking-consent-frontend.transitional-url" -> "/tracking-consent/tracking/transitional.js"
+        "tracking-consent-frontend.url"              -> "/tracking-consent/tracking.js"
       )
     )
     .disable[com.kenshoo.play.metrics.PlayModule]

@@ -40,5 +40,11 @@ class TestPageSpec extends SpecBase {
 
       scripts.get(0).attr("src") must be("http://localhost:12345/tracking-consent/tracking.js")
     }
+
+    "inject the correct script with the correct gtm container attribute" in {
+      val scripts = content.select("script")
+
+      scripts.get(0).attr("data-gtm-container") must be("a")
+    }
   }
 }

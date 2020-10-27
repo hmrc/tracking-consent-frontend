@@ -3,7 +3,10 @@ import getNonce from "../common/getNonce";
 const dataLayer = 'dataLayer'
 const gtmBaseUrl = 'https://www.googletagmanager.com/gtm.js?id='
 
-const enableGtm = (containerId: string) => {
+const enableGtm = (containerId: string | undefined) => {
+  if (containerId === undefined) {
+    throw new Error("Unable to enable GTM because no container has been specified")
+  }
   (function (window: Window, document: Document, containerId: string) {
     window[dataLayer] = window[dataLayer] || []
     window[dataLayer].push({
