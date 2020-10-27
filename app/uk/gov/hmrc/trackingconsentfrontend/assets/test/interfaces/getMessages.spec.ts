@@ -1,7 +1,7 @@
 /* global spyOn */
 import getMessages from '../../src/interfaces/getMessages'
 import * as getLanguage from '../../src/interfaces/getLanguage'
-import * as getWelshLanguageEnabled from '../../src/interfaces/getWelshLanguageEnabled'
+import * as getWelshLanguageEnabled from '../../src/common/getWelshLanguageEnabled'
 
 describe('getMessages', () => {
   let getLanguageSpy

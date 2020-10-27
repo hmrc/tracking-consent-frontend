@@ -14,14 +14,8 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.trackingconsentfrontend.config
+package acceptance.specs.tags
 
-import javax.inject.{Inject, Singleton}
-import play.api.http.DefaultHttpFilters
-import play.filters.cors.CORSFilter
-import play.filters.csp.CSPFilter
-import uk.gov.hmrc.play.bootstrap.frontend.filters.FrontendFilters
+import org.scalatest.Tag
 
-@Singleton
-class FrontendFiltersWithCSP @Inject()(defaultFilters: FrontendFilters, cspFilter: CSPFilter, corsFilter: CORSFilter)
-  extends DefaultHttpFilters(cspFilter +: defaultFilters.filters :+ corsFilter : _*)
+object Local extends Tag("Local")

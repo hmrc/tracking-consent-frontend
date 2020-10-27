@@ -85,7 +85,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       go to ServiceTestPageFeatureDisabled
 
       Then("there should be no button 'Accept all cookies'")
-      tagName("h2").element.text shouldNot be ("Tell us whether you accept cookies")
+      tagName("h2").element.text shouldNot be("Tell us whether you accept cookies")
       a[WebDriverNoSuchElementException] should be thrownBy acceptAllCookiesButton
     }
 

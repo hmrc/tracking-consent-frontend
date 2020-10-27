@@ -48,7 +48,7 @@ describe('renderSettingsSaveConfirmationMessage', () => {
 
     // @ts-ignore
     const backLink: HTMLAnchorElement = getByText(document.body, /Go back to the page you were looking at/)
-    expect(backLink.href).toEqual('http://localhost/another-service')
+    expect(backLink.href).toEqual('https://www.tax.service.example.com/another-service')
   })
 
   it('should render the link inside a paragraph element', () => {
