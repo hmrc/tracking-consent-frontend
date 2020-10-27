@@ -6,6 +6,6 @@ export type UserPreferences = {
     setPreferences: (Preferences) => void,
     getPreferences: () => Preferences | undefined,
     getUserHasSavedCookiePreferences: () => boolean,
-    sendPreferences: () => void,
+    sendPreferences: (event: string) => void,
     subscribe: (communicator: Communicator) => void
 }

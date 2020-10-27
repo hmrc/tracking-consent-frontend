@@ -22,6 +22,7 @@ import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 
 @Singleton
 class AppConfig @Inject()(config: Configuration, servicesConfig: ServicesConfig) {
+  val trackingConsentPort: String = servicesConfig.getString("tracking-consent-frontend.port")
   val trackingConsentUrl: String = servicesConfig.getString("tracking-consent-frontend.url")
   val transitionalTrackingConsentUrl: String = servicesConfig.getString("tracking-consent-frontend.transitional-url")
   val welshLanguageSupportEnabled: Boolean = config.getOptional[Boolean]("features.welsh-language-support").getOrElse(false)
@@ -37,9 +38,4 @@ class AppConfig @Inject()(config: Configuration, servicesConfig: ServicesConfig)
 
   val en: String            = "en"
   val cy: String            = "cy"
-
-  private val platformFrontendHost = config.getOptional[String]("platform.frontend.host")
-  val languageControllerHostUrl: String = platformFrontendHost.getOrElse(
-    config.get[String]("language-controller.host")
-  )
 }

@@ -2,6 +2,7 @@
 import Cookies from 'js-cookie'
 import userPreferencesFactory from '../../src/domain/userPreferencesFactory'
 import gtmCommunicatorFactory from '../../src/interfaces/gtmCommunicatorFactory'
+import { CONSENT_UPDATED_EVENT, SERVICE_PAGE_LOAD_EVENT } from '../../src/constants/events'
 
 describe('userPreferencesFactory', () => {
   const assume = expect
@@ -76,7 +77,7 @@ describe('userPreferencesFactory', () => {
       assume(testScope.preferenceCommunicator.sendPreferences).not.toHaveBeenCalled()
 
       testScope.userPreference.userAcceptsAll()
-      expect(testScope.preferenceCommunicator.sendPreferences).toHaveBeenCalledWith(testScope.userPreference)
+      expect(testScope.preferenceCommunicator.sendPreferences).toHaveBeenCalledWith(testScope.userPreference, CONSENT_UPDATED_EVENT)
     })
 
     it('should call preference communicator after preferences were set', () => {
@@ -89,7 +90,7 @@ describe('userPreferencesFactory', () => {
       })
 
       testScope.userPreference.userAcceptsAll()
-      expect(testScope.preferenceCommunicator.sendPreferences).toHaveBeenCalledWith(testScope.userPreference)
+      expect(testScope.preferenceCommunicator.sendPreferences).toHaveBeenCalledWith(testScope.userPreference, CONSENT_UPDATED_EVENT)
     })
   })
 
@@ -285,7 +286,7 @@ describe('userPreferencesFactory', () => {
         measurement: true
       })
 
-      expect(testScope.preferenceCommunicator.sendPreferences).toHaveBeenCalledWith(testScope.userPreference)
+      expect(testScope.preferenceCommunicator.sendPreferences).toHaveBeenCalledWith(testScope.userPreference, CONSENT_UPDATED_EVENT)
     })
 
     it('should call preference communicator after preferences were set', () => {
@@ -303,7 +304,7 @@ describe('userPreferencesFactory', () => {
         settings: true
       })
 
-      expect(testScope.preferenceCommunicator.sendPreferences).toHaveBeenCalledWith(testScope.userPreference)
+      expect(testScope.preferenceCommunicator.sendPreferences).toHaveBeenCalledWith(testScope.userPreference, CONSENT_UPDATED_EVENT)
     })
 
     it('should call preference communicator after preferences were set', () => {
@@ -321,16 +322,16 @@ describe('userPreferencesFactory', () => {
         settings: false
       })
 
-      expect(testScope.preferenceCommunicator.sendPreferences).toHaveBeenCalledWith(testScope.userPreference)
+      expect(testScope.preferenceCommunicator.sendPreferences).toHaveBeenCalledWith(testScope.userPreference, CONSENT_UPDATED_EVENT)
     })
   })
 
   describe('sendPreference', () => {
-    it('should call preference communicator', () => {
+    it('should call preference communicator with the supplied event', () => {
       assume(testScope.preferenceCommunicator.sendPreferences).not.toHaveBeenCalled()
 
-      testScope.userPreference.sendPreferences()
-      expect(testScope.preferenceCommunicator.sendPreferences).toHaveBeenCalledWith(testScope.userPreference)
+      testScope.userPreference.sendPreferences(SERVICE_PAGE_LOAD_EVENT)
+      expect(testScope.preferenceCommunicator.sendPreferences).toHaveBeenCalledWith(testScope.userPreference, SERVICE_PAGE_LOAD_EVENT)
     })
   })
 

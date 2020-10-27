@@ -1,3 +1,4 @@
+/* global spyOn */
 import {
   queryByText,
   getByText,
@@ -7,12 +8,15 @@ import '@testing-library/jest-dom/extend-expect'
 // @ts-ignore
 import fixture from '../fixtures/servicePageWithBannerMinimal.html'
 import renderConfirmationMessage from '../../src/ui/renderConfirmationMessage'
+import * as getTrackingConsentBaseUrl from '../../src/common/getTrackingConsentBaseUrl'
 
 describe('renderConfirmationMessage', () => {
   const youveAcceptedAllMatcher = /You’ve accepted all cookies/
+  let getTrackingConsentBaseUrlSpy
 
   beforeEach(() => {
     document.getElementsByTagName('html')[0].innerHTML = fixture
+    getTrackingConsentBaseUrlSpy = spyOn(getTrackingConsentBaseUrl, 'default').and.returnValue('http://localhost:12345')
   })
 
   const clickHide = () => {
@@ -63,5 +67,22 @@ describe('renderConfirmationMessage', () => {
     const confirmationMessage = getByText(document.body, /You’ve accepted all cookies/).parentNode
 
     expect(document.activeElement).toEqual(confirmationMessage)
+  })
+
+  it('should render a cookie settings link with a local url if running locally', () => {
+    renderConfirmationMessage()
+
+    const button = queryByText(document.body, /change your cookie settings/)
+    // @ts-ignore
+    expect(button.getAttribute('href')).toEqual('http://localhost:12345/tracking-consent/cookie-settings')
+  })
+
+  it('should render a cookie settings link with a local url if running in production', () => {
+    getTrackingConsentBaseUrlSpy.and.returnValue('https://www.tax.service.gov.uk')
+    renderConfirmationMessage()
+
+    const button = queryByText(document.body, /change your cookie settings/)
+    // @ts-ignore
+    expect(button.getAttribute('href')).toEqual('https://www.tax.service.gov.uk/tracking-consent/cookie-settings')
   })
 })

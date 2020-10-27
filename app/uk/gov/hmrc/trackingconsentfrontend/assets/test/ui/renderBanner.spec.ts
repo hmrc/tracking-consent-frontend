@@ -10,6 +10,7 @@ import fixtureFrontendToolkit from '../fixtures/servicePageFrontendToolkit.html'
 import fixtureClassic from '../fixtures/servicePageClassic.html'
 import * as getLanguage from '../../src/interfaces/getLanguage'
 import * as isFeatureEnabled from '../../src/interfaces/isFeatureEnabled'
+import * as getTrackingConsentBaseUrl from '../../src/common/getTrackingConsentBaseUrl'
 
 describe('renderBanner', () => {
   const userAcceptsAll = jest.fn()
@@ -37,6 +38,7 @@ describe('renderBanner', () => {
 
   let languageSpy
   let featureEnabledSpy
+  let getTrackingConsentBaseUrlSpy
 
   beforeEach(() => {
     document.getElementsByTagName('html')[0].innerHTML = fixture
@@ -45,6 +47,7 @@ describe('renderBanner', () => {
     preferenceCommunicator.sendPreferences.mockReset()
     languageSpy = spyOn(getLanguage, 'default').and.returnValue('en')
     featureEnabledSpy = spyOn(isFeatureEnabled, 'default').and.returnValue(true)
+    getTrackingConsentBaseUrlSpy = spyOn(getTrackingConsentBaseUrl, 'default').and.returnValue('https://my-example.com:1234')
   })
 
   const clickAcceptAll = () => {
@@ -74,6 +77,24 @@ describe('renderBanner', () => {
     expect(button).toBeTruthy()
     // @ts-ignore
     expect(button.getAttribute('type')).toEqual('submit')
+  })
+
+  it('should render a cookie settings button', () => {
+    renderBanner(userPreference)
+
+    const button = queryByText(document.body, 'Set cookie preferences')
+    expect(button).toBeTruthy()
+    // @ts-ignore
+    expect(button.getAttribute('href')).toEqual('https://my-example.com:1234/tracking-consent/cookie-settings')
+  })
+  it('should render a cookie settings button based on base URL', () => {
+    getTrackingConsentBaseUrlSpy.and.returnValue('http://localhost:8000')
+    renderBanner(userPreference)
+
+    const button = queryByText(document.body, 'Set cookie preferences')
+    expect(button).toBeTruthy()
+    // @ts-ignore
+    expect(button.getAttribute('href')).toEqual('http://localhost:8000/tracking-consent/cookie-settings')
   })
 
   it('should render the banner after the govuk-frontend skiplink link', () => {

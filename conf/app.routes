@@ -13,5 +13,9 @@ GET        /tracking/sdes.js         controllers.Assets.at(path="/public", file=
 GET        /tracking/transitional.js controllers.Assets.at(path="/public", file="transitional.js")
 GET        /tracking/optimizely.js   controllers.Assets.at(path="/public", file="optimizely.js")
 GET        /cookie-settings          uk.gov.hmrc.trackingconsentfrontend.controllers.CookieSettingsController.cookieSettings(enableTrackingConsent: Option[String])
+
++ nocsrf
+POST       /audit                    uk.gov.hmrc.trackingconsentfrontend.controllers.AuditController.audit
+
 GET        /language/:lang           uk.gov.hmrc.trackingconsentfrontend.controllers.LanguageSwitchController.switchToLanguage(lang: String)
 GET        /assets/*file             controllers.Assets.versioned(path = "/public", file: Asset)

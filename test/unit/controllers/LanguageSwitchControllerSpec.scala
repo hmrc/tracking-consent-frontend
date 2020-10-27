@@ -80,17 +80,5 @@ class LanguageSwitchControllerSpec extends PlaySpec with GuiceOneAppPerTest with
       val result = controller.switchToLanguage("en")(fakeRequest)
       redirectLocation(result) mustBe Some("/tracking-consent/cookie-settings")
     }
-
-    "throw an exception on instantiation if neither language-controller.host or platform.frontend.host config keys exist" in {
-      val exception = intercept[ProvisionException] {
-        buildApp(
-          "features.welsh-language-support" -> "true",
-          "platform.frontend.host"          -> null,
-          "language-controller.host"        -> null
-        )
-      }
-
-      exception.getMessage must include("Configuration key 'language-controller.host' is set to null")
-    }
   }
 }

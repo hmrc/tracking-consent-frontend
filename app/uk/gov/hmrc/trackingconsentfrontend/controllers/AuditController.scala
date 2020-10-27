@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.trackingconsentfrontend.config
+package uk.gov.hmrc.trackingconsentfrontend.controllers
 
 import javax.inject.{Inject, Singleton}
-import play.api.http.DefaultHttpFilters
-import play.filters.cors.CORSFilter
-import play.filters.csp.CSPFilter
-import uk.gov.hmrc.play.bootstrap.frontend.filters.FrontendFilters
+import play.api.mvc._
+import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
+import scala.concurrent.Future
 
 @Singleton
-class FrontendFiltersWithCSP @Inject()(defaultFilters: FrontendFilters, cspFilter: CSPFilter, corsFilter: CORSFilter)
-  extends DefaultHttpFilters(cspFilter +: defaultFilters.filters :+ corsFilter : _*)
+class AuditController @Inject()(mcc: MessagesControllerComponents) extends FrontendController(mcc) {
+  def audit: Action[AnyContent] = Action.async { implicit request => Future.successful(Ok) }
+}
