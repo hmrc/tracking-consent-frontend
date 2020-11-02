@@ -5,7 +5,7 @@ const gtmBaseUrl = 'https://www.googletagmanager.com/gtm.js?id='
 
 const enableGtm = (containerId: string | undefined) => {
   if (containerId === undefined) {
-    throw new Error("Unable to enable GTM because no container has been specified")
+    throw new Error('Unable to enable GTM because no container has been specified')
   }
   (function (window: Window, document: Document, containerId: string) {
     window[dataLayer] = window[dataLayer] || []
@@ -23,7 +23,7 @@ const enableGtm = (containerId: string | undefined) => {
 
       const nonce = getNonce()
       if (nonce !== undefined) {
-        asyncScriptElement.setAttribute('nonce',nonce);
+        asyncScriptElement.setAttribute('nonce',nonce)
       }
       asyncScriptElement.async = true
       asyncScriptElement.src = `${gtmBaseUrl}${containerId}`
