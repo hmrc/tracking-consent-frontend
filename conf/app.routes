@@ -2,8 +2,7 @@
 
 ->         /govuk-frontend           govuk.Routes
 ->         /hmrc-frontend            hmrcfrontend.Routes
-GET        /tracking.js              controllers.Assets.at(path="/public", file="a.js")
-GET        /tracking/transitional.js controllers.Assets.at(path="/public", file="transitional.js")
+GET        /tracking.js              controllers.Assets.at(path="/public", file="tracking.js")
 GET        /tracking/optimizely.js   controllers.Assets.at(path="/public", file="optimizely.js")
 GET        /cookie-settings          uk.gov.hmrc.trackingconsentfrontend.controllers.CookieSettingsController.cookieSettings(enableTrackingConsent: Option[String])
 

@@ -2,8 +2,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    a: './src/entrypoints/a.ts',
-    transitional: './src/entrypoints/transitional.ts',
+    tracking: './src/entrypoints/tracking.ts',
     settingsPage: './src/entrypoints/settingsPage.ts',
     optimizely: './src/entrypoints/optimizely.js'
   },
