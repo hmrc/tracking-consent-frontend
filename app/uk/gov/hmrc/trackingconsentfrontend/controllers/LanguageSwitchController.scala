@@ -25,10 +25,12 @@ import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
 import uk.gov.hmrc.play.language.{LanguageController, LanguageUtils}
 
 @Singleton
-case class LanguageSwitchController @Inject()(configuration: Configuration,
-                                              languageUtils: LanguageUtils,
-                                              cc: ControllerComponents,
-                                              appConfig: AppConfig) extends LanguageController(configuration, languageUtils, cc) {
+case class LanguageSwitchController @Inject() (
+  configuration: Configuration,
+  languageUtils: LanguageUtils,
+  cc: ControllerComponents,
+  appConfig: AppConfig
+) extends LanguageController(configuration, languageUtils, cc) {
   import appConfig._
 
   override def fallbackURL: String = routes.CookieSettingsController.cookieSettings(None).url

@@ -21,21 +21,20 @@ import play.api.Configuration
 import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 
 @Singleton
-class AppConfig @Inject()(config: Configuration, servicesConfig: ServicesConfig) {
-  val trackingConsentPort: String = servicesConfig.getString("tracking-consent-frontend.port")
-  val trackingConsentUrl: String = servicesConfig.getString("tracking-consent-frontend.url")
-  val welshLanguageSupportEnabled: Boolean = config.getOptional[Boolean]("features.welsh-language-support").getOrElse(false)
-  val featureCookieName: String = servicesConfig.getString("features.feature-cookie-name")
-  val featureEnabledValue: String = servicesConfig.getString("features.feature-enabled-value")
-  val optimizelyUrl: Option[String] =
+class AppConfig @Inject() (config: Configuration, servicesConfig: ServicesConfig) {
+  val trackingConsentPort: String          = servicesConfig.getString("tracking-consent-frontend.port")
+  val trackingConsentUrl: String           = servicesConfig.getString("tracking-consent-frontend.url")
+  val welshLanguageSupportEnabled: Boolean =
+    config.getOptional[Boolean]("features.welsh-language-support").getOrElse(false)
+  val featureCookieName: String            = servicesConfig.getString("features.feature-cookie-name")
+  val featureEnabledValue: String          = servicesConfig.getString("features.feature-enabled-value")
+  val optimizelyUrl: Option[String]        =
     for {
       baseUrl   <- config.getOptional[String]("optimizely.url")
       projectId <- config.getOptional[String]("optimizely.projectId")
-    } yield {
-      s"$baseUrl$projectId.js"
-    }
-  val optimizelyGtmUrl: String = servicesConfig.getString("tracking-consent-frontend.optimizely-gtm-url")
+    } yield s"$baseUrl$projectId.js"
+  val optimizelyGtmUrl: String             = servicesConfig.getString("tracking-consent-frontend.optimizely-gtm-url")
 
-  val en: String            = "en"
-  val cy: String            = "cy"
+  val en: String = "en"
+  val cy: String = "cy"
 }

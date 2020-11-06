@@ -25,11 +25,11 @@ import uk.gov.hmrc.trackingconsentfrontend.testonly.views.html.TransitionalTestP
 import scala.concurrent.Future
 
 @Singleton
-class TransitionalTestController @Inject()(
+class TransitionalTestController @Inject() (
   appConfig: AppConfig,
   mcc: MessagesControllerComponents,
-  transitionalTestPage: TransitionalTestPage)
-    extends FrontendController(mcc) {
+  transitionalTestPage: TransitionalTestPage
+) extends FrontendController(mcc) {
 
   implicit val config: AppConfig = appConfig
 

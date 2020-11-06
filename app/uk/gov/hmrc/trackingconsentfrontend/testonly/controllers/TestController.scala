@@ -25,7 +25,7 @@ import uk.gov.hmrc.trackingconsentfrontend.testonly.views.html.TestPage
 import scala.concurrent.Future
 
 @Singleton
-class TestController @Inject()(appConfig: AppConfig, mcc: MessagesControllerComponents, testPage: TestPage)
+class TestController @Inject() (appConfig: AppConfig, mcc: MessagesControllerComponents, testPage: TestPage)
     extends FrontendController(mcc) {
 
   implicit val config: AppConfig = appConfig
