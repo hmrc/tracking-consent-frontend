@@ -26,12 +26,12 @@ import uk.gov.hmrc.trackingconsentfrontend.views.html.NotFoundPage
 import scala.concurrent.Future
 
 @Singleton
-class CookieSettingsController @Inject()(
+class CookieSettingsController @Inject() (
   appConfig: AppConfig,
   mcc: MessagesControllerComponents,
   cookieSettingsPage: CookieSettingsPage,
-  notFoundPage: NotFoundPage)
-    extends FrontendController(mcc) {
+  notFoundPage: NotFoundPage
+) extends FrontendController(mcc) {
 
   implicit val config: AppConfig = appConfig
 

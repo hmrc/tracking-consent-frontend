@@ -22,6 +22,6 @@ import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import scala.concurrent.Future
 
 @Singleton
-class AuditController @Inject()(mcc: MessagesControllerComponents) extends FrontendController(mcc) {
-  def audit: Action[AnyContent] = Action.async { implicit request => Future.successful(Ok) }
+class AuditController @Inject() (mcc: MessagesControllerComponents) extends FrontendController(mcc) {
+  def audit: Action[AnyContent] = Action.async(implicit request => Future.successful(Ok))
 }
