@@ -33,12 +33,12 @@ class TestControllerSpec extends SpecBase {
     "return HTML" in {
       val result = controller.test(fakeRequest)
       contentType(result) mustBe Some("text/html")
-      charset(result)     mustBe Some("utf-8")
+      charset(result) mustBe Some("utf-8")
     }
 
     "show the correct title" in {
       val result = controller.test(fakeRequest)
-      contentAsString(result) must include ("Service test page")
+      contentAsString(result) must include("Service test page")
     }
   }
 }

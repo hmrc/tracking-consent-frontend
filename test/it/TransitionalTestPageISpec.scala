@@ -30,8 +30,8 @@ class TransitionalTestPageISpec extends WordSpecLike with Matchers {
       val request = FakeRequest(GET, "/tracking-consent/test-only-transitional")
       val result  = route(app, request).get
 
-      status(result)          shouldBe OK
-      contentType(result)     shouldBe Some("text/html")
+      status(result)        shouldBe OK
+      contentType(result)   shouldBe Some("text/html")
       contentAsString(result) should include("Transitional service test page")
     }
   }
@@ -40,8 +40,8 @@ class TransitionalTestPageISpec extends WordSpecLike with Matchers {
     override lazy val app: Application = new GuiceApplicationBuilder()
       .configure(
         Map(
-          "metrics.enabled"    -> false,
-          "auditing.enabled"   -> false,
+          "metrics.enabled"  -> false,
+          "auditing.enabled" -> false,
           "play.http.router" -> "testOnlyDoNotUseInAppConf.Routes"
         )
       )

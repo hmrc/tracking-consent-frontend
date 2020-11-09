@@ -22,6 +22,6 @@ import play.api.i18n.{Messages}
 import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
 
 trait SpecBase extends PlaySpec with GuiceOneAppPerSuite with JsoupHelpers with AppHelpers {
-  implicit lazy val messages: Messages = getMessages(app, fakeRequest)
+  implicit lazy val messages: Messages   = getMessages(app, fakeRequest)
   implicit lazy val appConfig: AppConfig = getAppConfig
 }

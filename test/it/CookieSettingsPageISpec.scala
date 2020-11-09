@@ -39,19 +39,19 @@ class CookieSettingsPageISpec extends WordSpecLike with Matchers with GuiceOneAp
   "Given a running instance of tracking consent frontend, calling GET for cookie-settings" should {
     "return OK with expected page" in {
       val request = FakeRequest(GET, "/tracking-consent/cookie-settings?enableTrackingConsent=true")
-      val result = route(app, request).get
+      val result  = route(app, request).get
 
-      status(result) shouldBe OK
-      contentType(result) shouldBe Some("text/html")
+      status(result)        shouldBe OK
+      contentType(result)   shouldBe Some("text/html")
       contentAsString(result) should include("Cookie settings on HMRC services")
     }
 
     "return NOT_FOUND without the feature query parameter" in {
       val request = FakeRequest(GET, "/tracking-consent/cookie-settings")
-      val result = route(app, request).get
+      val result  = route(app, request).get
 
-      status(result) shouldBe NOT_FOUND
-      contentType(result) shouldBe Some("text/html")
+      status(result)        shouldBe NOT_FOUND
+      contentType(result)   shouldBe Some("text/html")
       contentAsString(result) should include("This page can’t be found")
     }
   }
@@ -59,17 +59,19 @@ class CookieSettingsPageISpec extends WordSpecLike with Matchers with GuiceOneAp
   "Given a running instance of tracking consent frontend, calling GET with Optimizely configured" should {
     "return OK with expected page with Optimizely snippet" in new WithConfiguredApp {
       val configuration = Map(
-        "play.http.router" -> "testOnlyDoNotUseInAppConf.Routes",
-        "optimizely.url" -> "https://cdn.optimizely.com/js/",
+        "play.http.router"     -> "testOnlyDoNotUseInAppConf.Routes",
+        "optimizely.url"       -> "https://cdn.optimizely.com/js/",
         "optimizely.projectId" -> "a1b2c3d4e5"
       )
-      val request = FakeRequest(GET, "/tracking-consent/cookie-settings?enableTrackingConsent=true")
-      val result = route(appWithConfiguration(configuration), request).get
+      val request       = FakeRequest(GET, "/tracking-consent/cookie-settings?enableTrackingConsent=true")
+      val result        = route(appWithConfiguration(configuration), request).get
 
-      status(result) shouldBe OK
-      contentType(result) shouldBe Some("text/html")
+      status(result)        shouldBe OK
+      contentType(result)   shouldBe Some("text/html")
       contentAsString(result) should include("Cookie settings on HMRC services")
-      contentAsString(result) should include regex """<script nonce="[a-zA-Z0-9+/=]+" type="text/javascript" src="https://cdn.optimizely.com/js/a1b2c3d4e5.js"></script>"""
+      contentAsString(
+        result
+      )                       should include regex """<script nonce="[a-zA-Z0-9+/=]+" type="text/javascript" src="https://cdn.optimizely.com/js/a1b2c3d4e5.js"></script>"""
     }
   }
 }

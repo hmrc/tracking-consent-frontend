@@ -29,11 +29,11 @@ trait AcceptanceTestServer extends TestSuiteMixin with GuiceFakeApplicationFacto
   implicit lazy val app: Application = new GuiceApplicationBuilder()
     .configure(
       Map(
-        "metrics.enabled"                            -> false,
-        "auditing.enabled"                           -> false,
-        "play.http.router"                           -> "testOnlyDoNotUseInAppConf.Routes",
-        "tracking-consent-frontend.port"              -> port,
-        "tracking-consent-frontend.url"              -> "/tracking-consent/tracking.js"
+        "metrics.enabled"                -> false,
+        "auditing.enabled"               -> false,
+        "play.http.router"               -> "testOnlyDoNotUseInAppConf.Routes",
+        "tracking-consent-frontend.port" -> port,
+        "tracking-consent-frontend.url"  -> "/tracking-consent/tracking.js"
       )
     )
     .disable[com.kenshoo.play.metrics.PlayModule]
@@ -58,7 +58,6 @@ trait AcceptanceTestServer extends TestSuiteMixin with GuiceFakeApplicationFacto
   /**
     * Invoke suite with a test server if running locally.
     * See org.scalatest.SuiteMixin.run
-    *
     */
   abstract override def run(testName: Option[String], args: Args): Status =
     if (env == "local") {

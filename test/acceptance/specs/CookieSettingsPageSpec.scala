@@ -141,7 +141,8 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
 
     Then("the userConsent cookie is set")
     userConsentCookie.getValue should include(
-      "%22preferences%22:{%22measurement%22:true%2C%22marketing%22:true%2C%22settings%22:true}")
+      "%22preferences%22:{%22measurement%22:true%2C%22marketing%22:true%2C%22settings%22:true}"
+    )
   }
 
   scenario("The user granting consent for all cookies sets the userConsent cookie") {
@@ -165,7 +166,8 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
 
     Then("the userConsent cookie is set")
     userConsentCookie.getValue should include(
-      "%22preferences%22:{%22measurement%22:true%2C%22marketing%22:true%2C%22settings%22:true}")
+      "%22preferences%22:{%22measurement%22:true%2C%22marketing%22:true%2C%22settings%22:true}"
+    )
   }
 
   scenario("No Javascript errors occur") {

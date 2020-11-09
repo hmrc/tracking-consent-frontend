@@ -46,12 +46,12 @@ class TrackingJsISpec extends WordSpecLike with Matchers with GuiceOneAppPerSuit
   "Given a running instance of tracking consent frontend, calling GET for tracking.js" should {
     "return OK with expected content" in {
       val request = FakeRequest(GET, "/tracking-consent/tracking.js")
-      val result = route(app, request).get
+      val result  = route(app, request).get
 
       contentType(result) shouldBe Some("application/javascript")
-      status(result) shouldBe OK
+      status(result)      shouldBe OK
 
-      val body = result.flatMap(_.body.consumeData(materializer).map(_.utf8String))
+      val body        = result.flatMap(_.body.consumeData(materializer).map(_.utf8String))
       val awaitedBody = Await.result(body, Duration(2, SECONDS))
       awaitedBody should include("\"cookieSettings.title\":\"Cookie settings on HMRC services\"")
     }

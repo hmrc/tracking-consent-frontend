@@ -9,7 +9,7 @@ object Webpack {
     object WebpackProcess extends PlayRunHook {
 
       var watchProcess: Option[Process] = None
-      val log = ConsoleLogger()
+      val log                           = ConsoleLogger()
 
       override def beforeStarted(): Unit = {
         log.info("run npm install...")
