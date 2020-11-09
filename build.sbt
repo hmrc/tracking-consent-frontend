@@ -13,7 +13,7 @@ lazy val unitTestSettings =
       addTestReportOption(Test, "test-reports")
     )
 
-lazy val IntegrationTest = config("it") extend (Test)
+lazy val IntegrationTest         = config("it") extend Test
 lazy val integrationTestSettings =
   inConfig(IntegrationTest)(Defaults.testTasks) ++
     Seq(
@@ -24,7 +24,7 @@ lazy val integrationTestSettings =
       addTestReportOption(IntegrationTest, "it-test-reports")
     )
 
-lazy val AcceptanceTest = config("acceptance") extend (Test)
+lazy val AcceptanceTest         = config("acceptance") extend Test
 lazy val acceptanceTestSettings =
   inConfig(AcceptanceTest)(Defaults.testTasks) ++
     Seq(
@@ -37,7 +37,7 @@ lazy val acceptanceTestSettings =
       addTestReportOption(AcceptanceTest, "acceptance-test-reports")
     )
 
-lazy val ZapTest = config("zap") extend (Test)
+lazy val ZapTest         = config("zap") extend Test
 lazy val zapTestSettings =
   inConfig(ZapTest)(Defaults.testTasks) ++
     Seq(

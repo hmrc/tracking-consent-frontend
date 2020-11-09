@@ -30,7 +30,8 @@ import unit.AppHelpers
 import scala.concurrent.Future
 
 class LanguageSwitchControllerSpec extends PlaySpec with GuiceOneAppPerTest with AppHelpers {
-  def makeController(implicit app: Application): LanguageSwitchController = app.injector.instanceOf[LanguageSwitchController]
+  def makeController(implicit app: Application): LanguageSwitchController =
+    app.injector.instanceOf[LanguageSwitchController]
 
   def switchToEnglish(implicit app: Application): Future[Result] = makeController.switchToLanguage("en")(fakeRequest)
 
@@ -70,14 +71,14 @@ class LanguageSwitchControllerSpec extends PlaySpec with GuiceOneAppPerTest with
       implicit val fakeRequestWithReferrer: FakeRequest[AnyContentAsEmpty.type] = fakeRequest.withHeaders(
         HeaderNames.REFERER -> "http://localhost:12345/my-service-page"
       )
-      val controller = buildAppWithWelshLanguageSupport().injector.instanceOf[LanguageSwitchController]
-      val result     = controller.switchToLanguage("en")(fakeRequestWithReferrer)
+      val controller                                                            = buildAppWithWelshLanguageSupport().injector.instanceOf[LanguageSwitchController]
+      val result                                                                = controller.switchToLanguage("en")(fakeRequestWithReferrer)
       redirectLocation(result) mustBe Some("/my-service-page")
     }
 
     "redirect to the default url if no REFERER header set" in {
       val controller = buildAppWithWelshLanguageSupport().injector.instanceOf[LanguageSwitchController]
-      val result = controller.switchToLanguage("en")(fakeRequest)
+      val result     = controller.switchToLanguage("en")(fakeRequest)
       redirectLocation(result) mustBe Some("/tracking-consent/cookie-settings")
     }
   }

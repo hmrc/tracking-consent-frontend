@@ -29,28 +29,25 @@ class LanguageSelectSpec extends MixedPlaySpec with JsoupHelpers with AppHelpers
 
   def languageSelectContent(implicit app: Application, request: Request[_]) = {
     implicit val appConfig: AppConfig = getAppConfig
-    implicit val messages = getMessages(app, request)
-    val languageSelect = app.injector.instanceOf[LanguageSelect]
+    implicit val messages             = getMessages(app, request)
+    val languageSelect                = app.injector.instanceOf[LanguageSelect]
     languageSelect()
   }
 
   "LanguageSelect" must {
-    "Return nothing if language support is disabled" in new App(
-      buildAppWithWelshLanguageSupport(false)) {
+    "Return nothing if language support is disabled" in new App(buildAppWithWelshLanguageSupport(false)) {
       val content = languageSelectContent
 
       content mustBe Html("")
     }
 
-    "Return a language select" in new App(
-      buildAppWithWelshLanguageSupport(true)) {
+    "Return a language select" in new App(buildAppWithWelshLanguageSupport(true)) {
       val content = languageSelectContent
 
       content.select(".hmrc-language-select") must have size 1
     }
 
-    "Provide a link to Welsh by default" in new App(
-      buildAppWithWelshLanguageSupport(true)) {
+    "Provide a link to Welsh by default" in new App(buildAppWithWelshLanguageSupport(true)) {
       val content = languageSelectContent
 
       content
@@ -58,11 +55,10 @@ class LanguageSelectSpec extends MixedPlaySpec with JsoupHelpers with AppHelpers
         .text mustBe "Newid yr iaith ir Gymraeg Cymraeg"
     }
 
-    "Provide a link to English is language cookie is set to Welsh" in new App(
-      buildAppWithWelshLanguageSupport(true)) {
+    "Provide a link to English is language cookie is set to Welsh" in new App(buildAppWithWelshLanguageSupport(true)) {
       implicit val fakeRequest =
         FakeRequest("GET", "/foo").withCookies(Cookie("PLAY_LANG", "cy"))
-      val content = languageSelectContent
+      val content              = languageSelectContent
 
       content
         .select(".govuk-link")

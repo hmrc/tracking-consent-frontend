@@ -54,13 +54,13 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       click on acceptAllCookiesButton
 
       Then("the dataLayer contains the 'hmrc-measurement-allowed' event")
-      measurementAllowedGtmEvent should not be (null)
+      measurementAllowedGtmEvent should not be null
 
       And("the dataLayer contains the 'hmrc-marketing-allowed' event")
-      marketingAllowedGtmEvent should not be (null)
+      marketingAllowedGtmEvent should not be null
 
       And("the dataLayer contains the 'hmrc-settings-allowed' event")
-      settingsAllowedGtmEvent should not be (null)
+      settingsAllowedGtmEvent should not be null
     }
 
     scenario("The user consenting to all cookies sets consent cookie") {
@@ -121,7 +121,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       }
 
       And("no Javascript console errors are thrown")
-      consoleErrors should equal (Seq.empty)
+      consoleErrors should equal(Seq.empty)
     }
   }
 }

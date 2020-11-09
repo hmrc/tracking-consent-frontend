@@ -24,16 +24,22 @@ import support.TestConfiguration.env
 
 import scala.util.Try
 
-class AcceptanceTestServerSpec extends WordSpec with AcceptanceTestServer with Matchers with TryValues with BeforeAndAfterAll {
+class AcceptanceTestServerSpec
+    extends WordSpec
+    with AcceptanceTestServer
+    with Matchers
+    with TryValues
+    with BeforeAndAfterAll {
   override lazy val port = 6001
 
-  val url = new URL(s"http://localhost:$port/tracking-consent/cookie-settings?enableTrackingConsent=true")
+  val url                    = new URL(s"http://localhost:$port/tracking-consent/cookie-settings?enableTrackingConsent=true")
   val expectedFailureMessage = "Connection refused"
 
   private def getTestPageResponseCode = {
     val con = url.openConnection().asInstanceOf[HttpURLConnection]
 
-    try con.getResponseCode finally con.disconnect()
+    try con.getResponseCode
+    finally con.disconnect()
   }
 
   override def beforeAll() {
@@ -43,7 +49,8 @@ class AcceptanceTestServerSpec extends WordSpec with AcceptanceTestServer with M
 
   override def afterAll() {
     val connectException = the[ConnectException] thrownBy getTestPageResponseCode
-    connectException.getMessage should include(expectedFailureMessage)  }
+    connectException.getMessage should include(expectedFailureMessage)
+  }
 
   "TestServer" should {
     "create an HTTP endpoint if running locally" in {
@@ -59,7 +66,8 @@ class AcceptanceTestServerSpec extends WordSpec with AcceptanceTestServer with M
     "not create an HTTP endpoint if not running locally" in {
       if (env != "local") {
         val connectException = the[ConnectException] thrownBy getTestPageResponseCode
-        connectException.getMessage should include(expectedFailureMessage)      }
+        connectException.getMessage should include(expectedFailureMessage)
+      }
     }
   }
 }

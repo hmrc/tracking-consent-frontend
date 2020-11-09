@@ -31,7 +31,7 @@ class TransitionalServiceTestPageSpec extends BaseAcceptanceSpec {
 
       Then("the gtm script pointed to the transitional container is injected into the page")
       eventually {
-        transitionalGtmScript should not be (null)
+        transitionalGtmScript should not be null
       }
     }
 
@@ -44,7 +44,7 @@ class TransitionalServiceTestPageSpec extends BaseAcceptanceSpec {
 
       Then("the dataLayer contains the Window loaded event")
       eventually {
-        windowLoadedGtmEvent should not be (null)
+        windowLoadedGtmEvent should not be null
       }
     }
 
@@ -68,7 +68,7 @@ class TransitionalServiceTestPageSpec extends BaseAcceptanceSpec {
 
       Then("the cookie banner is visible")
       eventually {
-        acceptAllCookiesButton should not be (null)
+        acceptAllCookiesButton should not be null
       }
     }
   }

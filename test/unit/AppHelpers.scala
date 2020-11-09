@@ -35,21 +35,19 @@ trait AppHelpers {
         Map(elems: _*) ++ Map(
           "metrics.enabled"  -> false,
           "auditing.enabled" -> false
-        ))
+        )
+      )
       .disable[com.kenshoo.play.metrics.PlayModule]
       .build()
 
   def buildAppWithWelshLanguageSupport[A](welshLanguageSupport: Boolean = true) =
-    buildApp(
-      "features.welsh-language-support" -> welshLanguageSupport.toString)
+    buildApp("features.welsh-language-support" -> welshLanguageSupport.toString)
 
-  def getAppConfig(implicit app: Application) = {
+  def getAppConfig(implicit app: Application)                                   =
     app.injector.instanceOf[AppConfig]
-  }
 
-  def getMessagesApi(implicit app: Application) = {
+  def getMessagesApi(implicit app: Application) =
     app.injector.instanceOf[MessagesApi]
-  }
 
   def getMessages(implicit app: Application, request: Request[_]) = {
     val messagesApi: MessagesApi = getMessagesApi(app)

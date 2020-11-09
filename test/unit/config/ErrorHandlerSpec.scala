@@ -25,8 +25,11 @@ class ErrorHandlerSpec extends SpecBase {
 
   "standardErrorTemplate" should {
     "show the correct title" in {
-      val result = errorHandler.standardErrorTemplate(pageTitle = "Error occurred", heading = "A heading", message = "A message")(fakeRequest)
-      contentAsString(result) must include ("A heading")
+      val result =
+        errorHandler.standardErrorTemplate(pageTitle = "Error occurred", heading = "A heading", message = "A message")(
+          fakeRequest
+        )
+      contentAsString(result) must include("A heading")
     }
   }
 }

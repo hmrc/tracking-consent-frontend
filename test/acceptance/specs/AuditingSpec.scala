@@ -60,9 +60,10 @@ class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
     Then("an audit event is sent")
     eventually {
       val requests = endpointServer.findAll(anyRequestedFor(anyUrl()))
-      requests.size should be(1)
+      requests.size                   should be(1)
       requests.get(0).getBodyAsString should include(
-        "{\\\"measurement\\\":true,\\\"marketing\\\":true,\\\"settings\\\":true}")
+        "{\\\"measurement\\\":true,\\\"marketing\\\":true,\\\"settings\\\":true}"
+      )
     }
   }
 
@@ -85,9 +86,10 @@ class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
     Then("an audit event is sent")
     eventually {
       val requests = endpointServer.findAll(anyRequestedFor(anyUrl()))
-      requests.size should be(1)
+      requests.size                   should be(1)
       requests.get(0).getBodyAsString should include(
-        "{\\\"measurement\\\":false,\\\"marketing\\\":false,\\\"settings\\\":false}")
+        "{\\\"measurement\\\":false,\\\"marketing\\\":false,\\\"settings\\\":false}"
+      )
     }
   }
 
@@ -105,9 +107,10 @@ class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
     Then("an audit event is sent")
     eventually {
       val requests = endpointServer.findAll(anyRequestedFor(anyUrl()))
-      requests.size should be(1)
+      requests.size                   should be(1)
       requests.get(0).getBodyAsString should include(
-        "{\\\"measurement\\\":true,\\\"marketing\\\":true,\\\"settings\\\":true}")
+        "{\\\"measurement\\\":true,\\\"marketing\\\":true,\\\"settings\\\":true}"
+      )
     }
   }
 }

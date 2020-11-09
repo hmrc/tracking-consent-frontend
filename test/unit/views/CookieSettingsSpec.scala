@@ -23,7 +23,7 @@ import unit.SpecBase
 class CookieSettingsSpec extends SpecBase {
   "the cookie settings page" must {
     val cookieSettingsPage = app.injector.instanceOf[CookieSettingsPage]
-    val content = cookieSettingsPage()
+    val content            = cookieSettingsPage()
 
     "display the correct browser title" in {
       content.select("title").text mustBe "Cookie settings on HMRC services"
