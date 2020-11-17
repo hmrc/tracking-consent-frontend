@@ -2,7 +2,7 @@ cookieSettings.title = Lorem ipsum
 testPage.title = Lorem ipsum
 service.homePageUrl = https://www.gov.uk
 
-banner.title = Lorem ipsum
+banner.title = Tell us whether you accept cookies
 banner.paragraph1.beforeLink = We use
 banner.paragraph1.link.text = cookies to collect information
 banner.paragraph1.link.url = /tracking-consent/cookie-settings
