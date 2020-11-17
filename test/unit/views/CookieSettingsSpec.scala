@@ -16,11 +16,23 @@
 
 package unit.views
 
+import play.api.Application
+import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.test.Helpers._
 import uk.gov.hmrc.trackingconsentfrontend.views.html.CookieSettingsPage
 import unit.SpecBase
 
 class CookieSettingsSpec extends SpecBase {
+  override def fakeApplication(): Application =
+    new GuiceApplicationBuilder()
+      .configure(
+        Map(
+          "optimizely.url"       -> "https://cdn.optimizely.com/",
+          "optimizely.projectId" -> "1234567"
+        )
+      )
+      .build()
+
   "the cookie settings page" must {
     val cookieSettingsPage = app.injector.instanceOf[CookieSettingsPage]
     val content            = cookieSettingsPage()
@@ -61,6 +73,11 @@ class CookieSettingsSpec extends SpecBase {
 
     "include the settings radio inputs" in {
       content.select("input[name=settings]") must have size 2
+    }
+
+    "include the optimizely script" in {
+      val scripts = content.select("script")
+      scripts.get(2).attr("src") must be("/tracking-consent/assets/optimizely.js")
     }
   }
 }

@@ -33,7 +33,6 @@ class AppConfig @Inject() (config: Configuration, servicesConfig: ServicesConfig
       baseUrl   <- config.getOptional[String]("optimizely.url")
       projectId <- config.getOptional[String]("optimizely.projectId")
     } yield s"$baseUrl$projectId.js"
-  val optimizelyGtmUrl: String             = servicesConfig.getString("tracking-consent-frontend.optimizely-gtm-url")
 
   val en: String = "en"
   val cy: String = "cy"
