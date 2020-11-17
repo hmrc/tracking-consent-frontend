@@ -1,9 +1,8 @@
 import {CY, EN} from "../constants/languages"
-import Cookies from 'js-cookie'
-import {PLAY_LANG} from "../constants/cookies";
+import getConfigurationAttribute from "../common/getConfigurationAttribute";
 
 const getLanguage = () => {
-  const language = Cookies.get(PLAY_LANG)
+  const language = getConfigurationAttribute("language")
 
   return language === CY ? CY : EN
 }

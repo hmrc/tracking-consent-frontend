@@ -64,7 +64,7 @@ lazy val microservice = Project(appName, file("."))
       "uk.gov.hmrc.hmrcfrontend.views.html.components._"
     ),
     PlayKeys.playRunHooks += Webpack(javaScriptDirectory.value),
-    PlayKeys.devSettings ++= Seq("metrics.enabled" -> "false", "auditing.enabled" -> "false"),
+    PlayKeys.devSettings ++= Seq("metrics.enabled" -> "false"),
     pipelineStages in Assets := Seq(gzip),
     acceptanceTestSettings,
     unitTestSettings,
