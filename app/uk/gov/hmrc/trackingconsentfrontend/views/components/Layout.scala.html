@@ -20,7 +20,7 @@
         govukLayout: GovukLayout,
         head: Head,
         hmrcBanner: HmrcBanner,
-        hmrcFooter: HmrcFooter,
+        hmrcStandardFooter: HmrcStandardFooter,
         hmrcLanguageSelect: HmrcLanguageSelect,
         languageSelect: LanguageSelect
 )
@@ -40,5 +40,5 @@
     headBlock = Some(head(headBlock)),
     scriptsBlock = scriptsBlock,
     beforeContentBlock = Some(beforeContentBlock),
-    footerBlock = Some(hmrcFooter())
+    footerBlock = Some(hmrcStandardFooter())
 )(contentBlock)

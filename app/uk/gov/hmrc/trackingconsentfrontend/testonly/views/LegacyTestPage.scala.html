@@ -15,7 +15,7 @@
  *@
 
 @this(cookieHead: CookieHead)
-@()(implicit request: Request[_], appConfig: AppConfig)
+@()(implicit request: Request[_], appConfig: AppConfig, messages: Messages)
 <html>
     <head>
         <!-- Suppress requests for favicon.ico to prevent console errors occurring -->

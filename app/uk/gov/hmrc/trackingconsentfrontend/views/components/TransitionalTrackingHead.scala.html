@@ -16,12 +16,13 @@
 
 @this()
 
-@()(implicit appConfig: AppConfig, request: RequestHeader)
+@()(implicit appConfig: AppConfig, request: RequestHeader, messages: Messages)
 <!--[if !IE]>-->
-<script @{CSPNonce.attr}
-  type="text/javascript"
+<script
+  @{CSPNonce.attr}
   src="@appConfig.trackingConsentUrl"
   id="tracking-consent-script-tag"
   data-gtm-container="transitional"
+  data-language="@messages.lang.code"
 ></script>
 <!--<![endif]-->
