@@ -19,6 +19,6 @@ describe('getMessages', () => {
 
     const messages = getMessages()
 
-    expect(messages['cookieSettings.title']).toEqual('Lorem ipsum')
+    expect(messages['cookieSettings.title']).toEqual('Cookie settings on HMRC services')
   })
 })
