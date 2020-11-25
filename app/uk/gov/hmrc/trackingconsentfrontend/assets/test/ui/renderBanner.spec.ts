@@ -97,6 +97,16 @@ describe('renderBanner', () => {
     expect(button.getAttribute('href')).toEqual('http://localhost:8000/tracking-consent/cookie-settings')
   })
 
+  it('should render a cookie settings link based on base URL', () => {
+    getTrackingConsentBaseUrlSpy.and.returnValue('http://localhost:8000')
+    renderBanner(userPreference)
+
+    const link = queryByText(document.body, 'cookies to collect information')
+    expect(link).toBeTruthy()
+    // @ts-ignore
+    expect(link.getAttribute('href')).toEqual('http://localhost:8000/tracking-consent/cookie-settings')
+  })
+
   it('should render the banner after the govuk-frontend skiplink link', () => {
     renderBanner(userPreference)
 
