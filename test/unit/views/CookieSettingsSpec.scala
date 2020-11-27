@@ -48,7 +48,7 @@ class CookieSettingsSpec extends SpecBase {
     }
 
     "return the introductory content" in {
-      contentAsString(content) must include("Cookies are files saved on your phone")
+      contentAsString(content) must include("‘Cookies’ are files saved on your phone")
     }
 
     "return the content for unsupported browsers" in {

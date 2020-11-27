@@ -18,9 +18,9 @@ banner.saveConfirmation.paragraph1.afterLink = at any time.
 banner.saveConfirmation.hideButton.text = Hide
 banner.saveConfirmation.hideButton.label = Hide the cookie banner
 
-cookieSettings.intro.paragraph1 = Cookies are files saved on your phone, tablet or computer when you visit a website.
-cookieSettings.intro.paragraph2 = We use cookies to store information about how you use HMRC services, such as the pages you visit.
-cookieSettings.intro.paragraph3 = We use 4 types of cookie. You can choose which cookies you’re happy for us to use.
+cookieSettings.intro.paragraph1 = ‘Cookies’ are files saved on your phone, tablet or computer when you visit a website.
+cookieSettings.intro.paragraph2 = We use 4 types of cookies to store information about how you use HMRC services, such as the pages you visit.
+cookieSettings.intro.paragraph3 = You can choose which ones you’re happy for us to use.
 
 cookieSettings.unsupported.paragraph1 = You cannot change your cookie settings because:
 cookieSettings.unsupported.bullet1 = your web browser (the software you use to access the internet) is unsupported
@@ -33,7 +33,7 @@ cookieSettings.unsupported.paragraph3.link.text = upgrade your browser
 cookieSettings.unsupported.paragraph4 = If Javascript is not running on your browser, try turning on Javascript.
 
 cookieSettings.measurement.title = Cookies that measure website use
-cookieSettings.measurement.paragraph1 = We use Google Analytics to measure how you use the website so we can improve it based on user needs. We do not allow Google to use or share the data about how you use this site.
+cookieSettings.measurement.paragraph1 = We use Google Analytics to measure how you use our services so we can improve them based on the needs of users. We do not allow Google to use or share this data.
 cookieSettings.measurement.paragraph2 = Google Analytics sets cookies that store anonymised information about:
 cookieSettings.measurement.bullet1 = how you got to the site
 cookieSettings.measurement.bullet2 = the pages you visit on HMRC services and how long you spend on each page
@@ -43,19 +43,19 @@ cookieSettings.measurement.settinglabel.off = Do not use cookies that measure my
 cookieSettings.measurement.settingid = measurement
 
 cookieSettings.marketing.title = Cookies that help with our communications and marketing
-cookieSettings.marketing.paragraph1 = These cookies may be set by third party websites and do things like measure how you view YouTube videos that are on HMRC services.
+cookieSettings.marketing.paragraph1 = These cookies may be set by ‘third party’ websites, like YouTube. They do things like measure how you view YouTube videos on HMRC services.
 cookieSettings.marketing.settinglabel.on = Use cookies that help with communications and marketing
 cookieSettings.marketing.settinglabel.off = Do not use cookies that help with communications and marketing
 cookieSettings.marketing.settingid = marketing
 
 cookieSettings.settings.title = Cookies that remember your settings
-cookieSettings.settings.paragraph1 = These cookies do things like remember your preferences and the choices you make, to personalise your experience of using the site.
-cookieSettings.settings.settinglabel.on = Use cookies that remember my settings on the site
-cookieSettings.settings.settinglabel.off = Do not use cookies that remember my settings on the site
+cookieSettings.settings.paragraph1 = These cookies do things like remember your preferences and the choices you make, to personalise your experience of using our services.
+cookieSettings.settings.settinglabel.on = Use cookies that remember my settings on services
+cookieSettings.settings.settinglabel.off = Do not use cookies that remember my settings on services
 cookieSettings.settings.settingid = settings
 
 cookieSettings.necessary.title = Strictly necessary cookies
-cookieSettings.necessary.paragraph1 = These essential cookies do things like remember your progress through a form (for example a licence application)
+cookieSettings.necessary.paragraph1 = These essential cookies do things like remember your progress through a form, such as a licence application.
 cookieSettings.necessary.paragraph2 =They always need to be on.
 cookieSettings.necessary.link.text = Find out more about cookies on HMRC services
 cookieSettings.necessary.link.url = /help/cookies
