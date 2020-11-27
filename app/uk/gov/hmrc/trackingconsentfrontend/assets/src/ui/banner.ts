@@ -1,12 +1,14 @@
 import getTrackingConsentBaseUrl from "../common/getTrackingConsentBaseUrl";
 
-const banner = messages => `<div class="cbanner-govuk-width-container cbanner-cookie-banner__question">
+const banner = messages => {
+    const trackingConsentSettingsPageUrl = `${getTrackingConsentBaseUrl()}${messages['banner.paragraph1.link.url']}`
+    return `<div class="cbanner-govuk-width-container cbanner-cookie-banner__question">
     <div class="cbanner-govuk-grid-row">
         <div class="cbanner-govuk-grid-column-full">
             <h2 class="cbanner-govuk-heading-m">${messages['banner.title']}</h2>
             <p class="cbanner-govuk-body">
                 ${messages['banner.paragraph1.beforeLink']} 
-                <a class="cbanner-govuk-link" href="${messages['banner.paragraph1.link.url']}">
+                <a class="cbanner-govuk-link" href="${trackingConsentSettingsPageUrl}">
                     ${messages['banner.paragraph1.link.text']}
                 </a>
                 ${messages['banner.paragraph1.afterLink']}
@@ -17,7 +19,7 @@ const banner = messages => `<div class="cbanner-govuk-width-container cbanner-co
                     </button>
                 </div>
                 <div class="cbanner-cookie-banner__button-column cbanner-govuk-grid-column-full cbanner-govuk-grid-column-one-half-from-desktop">
-                    <a href="${getTrackingConsentBaseUrl()}${messages['banner.paragraph1.link.url']}" class="cbanner-govuk-button cbanner-cookie-banner__set-cookie-preferences-button" draggable="false" role="button">
+                    <a href="${trackingConsentSettingsPageUrl}" class="cbanner-govuk-button cbanner-cookie-banner__set-cookie-preferences-button" draggable="false" role="button">
                         ${messages['banner.setCookiePreferencesButton']}
                     </a>
                 </div>
@@ -26,5 +28,6 @@ const banner = messages => `<div class="cbanner-govuk-width-container cbanner-co
     </div>
 </div>
 `
+}
 
 export default banner
