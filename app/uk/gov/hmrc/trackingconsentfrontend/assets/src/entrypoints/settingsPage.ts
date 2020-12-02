@@ -1,5 +1,5 @@
-import settingsFormHandler from '../ui/settingsFormHandler'
-import pageHandler from '../common/pageHandler'
-import subscribedUserPreferencesFactory from '../domain/subscribedUserPreferencesFactory'
+import settingsFormHandler from '../ui/settingsFormHandler';
+import pageHandler from '../common/pageHandler';
+import subscribedUserPreferencesFactory from '../domain/subscribedUserPreferencesFactory';
 
-pageHandler(document, subscribedUserPreferencesFactory(window), settingsFormHandler)
+pageHandler(document, subscribedUserPreferencesFactory(window), settingsFormHandler);

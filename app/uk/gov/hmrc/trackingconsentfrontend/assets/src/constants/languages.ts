@@ -1,2 +1,2 @@
-export const EN = 'en'
-export const CY = 'cy'
+export const EN = 'en';
+export const CY = 'cy';

@@ -1,7 +1,7 @@
-import callIfNotNull from "./callIfNotNull";
+import callIfNotNull from './callIfNotNull';
 
 const focusIfNotNull = (element: HTMLElement | null) => {
-    callIfNotNull(element, element => element.focus())
-}
+  callIfNotNull(element, (notNullElement) => notNullElement.focus());
+};
 
-export default focusIfNotNull
+export default focusIfNotNull;

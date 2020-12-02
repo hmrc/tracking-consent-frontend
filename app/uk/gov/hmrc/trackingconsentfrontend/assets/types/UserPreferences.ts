@@ -1,5 +1,5 @@
-import { Preferences } from './Preferences'
-import { Communicator } from './Communicator'
+import { Preferences } from './Preferences';
+import { Communicator } from './Communicator';
 
 export type UserPreferences = {
     userAcceptsAll: () => void,

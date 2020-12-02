@@ -1,0 +1,10 @@
+{
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "ignorePatterns": [
+    "backstop/public/**/*",
+    "backstop/backstop_data/**/*"
+  ]
+}

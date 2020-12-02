@@ -5,6 +5,7 @@
 !.gitignore
 !.scalafmt.conf
 !.browserslistrc
+!.eslintrc.json
 .cache
 /.classpath
 db

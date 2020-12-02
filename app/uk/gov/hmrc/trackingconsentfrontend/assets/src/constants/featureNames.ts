@@ -1,1 +1,5 @@
-export const enableTrackingConsent = 'enableTrackingConsent'
+const enableTrackingConsent = 'enableTrackingConsent';
+
+export default {
+  enableTrackingConsent,
+};

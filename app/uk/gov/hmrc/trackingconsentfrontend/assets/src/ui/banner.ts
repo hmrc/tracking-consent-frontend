@@ -1,8 +1,8 @@
-import getTrackingConsentBaseUrl from "../common/getTrackingConsentBaseUrl";
+import getTrackingConsentBaseUrl from '../common/getTrackingConsentBaseUrl';
 
-const banner = messages => {
-    const trackingConsentSettingsPageUrl = `${getTrackingConsentBaseUrl()}${messages['banner.paragraph1.link.url']}`
-    return `<div class="cbanner-govuk-width-container cbanner-cookie-banner__question">
+const banner = (messages) => {
+  const trackingConsentSettingsPageUrl = `${getTrackingConsentBaseUrl()}${messages['banner.paragraph1.link.url']}`;
+  return `<div class="cbanner-govuk-width-container cbanner-cookie-banner__question">
     <div class="cbanner-govuk-grid-row">
         <div class="cbanner-govuk-grid-column-full">
             <h2 class="cbanner-govuk-heading-m">${messages['banner.title']}</h2>
@@ -27,7 +27,7 @@ const banner = messages => {
         </div>
     </div>
 </div>
-`
-}
+`;
+};
 
-export default banner
+export default banner;

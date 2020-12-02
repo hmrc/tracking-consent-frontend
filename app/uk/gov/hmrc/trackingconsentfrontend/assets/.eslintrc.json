@@ -1,0 +1,47 @@
+{
+  "extends": [
+    "airbnb-base"
+  ],
+  "root": true,
+  "env": {
+    "browser": true
+  },
+  "ignorePatterns": [
+    "src/entrypoints/optimizely.js"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {},
+      "plugins": [
+        "@typescript-eslint"
+      ],
+      "settings": {
+        "import/resolver": {
+          "node": {
+            "extensions": [
+              ".js",
+              ".jsx",
+              ".ts",
+              ".tsx"
+            ]
+          }
+        }
+      },
+      "rules": {
+        "import/extensions": [
+          "error",
+          "ignorePackages",
+          {
+            "js": "never",
+            "ts": "never"
+          }
+        ],
+        "@typescript-eslint/no-unused-vars": [2, { "args": "none" }]
+      }
+    }
+  ]
+}
