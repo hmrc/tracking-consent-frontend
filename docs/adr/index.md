@@ -7,7 +7,10 @@
 - [ADR-0003](0003-use-markdown-architectural-decision-records.md) - Use Markdown Architectural Decision Records (MADRs)
 - [ADR-0004](0004-namespace-the-gtm-container-attribute-for-tracking-consent.md) - Namespace the gtm.container attribute for tracking consent
 - [ADR-0005](0005-use-data-attribute-for-language.md) - Use data attribute for specifying tracking consent banner language
+- [ADR-0006](0006-make-tracking-consent-available-on-non-tax-domains.md) - Make tracking consent available on non-tax domains
 
 <!-- adrlogstop -->
+
+
 
 
