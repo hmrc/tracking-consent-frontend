@@ -8,10 +8,15 @@ import { Preferences } from '../../types/Preferences';
 import { CONSENT_UPDATED_EVENT } from '../constants/events';
 
 const userPreferencesFactory = (): UserPreferences => {
+  let self;
   const subscribers: Communicator[] = [];
 
   const subscribe = (preferenceCommunicator: Communicator) => {
     subscribers.push(preferenceCommunicator);
+  };
+
+  const sendPreferences = (event: string) => {
+    subscribers.forEach((subscriber: Communicator) => subscriber.sendPreferences(self, event));
   };
 
   const storePreferences = (preferences: Preferences) => {
@@ -26,6 +31,22 @@ const userPreferencesFactory = (): UserPreferences => {
     );
   };
 
+  const userAcceptsAll = () => {
+    storePreferences({
+      acceptAll: true,
+    });
+    sendPreferences(CONSENT_UPDATED_EVENT);
+  };
+
+  const setPreferences = (preferencesIn: Preferences) => {
+    storePreferences({
+      measurement: preferencesIn.measurement,
+      marketing: preferencesIn.marketing,
+      settings: preferencesIn.settings,
+    });
+    sendPreferences(CONSENT_UPDATED_EVENT);
+  };
+
   const isPreferenceStrictlyBoolean = ([, value]) => typeof value === 'boolean';
 
   const getSanitisedPreferences = (preferences: any) => {
@@ -38,10 +59,8 @@ const userPreferencesFactory = (): UserPreferences => {
     return entries.filter(isPreferenceStrictlyBoolean);
   };
 
-  const allThePreferences = () => fromEntries(cookieTypes.map((cookieType: string) => [
-    cookieType,
-    true,
-  ]));
+  const allThePreferences = () => fromEntries(cookieTypes
+    .map((cookieType: string) => [cookieType, true]));
 
   const getPreferences = (): Preferences | undefined => {
     const cookie = Cookies.getJSON(COOKIE_CONSENT);
@@ -66,31 +85,13 @@ const userPreferencesFactory = (): UserPreferences => {
 
   const getUserHasSavedCookiePreferences = () => getPreferences() !== undefined;
 
-  const self = {
+  self = {
+    userAcceptsAll,
+    setPreferences,
     getUserHasSavedCookiePreferences,
     getPreferences,
+    sendPreferences,
     subscribe,
-    userAcceptsAll: () => {
-      storePreferences({
-        acceptAll: true,
-      });
-      subscribers.forEach(
-        (subscriber: Communicator) => subscriber.sendPreferences(self, CONSENT_UPDATED_EVENT),
-      );
-    },
-    setPreferences: (preferencesIn: Preferences) => {
-      storePreferences({
-        measurement: preferencesIn.measurement,
-        marketing: preferencesIn.marketing,
-        settings: preferencesIn.settings,
-      });
-      subscribers.forEach(
-        (subscriber: Communicator) => subscriber.sendPreferences(self, CONSENT_UPDATED_EVENT),
-      );
-    },
-    sendPreferences: (event: string) => {
-      subscribers.forEach((subscriber: Communicator) => subscriber.sendPreferences(self, event));
-    },
   };
 
   return self;
