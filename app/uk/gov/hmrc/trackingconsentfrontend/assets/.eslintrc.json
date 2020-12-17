@@ -7,40 +7,34 @@
     "browser": true
   },
   "ignorePatterns": [
-    "src/entrypoints/optimizely.js"
+    "src/entrypoints/optimizely.js",
+    "test/backstop/public/**/*",
+    "test/backstop/backstop_data/**/*"
   ],
   "overrides": [
     {
       "files": [
         "*.ts"
       ],
-      "parser": "@typescript-eslint/parser",
-      "parserOptions": {},
-      "plugins": [
-        "@typescript-eslint"
+      "extends": [
+        "airbnb-typescript"
       ],
-      "settings": {
-        "import/resolver": {
-          "node": {
-            "extensions": [
-              ".js",
-              ".jsx",
-              ".ts",
-              ".tsx"
-            ]
-          }
-        }
+      "parserOptions": {
+        "project": "./tsconfig.json"
       },
-      "rules": {
-        "import/extensions": [
-          "error",
-          "ignorePackages",
-          {
-            "js": "never",
-            "ts": "never"
-          }
-        ],
-        "@typescript-eslint/no-unused-vars": [2, { "args": "none" }]
+      "settings": {
+        "react": {
+          "version": "latest"
+        }
+      }
+    },
+    {
+      "files": [
+        "test/**/*"
+      ],
+      "env": {
+        "browser": true,
+        "jest": true
       }
     }
   ]

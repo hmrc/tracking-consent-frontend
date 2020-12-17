@@ -3,7 +3,7 @@ import enableGtm from '../../src/interfaces/enableGtm';
 
 describe('enableGtm', () => {
   beforeEach(() => {
-    delete window['dataLayer'];
+    delete window.dataLayer;
     document.getElementsByTagName('html')[0].innerHTML = '<head><script/></head>';
   });
 
@@ -35,22 +35,22 @@ describe('enableGtm', () => {
   it('should initialise the dataLayer', () => {
     enableGtm('GTM-CONTAINER-ID');
 
-    expect(window['dataLayer'][0]['gtm.start']).toBeDefined();
-    expect(window['dataLayer'][0].event).toEqual('gtm.js');
+    expect(window.dataLayer[0]['gtm.start']).toBeDefined();
+    expect(window.dataLayer[0].event).toEqual('gtm.js');
   });
 
   it('should initialise the dataLayer only once', () => {
     enableGtm('GTM-CONTAINER-ID');
 
-    expect(window['dataLayer'].filter(({ event }) => event === 'gtm.js')).toHaveLength(1);
+    expect(window.dataLayer.filter(({ event }) => event === 'gtm.js')).toHaveLength(1);
   });
 
   it('should add a gtm.start event after any existing events', () => {
-    window['dataLayer'] = ['abc'];
+    window.dataLayer = ['abc'];
 
     enableGtm('GTM-CONTAINER-ID');
 
-    expect(window['dataLayer'][1]['gtm.start']).toBeDefined();
+    expect(window.dataLayer[1]['gtm.start']).toBeDefined();
   });
 
   it('should run without errors if the page does not contain a script tag', () => {
