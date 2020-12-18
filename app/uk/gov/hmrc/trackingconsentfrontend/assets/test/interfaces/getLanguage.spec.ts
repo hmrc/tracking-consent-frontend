@@ -1,11 +1,11 @@
-import getLanguage from '../../src/interfaces/getLanguage'
+import getLanguage from '../../src/interfaces/getLanguage';
 
 describe('getLanguage', () => {
   it('should return English by default', () => {
-    const language = getLanguage()
+    const language = getLanguage();
 
-    expect(language).toEqual('en')
-  })
+    expect(language).toEqual('en');
+  });
 
   it('should return Welsh if data-language is set to cy', () => {
     document.getElementsByTagName('html')[0].innerHTML = `<html>
@@ -15,12 +15,12 @@ describe('getLanguage', () => {
     <body>
     </body>
 </html> 
-`
+`;
 
-    const language = getLanguage()
+    const language = getLanguage();
 
-    expect(language).toEqual('cy')
-  })
+    expect(language).toEqual('cy');
+  });
 
   it('should return English if data-language is not recognised', () => {
     document.getElementsByTagName('html')[0].innerHTML = `<html>
@@ -30,10 +30,10 @@ describe('getLanguage', () => {
     <body>
     </body>
 </html> 
-`
+`;
 
-    const language = getLanguage()
+    const language = getLanguage();
 
-    expect(language).toEqual('en')
-  })
-})
+    expect(language).toEqual('en');
+  });
+});

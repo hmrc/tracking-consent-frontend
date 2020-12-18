@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-$(cd docs/adr && adr-log -d ./ -i index.md)
+$(cd docs/adr && npx adr-log -d ./ -i index.md)

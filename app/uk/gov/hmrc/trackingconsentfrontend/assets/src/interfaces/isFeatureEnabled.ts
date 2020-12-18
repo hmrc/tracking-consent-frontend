@@ -1,23 +1,17 @@
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
 
 const isFeatureEnabled = (featureName: String) => {
+  const getEnabledFlagFromCookie = (theFeatureName: String) => (Cookies.get(theFeatureName) === 'true');
 
-    const getEnabledFlagFromCookie = (featureName: String) => {
-        return (Cookies.get(featureName) == 'true')
-    }
+  const getEnabledFlagFromQuery = (theFeatureName: String) => window.location.search.includes(`${theFeatureName}=true`);
 
-    const getEnabledFlagFromQuery = (featureName: String) => {
-        return window.location.search.includes(`${featureName}=true`)
-    }
+  if (getEnabledFlagFromCookie(featureName)) {
+    return true;
+  } if (getEnabledFlagFromQuery(featureName)) {
+    Cookies.set(featureName, 'true');
+    return true;
+  }
+  return false;
+};
 
-    if (getEnabledFlagFromCookie(featureName)) {
-        return true
-    } else if (getEnabledFlagFromQuery(featureName)) {
-        Cookies.set(featureName, 'true')
-        return true
-    } else {
-        return false
-    }
-}
-
-export default isFeatureEnabled
+export default isFeatureEnabled;

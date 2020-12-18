@@ -1,7 +1,7 @@
 const getNonce = () => {
-    const script = document.querySelector('script[nonce]')
+  const script = document.querySelector('script[nonce]');
 
-    return script instanceof HTMLScriptElement ? script.nonce : undefined
-}
+  return script instanceof HTMLScriptElement ? script.nonce : undefined;
+};
 
-export default getNonce
+export default getNonce;

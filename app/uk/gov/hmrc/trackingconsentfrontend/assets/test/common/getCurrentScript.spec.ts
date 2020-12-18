@@ -1,5 +1,5 @@
-import '@testing-library/jest-dom/extend-expect'
-import getCurrentScript from '../../src/common/getCurrentScript'
+import '@testing-library/jest-dom/extend-expect';
+import getCurrentScript from '../../src/common/getCurrentScript';
 
 describe('getCurrentScript', () => {
   beforeEach(() => {
@@ -12,17 +12,17 @@ describe('getCurrentScript', () => {
     <body>
     </body>
 </html> 
-`
-  })
+`;
+  });
 
   it('should return the correct script element', () => {
-    const script = getCurrentScript()
+    const script = getCurrentScript();
 
-    expect(script).not.toBeUndefined()
+    expect(script).not.toBeUndefined();
     if (script !== undefined) {
-      expect(script.getAttribute('data-test')).toEqual('some-config')
+      expect(script.getAttribute('data-test')).toEqual('some-config');
     }
-  })
+  });
 
   it('should return undefined if no script tag is found', () => {
     document.getElementsByTagName('html')[0].innerHTML = `
@@ -32,12 +32,12 @@ describe('getCurrentScript', () => {
       <body>
       </body>
   </html> 
-  `
+  `;
 
-    const script = getCurrentScript()
+    const script = getCurrentScript();
 
-    expect(script).toBeUndefined()
-  })
+    expect(script).toBeUndefined();
+  });
 
   it('should return undefined if id is not defined', () => {
     document.getElementsByTagName('html')[0].innerHTML = `
@@ -48,10 +48,10 @@ describe('getCurrentScript', () => {
       <body>
       </body>
   </html> 
-  `
+  `;
 
-    const script = getCurrentScript()
+    const script = getCurrentScript();
 
-    expect(script).toBeUndefined()
-  })
-})
+    expect(script).toBeUndefined();
+  });
+});

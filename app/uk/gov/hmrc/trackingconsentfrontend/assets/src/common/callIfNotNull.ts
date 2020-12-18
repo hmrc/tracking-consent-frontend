@@ -1,7 +1,7 @@
 const callIfNotNull = (element, callback) => {
-    if (element !== null) {
-        callback(element)
-    }
-}
+  if (element !== null) {
+    callback(element);
+  }
+};
 
-export default callIfNotNull
+export default callIfNotNull;

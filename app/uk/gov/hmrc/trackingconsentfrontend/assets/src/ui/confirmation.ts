@@ -1,6 +1,6 @@
-import getTrackingConsentBaseUrl from "../common/getTrackingConsentBaseUrl";
+import getTrackingConsentBaseUrl from '../common/getTrackingConsentBaseUrl';
 
-const confirmation = messages => `
+const confirmation = (messages) => `
 <p class="cbanner-govuk-body cbanner-cookie-banner__confirmation-message-text">
     ${messages['banner.saveConfirmation.paragraph1.beforeLink']}
     <a class="cbanner-govuk-link" href="${getTrackingConsentBaseUrl()}${messages['banner.saveConfirmation.paragraph1.link.url']}">
@@ -12,6 +12,6 @@ const confirmation = messages => `
     <button class="cbanner-govuk-link cbanner-cookie-banner__hide-button" aria-label="${messages['banner.saveConfirmation.hideButton.label']}">
             ${messages['banner.saveConfirmation.hideButton.text']}
     </button>
-</p>`
+</p>`;
 
-export default confirmation
+export default confirmation;

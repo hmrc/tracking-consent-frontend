@@ -1,5 +1,5 @@
-import '@testing-library/jest-dom/extend-expect'
-import getConfigurationAttribute from '../../src/common/getConfigurationAttribute'
+import '@testing-library/jest-dom/extend-expect';
+import getConfigurationAttribute from '../../src/common/getConfigurationAttribute';
 
 describe('getConfigurationAttribute', () => {
   it('should return the correct attribute value', () => {
@@ -10,11 +10,11 @@ describe('getConfigurationAttribute', () => {
     <body>
     </body>
 </html> 
-`
-    const foo = getConfigurationAttribute('foo')
+`;
+    const foo = getConfigurationAttribute('foo');
 
-    expect(foo).toEqual('f')
-  })
+    expect(foo).toEqual('f');
+  });
 
   it('should return the correct different attribute value', () => {
     document.getElementsByTagName('html')[0].innerHTML = `<html>
@@ -24,11 +24,11 @@ describe('getConfigurationAttribute', () => {
     <body>
     </body>
 </html> 
-`
-    const bar = getConfigurationAttribute('bar')
+`;
+    const bar = getConfigurationAttribute('bar');
 
-    expect(bar).toEqual('b')
-  })
+    expect(bar).toEqual('b');
+  });
 
   it('should return undefined if the given attribute is not present', () => {
     document.getElementsByTagName('html')[0].innerHTML = `
@@ -39,12 +39,12 @@ describe('getConfigurationAttribute', () => {
       <body>
       </body>
   </html> 
-  `
+  `;
 
-    const bar = getConfigurationAttribute('bar')
+    const bar = getConfigurationAttribute('bar');
 
-    expect(bar).toBeUndefined()
-  })
+    expect(bar).toBeUndefined();
+  });
 
   it('should return undefined if no script tag is found', () => {
     document.getElementsByTagName('html')[0].innerHTML = `
@@ -54,10 +54,10 @@ describe('getConfigurationAttribute', () => {
       <body>
       </body>
   </html> 
-  `
+  `;
 
-    const bar = getConfigurationAttribute('bar')
+    const bar = getConfigurationAttribute('bar');
 
-    expect(bar).toBeUndefined()
-  })
-})
+    expect(bar).toBeUndefined();
+  });
+});

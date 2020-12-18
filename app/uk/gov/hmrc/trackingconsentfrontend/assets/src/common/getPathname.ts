@@ -1,5 +1,3 @@
-const getPathname = (): string => {
-    return document.location.pathname
-}
+const getPathname = (): string => document.location.pathname;
 
-export default getPathname
+export default getPathname;

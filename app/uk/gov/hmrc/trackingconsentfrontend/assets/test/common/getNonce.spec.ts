@@ -1,5 +1,5 @@
-import '@testing-library/jest-dom/extend-expect'
-import getNonce from '../../src/common/getNonce'
+import '@testing-library/jest-dom/extend-expect';
+import getNonce from '../../src/common/getNonce';
 
 describe('getNonce', () => {
   beforeEach(() => {
@@ -11,14 +11,14 @@ describe('getNonce', () => {
         <body>
         </body>
     </html> 
-    `
-  })
+    `;
+  });
 
   it('should return the nonce value', () => {
-    const nonce = getNonce()
+    const nonce = getNonce();
 
-    expect(nonce).toEqual('abcdefg')
-  })
+    expect(nonce).toEqual('abcdefg');
+  });
 
   it('should return undefined if no nonce value exists', () => {
     document.getElementsByTagName('html')[0].innerHTML = `
@@ -28,10 +28,10 @@ describe('getNonce', () => {
         <body>
         </body>
     </html> 
-    `
+    `;
 
-    const nonce = getNonce()
+    const nonce = getNonce();
 
-    expect(nonce).toEqual(undefined)
-  })
-})
+    expect(nonce).toEqual(undefined);
+  });
+});

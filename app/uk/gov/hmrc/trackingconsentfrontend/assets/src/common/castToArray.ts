@@ -1,3 +1,3 @@
-const castToArray = nodeList => Array.prototype.slice.apply(nodeList)
+const castToArray = (nodeList) => Array.prototype.slice.apply(nodeList);
 
-export default castToArray
+export default castToArray;

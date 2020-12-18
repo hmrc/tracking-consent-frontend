@@ -1,11 +1,11 @@
-import { Preferences } from './Preferences'
-import { Communicator } from './Communicator'
+import type { Preferences } from './Preferences';
+import type { Communicator } from './Communicator';
 
 export type UserPreferences = {
-    userAcceptsAll: () => void,
-    setPreferences: (Preferences) => void,
-    getPreferences: () => Preferences | undefined,
-    getUserHasSavedCookiePreferences: () => boolean,
-    sendPreferences: (event: string) => void,
-    subscribe: (communicator: Communicator) => void
-}
+  userAcceptsAll: () => void,
+  setPreferences: (Preferences) => void,
+  getPreferences: () => Preferences | undefined,
+  getUserHasSavedCookiePreferences: () => boolean,
+  sendPreferences: (event: string) => void,
+  subscribe: (communicator: Communicator) => void
+};

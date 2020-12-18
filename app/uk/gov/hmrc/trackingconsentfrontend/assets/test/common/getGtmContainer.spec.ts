@@ -1,6 +1,6 @@
-import '@testing-library/jest-dom/extend-expect'
-import getGtmContainerId from '../../src/common/getGtmContainerId'
-import { A_CONTAINER_ID, SDES_CONTAINER_ID } from '../../src/constants/gtm'
+import '@testing-library/jest-dom/extend-expect';
+import getGtmContainerId from '../../src/common/getGtmContainerId';
+import { A_CONTAINER_ID, SDES_CONTAINER_ID } from '../../src/constants/gtm';
 
 describe('getGtmContainer', () => {
   it('should return the correct container id for the "a" container', () => {
@@ -11,11 +11,11 @@ describe('getGtmContainer', () => {
     <body>
     </body>
 </html> 
-`
-    const container = getGtmContainerId()
+`;
+    const container = getGtmContainerId();
 
-    expect(container).toEqual(A_CONTAINER_ID)
-  })
+    expect(container).toEqual(A_CONTAINER_ID);
+  });
 
   it('should return the correct container id for the "sdes" container', () => {
     document.getElementsByTagName('html')[0].innerHTML = `<html>
@@ -25,11 +25,11 @@ describe('getGtmContainer', () => {
     <body>
     </body>
 </html> 
-`
-    const container = getGtmContainerId()
+`;
+    const container = getGtmContainerId();
 
-    expect(container).toEqual(SDES_CONTAINER_ID)
-  })
+    expect(container).toEqual(SDES_CONTAINER_ID);
+  });
 
   it('should return undefined if the data-gtm-container attribute is not present', () => {
     document.getElementsByTagName('html')[0].innerHTML = `
@@ -40,12 +40,12 @@ describe('getGtmContainer', () => {
       <body>
       </body>
   </html> 
-  `
+  `;
 
-    const container = getGtmContainerId()
+    const container = getGtmContainerId();
 
-    expect(container).toBeUndefined()
-  })
+    expect(container).toBeUndefined();
+  });
 
   it('should return undefined if no script tag is found', () => {
     document.getElementsByTagName('html')[0].innerHTML = `
@@ -55,10 +55,10 @@ describe('getGtmContainer', () => {
       <body>
       </body>
   </html> 
-  `
+  `;
 
-    const container = getGtmContainerId()
+    const container = getGtmContainerId();
 
-    expect(container).toBeUndefined()
-  })
-})
+    expect(container).toBeUndefined();
+  });
+});

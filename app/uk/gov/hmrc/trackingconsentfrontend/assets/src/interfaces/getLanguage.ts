@@ -1,10 +1,10 @@
-import {CY, EN} from "../constants/languages"
-import getConfigurationAttribute from "../common/getConfigurationAttribute";
+import { CY, EN } from '../constants/languages';
+import getConfigurationAttribute from '../common/getConfigurationAttribute';
 
 const getLanguage = () => {
-  const language = getConfigurationAttribute("language")
+  const language = getConfigurationAttribute('language');
 
-  return language === CY ? CY : EN
-}
+  return language === CY ? CY : EN;
+};
 
-export default getLanguage
+export default getLanguage;

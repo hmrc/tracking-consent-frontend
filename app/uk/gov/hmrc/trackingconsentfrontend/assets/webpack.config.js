@@ -4,7 +4,7 @@ module.exports = {
   entry: {
     tracking: './src/entrypoints/tracking.ts',
     settingsPage: './src/entrypoints/settingsPage.ts',
-    optimizely: './src/entrypoints/optimizely.js'
+    optimizely: './src/entrypoints/optimizely.js',
   },
   module: {
     rules: [
@@ -30,20 +30,20 @@ module.exports = {
       },
       {
         test: /.+\.(en|cy|conf)$/,
-        loader: 'message-format-loader'
-      }
+        loader: 'message-format-loader',
+      },
     ],
   },
   resolve: {
-    extensions: [ '.ts', '.js' ],
+    extensions: ['.ts', '.js'],
   },
   resolveLoader: {
     modules: [
       'node_modules',
-      path.resolve(__dirname, 'src/loaders')
-    ]
+      path.resolve(__dirname, 'src/loaders'),
+    ],
   },
   output: {
     path: path.resolve(__dirname, '../../../../../../public'),
-  }
+  },
 };
