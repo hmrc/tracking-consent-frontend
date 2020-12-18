@@ -42,12 +42,6 @@ cookieSettings.measurement.settinglabel.on = Use cookies that measure my website
 cookieSettings.measurement.settinglabel.off = Do not use cookies that measure my website use
 cookieSettings.measurement.settingid = measurement
 
-cookieSettings.marketing.title = Cookies that help with our communications and marketing
-cookieSettings.marketing.paragraph1 = These cookies may be set by ‘third party’ websites, like YouTube. They do things like measure how you view YouTube videos on HMRC services.
-cookieSettings.marketing.settinglabel.on = Use cookies that help with communications and marketing
-cookieSettings.marketing.settinglabel.off = Do not use cookies that help with communications and marketing
-cookieSettings.marketing.settingid = marketing
-
 cookieSettings.settings.title = Cookies that remember your settings
 cookieSettings.settings.paragraph1 = These cookies do things like remember your preferences and the choices you make, to personalise your experience of using our services.
 cookieSettings.settings.settinglabel.on = Use cookies that remember my settings on  services
