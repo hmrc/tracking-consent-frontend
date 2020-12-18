@@ -18,7 +18,6 @@ describe('auditCommunicator', () => {
     testScope.userPreferences = { getPreferences: jest.fn() };
     testScope.userPreferences.getPreferences.mockReturnValue({
       measurement: false,
-      marketing: false,
       settings: false,
     });
     getTrackingConsentBaseUrlSpy = spyOn(getTrackingConsentBaseUrl, 'default').and.returnValue('https://my-example.com:1234');
@@ -29,7 +28,7 @@ describe('auditCommunicator', () => {
     testScope.communicator.sendPreferences(testScope.userPreferences, CONSENT_UPDATED_EVENT);
 
     expect(postSpy).toHaveBeenCalledWith('https://my-example.com:1234/tracking-consent/audit',
-      { marketing: false, measurement: false, settings: false });
+      { measurement: false, settings: false });
   });
 
   it('should not send the cookie preferences to the audit endpoint if event is anything else', () => {
@@ -42,7 +41,7 @@ describe('auditCommunicator', () => {
     testScope.communicator.sendPreferences(testScope.userPreferences, CONSENT_UPDATED_EVENT);
 
     expect(postSpy).toHaveBeenCalledWith('https://my-example.com:1234/tracking-consent/audit',
-      { marketing: false, measurement: false, settings: false });
+      { measurement: false, settings: false });
   });
 
   it('should send the cookie preferences to the non-local audit endpoint', () => {
@@ -51,21 +50,19 @@ describe('auditCommunicator', () => {
     testScope.communicator.sendPreferences(testScope.userPreferences, CONSENT_UPDATED_EVENT);
 
     expect(postSpy).toHaveBeenCalledWith('https://www.tax.service.gov.uk/tracking-consent/audit',
-      { marketing: false, measurement: false, settings: false });
+      { measurement: false, settings: false });
   });
 
   it('should send different cookie preferences to the audit endpoint', () => {
     testScope.userPreferences.getPreferences.mockReturnValue({
       measurement: false,
-      marketing: true,
-      settings: false,
+      settings: true,
     });
     testScope.communicator.sendPreferences(testScope.userPreferences, CONSENT_UPDATED_EVENT);
 
     expect(postSpy).toHaveBeenCalledWith('https://my-example.com:1234/tracking-consent/audit', {
       measurement: false,
-      marketing: true,
-      settings: false,
+      settings: true,
     });
   });
 

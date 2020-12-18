@@ -30,14 +30,6 @@ object CookieSettingsPage extends BasePage {
   def doNotUseMeasurementCookiesLabel: WebElement = findLabelByPartialText(doNotUseMeasurementCookies)
   def doNotUseMeasurementCookiesInput: WebElement = findInputByLabelPartialText(doNotUseMeasurementCookies)
 
-  val useMarketingCookies                  = "Use cookies that help with communications and marketing"
-  def useMarketingCookiesLabel: WebElement = findLabelByPartialText(useMarketingCookies)
-  def useMarketingCookiesInput: WebElement = findInputByLabelPartialText(useMarketingCookies)
-
-  val doNotUseMarketingCookies                  = "Do not use cookies that help with communications and marketing"
-  def doNotUseMarketingCookiesLabel: WebElement = findLabelByPartialText(doNotUseMarketingCookies)
-  def doNotUseMarketingCookiesInput: WebElement = findInputByLabelPartialText(doNotUseMarketingCookies)
-
   val useSettingsCookies                  = "Use cookies that remember my settings on services"
   def useSettingsCookiesLabel: WebElement = findLabelByPartialText(useSettingsCookies)
   def useSettingsCookiesInput: WebElement = findInputByLabelPartialText(useSettingsCookies)

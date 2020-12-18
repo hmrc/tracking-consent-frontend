@@ -33,9 +33,6 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       Then("the dataLayer does not contain the 'hmrc-measurement-allowed' event")
       measurementAllowedGtmEvent should be(null)
 
-      And("the dataLayer does not contain the 'hmrc-marketing-allowed' event")
-      marketingAllowedGtmEvent should be(null)
-
       And("the dataLayer does not contain the 'hmrc-settings-allowed' event")
       settingsAllowedGtmEvent should be(null)
     }
@@ -55,9 +52,6 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
 
       Then("the dataLayer contains the 'hmrc-measurement-allowed' event")
       measurementAllowedGtmEvent should not be null
-
-      And("the dataLayer contains the 'hmrc-marketing-allowed' event")
-      marketingAllowedGtmEvent should not be null
 
       And("the dataLayer contains the 'hmrc-settings-allowed' event")
       settingsAllowedGtmEvent should not be null
