@@ -1,6 +1,7 @@
 {
   "extends": [
-    "airbnb-base"
+    "airbnb-base",
+    "airbnb-typescript"
   ],
   "root": true,
   "env": {
@@ -11,23 +12,15 @@
     "test/backstop/public/**/*",
     "test/backstop/backstop_data/**/*"
   ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "settings": {
+    "react": {
+      "version": "latest"
+    }
+  },
   "overrides": [
-    {
-      "files": [
-        "*.ts"
-      ],
-      "extends": [
-        "airbnb-typescript"
-      ],
-      "parserOptions": {
-        "project": "./tsconfig.json"
-      },
-      "settings": {
-        "react": {
-          "version": "latest"
-        }
-      }
-    },
     {
       "files": [
         "test/**/*"
