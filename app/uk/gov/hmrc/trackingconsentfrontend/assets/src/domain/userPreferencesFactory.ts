@@ -41,7 +41,6 @@ const userPreferencesFactory = (): UserPreferences => {
   const setPreferences = (preferencesIn: Preferences) => {
     storePreferences({
       measurement: preferencesIn.measurement,
-      marketing: preferencesIn.marketing,
       settings: preferencesIn.settings,
     });
     sendPreferences(CONSENT_UPDATED_EVENT);

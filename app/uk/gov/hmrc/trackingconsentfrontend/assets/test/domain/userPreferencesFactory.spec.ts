@@ -85,7 +85,6 @@ describe('userPreferencesFactory', () => {
       testScope.preferenceCommunicator.sendPreferences.and.callFake((userPreference) => {
         expect(userPreference.getPreferences()).toEqual({
           measurement: true,
-          marketing: true,
           settings: true,
         });
       });
@@ -161,7 +160,6 @@ describe('userPreferencesFactory', () => {
 
       expect(testScope.userPreference.getPreferences()).toEqual({
         measurement: true,
-        marketing: true,
         settings: true,
       });
     });
@@ -203,7 +201,6 @@ describe('userPreferencesFactory', () => {
 
       expect(userPreference.getPreferences()).toEqual({
         measurement: true,
-        marketing: true,
         settings: true,
       });
     });
@@ -212,13 +209,11 @@ describe('userPreferencesFactory', () => {
       const { userPreference } = testScope;
       userPreference.setPreferences({
         measurement: true,
-        marketing: true,
         settings: true,
       });
 
       expect(userPreference.getPreferences()).toEqual({
         measurement: true,
-        marketing: true,
         settings: true,
       });
     });
@@ -226,13 +221,11 @@ describe('userPreferencesFactory', () => {
       const { userPreference } = testScope;
       userPreference.setPreferences({
         measurement: false,
-        marketing: false,
         settings: false,
       });
 
       expect(userPreference.getPreferences()).toEqual({
         measurement: false,
-        marketing: false,
         settings: false,
       });
     });
@@ -242,7 +235,6 @@ describe('userPreferencesFactory', () => {
     it('should save preferences to the cookie', () => {
       testScope.userPreference.setPreferences({
         measurement: true,
-        marketing: false,
         settings: true,
       });
       expect(Cookies.set).toHaveBeenCalledWith('userConsent', {
@@ -250,7 +242,6 @@ describe('userPreferencesFactory', () => {
         datetimeSet: testScope.fakeDatetime,
         preferences: {
           measurement: true,
-          marketing: false,
           settings: true,
         },
       }, { sameSite: 'strict', expires: 3650 });
@@ -258,7 +249,6 @@ describe('userPreferencesFactory', () => {
     it('should save other preferences to the cookie', () => {
       testScope.userPreference.setPreferences({
         measurement: false,
-        marketing: false,
         settings: true,
       });
       expect(Cookies.set).toHaveBeenCalledWith('userConsent', {
@@ -266,7 +256,6 @@ describe('userPreferencesFactory', () => {
         datetimeSet: testScope.fakeDatetime,
         preferences: {
           measurement: false,
-          marketing: false,
           settings: true,
         },
       }, { sameSite: 'strict', expires: 3650 });
@@ -299,14 +288,12 @@ describe('userPreferencesFactory', () => {
       testScope.preferenceCommunicator.sendPreferences.and.callFake((userPreference) => {
         expect(userPreference.getPreferences()).toEqual({
           measurement: false,
-          marketing: false,
           settings: true,
         });
       });
 
       testScope.userPreference.setPreferences({
         measurement: false,
-        marketing: false,
         settings: true,
       });
 
@@ -318,14 +305,12 @@ describe('userPreferencesFactory', () => {
       testScope.preferenceCommunicator.sendPreferences.and.callFake((userPreference) => {
         expect(userPreference.getPreferences()).toEqual({
           measurement: true,
-          marketing: false,
           settings: false,
         });
       });
 
       testScope.userPreference.setPreferences({
         measurement: true,
-        marketing: false,
         settings: false,
       });
 
