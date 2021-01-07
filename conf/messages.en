@@ -49,7 +49,7 @@ cookieSettings.settings.settinglabel.off = Do not use cookies that remember my s
 cookieSettings.settings.settingid = settings
 
 cookieSettings.necessary.title = Strictly necessary cookies
-cookieSettings.necessary.paragraph1 = These essential cookies do things like remember your progress through a form, such as a licence application.
+cookieSettings.necessary.paragraph1 = These essential cookies do things like remember your progress through a form, such as a tax return.
 cookieSettings.necessary.paragraph2 =They always need to be on.
 cookieSettings.necessary.link.text = Find out more about cookies on HMRC services
 cookieSettings.necessary.link.url = /help/cookies
