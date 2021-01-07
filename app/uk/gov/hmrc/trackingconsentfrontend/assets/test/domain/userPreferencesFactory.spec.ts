@@ -30,6 +30,18 @@ describe('userPreferencesFactory', () => {
     expect(Cookies.set).toHaveBeenCalledTimes(1);
   };
 
+  const doNotConsentToAny = {
+    measurement: false,
+    marketing: false,
+    settings: false,
+  };
+
+  const consentToAll = {
+    measurement: true,
+    marketing: true,
+    settings: true,
+  };
+
   describe('getTrackingPreferencesSaved', () => {
     it('should determine if tracking preferences have been set', () => {
       setConsentCookie({ preferences: { acceptAll: true } });
@@ -83,11 +95,7 @@ describe('userPreferencesFactory', () => {
 
     it('should call preference communicator after preferences were set', () => {
       testScope.preferenceCommunicator.sendPreferences.and.callFake((userPreference) => {
-        expect(userPreference.getPreferences()).toEqual({
-          measurement: true,
-          marketing: true,
-          settings: true,
-        });
+        expect(userPreference.getPreferences()).toEqual(consentToAll);
       });
 
       testScope.userPreference.userAcceptsAll();
@@ -105,34 +113,39 @@ describe('userPreferencesFactory', () => {
       },
     });
 
-    it('should return undefined when no preferences set', () => {
+    it('should return do not for all settings when no preferences set', () => {
       setConsentCookie(undefined);
 
-      expect(testScope.userPreference.getPreferences()).toEqual(undefined);
+      expect(testScope.userPreference.getPreferences()).toEqual(doNotConsentToAny);
     });
 
-    it('should return undefined when cookie value is not an object', () => {
+    it('should return do not for all settings when cookie value is not an object', () => {
       setConsentCookie('abc');
 
-      expect(testScope.userPreference.getPreferences()).toEqual(undefined);
+      expect(testScope.userPreference.getPreferences()).toEqual(doNotConsentToAny);
     });
 
-    it('should return undefined when cookie value is the wrong shape', () => {
+    it('should return do not for all settings when cookie value is the wrong shape', () => {
       setConsentCookie({ abc: 'abc' });
 
-      expect(testScope.userPreference.getPreferences()).toEqual(undefined);
+      expect(testScope.userPreference.getPreferences()).toEqual(doNotConsentToAny);
     });
 
     it('should only return partial data if partial data exists in the cookie', () => {
       setConsentCookie({ preferences: { measurement: true } });
 
-      expect(testScope.userPreference.getPreferences()).toEqual({ measurement: true });
+      expect(testScope.userPreference.getPreferences()).toEqual({
+        marketing: false,
+        measurement: true,
+        settings: false,
+      });
     });
 
     it('should interpret boolean false correctly', () => {
       setConsentCookie({ preferences: { measurement: true, settings: false } });
 
       expect(testScope.userPreference.getPreferences()).toEqual({
+        marketing: false,
         measurement: true,
         settings: false,
       });
@@ -141,52 +154,60 @@ describe('userPreferencesFactory', () => {
     it('should ignore any non-boolean data', () => {
       setConsentCookie({ preferences: { measurement: true, settings: 'abc' } });
 
-      expect(testScope.userPreference.getPreferences()).toEqual({ measurement: true });
+      expect(testScope.userPreference.getPreferences()).toEqual({
+        marketing: false,
+        measurement: true,
+        settings: false,
+      });
     });
 
     it('should ignore any null values', () => {
       setConsentCookie({ preferences: { measurement: true, settings: null } });
 
-      expect(testScope.userPreference.getPreferences()).toEqual({ measurement: true });
+      expect(testScope.userPreference.getPreferences()).toEqual({
+        marketing: false,
+        measurement: true,
+        settings: false,
+      });
     });
 
     it('should ignore any undefined values', () => {
       setConsentCookie({ preferences: { measurement: true, settings: undefined } });
 
-      expect(testScope.userPreference.getPreferences()).toEqual({ measurement: true });
+      expect(testScope.userPreference.getPreferences()).toEqual({
+        marketing: false,
+        measurement: true,
+        settings: false,
+      });
     });
 
     it('should return each category when AcceptAll is set (fake data)', () => {
       setConsentCookie(getFakeAcceptAll());
 
-      expect(testScope.userPreference.getPreferences()).toEqual({
-        measurement: true,
-        marketing: true,
-        settings: true,
-      });
+      expect(testScope.userPreference.getPreferences()).toEqual(consentToAll);
     });
 
-    it('should return undefined if AcceptAll is non-boolean but truthy', () => {
+    it('should return do not consent to any if AcceptAll is non-boolean but truthy', () => {
       setConsentCookie({
         preferences: {
           acceptAll: 'abc',
         },
       });
 
-      expect(testScope.userPreference.getPreferences()).toEqual(undefined);
+      expect(testScope.userPreference.getPreferences()).toEqual(doNotConsentToAny);
     });
 
-    it('should return undefined if there are no valid preferences', () => {
+    it('should return do not consent to any if there are no valid preferences', () => {
       setConsentCookie({
         preferences: {
           notRecognised: true,
         },
       });
 
-      expect(testScope.userPreference.getPreferences()).toEqual(undefined);
+      expect(testScope.userPreference.getPreferences()).toEqual(doNotConsentToAny);
     });
 
-    it('should return undefined if the version is not recognised', () => {
+    it('should return do not consent to any if the version is not recognised', () => {
       setConsentCookie({
         version: '2010.1',
         preferences: {
@@ -194,18 +215,14 @@ describe('userPreferencesFactory', () => {
         },
       });
 
-      expect(testScope.userPreference.getPreferences()).toEqual(undefined);
+      expect(testScope.userPreference.getPreferences()).toEqual(doNotConsentToAny);
     });
 
     it('should return each category when AcceptAll is set (function call)', () => {
       const { userPreference } = testScope;
       userPreference.userAcceptsAll();
 
-      expect(userPreference.getPreferences()).toEqual({
-        measurement: true,
-        marketing: true,
-        settings: true,
-      });
+      expect(userPreference.getPreferences()).toEqual(consentToAll);
     });
 
     it('should return each category when each category is set (function call)', () => {
@@ -216,25 +233,13 @@ describe('userPreferencesFactory', () => {
         settings: true,
       });
 
-      expect(userPreference.getPreferences()).toEqual({
-        measurement: true,
-        marketing: true,
-        settings: true,
-      });
+      expect(userPreference.getPreferences()).toEqual(consentToAll);
     });
     it('should return each category when each category is declined (function call)', () => {
       const { userPreference } = testScope;
-      userPreference.setPreferences({
-        measurement: false,
-        marketing: false,
-        settings: false,
-      });
+      userPreference.setPreferences(doNotConsentToAny);
 
-      expect(userPreference.getPreferences()).toEqual({
-        measurement: false,
-        marketing: false,
-        settings: false,
-      });
+      expect(userPreference.getPreferences()).toEqual(doNotConsentToAny);
     });
   });
 

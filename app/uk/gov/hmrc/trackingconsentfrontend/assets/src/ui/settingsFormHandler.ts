@@ -22,17 +22,11 @@ const hydrateForm = (userPreferences: UserPreferences) => (form: HTMLFormElement
   }
 
   const mapPreferencesToForm = () => {
-    if (!preferences) {
-      return;
-    }
     cookieTypes.forEach((cookieType) => {
-      const preference = preferences[cookieType];
-      if (preference !== undefined) {
-        const radioValue = preference ? onValue : offValue;
+      const radioValue = preferences[cookieType] ? onValue : offValue;
 
-        const input: HTMLInputElement | null = form.querySelector(`input[name=${cookieType}][value=${radioValue}]`);
-        callIfNotNull(input, setAsChecked);
-      }
+      const input: HTMLInputElement | null = form.querySelector(`input[name=${cookieType}][value=${radioValue}]`);
+      callIfNotNull(input, setAsChecked);
     });
   };
 

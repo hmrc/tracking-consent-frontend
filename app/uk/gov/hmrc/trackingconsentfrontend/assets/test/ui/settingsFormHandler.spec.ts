@@ -74,18 +74,6 @@ describe('User Preference Factory', () => {
       expect(document.querySelector('[name=marketing][value=off]:checked')).toBeTruthy();
       expect(document.querySelector('[name=settings][value=off]:checked')).toBeTruthy();
     });
-    it('should not select any for user who has not stored a preference', () => {
-      spyOn(testScope.userPref, 'getPreferences').and.returnValue(undefined);
-      settingsFormHandler(testScope.userPref);
-
-      expect(document.querySelector('[name=measurement][value=on]:checked')).toBeFalsy();
-      expect(document.querySelector('[name=marketing][value=on]:checked')).toBeFalsy();
-      expect(document.querySelector('[name=settings][value=on]:checked')).toBeFalsy();
-
-      expect(document.querySelector('[name=measurement][value=off]:checked')).toBeFalsy();
-      expect(document.querySelector('[name=marketing][value=off]:checked')).toBeFalsy();
-      expect(document.querySelector('[name=settings][value=off]:checked')).toBeFalsy();
-    });
     it('should select specific items for user who stored a varied preference', () => {
       spyOn(testScope.userPref, 'getPreferences').and.returnValue({
         measurement: true,
@@ -102,20 +90,6 @@ describe('User Preference Factory', () => {
       expect(document.querySelector('[name=marketing][value=off]:checked')).toBeTruthy();
       expect(document.querySelector('[name=settings][value=off]:checked')).toBeFalsy();
     });
-    it('should select specific items for user who stored only a partial preference', () => {
-      spyOn(testScope.userPref, 'getPreferences').and.returnValue({
-        measurement: true,
-      });
-      settingsFormHandler(testScope.userPref);
-
-      expect(document.querySelector('[name=measurement][value=on]:checked')).toBeTruthy();
-      expect(document.querySelector('[name=marketing][value=on]:checked')).toBeFalsy();
-      expect(document.querySelector('[name=settings][value=on]:checked')).toBeFalsy();
-
-      expect(document.querySelector('[name=measurement][value=off]:checked')).toBeFalsy();
-      expect(document.querySelector('[name=marketing][value=off]:checked')).toBeFalsy();
-      expect(document.querySelector('[name=settings][value=off]:checked')).toBeFalsy();
-    });
   });
   describe('saving preferences', () => {
     beforeEach(() => {
@@ -130,7 +104,9 @@ describe('User Preference Factory', () => {
       fireEvent.click(getByText(document.body, /Save changes/));
 
       expect(testScope.userPref.setPreferences).toHaveBeenCalledWith({
+        marketing: false,
         measurement: true,
+        settings: false,
       });
     });
     it('should save when marketing only is granted', () => {
@@ -141,6 +117,8 @@ describe('User Preference Factory', () => {
 
       expect(testScope.userPref.setPreferences).toHaveBeenCalledWith({
         marketing: true,
+        measurement: false,
+        settings: false,
       });
     });
     it('should not store a value for items which don\'t appear in the form', () => {
