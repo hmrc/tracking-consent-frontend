@@ -2,7 +2,8 @@ const getReferrer = (): string => {
   if (typeof URL !== 'function') {
     return '';
   }
-  return document.referrer ? new URL(document.referrer).pathname : '';
+  const url = document.referrer && new URL(document.referrer);
+  return url ? `${url.pathname}${url.search}` : '';
 };
 
 export default getReferrer;
