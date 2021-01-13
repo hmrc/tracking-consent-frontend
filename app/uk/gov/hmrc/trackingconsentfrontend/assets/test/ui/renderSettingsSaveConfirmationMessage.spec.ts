@@ -10,7 +10,7 @@ import * as getReferrer from '../../src/common/getReferrer';
 import * as getPathname from '../../src/common/getPathname';
 
 describe('renderSettingsSaveConfirmationMessage', () => {
-  let referrer = '/another-service';
+  let referrer = '/another-service?abc=def&ghi=jkl';
 
   beforeEach(() => {
     document.getElementsByTagName('html')[0].innerHTML = fixture;
@@ -50,7 +50,7 @@ describe('renderSettingsSaveConfirmationMessage', () => {
 
     // @ts-ignore
     const backLink: HTMLAnchorElement = getByText(document.body, /Go back to the page you were looking at/);
-    expect(backLink.href).toEqual('https://www.tax.service.example.com/another-service');
+    expect(backLink.href).toEqual('https://www.tax.service.example.com/another-service?abc=def&ghi=jkl');
   });
 
   it('should render the link inside a paragraph element', () => {
