@@ -21,7 +21,7 @@ import acceptance.pages.CookieSettingsPage._
 
 class CookieSettingsPageSpec extends BaseAcceptanceSpec {
 
-  scenario("The user's consent is not initially assumed either way") {
+  scenario("The user's consent is initially assumed to be 'do not consent' for every option") {
     Given("the user clears their cookies")
     deleteAllCookies
 
@@ -32,19 +32,19 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     useMeasurementCookiesInput.isSelected should be(false)
 
     And("the consent setting 'Do not use cookies that measure my website use' is not selected")
-    doNotUseMeasurementCookiesInput.isSelected should be(false)
+    doNotUseMeasurementCookiesInput.isSelected should be(true)
 
     And("the consent setting 'Use cookies that help with communications and marketing' is not selected")
     useMarketingCookiesInput.isSelected should be(false)
 
     And("the consent setting 'Do not use cookies that help with communications and marketing' is not selected")
-    doNotUseMarketingCookiesInput.isSelected should be(false)
+    doNotUseMarketingCookiesInput.isSelected should be(true)
 
     And("the consent setting 'Use cookies that remember my settings on the site' is not selected")
     useSettingsCookiesInput.isSelected should be(false)
 
     And("the consent setting 'Do not use cookies that remember my settings on the site' is not selected")
-    doNotUseSettingsCookiesInput.isSelected should be(false)
+    doNotUseSettingsCookiesInput.isSelected should be(true)
   }
 
   scenario("The user consenting for all cookies is remembered") {
