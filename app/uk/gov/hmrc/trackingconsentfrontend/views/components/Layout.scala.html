@@ -15,11 +15,12 @@
  *@
 
 @import uk.gov.hmrc.trackingconsentfrontend.views.html.components.LanguageSelect
+@import uk.gov.hmrc.hmrcfrontend.views.viewmodels.header.Header
 
 @this(
         govukLayout: GovukLayout,
         head: Head,
-        hmrcBanner: HmrcBanner,
+        hmrcHeader: HmrcHeader,
         hmrcStandardFooter: HmrcStandardFooter,
         hmrcLanguageSelect: HmrcLanguageSelect,
         languageSelect: LanguageSelect
@@ -29,15 +30,23 @@
         headBlock: Option[Html] = None,
         scriptsBlock: Option[Html] = None
 )(contentBlock: Html)(implicit request: Request[_], messages: Messages, appConfig: AppConfig)
+@import appConfig._
 
 @beforeContentBlock = {
-    @hmrcBanner(Banner())
     @languageSelect()
+}
+
+@headerBlock = {
+  @hmrcHeader(Header(
+    language = if(messages.lang.code == cy) Cy else En,
+    displayHmrcBanner = true
+  ))
 }
 
 @govukLayout(
     pageTitle = pageTitle,
     headBlock = Some(head(headBlock)),
+    headerBlock = Some(headerBlock),
     scriptsBlock = scriptsBlock,
     beforeContentBlock = Some(beforeContentBlock),
     footerBlock = Some(hmrcStandardFooter())
