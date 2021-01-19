@@ -10,17 +10,15 @@ describe('sendPreferences', () => {
     testScope.userPreferences = userPreferencesFactory();
     testScope.userPreferences.subscribe(testScope.preferenceCommunicator);
   });
-  it('should send measurement, marketing and settings when all tracking is allowed', () => {
+  it('should send measurement, settings when all tracking is allowed', () => {
     spyOn(testScope.userPreferences, 'getPreferences').and.returnValue({
       measurement: true,
-      marketing: true,
       settings: true,
     });
     testScope.preferenceCommunicator.sendPreferences(testScope.userPreferences);
 
     expect(testScope.window.dataLayer).toEqual([
       { event: 'hmrc-measurement-allowed' },
-      { event: 'hmrc-marketing-allowed' },
       { event: 'hmrc-settings-allowed' },
     ]);
   });
@@ -28,7 +26,6 @@ describe('sendPreferences', () => {
     testScope.window.dataLayer = [{ event: 'my-custom-event' }];
     spyOn(testScope.userPreferences, 'getPreferences').and.returnValue({
       measurement: true,
-      marketing: true,
       settings: true,
     });
     testScope.preferenceCommunicator.sendPreferences(testScope.userPreferences);
@@ -36,14 +33,12 @@ describe('sendPreferences', () => {
     expect(testScope.window.dataLayer).toEqual([
       { event: 'my-custom-event' },
       { event: 'hmrc-measurement-allowed' },
-      { event: 'hmrc-marketing-allowed' },
       { event: 'hmrc-settings-allowed' },
     ]);
   });
   it('should send only measurement when the others are false', () => {
     spyOn(testScope.userPreferences, 'getPreferences').and.returnValue({
       measurement: true,
-      marketing: false,
       settings: false,
     });
     testScope.preferenceCommunicator.sendPreferences(testScope.userPreferences);
@@ -52,22 +47,9 @@ describe('sendPreferences', () => {
       { event: 'hmrc-measurement-allowed' },
     ]);
   });
-  it('should send only marketing when the others are false', () => {
-    spyOn(testScope.userPreferences, 'getPreferences').and.returnValue({
-      measurement: false,
-      marketing: true,
-      settings: false,
-    });
-    testScope.preferenceCommunicator.sendPreferences(testScope.userPreferences);
-
-    expect(testScope.window.dataLayer).toEqual([
-      { event: 'hmrc-marketing-allowed' },
-    ]);
-  });
   it('should send only settings when the others are false', () => {
     spyOn(testScope.userPreferences, 'getPreferences').and.returnValue({
       measurement: false,
-      marketing: false,
       settings: true,
     });
     testScope.preferenceCommunicator.sendPreferences(testScope.userPreferences);
@@ -81,7 +63,6 @@ describe('sendPreferences', () => {
     const originalDataLayer = testScope.window.dataLayer;
     spyOn(testScope.userPreferences, 'getPreferences').and.returnValue({
       measurement: true,
-      marketing: true,
       settings: true,
     });
     testScope.preferenceCommunicator.sendPreferences((testScope.userPreferences));
@@ -99,10 +80,9 @@ describe('sendPreferences', () => {
       { event: 'hmrc-measurement-allowed' },
     ]);
   });
-  it('should ignore any marketing and settings values which are not boolean true', () => {
+  it('should ignore settings values which are not boolean true', () => {
     spyOn(testScope.userPreferences, 'getPreferences').and.returnValue({
       measurement: true,
-      marketing: 'yes please',
       settings: 'sure, why not',
     });
     testScope.preferenceCommunicator.sendPreferences((testScope.userPreferences));
@@ -114,13 +94,11 @@ describe('sendPreferences', () => {
   it('should ignore measurement values which are not boolean true', () => {
     spyOn(testScope.userPreferences, 'getPreferences').and.returnValue({
       measurement: 'yes please',
-      marketing: true,
       settings: true,
     });
     testScope.preferenceCommunicator.sendPreferences((testScope.userPreferences));
 
     expect(testScope.window.dataLayer).toEqual([
-      { event: 'hmrc-marketing-allowed' },
       { event: 'hmrc-settings-allowed' },
     ]);
   });

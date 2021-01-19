@@ -9,9 +9,6 @@ const gtmCommunicatorFactory = (window: Window): Communicator => ({
     if (preferences.measurement === true) {
       window.dataLayer.push({ event: 'hmrc-measurement-allowed' });
     }
-    if (preferences.marketing === true) {
-      window.dataLayer.push({ event: 'hmrc-marketing-allowed' });
-    }
     if (preferences.settings === true) {
       window.dataLayer.push({ event: 'hmrc-settings-allowed' });
     }

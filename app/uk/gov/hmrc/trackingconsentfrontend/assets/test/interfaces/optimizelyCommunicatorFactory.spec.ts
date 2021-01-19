@@ -8,7 +8,6 @@ describe('sendPreferences', () => {
     testScope.userPreferences = { getPreferences: jest.fn() };
     testScope.userPreferences.getPreferences.mockReturnValue({
       measurement: false,
-      marketing: false,
       settings: false,
     });
   });
@@ -23,7 +22,6 @@ describe('sendPreferences', () => {
   it('should set optOut to false when measurement setting is set to true', () => {
     testScope.userPreferences.getPreferences.mockReturnValue({
       measurement: true,
-      marketing: false,
       settings: false,
     });
     testScope.preferenceCommunicator.sendPreferences(testScope.userPreferences);
@@ -51,7 +49,6 @@ describe('sendPreferences', () => {
   it('should ignore any measurement values which are not boolean true', () => {
     testScope.userPreferences.getPreferences.mockReturnValue({
       measurement: 'yes',
-      marketing: 'no',
       settings: 'maybe',
     });
     testScope.preferenceCommunicator.sendPreferences((testScope.userPreferences));

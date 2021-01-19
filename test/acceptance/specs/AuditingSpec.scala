@@ -18,7 +18,7 @@ package acceptance.specs
 
 import acceptance.pages.{CookieSettingsPage, ServiceTestPageFeatureEnabled}
 import acceptance.pages.ServiceTestPageFeatureEnabled._
-import acceptance.pages.CookieSettingsPage.{doNotUseMarketingCookiesLabel, doNotUseMeasurementCookiesLabel, doNotUseSettingsCookiesLabel, submitButton, useMarketingCookiesLabel, useMeasurementCookiesLabel, useSettingsCookiesLabel}
+import acceptance.pages.CookieSettingsPage.{doNotUseMeasurementCookiesLabel, doNotUseSettingsCookiesLabel, submitButton, useMeasurementCookiesLabel, useSettingsCookiesLabel}
 import acceptance.specs.tags.Local
 import com.github.tomakehurst.wiremock.client.WireMock.{anyRequestedFor, anyUrl}
 import play.api.Application
@@ -50,7 +50,6 @@ class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
 
     When("the user says yes to all cookies")
     click on useMeasurementCookiesLabel
-    click on useMarketingCookiesLabel
     click on useSettingsCookiesLabel
 
     And("clicks submit")
@@ -62,7 +61,7 @@ class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
       val requests = endpointServer.findAll(anyRequestedFor(anyUrl()))
       requests.size                   should be(1)
       requests.get(0).getBodyAsString should include(
-        "{\\\"measurement\\\":true,\\\"marketing\\\":true,\\\"settings\\\":true}"
+        "{\\\"measurement\\\":true,\\\"settings\\\":true}"
       )
     }
   }
@@ -76,7 +75,6 @@ class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
 
     When("the user chooses no for all categories of cookie")
     click on doNotUseMeasurementCookiesLabel
-    click on doNotUseMarketingCookiesLabel
     click on doNotUseSettingsCookiesLabel
 
     And("clicks submit")
@@ -88,7 +86,7 @@ class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
       val requests = endpointServer.findAll(anyRequestedFor(anyUrl()))
       requests.size                   should be(1)
       requests.get(0).getBodyAsString should include(
-        "{\\\"measurement\\\":false,\\\"marketing\\\":false,\\\"settings\\\":false}"
+        "{\\\"measurement\\\":false,\\\"settings\\\":false}"
       )
     }
   }
@@ -109,7 +107,7 @@ class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
       val requests = endpointServer.findAll(anyRequestedFor(anyUrl()))
       requests.size                   should be(1)
       requests.get(0).getBodyAsString should include(
-        "{\\\"measurement\\\":true,\\\"marketing\\\":true,\\\"settings\\\":true}"
+        "{\\\"measurement\\\":true,\\\"settings\\\":true}"
       )
     }
   }

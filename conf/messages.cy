@@ -34,19 +34,13 @@ cookieSettings.unsupported.paragraph4 = If Javascript is not running on your bro
 
 cookieSettings.measurement.title = Cookies that measure website use
 cookieSettings.measurement.paragraph1 = We use Google Analytics to measure how you use our services so we can improve them based on the needs of users. We do not allow Google to use or share this data.
-cookieSettings.measurement.paragraph2 = Google Analytics sets cookies that store anonymised information about:
+cookieSettings.measurement.paragraph2 = These tools set cookies that store anonymised information about:
 cookieSettings.measurement.bullet1 = how you got to the site
 cookieSettings.measurement.bullet2 = the pages you visit on HMRC services and how long you spend on each page
 cookieSettings.measurement.bullet3 = what you click on while you’re visiting the site
 cookieSettings.measurement.settinglabel.on = Use cookies that measure my website use
 cookieSettings.measurement.settinglabel.off = Do not use cookies that measure my website use
 cookieSettings.measurement.settingid = measurement
-
-cookieSettings.marketing.title = Cookies that help with our communications and marketing
-cookieSettings.marketing.paragraph1 = These cookies may be set by ‘third party’ websites, like YouTube. They do things like measure how you view YouTube videos on HMRC services.
-cookieSettings.marketing.settinglabel.on = Use cookies that help with communications and marketing
-cookieSettings.marketing.settinglabel.off = Do not use cookies that help with communications and marketing
-cookieSettings.marketing.settingid = marketing
 
 cookieSettings.settings.title = Cookies that remember your settings
 cookieSettings.settings.paragraph1 = These cookies do things like remember your preferences and the choices you make, to personalise your experience of using our services.
@@ -55,7 +49,7 @@ cookieSettings.settings.settinglabel.off = Do not use cookies that remember my s
 cookieSettings.settings.settingid = settings
 
 cookieSettings.necessary.title = Strictly necessary cookies
-cookieSettings.necessary.paragraph1 = These essential cookies do things like remember your progress through a form, such as a licence application.
+cookieSettings.necessary.paragraph1 = These essential cookies do things like remember your progress through a form, such as a tax return.
 cookieSettings.necessary.paragraph2 =They always need to be on.
 cookieSettings.necessary.link.text = Find out more about cookies on HMRC services
 cookieSettings.necessary.link.url = /help/cookies

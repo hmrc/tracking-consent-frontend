@@ -1,3 +1,3 @@
-const cookieTypes = ['measurement', 'marketing', 'settings'];
+const cookieTypes = ['measurement', 'settings'];
 
 export default cookieTypes;

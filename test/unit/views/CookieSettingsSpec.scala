@@ -67,10 +67,6 @@ class CookieSettingsSpec extends SpecBase {
       content.select("input[name=measurement]") must have size 2
     }
 
-    "include the marketing radio inputs" in {
-      content.select("input[name=marketing]") must have size 2
-    }
-
     "include the settings radio inputs" in {
       content.select("input[name=settings]") must have size 2
     }
