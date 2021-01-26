@@ -30,7 +30,7 @@ case class LanguageSwitchController @Inject() (
   languageUtils: LanguageUtils,
   cc: ControllerComponents,
   appConfig: AppConfig
-) extends LanguageController(configuration, languageUtils, cc) {
+) extends LanguageController(languageUtils, cc) {
   import appConfig._
 
   override def fallbackURL: String = routes.CookieSettingsController.cookieSettings(None).url
