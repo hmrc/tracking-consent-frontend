@@ -19,6 +19,6 @@ describe('getMessages', () => {
 
     const messages = getMessages();
 
-    expect(messages['cookieSettings.title']).toEqual('Cookie settings on HMRC services');
+    expect(messages['cookieSettings.title']).toEqual('Gosodiadau cwcis ar wasanaethau CThEM');
   });
 });
