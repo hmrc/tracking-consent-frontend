@@ -1,65 +1,65 @@
-cookieSettings.title = Cookie settings on HMRC services
-testPage.title = Service test page
-transitionalTestPage.title = Transitional service test page
+cookieSettings.title = Gosodiadau cwcis ar wasanaethau CThEM
+testPage.title = Tudalen prawf y gwasanaeth
+transitionalTestPage.title = Tudalen prawf trosiannol y gwasanaeth
 service.homePageUrl = https://www.gov.uk
 
-banner.title = Tell us whether you accept cookies
-banner.paragraph1.beforeLink = We use
-banner.paragraph1.link.text = cookies to collect information
+banner.title = Rhowch wybod i ni a ydych yn derbyn cwcis neu beidio
+banner.paragraph1.beforeLink = Rydym yn defnyddio
+banner.paragraph1.link.text = cwcis er mwyn casglu gwybodaeth
 banner.paragraph1.link.url = /tracking-consent/cookie-settings
-banner.paragraph1.afterLink = about how you use HMRC services. We use this information to make them work as well as possible and improve them.
-banner.acceptAllButton = Accept all cookies
-banner.setCookiePreferencesButton = Set cookie preferences
+banner.paragraph1.afterLink = am sut yr ydych yn defnyddio gwasanaethau CThEM. Rydym yn defnyddio’r wybodaeth hon i wneud i’r gwasanaethau hyn weithio gystal â phosibl ac i’w gwella.
+banner.acceptAllButton = Derbyn pob cwci
+banner.setCookiePreferencesButton = Gosod dewisiadau cwcis
 
-banner.saveConfirmation.paragraph1.beforeLink = You’ve accepted all cookies. You can
-banner.saveConfirmation.paragraph1.link.text =  change your cookie settings
+banner.saveConfirmation.paragraph1.beforeLink = Rydych wedi derbyn pob cwci. Gallwch
+banner.saveConfirmation.paragraph1.link.text =  newid eich gosodiadau cwcis
 banner.saveConfirmation.paragraph1.link.url =  /tracking-consent/cookie-settings
-banner.saveConfirmation.paragraph1.afterLink = at any time.
-banner.saveConfirmation.hideButton.text = Hide
-banner.saveConfirmation.hideButton.label = Hide the cookie banner
+banner.saveConfirmation.paragraph1.afterLink = ar unrhyw adeg.
+banner.saveConfirmation.hideButton.text = Cuddio
+banner.saveConfirmation.hideButton.label = Cuddio’r faner cwci
 
-cookieSettings.intro.paragraph1 = ‘Cookies’ are files saved on your phone, tablet or computer when you visit a website.
-cookieSettings.intro.paragraph2 = We use 4 types of cookies to store information about how you use HMRC services, such as the pages you visit.
-cookieSettings.intro.paragraph3 = You can choose which ones you’re happy for us to use.
+cookieSettings.intro.paragraph1 = ‘Cwcis’ yw ffeiliau sy’n cael eu cadw ar eich ffôn, llechen neu gyfrifiadur pan ydych yn ymweld â gwefan.
+cookieSettings.intro.paragraph2 = Rydym yn defnyddio 3 math o gwcis i gadw gwybodaeth am sut yr ydych yn defnyddio gwasanaethau CThEM, megis y tudalennau yr ydych yn ymweld â nhw.
+cookieSettings.intro.paragraph3 = Gallwch ddewis pa rai rydych yn fodlon i ni eu defnyddio.
 
-cookieSettings.unsupported.paragraph1 = You cannot change your cookie settings because:
-cookieSettings.unsupported.bullet1 = your web browser (the software you use to access the internet) is unsupported
-cookieSettings.unsupported.bullet2 = Javascript is not running on your browser
-cookieSettings.unsupported.title = How to change your cookies settings
-cookieSettings.unsupported.paragraph2 = Try reloading the page.
-cookieSettings.unsupported.paragraph3 = If your browser is unsupported,
+cookieSettings.unsupported.paragraph1 = Ni allwch newid eich gosodiadau cwcis oherwydd:
+cookieSettings.unsupported.bullet1 = nid yw’ch porwr gwe (y feddalwedd rydych yn ei defnyddio i gael mynediad at y rhyngrwyd) wedi’i gefnogi
+cookieSettings.unsupported.bullet2 = nid yw Javascript yn rhedeg ar eich porwr
+cookieSettings.unsupported.title = Sut i newid eich gosodiadau cwcis
+cookieSettings.unsupported.paragraph2 = Rhowch gynnig ar adnewyddu’r dudalen.
+cookieSettings.unsupported.paragraph3 = Os nad yw’ch porwr wedi’i gefnogi,
 cookieSettings.unsupported.paragraph3.link.url = https://www.gov.uk/help/browsers
-cookieSettings.unsupported.paragraph3.link.text = upgrade your browser
-cookieSettings.unsupported.paragraph4 = If Javascript is not running on your browser, try turning on Javascript.
+cookieSettings.unsupported.paragraph3.link.text = diweddarwch eich porwr
+cookieSettings.unsupported.paragraph4 = Os nad yw Javascript yn rhedeg ar eich porwr, rhowch gynnig ar droi Javascript ymlaen.
 
-cookieSettings.measurement.title = Cookies that measure website use
-cookieSettings.measurement.paragraph1 = We use Google Analytics to measure how you use our services so we can improve them based on the needs of users. We do not allow Google to use or share this data.
-cookieSettings.measurement.paragraph2 = These tools set cookies that store anonymised information about:
-cookieSettings.measurement.bullet1 = how you got to the site
-cookieSettings.measurement.bullet2 = the pages you visit on HMRC services and how long you spend on each page
-cookieSettings.measurement.bullet3 = what you click on while you’re visiting the site
-cookieSettings.measurement.settinglabel.on = Use cookies that measure my website use
-cookieSettings.measurement.settinglabel.off = Do not use cookies that measure my website use
+cookieSettings.measurement.title = Cwcis sy’n mesur defnydd gwefan
+cookieSettings.measurement.paragraph1 = Rydym yn defnyddio offer dadansoddol er mwyn mesur sut yr ydych yn defnyddio ein gwasanaethau er mwyn i ni allu eu gwella yn seiliedig ar anghenion defnyddwyr. Nid ydym yn caniatáu i unrhyw un arall ddefnyddio na rhannu’r data hwn.
+cookieSettings.measurement.paragraph2 = Mae’r offer hyn yn gosod cwcis sy’n cadw gwybodaeth ddienw am y canlynol:
+cookieSettings.measurement.bullet1 = sut y gwnaethoch gyrraedd y wefan
+cookieSettings.measurement.bullet2 = y tudalennau rydych yn ymweld â nhw ar wasanaethau CThEM a faint o amser rydych yn ei dreulio ar bob tudalen
+cookieSettings.measurement.bullet3 = yr hyn yr ydych yn clicio arno wrth ymweld â’r wefan
+cookieSettings.measurement.settinglabel.on = Defnyddiwch gwcis sy’n mesur fy nefnydd o’r wefan
+cookieSettings.measurement.settinglabel.off = Peidiwch â defnyddio cwcis sy’n mesur fy nefnydd o’r wefan
 cookieSettings.measurement.settingid = measurement
 
-cookieSettings.settings.title = Cookies that remember your settings
-cookieSettings.settings.paragraph1 = These cookies do things like remember your preferences and the choices you make, to personalise your experience of using our services.
-cookieSettings.settings.settinglabel.on = Use cookies that remember my settings on  services
-cookieSettings.settings.settinglabel.off = Do not use cookies that remember my settings on services
+cookieSettings.settings.title = Cwcis sy’n cofio’ch gosodiadau
+cookieSettings.settings.paragraph1 = Mae’r cwcis hyn yn gwneud pethau megis cofio’r dewisiadau a wnewch er mwyn teilwra’ch profiad o ddefnyddio ein gwasanaethau.
+cookieSettings.settings.settinglabel.on = Defnyddiwch gwcis sy’n cofio fy ngosodiadau ar wasanaethau
+cookieSettings.settings.settinglabel.off = Peidiwch â defnyddio cwcis sy’n cofio fy ngosodiadau ar wasanaethau
 cookieSettings.settings.settingid = settings
 
-cookieSettings.necessary.title = Strictly necessary cookies
-cookieSettings.necessary.paragraph1 = These essential cookies do things like remember your progress through a form, such as a tax return.
-cookieSettings.necessary.paragraph2 =They always need to be on.
-cookieSettings.necessary.link.text = Find out more about cookies on HMRC services
+cookieSettings.necessary.title = Cwcis hollol angenrheidiol
+cookieSettings.necessary.paragraph1 = Mae’r cwcis hanfodol hyn yn gwneud pethau megis cofio’ch cynnydd drwy ffurflen, megis Ffurflen Dreth.
+cookieSettings.necessary.paragraph2 =Mae angen iddynt fod ar waith drwy’r amser.
+cookieSettings.necessary.link.text = Dysgwch ragor am gwcis ar wasanaethau CThEM
 cookieSettings.necessary.link.url = /help/cookies
 
 cookieSettings.onValue = on
 cookieSettings.offValue = off
-cookieSettings.saveButton = Save changes
+cookieSettings.saveButton = Cadw newidiadau
 
-cookieSettings.saveConfirmation.title = Your cookie settings were saved
-cookieSettings.saveConfirmation.paragraph1 = Other government services may set additional cookies and, if so, will have their own cookie policy and banner.
-cookieSettings.saveConfirmation.link.text =  Go back to the page you were looking at
+cookieSettings.saveConfirmation.title = Wedi cadw’ch gosodiadau cwcis
+cookieSettings.saveConfirmation.paragraph1 = Gall gwasanaethau eraill y llywodraeth osod cwcis ychwanegol ac, os felly, bydd ganddynt eu polisi a’u baner cwcis eu hunain.
+cookieSettings.saveConfirmation.link.text =  Ewch yn ôl i’r dudalen yr oeddech yn edrych arni
 
-service.name = Tracking Consent
+service.name = Caniatâd i Olrhain
