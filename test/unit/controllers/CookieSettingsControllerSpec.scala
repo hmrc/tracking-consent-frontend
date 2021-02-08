@@ -18,6 +18,7 @@ package unit.controllers
 
 import org.jsoup.Jsoup
 import play.api.http.Status
+import play.api.mvc.Cookie
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
 import uk.gov.hmrc.trackingconsentfrontend.controllers.CookieSettingsController
@@ -78,6 +79,12 @@ class CookieSettingsControllerSpec extends SpecBase {
     "show the correct title" in {
       val result = controller.cookieSettings(None)(fakeRequest)
       contentAsString(result) must include("Cookie settings on HMRC services")
+    }
+
+    "return the page with expected Welsh translations if enabled" in {
+      val requestWithLanguageCookie = fakeRequest.withCookies(Cookie("PLAY_LANG", "cy"))
+      val result                    = controller.cookieSettings(None)(requestWithLanguageCookie)
+      contentAsString(result) must include("Gosodiadau cwcis ar wasanaethau CThEM")
     }
   }
 }
