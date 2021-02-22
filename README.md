@@ -1,6 +1,6 @@
 # Tracking Consent Frontend
-Tracking Consent Frontend is a solution intended to address the need for users visiting the HMRC tax platform to provide
-their explicit informed consent to the use of non-essential cookies.
+Tracking Consent Frontend is a solution intended to address the need for users visiting the public-facing HMRC tax platform 
+(www.tax.service.gov.uk) to provide their explicit informed consent to the use of non-essential cookies.
 
 Tracking consent provides:
 1. A Javascript asset intended to be included by all frontend microservices running under www.tax.service.gov.uk to
@@ -10,6 +10,10 @@ Tracking consent provides:
 
 Currently only 1.i is fully enabled in production, 1.ii and 2 are enabled behind a query-string 
 based feature flag and will be turned on centrally at a later date.
+
+## Should my service be integrating with tracking-consent-frontend?
+If you have a public-facing microservice running under `www.tax.service.gov.uk`, you should integrate with the
+`tracking-consent-frontend` microservice to provide an opt-in banner for cookie consent.
 
 ## How do I integrate with tracking consent?
 Tracking consent is designed to be used in conjunction with HMRC's frontend libraries.
@@ -40,6 +44,10 @@ allow content from http://localhost:12345
 
 Consult the [Play Framework](https://www.playframework.com/) documentation for advice on how to achieve this.
 It depends on the version of Play you are using.
+
+## Internal services and user tracking
+This service is NOT intended for use on internal HMRC services which live on the internal domain. If you
+require user tracking for an internal service, please talk to your Performance Analyst to implement directly.  
 
 ## Maintenance documentation
 Maintenance documentation for the owning team, including architectural decision records (ADRs) can be found [here](docs/maintainers.md).
