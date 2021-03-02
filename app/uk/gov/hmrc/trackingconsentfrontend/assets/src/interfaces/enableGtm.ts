@@ -13,6 +13,7 @@ const enableGtm = (containerId: string | undefined) => {
     window[dataLayer].push({
       'gtm.start': new Date().getTime(),
       event: 'gtm.js',
+      'tracking-consent-frontend': 'true',
     });
     const scriptElement = document.getElementsByTagName('script')[0];
     // FIXME: the below condition extends the vanilla GTM snippet to prevent a console error

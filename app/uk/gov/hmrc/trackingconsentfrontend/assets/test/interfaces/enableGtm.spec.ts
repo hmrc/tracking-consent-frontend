@@ -39,6 +39,12 @@ describe('enableGtm', () => {
     expect(window.dataLayer[0].event).toEqual('gtm.js');
   });
 
+  it('should include in the dataLayer a custom dimension for identifying as GTM via tracking-consent-frontend', () => {
+    enableGtm('GTM-CONTAINER-ID');
+
+    expect(window.dataLayer[0]['tracking-consent-frontend']).toBeDefined();
+  });
+
   it('should initialise the dataLayer only once', () => {
     enableGtm('GTM-CONTAINER-ID');
 
