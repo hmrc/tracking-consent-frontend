@@ -75,5 +75,12 @@ class CookieSettingsSpec extends SpecBase {
       val scripts = content.select("script")
       scripts.get(2).attr("src") must be("/tracking-consent/assets/optimizely.js")
     }
+
+    "return a link to the cookie details page when running locally" in {
+      val cookieDetailsLinks = content.select("a[href=http://localhost:9240/help/cookie-details]")
+
+      cookieDetailsLinks            must have size 2
+      cookieDetailsLinks.first.text must include("Find out more about cookies on HMRC services")
+    }
   }
 }
