@@ -16,8 +16,8 @@
 
 package acceptance.specs
 
-import acceptance.pages.{CookieSettingsPage, ServiceTestPageFeatureEnabled}
-import acceptance.pages.ServiceTestPageFeatureEnabled._
+import acceptance.pages.{CookieSettingsPage, ServiceTestPage}
+import acceptance.pages.ServiceTestPage._
 import acceptance.pages.CookieSettingsPage.{doNotUseMeasurementCookiesLabel, doNotUseSettingsCookiesLabel, submitButton, useMeasurementCookiesLabel, useSettingsCookiesLabel}
 import acceptance.specs.tags.Local
 import com.github.tomakehurst.wiremock.client.WireMock.{anyRequestedFor, anyUrl}
@@ -96,7 +96,7 @@ class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
     deleteAllCookies
 
     When("the user visits the service test page with enable tracking consent parameter")
-    go to ServiceTestPageFeatureEnabled
+    go to ServiceTestPage
 
     When("the user clicks 'Accept all cookies'")
     endpointServer.resetRequests()

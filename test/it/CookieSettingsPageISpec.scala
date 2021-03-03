@@ -38,21 +38,12 @@ class CookieSettingsPageISpec extends WordSpecLike with Matchers with GuiceOneAp
 
   "Given a running instance of tracking consent frontend, calling GET for cookie-settings" should {
     "return OK with expected page" in {
-      val request = FakeRequest(GET, "/tracking-consent/cookie-settings?enableTrackingConsent=true")
+      val request = FakeRequest(GET, "/tracking-consent/cookie-settings")
       val result  = route(app, request).get
 
       status(result)        shouldBe OK
       contentType(result)   shouldBe Some("text/html")
       contentAsString(result) should include("Cookie settings on HMRC services")
-    }
-
-    "return NOT_FOUND without the feature query parameter" in {
-      val request = FakeRequest(GET, "/tracking-consent/cookie-settings")
-      val result  = route(app, request).get
-
-      status(result)        shouldBe NOT_FOUND
-      contentType(result)   shouldBe Some("text/html")
-      contentAsString(result) should include("This page can’t be found")
     }
   }
 
@@ -63,7 +54,7 @@ class CookieSettingsPageISpec extends WordSpecLike with Matchers with GuiceOneAp
         "optimizely.url"       -> "https://cdn.optimizely.com/js/",
         "optimizely.projectId" -> "a1b2c3d4e5"
       )
-      val request       = FakeRequest(GET, "/tracking-consent/cookie-settings?enableTrackingConsent=true")
+      val request       = FakeRequest(GET, "/tracking-consent/cookie-settings")
       val result        = route(appWithConfiguration(configuration), request).get
 
       status(result)        shouldBe OK
@@ -75,7 +66,7 @@ class CookieSettingsPageISpec extends WordSpecLike with Matchers with GuiceOneAp
     }
 
     "return a link to the cookie details page when running locally" in {
-      val request = FakeRequest(GET, "/tracking-consent/cookie-settings?enableTrackingConsent=true")
+      val request = FakeRequest(GET, "/tracking-consent/cookie-settings")
       val result  = route(app, request).get
 
       contentAsString(result) should include("""<a href="http://localhost:9240/help/cookie-details"""")
@@ -86,7 +77,7 @@ class CookieSettingsPageISpec extends WordSpecLike with Matchers with GuiceOneAp
         "platform.frontend.host" -> "https://www.example.com"
       )
 
-      val request = FakeRequest(GET, "/tracking-consent/cookie-settings?enableTrackingConsent=true")
+      val request = FakeRequest(GET, "/tracking-consent/cookie-settings")
       val result  = route(appWithConfiguration(configuration), request).get
 
       contentAsString(result) should include("""<a href="/help/cookie-details"""")

@@ -8,9 +8,6 @@ Tracking consent provides:
     1. inject an opt-in banner for tax users to 'Accept All' cookies or navigate to,
 1. a cookie settings page that allows tracking preferences to be adjusted
 
-Currently only 1.i is fully enabled in production, 1.ii and 2 are enabled behind a query-string 
-based feature flag and will be turned on centrally at a later date.
-
 ## Should my service be integrating with tracking-consent-frontend?
 If you have a public-facing microservice running under `www.tax.service.gov.uk`, you should integrate with the
 `tracking-consent-frontend` microservice to provide an opt-in banner for cookie consent.
@@ -31,12 +28,6 @@ and run
 ```
 sm --start TRACKING_CONSENT_FRONTEND
 ```
-
-To enable the tracking consent banner on your service and check that it displays correctly, add the `?enableTrackingConsent=true` 
-parameter to any URL on your service. This will set a feature toggle cookie `enableTrackingConsent`
- enabling the banner for all subsequent service pages you test.
-
-If you wish to reset behaviour, remove the enableTrackingConsent cookie from your browser.
 
 ## Content Security Policy
 Because tracking consent depends on GTM, your service will need to have a CSP that is compatible with it. 

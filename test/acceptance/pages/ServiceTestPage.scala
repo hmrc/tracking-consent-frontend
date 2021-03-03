@@ -19,8 +19,10 @@ package acceptance.pages
 import org.openqa.selenium.WebElement
 import support.TestConfiguration
 
-trait ServiceTestPage extends BasePage {
-  val url: String
+object ServiceTestPage extends BasePage {
+  val url: String =
+    TestConfiguration.url("tracking-consent-frontend") + "/test-only"
+
   val title                   = "Service test page"
   val acceptAdditionalCookies = "Accept additional cookies"
   val rejectAdditionalCookies = "Reject additional cookies"
@@ -29,14 +31,4 @@ trait ServiceTestPage extends BasePage {
   def acceptAdditionalCookiesButton: WebElement = findButtonByPartialText(acceptAdditionalCookies)
   def rejectAdditionalCookiesButton: WebElement = findButtonByPartialText(rejectAdditionalCookies)
   def setCookiePreferencesButton: WebElement    = findLabelByPartialText(setCookiePreferences)
-}
-
-object ServiceTestPageFeatureEnabled extends ServiceTestPage {
-  val url: String =
-    TestConfiguration.url("tracking-consent-frontend") + "/test-only" + "?enableTrackingConsent=true"
-}
-
-object ServiceTestPageFeatureDisabled extends ServiceTestPage {
-  val url: String =
-    TestConfiguration.url("tracking-consent-frontend") + "/test-only"
 }
