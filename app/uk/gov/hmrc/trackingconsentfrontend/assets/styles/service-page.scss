@@ -9,16 +9,12 @@ $govuk-font-family: "GDS Transport", "nta", Arial, sans-serif;
 @import "node_modules/govuk-frontend/govuk/settings/all";
 @import "node_modules/govuk-frontend/govuk/helpers/all";
 @import "node_modules/govuk-frontend/govuk/tools/all";
-@import "button";
-@import "button-group";
 @import "links";
 @import "width-container";
 @import "typography";
+@import "button";
+@import "button-group";
 @import "cookie-banner";
-
-@include cbanner-govuk-button;
-@include cbanner-govuk-button-group;
-@include cbanner-govuk-cookie-banner;
 
 .cbanner-govuk-width-container {
   @include govuk-width-container;
