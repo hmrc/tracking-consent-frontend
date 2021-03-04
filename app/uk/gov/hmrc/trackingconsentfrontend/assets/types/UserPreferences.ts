@@ -3,6 +3,7 @@ import type { Communicator } from './Communicator';
 
 export type UserPreferences = {
   userAcceptsAll: () => void,
+  userRejectsAll: () => void,
   setPreferences: (Preferences) => void,
   getPreferences: () => Preferences,
   getUserHasSavedCookiePreferences: () => boolean,

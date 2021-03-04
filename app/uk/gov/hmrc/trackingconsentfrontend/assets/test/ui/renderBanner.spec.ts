@@ -16,6 +16,7 @@ import * as getTrackingConsentBaseUrl from '../../src/common/getTrackingConsentB
 
 describe('renderBanner', () => {
   const userAcceptsAll = jest.fn();
+  const userRejectsAll = jest.fn();
   const getPreferences = jest.fn();
   const setPreferences = jest.fn();
   const getUserHasSavedCookiePreferences = jest.fn();
@@ -23,6 +24,7 @@ describe('renderBanner', () => {
   const subscribe = jest.fn();
   const userPreference = {
     userAcceptsAll,
+    userRejectsAll,
     getPreferences,
     setPreferences,
     getUserHasSavedCookiePreferences,
@@ -33,8 +35,9 @@ describe('renderBanner', () => {
     sendPreferences,
   };
 
-  const tellUsYouAcceptAllMatcher = /Tell us whether you accept cookies/;
-  const youveAcceptedAllMatcher = /You’ve accepted all cookies/;
+  const cookieBannerHeadingMatcher = /Cookies on HMRC services/;
+  const youveAcceptedAdditionalMatcher = /You have accepted additional cookies/;
+  const youveRejectedAdditionalMatcher = /You have rejected additional cookies/;
 
   const assume = expect;
 
@@ -55,36 +58,40 @@ describe('renderBanner', () => {
   const clickAcceptAll = () => {
     // getByText will fail the test if the text is not found
     // Finding elements by text makes the tests similar to how a user would interact with the page
-    fireEvent.click(getByText(document.body, 'Accept all cookies'));
+    fireEvent.click(getByText(document.body, 'Accept additional cookies'));
+  };
+
+  const clickRejectAdditional = () => {
+    fireEvent.click(getByText(document.body, 'Reject additional cookies'));
   };
 
   it('should render a banner', () => {
     renderBanner(userPreference);
 
-    expect(queryByText(document.body, tellUsYouAcceptAllMatcher)).toBeTruthy();
+    expect(queryByText(document.body, cookieBannerHeadingMatcher)).toBeTruthy();
   });
 
-  xit('should render the Welsh version of the banner', () => {
+  it('should render the Welsh version of the banner', () => {
     languageSpy.and.returnValue('cy');
 
     renderBanner(userPreference);
 
-    expect(queryByText(document.body, /Lorem ipsum/)).toBeTruthy();
+    expect(queryByText(document.body, /Cwcis ar wasanaethau Cyllid a Thollau EM/)).toBeTruthy();
   });
 
   it('should render a submit button', () => {
     renderBanner(userPreference);
 
-    const button = queryByText(document.body, 'Accept all cookies');
+    const button = queryByText(document.body, 'Accept additional cookies');
     expect(button).toBeTruthy();
     // @ts-ignore
-    expect(button.getAttribute('type')).toEqual('submit');
+    expect(button.getAttribute('type')).toEqual('button');
   });
 
-  it('should render a cookie settings button', () => {
+  it('should render the view cookies link', () => {
     renderBanner(userPreference);
 
-    const button = queryByText(document.body, 'Set cookie preferences');
+    const button = queryByText(document.body, 'View cookies');
     expect(button).toBeTruthy();
     // @ts-ignore
     expect(button.getAttribute('href')).toEqual('https://my-example.com:1234/tracking-consent/cookie-settings');
@@ -93,7 +100,7 @@ describe('renderBanner', () => {
     getTrackingConsentBaseUrlSpy.and.returnValue('http://localhost:8000');
     renderBanner(userPreference);
 
-    const button = queryByText(document.body, 'Set cookie preferences');
+    const button = queryByText(document.body, 'View cookies');
     expect(button).toBeTruthy();
     // @ts-ignore
     expect(button.getAttribute('href')).toEqual('http://localhost:8000/tracking-consent/cookie-settings');
@@ -103,19 +110,19 @@ describe('renderBanner', () => {
     getTrackingConsentBaseUrlSpy.and.returnValue('http://localhost:8000');
     renderBanner(userPreference);
 
-    const link = queryByText(document.body, 'cookies to collect information');
+    const link = queryByText(document.body, 'View cookies');
     expect(link).toBeTruthy();
     // @ts-ignore
     expect(link.getAttribute('href')).toEqual('http://localhost:8000/tracking-consent/cookie-settings');
   });
 
-  it('should render the banner after the govuk-frontend skiplink link', () => {
+  it('should render the banner before the govuk-frontend skiplink link', () => {
     renderBanner(userPreference);
 
     const skipLink = document.querySelector('.govuk-skip-link');
 
     // @ts-ignore
-    expect(skipLink.nextSibling.classList).toContain('cbanner-cookie-banner');
+    expect(skipLink.previousSibling.classList).toContain('cbanner-govuk-cookie-banner');
   });
 
   it('should render the banner after the govuk toolkit skiplink container', () => {
@@ -125,7 +132,7 @@ describe('renderBanner', () => {
     const skipLink = document.querySelector('#skiplink-container');
 
     // @ts-ignore
-    expect(skipLink.nextSibling.classList).toContain('cbanner-cookie-banner');
+    expect(skipLink.previousSibling.classList).toContain('cbanner-govuk-cookie-banner');
   });
 
   it('should render the banner at the top of the body element if no skiplink tag exists', () => {
@@ -134,7 +141,7 @@ describe('renderBanner', () => {
     renderBanner(userPreference);
 
     // @ts-ignore
-    expect(document.body.firstChild.classList).toContain('cbanner-cookie-banner');
+    expect(document.body.firstChild.classList).toContain('cbanner-govuk-cookie-banner');
   });
 
   it('should render a role and aria-label attribute for the cookie banner', () => {
@@ -142,7 +149,7 @@ describe('renderBanner', () => {
 
     renderBanner(userPreference);
 
-    expect(getByRole(document.body, 'region', { name: 'Cookie Banner' })).toBeTruthy();
+    expect(getByRole(document.body, 'region', { name: 'Cookies on HMRC services' })).toBeTruthy();
   });
 
   it('should call preference manager when user accepts', () => {
@@ -154,22 +161,49 @@ describe('renderBanner', () => {
     expect(userAcceptsAll).toHaveBeenCalledWith();
   });
 
+  it('should call preference manager when user rejects', () => {
+    renderBanner(userPreference);
+    assume(userRejectsAll).not.toHaveBeenCalled();
+
+    clickRejectAdditional();
+
+    expect(userRejectsAll).toHaveBeenCalledWith();
+  });
+
   it('should show a save confirmation when user accepts', () => {
     renderBanner(userPreference);
-    expect(queryByText(document.body, youveAcceptedAllMatcher)).toBeFalsy();
+    expect(queryByText(document.body, youveAcceptedAdditionalMatcher)).toBeFalsy();
 
     clickAcceptAll();
 
-    expect(queryByText(document.body, youveAcceptedAllMatcher)).toBeTruthy();
+    expect(queryByText(document.body, youveAcceptedAdditionalMatcher)).toBeTruthy();
   });
 
   it('should hide the accept all question when user accepts', () => {
     renderBanner(userPreference);
-    expect(queryByText(document.body, tellUsYouAcceptAllMatcher)).toBeTruthy();
+    expect(queryByText(document.body, cookieBannerHeadingMatcher)).toBeTruthy();
 
     clickAcceptAll();
 
-    expect(queryByText(document.body, tellUsYouAcceptAllMatcher)).toBeFalsy();
+    expect(queryByText(document.body, cookieBannerHeadingMatcher)).toBeFalsy();
+  });
+
+  it('should show a save confirmation when user rejects', () => {
+    renderBanner(userPreference);
+    expect(queryByText(document.body, youveAcceptedAdditionalMatcher)).toBeFalsy();
+
+    clickRejectAdditional();
+
+    expect(queryByText(document.body, youveRejectedAdditionalMatcher)).toBeTruthy();
+  });
+
+  it('should hide the accept all question when user rejects', () => {
+    renderBanner(userPreference);
+    expect(queryByText(document.body, cookieBannerHeadingMatcher)).toBeTruthy();
+
+    clickRejectAdditional();
+
+    expect(queryByText(document.body, cookieBannerHeadingMatcher)).toBeFalsy();
   });
 
   it('should not render a banner if the cookie has been set', () => {
@@ -183,7 +217,7 @@ describe('renderBanner', () => {
     featureEnabledSpy.and.returnValue(true);
     renderBanner(userPreference);
 
-    expect(queryByText(document.body, /Tell us whether you accept cookies/)).toBeTruthy();
+    expect(queryByText(document.body, /Cookies on HMRC services/)).toBeTruthy();
   });
 
   it('should remove the old cookie banner when user preferences have not been set', () => {
@@ -208,7 +242,7 @@ describe('renderBanner', () => {
 
   describe('Meta tests', () => {
     it('should reset state between tests', () => {
-      expect(queryByText(document.body, tellUsYouAcceptAllMatcher)).toBeFalsy();
+      expect(queryByText(document.body, cookieBannerHeadingMatcher)).toBeFalsy();
     });
   });
 });

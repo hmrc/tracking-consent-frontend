@@ -20,6 +20,8 @@ import acceptance.driver.BrowserDriver
 import org.openqa.selenium.{By, Cookie, WebElement}
 import org.scalatest.Matchers
 import org.scalatestplus.selenium.{Page, WebBrowser}
+import java.util.logging.Level.SEVERE
+
 import scala.collection.JavaConverters._
 
 trait BasePage extends Matchers with Page with WebBrowser with BrowserDriver {
@@ -35,6 +37,8 @@ trait BasePage extends Matchers with Page with WebBrowser with BrowserDriver {
 
   def h1Element: WebElement = findBy(By.cssSelector("h1"))
 
-  def consoleErrors: Seq[String] =
-    driver.manage().logs().get("browser").asScala.map(_.getMessage).toSeq
+  def consoleErrors: Seq[String] = {
+    val logs = driver.manage().logs().get("browser").asScala
+    logs.filter(_.getLevel == SEVERE).map(_.getMessage).toSeq
+  }
 }

@@ -100,7 +100,7 @@ class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
 
     When("the user clicks 'Accept all cookies'")
     endpointServer.resetRequests()
-    click on acceptAllCookiesButton
+    click on acceptAdditionalCookiesButton
 
     Then("an audit event is sent")
     eventually {

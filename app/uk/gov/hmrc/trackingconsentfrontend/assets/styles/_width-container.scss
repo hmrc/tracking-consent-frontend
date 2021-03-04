@@ -1,11 +1,7 @@
 // Mixin taken verbatim from node_modules/govuk-frontend/govuk/objects/width-container
-// Avoids overriding any other styles in the service page
-@import "node_modules/govuk-frontend/govuk/settings/all";
-@import "node_modules/govuk-frontend/govuk/helpers/all";
-@import "node_modules/govuk-frontend/govuk/tools/all";
 
 ////
-/// @group objects
+/// @group objects/layout
 ////
 
 /// Width container mixin
@@ -20,6 +16,7 @@
 ///  }
 ///
 /// @access public
+@import "node_modules/govuk-frontend/govuk/base";
 
 @mixin govuk-width-container($width: $govuk-page-width) {
 
@@ -80,4 +77,3 @@
     margin-left: auto;
   }
 }
-

@@ -68,7 +68,7 @@ class ErrorPageSpec extends BaseAcceptanceSpec {
 
       Then("the cookie banner is visible")
       eventually {
-        acceptAllCookiesButton should not be null
+        acceptAdditionalCookiesButton should not be null
       }
     }
   }
