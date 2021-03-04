@@ -44,7 +44,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       When("the user visits the service test page with enable tracking consent parameter")
       go to ServiceTestPageFeatureEnabled
       eventually {
-        tagName("h2").element.text shouldBe "Tell us whether you accept cookies"
+        tagName("h2").element.text shouldBe "Cookies on HMRC services"
       }
 
       When("the user clicks 'Accept all cookies'")
@@ -79,7 +79,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       go to ServiceTestPageFeatureDisabled
 
       Then("there should be no button 'Accept all cookies'")
-      tagName("h2").element.text shouldNot be("Tell us whether you accept cookies")
+      tagName("h2").element.text shouldNot be("Cookies on HMRC services")
       a[WebDriverNoSuchElementException] should be thrownBy acceptAllCookiesButton
     }
 
@@ -92,13 +92,13 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
 
       Then("there should be a button 'Accept all cookies'")
       eventually {
-        tagName("h2").element.text shouldBe "Tell us whether you accept cookies"
+        tagName("h2").element.text shouldBe "Cookies on HMRC services"
       }
 
       And("navigating to a page without the tracking consent parameter should also show the banner")
       go to ServiceTestPageFeatureDisabled
       eventually {
-        tagName("h2").element.text shouldBe "Tell us whether you accept cookies"
+        tagName("h2").element.text shouldBe "Cookies on HMRC services"
       }
     }
 
@@ -109,9 +109,9 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       When("the user visits the service test page with enable tracking consent parameter")
       go to ServiceTestPageFeatureEnabled
 
-      And("the banner should be displayed with the title 'Tell us whether you accept cookies'")
+      And("the banner should be displayed with the title 'Cookies on HMRC services'")
       eventually {
-        tagName("h2").element.text shouldBe "Tell us whether you accept cookies"
+        tagName("h2").element.text shouldBe "Cookies on HMRC services"
       }
 
       And("no Javascript console errors are thrown")

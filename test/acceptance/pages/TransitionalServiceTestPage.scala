@@ -22,8 +22,8 @@ import support.TestConfiguration
 trait TransitionalServiceTestPage extends BasePage {
   val url: String
   val title                = "Transitional service test page"
-  val acceptAllCookies     = "Accept all cookies"
-  val setCookiePreferences = "Set cookie preferences"
+  val acceptAllCookies     = "Accept additional cookies"
+  val setCookiePreferences = "View cookies"
 
   def acceptAllCookiesButton: WebElement     = findButtonByPartialText(acceptAllCookies)
   def setCookiePreferencesButton: WebElement = findLabelByPartialText(setCookiePreferences)

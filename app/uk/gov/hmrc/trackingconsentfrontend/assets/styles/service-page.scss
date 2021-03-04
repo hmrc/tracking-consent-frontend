@@ -1,59 +1,47 @@
+// Cut down version of Gov UK Frontend 3.6.0
+// Styles prefixed to ensure banner is insulated from any other styles
+// in the page
+
+// Do not inject fonts, use the fonts available on the service page
+$govuk-include-default-font-face: false;
+$govuk-font-family: "GDS Transport", "nta", Arial, sans-serif;
+
 @import "node_modules/govuk-frontend/govuk/settings/all";
 @import "node_modules/govuk-frontend/govuk/helpers/all";
 @import "node_modules/govuk-frontend/govuk/tools/all";
-@import "govuk-frontend";
+@import "button";
+@import "button-group";
+@import "links";
+@import "width-container";
+@import "typography";
+@import "cookie-banner";
 
-.cbanner-cookie-banner {
-  @include cbanner-govuk-frontend();
+@include cbanner-govuk-button;
+@include cbanner-govuk-button-group;
+@include cbanner-govuk-cookie-banner;
 
-  background-color: govuk-colour("light-grey");
-  padding: 20px 15px;
-
-  .cbanner-cookie-banner__button-column {
-    padding: 0;
-  }
-
-  .cbanner-cookie-banner__accept-all-button, .cbanner-cookie-banner__set-cookie-preferences-button {
-    width: 100%;
-
-    @include govuk-media-query(desktop) {
-      width: 90%;
-    }
-  }
-
-  &__confirmation-message {
-    position: relative;
-    outline: none;
-  }
-
-  &__confirmation-message-text {
-     display: inline-block;
-     margin-right: 60px;
-  }
-
-  &__hide-button-container {
-    @include govuk-media-query(desktop) {
-      margin-top: 0;
-      display: inline-block;
-      position: absolute;
-      right: 5px;
-    }
-  }
-
-  &__hide-button {
-    font-weight: 400;
-    font-size: 16px;
-    outline: 0;
-    border: 0;
-    background: none;
-    text-decoration: underline;
-    color: govuk-colour("blue");
-    box-shadow: none;
-    padding: 0;
-
-    @include govuk-media-query(desktop) {
-      font-size: 19px;
-    }
-  }
+.cbanner-govuk-width-container {
+  @include govuk-width-container;
 }
 
+.cbanner-govuk-link {
+  @extend %govuk-link;
+}
+
+.cbanner-govuk-grid-row {
+  @include govuk-clearfix;
+  margin-right: - ($govuk-gutter-half);
+  margin-left: - ($govuk-gutter-half);
+}
+
+.cbanner-govuk-grid-column-two-thirds {
+  @include govuk-grid-column(two-thirds)
+}
+
+.cbanner-govuk-heading-m {
+  @extend %govuk-heading-m;
+}
+
+.cbanner-govuk-body {
+  @extend %govuk-body-m;
+}

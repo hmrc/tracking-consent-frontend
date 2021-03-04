@@ -7,7 +7,7 @@
 @import "node_modules/govuk-frontend/govuk/tools/all";
 
 @mixin cbanner-govuk-button {
-  $govuk-button-colour: govuk-colour("green", $legacy: #00823b); // sass-lint:disable no-color-literals
+  $govuk-button-colour: govuk-colour("green", $legacy: #00823b);
   $govuk-button-hover-colour: govuk-shade($govuk-button-colour, 20%);
   $govuk-button-shadow-colour: govuk-shade($govuk-button-colour, 60%);
   $govuk-button-text-colour: govuk-colour("white");
@@ -37,11 +37,13 @@
     position: relative;
     width: 100%;
     margin-top: 0;
+    margin-right: 0;
+    margin-left: 0;
     @include govuk-responsive-margin(6, "bottom", $adjustment: $button-shadow-size); // s2
     padding: (govuk-spacing(2) - $govuk-border-width-form-element) govuk-spacing(2) (govuk-spacing(2) - $govuk-border-width-form-element - ($button-shadow-size / 2)); // s1
     border: $govuk-border-width-form-element solid transparent;
     border-radius: 0;
-    color: $govuk-button-text-colour!important; // Needed for classic service compatibility
+    color: $govuk-button-text-colour;
     background-color: $govuk-button-colour;
     box-shadow: 0 $button-shadow-size 0 $govuk-button-shadow-colour; // s0
     text-align: center;
@@ -63,16 +65,16 @@
     &:active,
     &:hover {
       color: $govuk-button-text-colour;
-      text-decoration: none!important; // Needed for classic service compatibility
+      text-decoration: none;
     }
 
     // Fix unwanted button padding in Firefox
-    /* stylelint-disable */
+    /* stylelint-disable no-descending-specificity */
     &::-moz-focus-inner {
       padding: 0;
       border: 0;
     }
-    /* stylelint-enable */
+    /* stylelint-enable no-descending-specificity */
 
     &:hover {
       background-color: $govuk-button-hover-colour;
@@ -111,13 +113,13 @@
     // text when focussed.
     @include govuk-compatibility(govuk_template) {
       &:link:focus {
-        color: $govuk-button-text-colour!important; // Needed for classic service compatibility
+        color: $govuk-button-text-colour;
       }
     }
 
     &:focus:not(:active):not(:hover) {
       border-color: $govuk-focus-colour;
-      color: $govuk-focus-text-colour!important; // Needed for classic service compatibility
+      color: $govuk-focus-text-colour;
       background-color: $govuk-focus-colour;
       box-shadow: 0 2px 0 $govuk-focus-text-colour;
     }
@@ -127,7 +129,7 @@
 
     // Use a pseudo element to expand the click target area to include the
     // button's shadow as well, in case users try to click it.
-    &::before {
+    &:before {
       content: "";
       display: block;
 
@@ -151,8 +153,130 @@
     // the click event is still fired.
     //
     // 🎉
-    &:active::before {
+    &:active:before {
       top: -($govuk-border-width-form-element + $button-shadow-size);
+    }
+  }
+
+  .cbanner-govuk-button--disabled,
+  .cbanner-govuk-button[disabled="disabled"],
+  .cbanner-govuk-button[disabled] {
+    opacity: (.5);
+
+    &:hover {
+      background-color: $govuk-button-colour;
+      cursor: default;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      top: 0;
+      box-shadow: 0 $button-shadow-size 0 $govuk-button-shadow-colour; // s0
+      @include govuk-if-ie8 {
+        border-bottom: $button-shadow-size solid $govuk-button-shadow-colour; // s0
+      }
+    }
+  }
+
+  .cbanner-govuk-button--secondary {
+    background-color: $govuk-secondary-button-colour;
+    box-shadow: 0 $button-shadow-size 0 $govuk-secondary-button-shadow-colour;
+
+    &,
+    &:link,
+    &:visited,
+    &:active,
+    &:hover {
+      color: $govuk-secondary-button-text-colour;
+    }
+
+    // alphagov/govuk_template includes a specific a:link:focus selector
+    // designed to make unvisited links a slightly darker blue when focussed, so
+    // we need to override the text colour for that combination of selectors so
+    // so that unvisited links styled as buttons do not end up with dark blue
+    // text when focussed.
+    @include govuk-compatibility(govuk_template) {
+      &:link:focus {
+        color: $govuk-secondary-button-text-colour;
+      }
+    }
+
+    &:hover {
+      background-color: $govuk-secondary-button-hover-colour;
+
+      &[disabled] {
+        background-color: $govuk-secondary-button-colour;
+      }
+    }
+  }
+
+  .cbanner-govuk-button--warning {
+    background-color: $govuk-warning-button-colour;
+    box-shadow: 0 $button-shadow-size 0 $govuk-warning-button-shadow-colour;
+
+    &,
+    &:link,
+    &:visited,
+    &:active,
+    &:hover {
+      color: $govuk-warning-button-text-colour;
+    }
+
+    // alphagov/govuk_template includes a specific a:link:focus selector
+    // designed to make unvisited links a slightly darker blue when focussed, so
+    // we need to override the text colour for that combination of selectors so
+    // so that unvisited links styled as buttons do not end up with dark blue
+    // text when focussed.
+    @include govuk-compatibility(govuk_template) {
+      &:link:focus {
+        color: $govuk-warning-button-text-colour;
+      }
+    }
+
+    &:hover {
+      background-color: $govuk-warning-button-hover-colour;
+
+      &[disabled] {
+        background-color: $govuk-warning-button-colour;
+      }
+    }
+  }
+
+  .cbanner-govuk-button--start {
+    @include govuk-typography-weight-bold;
+    @include govuk-typography-responsive($size: 24, $override-line-height: 1);
+
+    display: inline-flex;
+    min-height: auto;
+
+    justify-content: center;
+  }
+
+  .cbanner-govuk-button__start-icon {
+    margin-left: govuk-spacing(1);
+
+    @include govuk-media-query($from: desktop) {
+      margin-left: govuk-spacing(2);
+    }
+    vertical-align: middle;
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  @if $govuk-use-legacy-font {
+    // Begin adjustments for font baseline offset when using v1 of nta
+    $offset: 2;
+
+    .cbanner-govuk-button {
+      padding-top: (govuk-spacing(2) - $govuk-border-width-form-element - ($button-shadow-size / 2) + $offset); // s1
+      padding-bottom: (govuk-spacing(2) - $govuk-border-width-form-element - ($button-shadow-size / 2) - $offset + 1); // s1
+    }
+
+    .cbanner-govuk-button__start-icon {
+      margin-top: -3px;
     }
   }
 }

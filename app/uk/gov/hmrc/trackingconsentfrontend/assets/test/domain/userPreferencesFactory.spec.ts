@@ -40,6 +40,11 @@ describe('userPreferencesFactory', () => {
     settings: true,
   };
 
+  const rejectAdditional = {
+    measurement: false,
+    settings: false,
+  };
+
   describe('getTrackingPreferencesSaved', () => {
     it('should determine if tracking preferences have been set', () => {
       setConsentCookie({ preferences: { acceptAll: true } });
@@ -102,8 +107,40 @@ describe('userPreferencesFactory', () => {
     });
   });
 
+  describe('Reject All', () => {
+    it('should set the cookie body with the JSON format', () => {
+      testScope.userPreference.userRejectsAll();
+      expectTrackingPreferenceToHaveBeenSetWith({
+        version: '2020.1',
+        datetimeSet: testScope.fakeDatetime,
+        preferences: {
+          measurement: false,
+          settings: false,
+        },
+      });
+    });
+
+    it('should call preference communicator', () => {
+      assume(testScope.preferenceCommunicator.sendPreferences).not.toHaveBeenCalled();
+
+      testScope.userPreference.userRejectsAll();
+      expect(testScope.preferenceCommunicator.sendPreferences)
+        .toHaveBeenCalledWith(testScope.userPreference, CONSENT_UPDATED_EVENT);
+    });
+
+    it('should call preference communicator after preferences were set', () => {
+      testScope.preferenceCommunicator.sendPreferences.and.callFake((userPreference) => {
+        expect(userPreference.getPreferences()).toEqual(rejectAdditional);
+      });
+
+      testScope.userPreference.userRejectsAll();
+      expect(testScope.preferenceCommunicator.sendPreferences)
+        .toHaveBeenCalledWith(testScope.userPreference, CONSENT_UPDATED_EVENT);
+    });
+  });
+
   describe('getPreferences', () => {
-    const getFakeAcceptAll = () => ({
+    const getFakeacceptAdditional = () => ({
       version: '2020.1',
       datetimeSet: testScope.fakeDatetime,
       preferences: {
@@ -165,13 +202,13 @@ describe('userPreferencesFactory', () => {
       });
     });
 
-    it('should return each category when AcceptAll is set (fake data)', () => {
-      setConsentCookie(getFakeAcceptAll());
+    it('should return each category when AcceptAdditional is set (fake data)', () => {
+      setConsentCookie(getFakeacceptAdditional());
 
       expect(testScope.userPreference.getPreferences()).toEqual(consentToAll);
     });
 
-    it('should return do not consent to any if AcceptAll is non-boolean but truthy', () => {
+    it('should return do not consent to any if AcceptAdditional is non-boolean but truthy', () => {
       setConsentCookie({
         preferences: {
           acceptAll: 'abc',
@@ -202,7 +239,7 @@ describe('userPreferencesFactory', () => {
       expect(testScope.userPreference.getPreferences()).toEqual(doNotConsentToAny);
     });
 
-    it('should return each category when AcceptAll is set (function call)', () => {
+    it('should return each category when AcceptAdditional is set (function call)', () => {
       const { userPreference } = testScope;
       userPreference.userAcceptsAll();
 

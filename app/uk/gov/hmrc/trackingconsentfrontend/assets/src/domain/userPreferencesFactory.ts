@@ -59,6 +59,11 @@ const userPreferencesFactory = (): UserPreferences => {
     (cookieType: string) => [cookieType, hasConsented],
   ));
 
+  const userRejectsAll = () => {
+    storePreferences(allThePreferences(false));
+    sendPreferences(CONSENT_UPDATED_EVENT);
+  };
+
   const validateCookie = (): Cookie | undefined => {
     const cookie = Cookies.getJSON(COOKIE_CONSENT);
     if (cookie === null || cookie === undefined || cookie.preferences === undefined) {
@@ -91,6 +96,7 @@ const userPreferencesFactory = (): UserPreferences => {
 
   self = {
     userAcceptsAll,
+    userRejectsAll,
     setPreferences,
     getUserHasSavedCookiePreferences,
     getPreferences,
