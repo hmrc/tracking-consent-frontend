@@ -24,7 +24,7 @@ const userPreferencesFactory = (): UserPreferences => {
     Cookies.set(
       COOKIE_CONSENT,
       {
-        version: '2020.1',
+        version: COOKIE_VERSION,
         datetimeSet: new Date().toISOString(),
         preferences,
       },
@@ -32,10 +32,12 @@ const userPreferencesFactory = (): UserPreferences => {
     );
   };
 
+  const allThePreferences = (hasConsented: boolean) => fromEntries(cookieTypes.map(
+    (cookieType: string) => [cookieType, hasConsented],
+  ));
+
   const userAcceptsAll = () => {
-    storePreferences({
-      acceptAll: true,
-    });
+    storePreferences(allThePreferences(true));
     sendPreferences(CONSENT_UPDATED_EVENT);
   };
 
@@ -53,10 +55,6 @@ const userPreferencesFactory = (): UserPreferences => {
 
       return [cookieType, value === true];
     },
-  ));
-
-  const allThePreferences = (hasConsented: boolean) => fromEntries(cookieTypes.map(
-    (cookieType: string) => [cookieType, hasConsented],
   ));
 
   const validateCookie = (): Cookie | undefined => {
@@ -80,10 +78,6 @@ const userPreferencesFactory = (): UserPreferences => {
     }
 
     const { preferences } = cookie;
-    if (preferences.acceptAll === true) {
-      return allThePreferences(true);
-    }
-
     return getSanitisedPreferences(preferences);
   };
 
