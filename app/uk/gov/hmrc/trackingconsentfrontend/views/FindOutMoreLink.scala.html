@@ -15,9 +15,9 @@
  *@
 
 @this()
-@()(implicit messages: Messages)
+@()(implicit messages: Messages, appConfig: AppConfig)
 <p class="govuk-body">
-    <a href="@messages("cookieSettings.necessary.link.url")" class="govuk-link">
+    <a href="@appConfig.cookieDetailsUrl" class="govuk-link">
         @messages("cookieSettings.necessary.link.text")
     </a>
 </p>

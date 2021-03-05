@@ -18,10 +18,25 @@ package unit
 
 import org.scalatestplus.play.PlaySpec
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
-import play.api.i18n.{Messages}
+import play.api.Application
+import play.api.i18n.Messages
+import play.api.inject.guice.GuiceApplicationBuilder
 import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
 
 trait SpecBase extends PlaySpec with GuiceOneAppPerSuite with JsoupHelpers with AppHelpers {
+  val baseProperties = Map(
+    "optimizely.url"       -> "https://cdn.optimizely.com/",
+    "optimizely.projectId" -> "1234567",
+    "metrics.jvm"          -> false,
+    "metrics.enabled"      -> false,
+    "auditing.enabled"     -> false
+  )
+
+  override def fakeApplication(): Application =
+    new GuiceApplicationBuilder()
+      .configure(baseProperties)
+      .build()
+
   implicit lazy val messages: Messages   = getMessages(app, fakeRequest)
   implicit lazy val appConfig: AppConfig = getAppConfig
 }

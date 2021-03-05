@@ -73,5 +73,23 @@ class CookieSettingsPageISpec extends WordSpecLike with Matchers with GuiceOneAp
         result
       )                       should include regex """<script nonce="[a-zA-Z0-9+/=]+" type="text/javascript" src="https://cdn.optimizely.com/js/a1b2c3d4e5.js"></script>"""
     }
+
+    "return a link to the cookie details page when running locally" in {
+      val request = FakeRequest(GET, "/tracking-consent/cookie-settings?enableTrackingConsent=true")
+      val result  = route(app, request).get
+
+      contentAsString(result) should include("""<a href="http://localhost:9240/help/cookie-details"""")
+    }
+
+    "return a link to the cookie details page when running on the platform" in new WithConfiguredApp {
+      val configuration = Map(
+        "platform.frontend.host" -> "https://www.example.com"
+      )
+
+      val request = FakeRequest(GET, "/tracking-consent/cookie-settings?enableTrackingConsent=true")
+      val result  = route(appWithConfiguration(configuration), request).get
+
+      contentAsString(result) should include("""<a href="/help/cookie-details"""")
+    }
   }
 }
