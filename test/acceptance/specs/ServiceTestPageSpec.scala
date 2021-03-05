@@ -68,7 +68,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       click on acceptAllCookiesButton
 
       Then("the userConsent cookie is set")
-      userConsentCookie.getValue should include("%22preferences%22:{%22acceptAll%22:true}}")
+      userConsentCookie.getValue should include("%22preferences%22:{%22measurement%22:true%2C%22settings%22:true}}")
     }
 
     scenario("The user visits a page without tracking consent enabled") {
