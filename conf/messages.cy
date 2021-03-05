@@ -52,7 +52,6 @@ cookieSettings.necessary.title = Cwcis hollol angenrheidiol
 cookieSettings.necessary.paragraph1 = Mae’r cwcis hanfodol hyn yn gwneud pethau megis cofio’ch cynnydd drwy ffurflen, megis Ffurflen Dreth.
 cookieSettings.necessary.paragraph2 =Mae angen iddynt fod ar waith drwy’r amser.
 cookieSettings.necessary.link.text = Dysgwch ragor am gwcis ar wasanaethau CThEM
-cookieSettings.necessary.link.url = /help/cookies
 
 cookieSettings.onValue = on
 cookieSettings.offValue = off

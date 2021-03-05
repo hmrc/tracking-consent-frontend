@@ -11,7 +11,7 @@ banner.paragraph1.afterLink = about how you use HMRC services. We use this infor
 banner.acceptAllButton = Accept all cookies
 banner.setCookiePreferencesButton = Set cookie preferences
 
-banner.saveConfirmation.paragraph1.beforeLink = You’ve accepted all cookies. You can 
+banner.saveConfirmation.paragraph1.beforeLink = You’ve accepted all cookies. You can
 banner.saveConfirmation.paragraph1.link.text =  change your cookie settings
 banner.saveConfirmation.paragraph1.link.url =  /tracking-consent/cookie-settings
 banner.saveConfirmation.paragraph1.afterLink = at any time.
@@ -27,7 +27,7 @@ cookieSettings.unsupported.bullet1 = your web browser (the software you use to a
 cookieSettings.unsupported.bullet2 = Javascript is not running on your browser
 cookieSettings.unsupported.title = How to change your cookies settings
 cookieSettings.unsupported.paragraph2 = Try reloading the page.
-cookieSettings.unsupported.paragraph3 = If your browser is unsupported, 
+cookieSettings.unsupported.paragraph3 = If your browser is unsupported,
 cookieSettings.unsupported.paragraph3.link.url = https://www.gov.uk/help/browsers
 cookieSettings.unsupported.paragraph3.link.text = upgrade your browser
 cookieSettings.unsupported.paragraph4 = If Javascript is not running on your browser, try turning on Javascript.
@@ -52,7 +52,6 @@ cookieSettings.necessary.title = Strictly necessary cookies
 cookieSettings.necessary.paragraph1 = These essential cookies do things like remember your progress through a form, such as a tax return.
 cookieSettings.necessary.paragraph2 =They always need to be on.
 cookieSettings.necessary.link.text = Find out more about cookies on HMRC services
-cookieSettings.necessary.link.url = /help/cookies
 
 cookieSettings.onValue = on
 cookieSettings.offValue = off

@@ -36,4 +36,16 @@ class AppConfig @Inject() (config: Configuration, servicesConfig: ServicesConfig
 
   val en: String = "en"
   val cy: String = "cy"
+
+  private val platformHost: Option[String] =
+    config.getOptional[String]("platform.frontend.host")
+
+  private val helpFrontendHost: String =
+    platformHost.map(_ => "").orElse(config.getOptional[String]("help-frontend.host")).getOrElse("")
+
+  private val cookieDetailsPath: String =
+    config.get[String]("help-frontend.cookie-details-path")
+
+  val cookieDetailsUrl: String =
+    s"$helpFrontendHost$cookieDetailsPath"
 }
