@@ -87,7 +87,7 @@ describe('userPreferencesFactory', () => {
 
     it('should set cookie security appropriately', () => {
       testScope.userPreference.userAcceptsAll();
-      expect(Cookies.set).toHaveBeenCalledWith('userConsent', expect.anything(), { sameSite: 'strict', expires: 3650 });
+      expect(Cookies.set).toHaveBeenCalledWith('userConsent', expect.anything(), { sameSite: 'strict', expires: 365 });
     });
 
     it('should call preference communicator', () => {
@@ -233,7 +233,7 @@ describe('userPreferencesFactory', () => {
           measurement: true,
           settings: true,
         },
-      }, { sameSite: 'strict', expires: 3650 });
+      }, { sameSite: 'strict', expires: 365 });
     });
     it('should save other preferences to the cookie', () => {
       testScope.userPreference.setPreferences({
@@ -247,7 +247,7 @@ describe('userPreferencesFactory', () => {
           measurement: false,
           settings: true,
         },
-      }, { sameSite: 'strict', expires: 3650 });
+      }, { sameSite: 'strict', expires: 365 });
     });
     it('should save only preferences specified', () => {
       testScope.userPreference.setPreferences({
@@ -259,7 +259,7 @@ describe('userPreferencesFactory', () => {
         preferences: {
           measurement: true,
         },
-      }, { sameSite: 'strict', expires: 3650 });
+      }, { sameSite: 'strict', expires: 365 });
     });
 
     it('should call preference communicator', () => {

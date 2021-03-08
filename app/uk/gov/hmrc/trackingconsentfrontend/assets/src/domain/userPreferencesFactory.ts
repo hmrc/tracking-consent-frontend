@@ -28,7 +28,7 @@ const userPreferencesFactory = (): UserPreferences => {
         datetimeSet: new Date().toISOString(),
         preferences,
       },
-      { sameSite: 'strict', expires: 3650 },
+      { sameSite: 'strict', expires: 365 },
     );
   };
 
