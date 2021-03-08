@@ -25,7 +25,7 @@ const renderBanner = (userPreference: UserPreferences) => {
   const handleAcceptAdditionalClick = (event: Event) => {
     event.preventDefault();
 
-    userPreference.userAcceptsAll();
+    userPreference.userAcceptsAdditional();
     hideQuestion();
     renderConfirmationMessage(messages['banner.confirmation.accepted']);
   };
@@ -33,7 +33,7 @@ const renderBanner = (userPreference: UserPreferences) => {
   const handleRejectAdditionalClick = (event: Event) => {
     event.preventDefault();
 
-    userPreference.userRejectsAll();
+    userPreference.userRejectsAdditional();
     hideQuestion();
     renderConfirmationMessage(messages['banner.confirmation.rejected']);
   };

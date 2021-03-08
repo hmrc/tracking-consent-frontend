@@ -66,7 +66,7 @@ describe('userPreferencesFactory', () => {
 
   describe('Accept All', () => {
     it('should set the cookie body with the JSON format', () => {
-      testScope.userPreference.userAcceptsAll();
+      testScope.userPreference.userAcceptsAdditional();
       expectTrackingPreferenceToHaveBeenSetWith({
         version: '2021.1',
         datetimeSet: testScope.fakeDatetime,
@@ -79,7 +79,7 @@ describe('userPreferencesFactory', () => {
 
     it('should set the cookie body with the correct dateTime', () => {
       testScope.fakeDatetime = 987654321;
-      testScope.userPreference.userAcceptsAll();
+      testScope.userPreference.userAcceptsAdditional();
       expectTrackingPreferenceToHaveBeenSetWith({
         version: '2021.1',
         datetimeSet: 987654321,
@@ -91,14 +91,16 @@ describe('userPreferencesFactory', () => {
     });
 
     it('should set cookie security appropriately', () => {
-      testScope.userPreference.userAcceptsAll();
+      testScope.userPreference.userAcceptsAdditional();
+      expect(Cookies.set).toHaveBeenCalledWith('userConsent', expect.anything(), { sameSite: 'strict', expires: 365 });
+      testScope.userPreference.userAcceptsAdditional();
       expect(Cookies.set).toHaveBeenCalledWith('userConsent', expect.anything(), { sameSite: 'strict', expires: 365 });
     });
 
     it('should call preference communicator', () => {
       assume(testScope.preferenceCommunicator.sendPreferences).not.toHaveBeenCalled();
 
-      testScope.userPreference.userAcceptsAll();
+      testScope.userPreference.userAcceptsAdditional();
       expect(testScope.preferenceCommunicator.sendPreferences)
         .toHaveBeenCalledWith(testScope.userPreference, CONSENT_UPDATED_EVENT);
     });
@@ -108,7 +110,7 @@ describe('userPreferencesFactory', () => {
         expect(userPreference.getPreferences()).toEqual(consentToAll);
       });
 
-      testScope.userPreference.userAcceptsAll();
+      testScope.userPreference.userAcceptsAdditional();
       expect(testScope.preferenceCommunicator.sendPreferences)
         .toHaveBeenCalledWith(testScope.userPreference, CONSENT_UPDATED_EVENT);
     });
@@ -116,7 +118,7 @@ describe('userPreferencesFactory', () => {
 
   describe('Reject All', () => {
     it('should set the cookie body with the JSON format', () => {
-      testScope.userPreference.userRejectsAll();
+      testScope.userPreference.userRejectsAdditional();
       expectTrackingPreferenceToHaveBeenSetWith({
         version: '2021.1',
         datetimeSet: testScope.fakeDatetime,
@@ -130,7 +132,7 @@ describe('userPreferencesFactory', () => {
     it('should call preference communicator', () => {
       assume(testScope.preferenceCommunicator.sendPreferences).not.toHaveBeenCalled();
 
-      testScope.userPreference.userRejectsAll();
+      testScope.userPreference.userRejectsAdditional();
       expect(testScope.preferenceCommunicator.sendPreferences)
         .toHaveBeenCalledWith(testScope.userPreference, CONSENT_UPDATED_EVENT);
     });
@@ -140,7 +142,7 @@ describe('userPreferencesFactory', () => {
         expect(userPreference.getPreferences()).toEqual(rejectAdditional);
       });
 
-      testScope.userPreference.userRejectsAll();
+      testScope.userPreference.userRejectsAdditional();
       expect(testScope.preferenceCommunicator.sendPreferences)
         .toHaveBeenCalledWith(testScope.userPreference, CONSENT_UPDATED_EVENT);
     });
@@ -234,7 +236,7 @@ describe('userPreferencesFactory', () => {
 
     it('should return each category when all are set via AcceptAll', () => {
       const { userPreference } = testScope;
-      userPreference.userAcceptsAll();
+      userPreference.userAcceptsAdditional();
 
       expect(userPreference.getPreferences()).toEqual(consentToAll);
     });

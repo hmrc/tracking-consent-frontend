@@ -15,16 +15,16 @@ import * as isFeatureEnabled from '../../src/interfaces/isFeatureEnabled';
 import * as getTrackingConsentBaseUrl from '../../src/common/getTrackingConsentBaseUrl';
 
 describe('renderBanner', () => {
-  const userAcceptsAll = jest.fn();
-  const userRejectsAll = jest.fn();
+  const userAcceptsAdditional = jest.fn();
+  const userRejectsAdditional = jest.fn();
   const getPreferences = jest.fn();
   const setPreferences = jest.fn();
   const getUserHasSavedCookiePreferences = jest.fn();
   const sendPreferences = jest.fn();
   const subscribe = jest.fn();
   const userPreference = {
-    userAcceptsAll,
-    userRejectsAll,
+    userAcceptsAdditional,
+    userRejectsAdditional,
     getPreferences,
     setPreferences,
     getUserHasSavedCookiePreferences,
@@ -48,7 +48,7 @@ describe('renderBanner', () => {
   beforeEach(() => {
     document.getElementsByTagName('html')[0].innerHTML = fixture;
     userPreference.getUserHasSavedCookiePreferences.mockReturnValue(false);
-    userAcceptsAll.mockReset();
+    userAcceptsAdditional.mockReset();
     preferenceCommunicator.sendPreferences.mockReset();
     languageSpy = spyOn(getLanguage, 'default').and.returnValue('en');
     featureEnabledSpy = spyOn(isFeatureEnabled, 'default').and.returnValue(true);
@@ -154,20 +154,20 @@ describe('renderBanner', () => {
 
   it('should call preference manager when user accepts', () => {
     renderBanner(userPreference);
-    assume(userAcceptsAll).not.toHaveBeenCalled();
+    assume(userAcceptsAdditional).not.toHaveBeenCalled();
 
     clickAcceptAll();
 
-    expect(userAcceptsAll).toHaveBeenCalledWith();
+    expect(userAcceptsAdditional).toHaveBeenCalledWith();
   });
 
   it('should call preference manager when user rejects', () => {
     renderBanner(userPreference);
-    assume(userRejectsAll).not.toHaveBeenCalled();
+    assume(userRejectsAdditional).not.toHaveBeenCalled();
 
     clickRejectAdditional();
 
-    expect(userRejectsAll).toHaveBeenCalledWith();
+    expect(userRejectsAdditional).toHaveBeenCalledWith();
   });
 
   it('should show a save confirmation when user accepts', () => {
