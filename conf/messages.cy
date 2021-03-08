@@ -5,8 +5,8 @@ service.homePageUrl = https://www.gov.uk
 
 # FIXME: to translate:
 banner.title = Cwcis ar wasanaethau Cyllid a Thollau EM
-banner.essential.cookies = We use some essential cookies to make this website work.
-banner.additional.cookies = We would like to set additional cookies so we can remember your settings, understand how people use the service and make improvements.
+banner.essential.cookies = We use some essential cookies to make our services work.
+banner.additional.cookies = We would like to set additional cookies so we can remember your settings, understand how people use our services and make improvements.
 banner.accept.additional.cookies = Accept additional cookies
 banner.reject.additional.cookies = Reject additional cookies
 banner.view.cookies = View cookies

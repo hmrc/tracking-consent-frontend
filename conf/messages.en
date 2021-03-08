@@ -4,8 +4,8 @@ transitionalTestPage.title = Transitional service test page
 service.homePageUrl = https://www.gov.uk
 
 banner.title = Cookies on HMRC services
-banner.essential.cookies = We use some essential cookies to make this website work.
-banner.additional.cookies = We would like to set additional cookies so we can remember your settings, understand how people use the service and make improvements.
+banner.essential.cookies = We use some essential cookies to make our services work.
+banner.additional.cookies = We would like to set additional cookies so we can remember your settings, understand how people use our services and make improvements.
 banner.accept.additional.cookies = Accept additional cookies
 banner.reject.additional.cookies = Reject additional cookies
 banner.view.cookies = View cookies
