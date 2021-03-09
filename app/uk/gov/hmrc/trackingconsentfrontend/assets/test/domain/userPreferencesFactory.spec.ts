@@ -91,8 +91,7 @@ describe('userPreferencesFactory', () => {
     });
 
     it('should set cookie security appropriately', () => {
-      testScope.userPreference.userAcceptsAdditional();
-      expect(Cookies.set).toHaveBeenCalledWith('userConsent', expect.anything(), { sameSite: 'strict', expires: 365 });
+      expect(Cookies.set).not.toHaveBeenCalledWith();
       testScope.userPreference.userAcceptsAdditional();
       expect(Cookies.set).toHaveBeenCalledWith('userConsent', expect.anything(), { sameSite: 'strict', expires: 365 });
     });
