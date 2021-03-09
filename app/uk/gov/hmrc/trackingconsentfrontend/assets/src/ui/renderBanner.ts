@@ -2,10 +2,12 @@
 import bannerTemplate from './banner';
 import renderConfirmationMessage from './renderConfirmationMessage';
 import {
-  COOKIE_BANNER_QUESTION_CLASS,
+  COOKIE_BANNER_MESSAGE_CLASS,
   COOKIE_BANNER_CLASS,
-  ACCEPT_ALL_CLASS,
-  GOV_UK_SKIP_LINK_CLASS, SKIP_LINK_CONTAINER_ID, LEGACY_COOKIE_BANNER_ID,
+  GOV_UK_SKIP_LINK_CLASS,
+  SKIP_LINK_CONTAINER_ID,
+  LEGACY_COOKIE_BANNER_ID,
+  COOKIE_BANNER_BUTTON_CLASS,
 } from '../constants/cssClasses';
 import removeElement from '../common/removeElement';
 import callIfNotNull from '../common/callIfNotNull';
@@ -13,17 +15,27 @@ import { UserPreferences } from '../../types/UserPreferences';
 import getMessages from '../interfaces/getMessages';
 
 const renderBanner = (userPreference: UserPreferences) => {
+  const messages = getMessages();
+
   const hideQuestion = () => {
-    const question = document.querySelector(`.${COOKIE_BANNER_QUESTION_CLASS}`);
+    const question = document.querySelector(`.${COOKIE_BANNER_MESSAGE_CLASS}`);
     callIfNotNull(question, () => removeElement(question));
   };
 
-  const handleAcceptAllClick = (event: Event) => {
+  const handleAcceptAdditionalClick = (event: Event) => {
     event.preventDefault();
 
-    userPreference.userAcceptsAll();
-    renderConfirmationMessage();
+    userPreference.userAcceptsAdditional();
     hideQuestion();
+    renderConfirmationMessage(messages['banner.confirmation.accepted']);
+  };
+
+  const handleRejectAdditionalClick = (event: Event) => {
+    event.preventDefault();
+
+    userPreference.userRejectsAdditional();
+    hideQuestion();
+    renderConfirmationMessage(messages['banner.confirmation.rejected']);
   };
 
   const insertAtTopOfBody = (banner: HTMLElement) => {
@@ -31,10 +43,10 @@ const renderBanner = (userPreference: UserPreferences) => {
     parentNode.insertBefore(banner, parentNode.firstChild);
   };
 
-  const insertAfterSkipLink = (banner: HTMLElement) => {
+  const insertBeforeSkipLink = (banner: HTMLElement) => {
     const skipLink = document.querySelector(`#${SKIP_LINK_CONTAINER_ID}, .${GOV_UK_SKIP_LINK_CLASS}`);
     if (skipLink !== null) {
-      skipLink.insertAdjacentElement('afterend', banner);
+      skipLink.insertAdjacentElement('beforebegin', banner);
     } else {
       insertAtTopOfBody(banner);
     }
@@ -43,13 +55,17 @@ const renderBanner = (userPreference: UserPreferences) => {
   const insertBanner = () => {
     const banner = document.createElement('div');
     banner.className = COOKIE_BANNER_CLASS;
-    banner.innerHTML = bannerTemplate(getMessages());
+    banner.innerHTML = bannerTemplate(messages);
     banner.setAttribute('role', 'region');
-    banner.setAttribute('aria-label', 'Cookie Banner');
-    const acceptAllButton = banner.querySelector(`.${ACCEPT_ALL_CLASS}`);
-    callIfNotNull(acceptAllButton, (element) => element.addEventListener('click', handleAcceptAllClick));
+    banner.setAttribute('aria-label', messages['banner.title']);
 
-    insertAfterSkipLink(banner);
+    const acceptAdditionalButton = banner.querySelector(`.${COOKIE_BANNER_CLASS} .${COOKIE_BANNER_BUTTON_CLASS}[value=accept]`);
+    callIfNotNull(acceptAdditionalButton, (element) => element.addEventListener('click', handleAcceptAdditionalClick));
+
+    const rejectAdditionalButton = banner.querySelector(`.${COOKIE_BANNER_CLASS} .${COOKIE_BANNER_BUTTON_CLASS}[value=reject]`);
+    callIfNotNull(rejectAdditionalButton, (element) => element.addEventListener('click', handleRejectAdditionalClick));
+
+    insertBeforeSkipLink(banner);
   };
 
   const removeLegacyCookieBanner = () => {

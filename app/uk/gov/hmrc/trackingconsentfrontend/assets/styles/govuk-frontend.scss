@@ -1,0 +1,42 @@
+// Cut down version of Gov UK Frontend 3.11.0
+// Styles prefixed to ensure banner is insulated from any other styles
+// in the page
+
+// Do not inject fonts, use the fonts available on the service page
+$govuk-include-default-font-face: false;
+$govuk-font-family: "GDS Transport", "nta", Arial, sans-serif;
+
+@import "node_modules/govuk-frontend/govuk/base";
+@import "width-container";
+@import "typography";
+@import "button";
+@import "button-group";
+@import "cookie-banner";
+
+.cbanner-govuk-width-container {
+  @include govuk-width-container;
+}
+
+.cbanner-govuk-link {
+  @include govuk-link-common;
+  @include govuk-link-style-default;
+  @include govuk-link-print-friendly;
+}
+
+.cbanner-govuk-grid-row {
+  @include govuk-clearfix;
+  margin-right: - ($govuk-gutter-half);
+  margin-left: - ($govuk-gutter-half);
+}
+
+.cbanner-govuk-grid-column-two-thirds {
+  @include govuk-grid-column(two-thirds)
+}
+
+.cbanner-govuk-heading-m {
+  @extend %govuk-heading-m;
+}
+
+.cbanner-govuk-body {
+  @extend %govuk-body-m;
+}

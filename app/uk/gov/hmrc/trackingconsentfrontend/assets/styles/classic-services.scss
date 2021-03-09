@@ -1,0 +1,28 @@
+// Classic services fixes
+// Ideally we would have a better way to identify classic services.
+// Services based on assets-frontend or govuk-frontend should not trigger this rule
+// as there is no id attribute on the body tag
+@import "node_modules/govuk-frontend/govuk/base";
+
+body#top {
+  // Add back margin for large screenwidths
+  @include govuk-media-query($and: "(min-width: #{($govuk-page-width + $govuk-gutter * 2)})") {
+    .cbanner-govuk-width-container {
+      margin-right: $govuk-gutter;
+      margin-left: $govuk-gutter;
+    }
+  }
+
+  .cbanner-govuk-link {
+    text-decoration: underline;
+  }
+
+  .cbanner-govuk-link:hover {
+    color: $govuk-link-hover-colour!important;
+  }
+
+  .cbanner-govuk-link:focus {
+    color: $govuk-focus-text-colour!important;
+    text-decoration: none!important;
+  }
+}

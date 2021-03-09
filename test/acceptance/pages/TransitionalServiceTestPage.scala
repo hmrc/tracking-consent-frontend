@@ -21,13 +21,13 @@ import support.TestConfiguration
 
 trait TransitionalServiceTestPage extends BasePage {
   val url: String
-  val title                = "Transitional service test page"
-  val acceptAllCookies     = "Accept all cookies"
-  val setCookiePreferences = "Set cookie preferences"
+  val title                   = "Transitional service test page"
+  val acceptAdditionalCookies = "Accept additional cookies"
+  val setCookiePreferences    = "View cookies"
 
-  def acceptAllCookiesButton: WebElement     = findButtonByPartialText(acceptAllCookies)
-  def setCookiePreferencesButton: WebElement = findLabelByPartialText(setCookiePreferences)
-  def transitionalGtmScript: WebElement      = findGtmScript("GTM-TSFTCWZ")
+  def acceptAdditionalCookiesButton: WebElement = findButtonByPartialText(acceptAdditionalCookies)
+  def setCookiePreferencesButton: WebElement    = findLabelByPartialText(setCookiePreferences)
+  def transitionalGtmScript: WebElement         = findGtmScript("GTM-TSFTCWZ")
 }
 
 object TransitionalServiceTestPageFeatureEnabled extends TransitionalServiceTestPage {

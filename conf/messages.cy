@@ -3,20 +3,22 @@ testPage.title = Tudalen prawf y gwasanaeth
 transitionalTestPage.title = Tudalen prawf trosiannol y gwasanaeth
 service.homePageUrl = https://www.gov.uk
 
-banner.title = Rhowch wybod i ni a ydych yn derbyn cwcis neu beidio
-banner.paragraph1.beforeLink = Rydym yn defnyddio
-banner.paragraph1.link.text = cwcis er mwyn casglu gwybodaeth
-banner.paragraph1.link.url = /tracking-consent/cookie-settings
-banner.paragraph1.afterLink = am sut yr ydych yn defnyddio gwasanaethau CThEM. Rydym yn defnyddio’r wybodaeth hon i wneud i’r gwasanaethau hyn weithio gystal â phosibl ac i’w gwella.
-banner.acceptAllButton = Derbyn pob cwci
-banner.setCookiePreferencesButton = Gosod dewisiadau cwcis
+# FIXME: to translate:
+banner.title = Cwcis ar wasanaethau Cyllid a Thollau EM
+banner.essential.cookies = We use some essential cookies to make our services work.
+banner.additional.cookies = We would like to set additional cookies so we can remember your settings, understand how people use our services and make improvements.
+banner.accept.additional.cookies = Accept additional cookies
+banner.reject.additional.cookies = Reject additional cookies
+banner.view.cookies = View cookies
+banner.view.cookies.url = /tracking-consent/cookie-settings
 
-banner.saveConfirmation.paragraph1.beforeLink = Rydych wedi derbyn pob cwci. Gallwch
-banner.saveConfirmation.paragraph1.link.text =  newid eich gosodiadau cwcis
-banner.saveConfirmation.paragraph1.link.url =  /tracking-consent/cookie-settings
-banner.saveConfirmation.paragraph1.afterLink = ar unrhyw adeg.
-banner.saveConfirmation.hideButton.text = Cuddio
-banner.saveConfirmation.hideButton.label = Cuddio’r faner cwci
+banner.confirmation.accepted = You have accepted additional cookies.
+banner.confirmation.rejected = You have rejected additional cookies.
+banner.confirmation.before.link = You can
+banner.confirmation.link =  change your cookie settings
+banner.confirmation.link.url =  /tracking-consent/cookie-settings
+banner.confirmation.after.link = at any time.
+banner.confirmation.hide = Hide this message
 
 cookieSettings.intro.paragraph1 = ‘Cwcis’ yw ffeiliau sy’n cael eu cadw ar eich ffôn, llechen neu gyfrifiadur pan ydych yn ymweld â gwefan.
 cookieSettings.intro.paragraph2 = Rydym yn defnyddio 3 math o gwcis i gadw gwybodaeth am sut yr ydych yn defnyddio gwasanaethau CThEM, megis y tudalennau yr ydych yn ymweld â nhw.

@@ -1,7 +1,5 @@
-// Copied and cut down from node_modules/govuk-frontend/govuk/core/_typography
-@import "node_modules/govuk-frontend/govuk/settings/all";
-@import "node_modules/govuk-frontend/govuk/helpers/all";
-@import "node_modules/govuk-frontend/govuk/tools/all";
+// Mixins taken from node_modules/govuk-frontend/govuk/core/_typography
+@import "node_modules/govuk-frontend/govuk/base";
 
 $govuk-typography-use-rem: false;
 

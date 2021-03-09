@@ -3,5 +3,4 @@ module.exports = async (page) => {
     await page.keyboard.press("Tab");
     await page.keyboard.press("Tab");
     await page.keyboard.press("Tab");
-    await page.keyboard.press("Tab");
 };

@@ -28,9 +28,9 @@ class LegacyTestPageSpec extends BaseAcceptanceSpec {
       When("the user visits the legacy service test page with enable tracking consent parameter")
       go to LegacyServiceTestPage
 
-      Then("the banner should be displayed with the title 'Tell us whether you accept cookies'")
+      Then("the banner should be displayed with the title 'Cookies on HMRC services'")
       eventually {
-        tagName("h2").element.text shouldBe "Tell us whether you accept cookies"
+        tagName("h2").element.text shouldBe "Cookies on HMRC services"
       }
 
       And("no Javascript console errors are thrown")

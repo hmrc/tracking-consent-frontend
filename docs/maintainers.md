@@ -136,6 +136,58 @@ Modules pulled from npm are pinned in the file packages.json. These are pinned t
 security vulnerabilities making it into production code via auto-update. If you wish to 
 upgrade a specific dependency, please discuss the implications with the platform security team.
 
+## Cookie banner
+
+The cookie banner is a Javascript implementation of the [GOV.UK cookie banner component](https://design-system.service.gov.uk/components/cookie-banner/),
+first released in v3.11.0 of alphagov/govuk-frontend.
+
+The design takes into consideration the following requirements:
+1. it must work in conjunction with multiple frontend versions including those based on assets-frontend and 
+ classic services
+1. it must not assume any styles exist in the consuming service
+1. it must not override any styles that exist in the consuming service
+1. it should make integrating with tracking consent as simple as possible (e.g. single line code change)
+1. it should minimise the bundle size for tracking consent
+
+These constraints led to a self-contained Javascript-based solution that makes use of webpack's 
+[styleloader](https://webpack.js.org/loaders/style-loader/) to inject the styles needed by the cookie banner directly 
+into the DOM. Consequently, integrating with tracking consent involves the addition of a single script tag into 
+ the HEAD and does not rely on any styles existing in the consuming service.
+ 
+In order to satisfy requirement 3, the govuk-frontend styles have been prefixed with `cbanner-`. As govuk-frontend does 
+not support prefixing in this way, it was necessary to copy some of the govuk-frontend modules into tracking-consent-frontend.
+Where possible, mixins and variables are imported rather than copied.
+
+Requirement 5 is achieved by only importing modules and styles actually used by the cookie banner i.e. button, button group, 
+cookie banner and required layout styles.
+
+### Upgrading to new versions of govuk-frontend
+
+1. Change to the Javascript assets directory
+
+    ```shell script
+    cd app/uk/gov/hmrc/trackingconsentfrontend/assets
+    ```
+
+1. Upgrade the version of govuk-frontend in `package.json`
+1. Copy in new versions of the following modules:
+   * _button.scss
+   * _button-group.scss
+   * _cookie-banner.scss
+   * _typography.scss
+   * _width-container.scss
+1. Prefix all selectors starting with `.govuk-` as `.cbanner-govuk-`
+1. Re-run the Backstop VRT tests:
+    ```shell script
+    npm run backstop
+    ```
+
+1. Approve any VRT changes with:
+
+    ```shell script
+    npm run backstop:approve
+    ```
+ 
 ## Architectural decision records 
 
 We are using MADRs to record architecturally significant decisions in this service. To find out more

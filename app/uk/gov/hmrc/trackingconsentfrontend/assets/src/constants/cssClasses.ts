@@ -1,9 +1,7 @@
 // Cookie banner related (uses cut-down version of Gov UK Frontend with prefixed class names)
-export const COOKIE_BANNER_CLASS = 'cbanner-cookie-banner';
-export const COOKIE_BANNER_QUESTION_CLASS = 'cbanner-cookie-banner__question';
-export const COOKIE_BANNER_CONFIRMATION_CLASS = 'cbanner-cookie-banner__confirmation-message';
-export const ACCEPT_ALL_CLASS = 'cbanner-cookie-banner__accept-all-button';
-export const HIDE_BUTTON_CLASS = 'cbanner-cookie-banner__hide-button';
+export const COOKIE_BANNER_CLASS = 'cbanner-govuk-cookie-banner';
+export const COOKIE_BANNER_MESSAGE_CLASS = 'cbanner-govuk-cookie-banner__message';
+export const COOKIE_BANNER_BUTTON_CLASS = 'cbanner-govuk-button';
 export const COOKIE_BANNER_GOV_UK_WIDTH_CONTAINER_CLASS = 'cbanner-govuk-width-container';
 
 // Cookie settings related (uses standard Gov UK Frontend)

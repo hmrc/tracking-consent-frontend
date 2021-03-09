@@ -36,7 +36,7 @@ const userPreferencesFactory = (): UserPreferences => {
     (cookieType: string) => [cookieType, hasConsented],
   ));
 
-  const userAcceptsAll = () => {
+  const userAcceptsAdditional = () => {
     storePreferences(allThePreferences(true));
     sendPreferences(CONSENT_UPDATED_EVENT);
   };
@@ -56,6 +56,11 @@ const userPreferencesFactory = (): UserPreferences => {
       return [cookieType, value === true];
     },
   ));
+
+  const userRejectsAdditional = () => {
+    storePreferences(allThePreferences(false));
+    sendPreferences(CONSENT_UPDATED_EVENT);
+  };
 
   const validateCookie = (): Cookie | undefined => {
     const cookie = Cookies.getJSON(COOKIE_CONSENT);
@@ -84,7 +89,8 @@ const userPreferencesFactory = (): UserPreferences => {
   const getUserHasSavedCookiePreferences = () => validateCookie() !== undefined;
 
   self = {
-    userAcceptsAll,
+    userAcceptsAdditional,
+    userRejectsAdditional,
     setPreferences,
     getUserHasSavedCookiePreferences,
     getPreferences,

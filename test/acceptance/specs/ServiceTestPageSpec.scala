@@ -44,11 +44,11 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       When("the user visits the service test page with enable tracking consent parameter")
       go to ServiceTestPageFeatureEnabled
       eventually {
-        tagName("h2").element.text shouldBe "Tell us whether you accept cookies"
+        tagName("h2").element.text shouldBe "Cookies on HMRC services"
       }
 
       When("the user clicks 'Accept all cookies'")
-      click on acceptAllCookiesButton
+      click on acceptAdditionalCookiesButton
 
       Then("the dataLayer contains the 'hmrc-measurement-allowed' event")
       measurementAllowedGtmEvent should not be null
@@ -65,10 +65,41 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       go to ServiceTestPageFeatureEnabled
 
       When("the user clicks 'Accept all cookies'")
-      click on acceptAllCookiesButton
+      click on acceptAdditionalCookiesButton
 
       Then("the userConsent cookie is set")
       userConsentCookie.getValue should include("%22preferences%22:{%22measurement%22:true%2C%22settings%22:true}}")
+    }
+
+    scenario("The user rejecting additional cookies sets consent cookie") {
+      Given("the user clears their cookies")
+      deleteAllCookies
+
+      When("the user visits the service test page with enable tracking consent parameter")
+      go to ServiceTestPageFeatureEnabled
+
+      When("the user clicks 'Accept all cookies'")
+      click on rejectAdditionalCookiesButton
+
+      Then("the userConsent cookie is set")
+      userConsentCookie.getValue should include("%22preferences%22:{%22measurement%22:false%2C%22settings%22:false}}")
+    }
+
+    scenario("The user rejecting additional cookies does not fire GTM") {
+      Given("the user clears their cookies")
+      deleteAllCookies
+
+      When("the user visits the service test page with enable tracking consent parameter")
+      go to ServiceTestPageFeatureEnabled
+
+      When("the user clicks 'Accept all cookies'")
+      click on rejectAdditionalCookiesButton
+
+      Then("the dataLayer does not contain the 'hmrc-measurement-allowed' event")
+      measurementAllowedGtmEvent should be(null)
+
+      And("the dataLayer does not contain the 'hmrc-settings-allowed' event")
+      settingsAllowedGtmEvent should be(null)
     }
 
     scenario("The user visits a page without tracking consent enabled") {
@@ -79,8 +110,8 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       go to ServiceTestPageFeatureDisabled
 
       Then("there should be no button 'Accept all cookies'")
-      tagName("h2").element.text shouldNot be("Tell us whether you accept cookies")
-      a[WebDriverNoSuchElementException] should be thrownBy acceptAllCookiesButton
+      tagName("h2").element.text shouldNot be("Cookies on HMRC services")
+      a[WebDriverNoSuchElementException] should be thrownBy acceptAdditionalCookiesButton
     }
 
     scenario("The user visits a page enables tracking consent enabled via cookie") {
@@ -92,13 +123,13 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
 
       Then("there should be a button 'Accept all cookies'")
       eventually {
-        tagName("h2").element.text shouldBe "Tell us whether you accept cookies"
+        tagName("h2").element.text shouldBe "Cookies on HMRC services"
       }
 
       And("navigating to a page without the tracking consent parameter should also show the banner")
       go to ServiceTestPageFeatureDisabled
       eventually {
-        tagName("h2").element.text shouldBe "Tell us whether you accept cookies"
+        tagName("h2").element.text shouldBe "Cookies on HMRC services"
       }
     }
 
@@ -109,9 +140,9 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       When("the user visits the service test page with enable tracking consent parameter")
       go to ServiceTestPageFeatureEnabled
 
-      And("the banner should be displayed with the title 'Tell us whether you accept cookies'")
+      And("the banner should be displayed with the title 'Cookies on HMRC services'")
       eventually {
-        tagName("h2").element.text shouldBe "Tell us whether you accept cookies"
+        tagName("h2").element.text shouldBe "Cookies on HMRC services"
       }
 
       And("no Javascript console errors are thrown")

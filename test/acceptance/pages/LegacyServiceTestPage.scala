@@ -22,10 +22,10 @@ import support.TestConfiguration
 object LegacyServiceTestPage extends BasePage {
   val url: String = TestConfiguration.url("tracking-consent-frontend") + "/test-only-legacy?enableTrackingConsent=true"
 
-  val title                = "Legacy service test page"
-  val acceptAllCookies     = "Accept all cookies"
-  val setCookiePreferences = "Set cookie preferences"
+  val title                   = "Legacy service test page"
+  val acceptAdditionalCookies = "Accept additional cookies"
+  val setCookiePreferences    = "View cookies"
 
-  def acceptAllCookiesButton: WebElement     = findButtonByPartialText(acceptAllCookies)
-  def setCookiePreferencesButton: WebElement = findLabelByPartialText(setCookiePreferences)
+  def acceptAdditionalCookiesButton: WebElement = findButtonByPartialText(acceptAdditionalCookies)
+  def setCookiePreferencesButton: WebElement    = findLabelByPartialText(setCookiePreferences)
 }

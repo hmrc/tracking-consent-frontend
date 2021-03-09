@@ -21,12 +21,14 @@ import support.TestConfiguration
 
 trait ServiceTestPage extends BasePage {
   val url: String
-  val title                = "Service test page"
-  val acceptAllCookies     = "Accept all cookies"
-  val setCookiePreferences = "Set cookie preferences"
+  val title                   = "Service test page"
+  val acceptAdditionalCookies = "Accept additional cookies"
+  val rejectAdditionalCookies = "Reject additional cookies"
+  val setCookiePreferences    = "View cookies"
 
-  def acceptAllCookiesButton: WebElement     = findButtonByPartialText(acceptAllCookies)
-  def setCookiePreferencesButton: WebElement = findLabelByPartialText(setCookiePreferences)
+  def acceptAdditionalCookiesButton: WebElement = findButtonByPartialText(acceptAdditionalCookies)
+  def rejectAdditionalCookiesButton: WebElement = findButtonByPartialText(rejectAdditionalCookies)
+  def setCookiePreferencesButton: WebElement    = findLabelByPartialText(setCookiePreferences)
 }
 
 object ServiceTestPageFeatureEnabled extends ServiceTestPage {

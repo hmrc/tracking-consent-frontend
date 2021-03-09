@@ -20,12 +20,12 @@ import org.openqa.selenium.WebElement
 import support.TestConfiguration
 
 object ErrorPage extends BasePage {
-  val url: String          = TestConfiguration.url("tracking-consent-frontend") + "/non-existent-page?enableTrackingConsent=true"
-  val title                = "This page can’t be found"
-  val acceptAllCookies     = "Accept all cookies"
-  val setCookiePreferences = "Set cookie preferences"
+  val url: String             = TestConfiguration.url("tracking-consent-frontend") + "/non-existent-page?enableTrackingConsent=true"
+  val title                   = "This page can’t be found"
+  val acceptAdditionalCookies = "Accept additional cookies"
+  val setCookiePreferences    = "View cookies"
 
-  def acceptAllCookiesButton: WebElement     = findButtonByPartialText(acceptAllCookies)
-  def setCookiePreferencesButton: WebElement = findLabelByPartialText(setCookiePreferences)
-  def gtmScript: WebElement                  = findGtmScript("GTM-NDJKHWK")
+  def acceptAdditionalCookiesButton: WebElement = findButtonByPartialText(acceptAdditionalCookies)
+  def setCookiePreferencesButton: WebElement    = findLabelByPartialText(setCookiePreferences)
+  def gtmScript: WebElement                     = findGtmScript("GTM-NDJKHWK")
 }
