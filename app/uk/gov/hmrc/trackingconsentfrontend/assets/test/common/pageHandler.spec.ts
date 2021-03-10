@@ -14,6 +14,7 @@ describe('pageHandler', () => {
   let testScope;
   let featureEnabledSpy;
   let getGtmContainerSpy;
+  let functionCalls;
 
   const pageLoad = () => {
     const event = thisDocument.createEvent('HTMLEvents');
@@ -31,8 +32,14 @@ describe('pageHandler', () => {
       userPreferences: userPreferencesFactory(),
     };
     thisDocument = dom.window.document;
-    spyOn(enableGtm, 'default');
-    spyOn(testScope.userPreferences, 'sendPreferences').and.returnValue(undefined);
+    functionCalls = [];
+    jest.spyOn(enableGtm, 'default').mockImplementation(() => {
+      functionCalls.push('enableGtm');
+    });
+    jest.spyOn(testScope.userPreferences, 'sendPreferences').mockImplementation(() => {
+      functionCalls.push('sendPreferences');
+      return undefined;
+    });
     clearAllMocks();
     featureEnabledSpy = spyOn(isFeatureEnabled, 'default').and.returnValue(true);
     getGtmContainerSpy = spyOn(getGtmContainer, 'default').and.returnValue('GTM-CONTAINER-ID');
@@ -73,6 +80,17 @@ describe('pageHandler', () => {
     expect(testScope.userPreferences.sendPreferences).toHaveBeenCalledWith(SERVICE_PAGE_LOAD_EVENT);
   });
 
+  // See: https://developers.google.com/tag-manager/devguide#adding-data-layer-variables-to-a-page
+  it('should send the preferences before GTM is enabled', () => {
+    expect(testScope.userPreferences.sendPreferences).not.toHaveBeenCalled();
+
+    pageHandler(thisDocument, testScope.userPreferences, pageRenderer);
+
+    expect(functionCalls).toEqual([
+      'sendPreferences', 'enableGtm',
+    ]);
+  });
+
   it('should call not call the page renderer if the DOM ContentReady event has not been fired', () => {
     // @ts-ignore
     pageHandler(thisDocument, testScope.userPreferences, pageRenderer);
@@ -104,5 +122,13 @@ describe('pageHandler', () => {
     pageLoad();
 
     expect(pageRenderer).not.toHaveBeenCalled();
+  });
+
+  it('should send preferences if the feature toggle is toggled off', () => {
+    featureEnabledSpy.and.returnValue(false);
+
+    pageHandler(thisDocument, testScope.userPreferences, pageRenderer);
+
+    expect(testScope.userPreferences.sendPreferences).toHaveBeenCalled();
   });
 });

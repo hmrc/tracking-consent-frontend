@@ -35,14 +35,16 @@ describe('enableGtm', () => {
   it('should initialise the dataLayer', () => {
     enableGtm('GTM-CONTAINER-ID');
 
-    expect(window.dataLayer[0]['gtm.start']).toBeDefined();
-    expect(window.dataLayer[0].event).toEqual('gtm.js');
+    expect(window.dataLayer[1]['gtm.start']).toBeDefined();
+    expect(window.dataLayer[1].event).toEqual('gtm.js');
   });
 
   it('should include in the dataLayer a custom dimension for identifying as GTM via tracking-consent-frontend', () => {
     enableGtm('GTM-CONTAINER-ID');
 
-    expect(window.dataLayer[0]['tracking-consent-frontend']).toBeDefined();
+    // data layer variables expected to exist on page load should be set before the GTM snippet is
+    // loaded: https://developers.google.com/tag-manager/devguide
+    expect(window.dataLayer[0]).toEqual({ 'tracking-consent-loaded': true });
   });
 
   it('should initialise the dataLayer only once', () => {
@@ -56,13 +58,13 @@ describe('enableGtm', () => {
 
     enableGtm('GTM-CONTAINER-ID');
 
-    expect(window.dataLayer[1]['gtm.start']).toBeDefined();
+    expect(window.dataLayer[2]['gtm.start']).toBeDefined();
   });
 
-  it('should run without errors if the page does not contain a script tag', () => {
+  it('should throw an error if the page does not contain a script tag', () => {
     document.getElementsByTagName('html')[0].innerHTML = '';
 
-    enableGtm('GTM-CONTAINER-ID');
+    expect(() => enableGtm('GTM-CONTAINER-ID')).toThrow('Unable to enable GTM because no script tag exists in the page');
   });
 
   it('throw an error if the container ID has not been defined', () => {

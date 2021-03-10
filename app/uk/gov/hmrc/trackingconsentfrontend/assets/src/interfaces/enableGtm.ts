@@ -7,31 +7,31 @@ const enableGtm = (containerId: string | undefined) => {
   if (containerId === undefined) {
     throw new Error('Unable to enable GTM because no container has been specified');
   }
-  ((window: Window, document: Document, theContainerId: string) => {
-    // eslint-disable-next-line no-param-reassign
-    window[dataLayer] = window[dataLayer] || [];
-    window[dataLayer].push({
-      'gtm.start': new Date().getTime(),
-      event: 'gtm.js',
-      'tracking-consent-frontend': 'true',
-    });
-    const scriptElement = document.getElementsByTagName('script')[0];
-    // FIXME: the below condition extends the vanilla GTM snippet to prevent a console error
-    // occurring if a script element has not been defined in the document. We may in future want to
-    // consider generating a more informative error to service developers and not initialising
-    // the dataLayer in this situation.
-    if (scriptElement !== undefined && scriptElement.parentNode !== null) {
-      const asyncScriptElement: HTMLScriptElement = document.createElement('script');
 
-      const nonce = getNonce();
-      if (nonce !== undefined) {
-        asyncScriptElement.setAttribute('nonce', nonce);
-      }
-      asyncScriptElement.async = true;
-      asyncScriptElement.src = `${gtmBaseUrl}${theContainerId}`;
-      scriptElement.parentNode.insertBefore(asyncScriptElement, scriptElement);
-    }
-  })(window, document, containerId);
+  // eslint-disable-next-line no-param-reassign
+  window[dataLayer] = window[dataLayer] || [];
+  window[dataLayer].push({
+    'tracking-consent-loaded': true,
+  });
+  window[dataLayer].push({
+    'gtm.start': new Date().getTime(),
+    event: 'gtm.js',
+  });
+
+  const scriptElement = document.getElementsByTagName('script')[0];
+  if (scriptElement === undefined || scriptElement.parentNode === null) {
+    throw new Error('Unable to enable GTM because no script tag exists in the page');
+  }
+
+  const asyncScriptElement: HTMLScriptElement = document.createElement('script');
+
+  const nonce = getNonce();
+  if (nonce !== undefined) {
+    asyncScriptElement.setAttribute('nonce', nonce);
+  }
+  asyncScriptElement.async = true;
+  asyncScriptElement.src = `${gtmBaseUrl}${containerId}`;
+  scriptElement.parentNode.insertBefore(asyncScriptElement, scriptElement);
 };
 
 export default enableGtm;
