@@ -36,10 +36,8 @@ object JavaScriptBuild {
     npmBuild := Npm.npmProcess("npm build failed")(javaScriptDirectory.value, "run", "build"),
     npmBuild := (npmBuild dependsOn npmInstall).value,
     npmTest := Npm.npmProcess("npm test failed")(javaScriptDirectory.value, "test"),
+    npmTest := (npmTest dependsOn npmBuild).value,
     npmBackstop := Npm.npmProcess("npm backstop failed")(javaScriptDirectory.value, "run", "backstop"),
-    npmBackstop := (npmBackstop dependsOn npmBuild).value,
-    npmTest := (npmTest dependsOn npmBackstop).value,
-    (test in Test) := (test in Test).dependsOn(npmTest).value,
-    dist := (dist dependsOn npmBackstop).value
+    npmBackstop := (npmBackstop dependsOn npmBuild).value
   )
 }

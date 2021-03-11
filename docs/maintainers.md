@@ -130,6 +130,13 @@ npm run backstop:approve
 If any changes are needed to the backstop configuration, for example to test on different device types or add to the
  list of scenarios, these can be made by editing the file `test/backstop/backstopConfig.js`
 
+Unfortunately even with the use of Docker, there are still subtle differences between the Jenkins and 
+local runs of the VRT tests, possibly due to variances in the Linux distribution system fonts. These differences
+mean the VRT tests for classic services can fail when run locally.
+
+The workaround, is to run the VRT tests in the Jenkins PR builder and copy over the test images in the
+ backstop artifacts into the reference image directory.
+
 ### NPM versions and security
 
 Modules pulled from npm are pinned in the file packages.json. These are pinned to prevent 

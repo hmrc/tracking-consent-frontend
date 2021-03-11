@@ -109,10 +109,10 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     And("clicks submit")
     click on submitButton
 
-    Then("the dataLayer contains the 'hmrc-measurement-allowed' event")
+    Then("the dataLayer contains the 'trackingConsentMeasurementAccepted' event")
     measurementAllowedGtmEvent should not be null
 
-    And("the dataLayer contains the 'hmrc-settings-allowed' event")
+    And("the dataLayer contains the 'trackingConsentSettingsAccepted' event")
     settingsAllowedGtmEvent should not be null
 
     Then("the userConsent cookie is set")
