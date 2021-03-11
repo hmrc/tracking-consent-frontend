@@ -31,9 +31,9 @@ trait BasePage extends Matchers with Page with WebBrowser with BrowserDriver {
 
   def windowLoadedGtmEvent: AnyRef = findDataLayerEvent("gtm.load")
 
-  def measurementAllowedGtmEvent: AnyRef = findDataLayerEvent("hmrc-measurement-allowed")
+  def measurementAllowedGtmEvent: AnyRef = findDataLayerEvent("trackingConsentMeasurementAccepted")
 
-  def settingsAllowedGtmEvent: AnyRef = findDataLayerEvent("hmrc-settings-allowed")
+  def settingsAllowedGtmEvent: AnyRef = findDataLayerEvent("trackingConsentSettingsAccepted")
 
   def h1Element: WebElement = findBy(By.cssSelector("h1"))
 

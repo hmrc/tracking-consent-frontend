@@ -44,7 +44,7 @@ describe('enableGtm', () => {
 
     // data layer variables expected to exist on page load should be set before the GTM snippet is
     // loaded: https://developers.google.com/tag-manager/devguide
-    expect(window.dataLayer[0]).toEqual({ 'tracking-consent-loaded': true });
+    expect(window.dataLayer[0]).toEqual({ trackingConsentLoaded: true });
   });
 
   it('should initialise the dataLayer only once', () => {

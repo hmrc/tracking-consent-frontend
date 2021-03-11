@@ -18,10 +18,10 @@ describe('sendPreferences', () => {
     testScope.preferenceCommunicator.sendPreferences(testScope.userPreferences);
 
     expect(testScope.window.dataLayer).toContainEqual(
-      { event: 'hmrc-measurement-allowed' },
+      { event: 'trackingConsentMeasurementAccepted' },
     );
     expect(testScope.window.dataLayer).toContainEqual(
-      { event: 'hmrc-settings-allowed' },
+      { event: 'trackingConsentSettingsAccepted' },
     );
   });
 
@@ -32,8 +32,16 @@ describe('sendPreferences', () => {
     });
     testScope.preferenceCommunicator.sendPreferences(testScope.userPreferences);
 
-    expect(testScope.window.dataLayer.find((dataLayerEntry) => dataLayerEntry['tracking-consent-measurement-allowed'] === true)).toBeDefined();
-    expect(testScope.window.dataLayer.find((dataLayerEntry) => dataLayerEntry['tracking-consent-settings-allowed'] === true)).toBeDefined();
+    expect(
+      testScope.window.dataLayer.find(
+        (dataLayerEntry) => dataLayerEntry.trackingConsentMeasurementAccepted === true,
+      ),
+    ).toBeDefined();
+    expect(
+      testScope.window.dataLayer.find(
+        (dataLayerEntry) => dataLayerEntry.trackingConsentSettingsAccepted === true,
+      ),
+    ).toBeDefined();
   });
 
   it('should set a measurement and settings datalayer variable set to false', () => {
@@ -43,8 +51,12 @@ describe('sendPreferences', () => {
     });
     testScope.preferenceCommunicator.sendPreferences(testScope.userPreferences);
 
-    expect(testScope.window.dataLayer.find((dataLayerEntry) => dataLayerEntry['tracking-consent-measurement-allowed'] === false)).toBeDefined();
-    expect(testScope.window.dataLayer.find((dataLayerEntry) => dataLayerEntry['tracking-consent-settings-allowed'] === false)).toBeDefined();
+    expect(testScope.window.dataLayer.find(
+      (dataLayerEntry) => dataLayerEntry.trackingConsentMeasurementAccepted === false,
+    )).toBeDefined();
+    expect(testScope.window.dataLayer.find(
+      (dataLayerEntry) => dataLayerEntry.trackingConsentSettingsAccepted === false,
+    )).toBeDefined();
   });
 
   it('should add to existing datalayer where it already exists', () => {
@@ -57,10 +69,12 @@ describe('sendPreferences', () => {
 
     expect(testScope.window.dataLayer).toEqual([
       { event: 'my-custom-event' },
-      { event: 'hmrc-measurement-allowed' },
-      { 'tracking-consent-measurement-allowed': true },
-      { event: 'hmrc-settings-allowed' },
-      { 'tracking-consent-settings-allowed': true },
+      { event: 'trackingConsentMeasurementAccepted' },
+      { event: 'trackingConsentSettingsAccepted' },
+      {
+        trackingConsentMeasurementAccepted: true,
+        trackingConsentSettingsAccepted: true,
+      },
     ]);
   });
 
@@ -72,9 +86,11 @@ describe('sendPreferences', () => {
     testScope.preferenceCommunicator.sendPreferences(testScope.userPreferences);
 
     expect(testScope.window.dataLayer).toEqual([
-      { event: 'hmrc-measurement-allowed' },
-      { 'tracking-consent-measurement-allowed': true },
-      { 'tracking-consent-settings-allowed': false },
+      { event: 'trackingConsentMeasurementAccepted' },
+      {
+        trackingConsentMeasurementAccepted: true,
+        trackingConsentSettingsAccepted: false,
+      },
     ]);
   });
 
@@ -86,9 +102,11 @@ describe('sendPreferences', () => {
     testScope.preferenceCommunicator.sendPreferences(testScope.userPreferences);
 
     expect(testScope.window.dataLayer).toEqual([
-      { 'tracking-consent-measurement-allowed': false },
-      { event: 'hmrc-settings-allowed' },
-      { 'tracking-consent-settings-allowed': true },
+      { event: 'trackingConsentSettingsAccepted' },
+      {
+        trackingConsentMeasurementAccepted: false,
+        trackingConsentSettingsAccepted: true,
+      },
     ]);
   });
 
@@ -111,9 +129,11 @@ describe('sendPreferences', () => {
     testScope.preferenceCommunicator.sendPreferences(testScope.userPreferences);
 
     expect(testScope.window.dataLayer).toEqual([
-      { event: 'hmrc-measurement-allowed' },
-      { 'tracking-consent-measurement-allowed': true },
-      { 'tracking-consent-settings-allowed': false },
+      { event: 'trackingConsentMeasurementAccepted' },
+      {
+        trackingConsentMeasurementAccepted: true,
+        trackingConsentSettingsAccepted: false,
+      },
     ]);
   });
 
@@ -125,9 +145,11 @@ describe('sendPreferences', () => {
     testScope.preferenceCommunicator.sendPreferences((testScope.userPreferences));
 
     expect(testScope.window.dataLayer).toEqual([
-      { event: 'hmrc-measurement-allowed' },
-      { 'tracking-consent-measurement-allowed': true },
-      { 'tracking-consent-settings-allowed': false },
+      { event: 'trackingConsentMeasurementAccepted' },
+      {
+        trackingConsentMeasurementAccepted: true,
+        trackingConsentSettingsAccepted: false,
+      },
     ]);
   });
   it('should ignore measurement values which are not boolean true', () => {
@@ -138,9 +160,13 @@ describe('sendPreferences', () => {
     testScope.preferenceCommunicator.sendPreferences((testScope.userPreferences));
 
     expect(testScope.window.dataLayer).toEqual([
-      { 'tracking-consent-measurement-allowed': false },
-      { event: 'hmrc-settings-allowed' },
-      { 'tracking-consent-settings-allowed': true },
+      {
+        event: 'trackingConsentSettingsAccepted',
+      },
+      {
+        trackingConsentMeasurementAccepted: false,
+        trackingConsentSettingsAccepted: true,
+      },
     ]);
   });
 
@@ -149,8 +175,10 @@ describe('sendPreferences', () => {
     testScope.preferenceCommunicator.sendPreferences((testScope.userPreferences));
 
     expect(testScope.window.dataLayer).toEqual([
-      { 'tracking-consent-measurement-allowed': false },
-      { 'tracking-consent-settings-allowed': false },
+      {
+        trackingConsentMeasurementAccepted: false,
+        trackingConsentSettingsAccepted: false,
+      },
     ]);
   });
 });

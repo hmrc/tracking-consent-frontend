@@ -30,10 +30,10 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       When("the user visits the service test page with enable tracking consent parameter")
       go to ServiceTestPageFeatureEnabled
 
-      Then("the dataLayer does not contain the 'hmrc-measurement-allowed' event")
+      Then("the dataLayer does not contain the 'trackingConsentMeasurementAccepted' event")
       measurementAllowedGtmEvent should be(null)
 
-      And("the dataLayer does not contain the 'hmrc-settings-allowed' event")
+      And("the dataLayer does not contain the 'trackingConsentSettingsAccepted' event")
       settingsAllowedGtmEvent should be(null)
     }
 
@@ -50,10 +50,10 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       When("the user clicks 'Accept all cookies'")
       click on acceptAdditionalCookiesButton
 
-      Then("the dataLayer contains the 'hmrc-measurement-allowed' event")
+      Then("the dataLayer contains the 'trackingConsentMeasurementAccepted' event")
       measurementAllowedGtmEvent should not be null
 
-      And("the dataLayer contains the 'hmrc-settings-allowed' event")
+      And("the dataLayer contains the 'trackingConsentSettingsAccepted' event")
       settingsAllowedGtmEvent should not be null
     }
 
@@ -95,10 +95,10 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       When("the user clicks 'Accept all cookies'")
       click on rejectAdditionalCookiesButton
 
-      Then("the dataLayer does not contain the 'hmrc-measurement-allowed' event")
+      Then("the dataLayer does not contain the 'trackingConsentMeasurementAccepted' event")
       measurementAllowedGtmEvent should be(null)
 
-      And("the dataLayer does not contain the 'hmrc-settings-allowed' event")
+      And("the dataLayer does not contain the 'trackingConsentSettingsAccepted' event")
       settingsAllowedGtmEvent should be(null)
     }
 

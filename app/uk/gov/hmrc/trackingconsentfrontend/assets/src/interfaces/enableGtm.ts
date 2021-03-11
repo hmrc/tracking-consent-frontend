@@ -11,7 +11,7 @@ const enableGtm = (containerId: string | undefined) => {
   // eslint-disable-next-line no-param-reassign
   window[dataLayer] = window[dataLayer] || [];
   window[dataLayer].push({
-    'tracking-consent-loaded': true,
+    trackingConsentLoaded: true,
   });
   window[dataLayer].push({
     'gtm.start': new Date().getTime(),
