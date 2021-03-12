@@ -87,7 +87,7 @@ describe('pageHandler', () => {
     pageHandler(thisDocument, testScope.userPreferences, pageRenderer);
 
     expect(functionCalls).toEqual([
-      'sendPreferences', 'enableGtm',
+      'enableGtm', 'sendPreferences',
     ]);
   });
 
@@ -124,11 +124,11 @@ describe('pageHandler', () => {
     expect(pageRenderer).not.toHaveBeenCalled();
   });
 
-  it('should send preferences if the feature toggle is toggled off', () => {
+  it('should not send preferences if the feature toggle is toggled off', () => {
     featureEnabledSpy.and.returnValue(false);
 
     pageHandler(thisDocument, testScope.userPreferences, pageRenderer);
 
-    expect(testScope.userPreferences.sendPreferences).toHaveBeenCalled();
+    expect(testScope.userPreferences.sendPreferences).not.toHaveBeenCalled();
   });
 });
