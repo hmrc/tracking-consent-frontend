@@ -1,7 +1,6 @@
 cookieSettings.title = Gosodiadau cwcis ar wasanaethau CThEM
 testPage.title = Tudalen prawf y gwasanaeth
 transitionalTestPage.title = Tudalen prawf trosiannol y gwasanaeth
-service.homePageUrl = https://www.gov.uk
 
 # FIXME: to translate:
 banner.title = Cwcis ar wasanaethau Cyllid a Thollau EM
@@ -62,5 +61,3 @@ cookieSettings.saveButton = Cadw newidiadau
 cookieSettings.saveConfirmation.title = Wedi cadw’ch gosodiadau cwcis
 cookieSettings.saveConfirmation.paragraph1 = Gall gwasanaethau eraill y llywodraeth osod cwcis ychwanegol ac, os felly, bydd ganddynt eu polisi a’u baner cwcis eu hunain.
 cookieSettings.saveConfirmation.link.text =  Ewch yn ôl i’r dudalen yr oeddech yn edrych arni
-
-service.name = Caniatâd i Olrhain

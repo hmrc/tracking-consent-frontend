@@ -17,6 +17,6 @@
 @this(optimizelySnippet: OptimizelySnippet, settingsPageScripts: SettingsPageScripts)
 
 @()(implicit appConfig: AppConfig, request: RequestHeader)
-
+<link href='@controllers.routes.Assets.versioned("stylesheets/application.css")' media="screen" rel="stylesheet" type="text/css" />
 @settingsPageScripts()
 @optimizelySnippet()

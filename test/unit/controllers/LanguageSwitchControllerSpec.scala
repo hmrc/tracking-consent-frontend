@@ -17,7 +17,6 @@
 package unit.controllers
 
 import org.scalatestplus.play.PlaySpec
-import org.scalatestplus.play.guice.GuiceOneAppPerTest
 import play.api.Application
 import play.api.http.{HeaderNames, Status}
 import play.api.mvc.{AnyContentAsEmpty, Result}
@@ -28,7 +27,7 @@ import unit.AppHelpers
 
 import scala.concurrent.Future
 
-class LanguageSwitchControllerSpec extends PlaySpec with GuiceOneAppPerTest with AppHelpers {
+class LanguageSwitchControllerSpec extends PlaySpec with AppHelpers {
   def makeController(implicit app: Application): LanguageSwitchController =
     app.injector.instanceOf[LanguageSwitchController]
 
