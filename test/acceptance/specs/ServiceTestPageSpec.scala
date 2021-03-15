@@ -37,6 +37,20 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       settingsAllowedGtmEvent should be(null)
     }
 
+    scenario("The user is initially opted out from Optimizely") {
+      Given("Given the user clears their cookies")
+      deleteAllCookies
+
+      When("the user visits the service test page with enable tracking consent parameter")
+      go to ServiceTestPageFeatureEnabled
+
+      Then("the optimizely object contains the optOut event")
+      optimizelyOptOutEvent should not be null
+
+      And("the optimizely object does not contain the optIn event")
+      optimizelyOptInEvent should be(null)
+    }
+
     scenario("The user consenting to all cookies fires GTM") {
       Given("the user clears their cookies")
       deleteAllCookies
@@ -55,6 +69,29 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
 
       And("the dataLayer contains the 'trackingConsentSettingsAccepted' event")
       settingsAllowedGtmEvent should not be null
+    }
+
+    scenario("The user consenting to all cookies opts the user into optimizely on the next page load") {
+      Given("the user clears their cookies")
+      deleteAllCookies
+
+      When("the user visits the service test page with enable tracking consent parameter")
+      go to ServiceTestPageFeatureEnabled
+      eventually {
+        tagName("h2").element.text shouldBe "Cookies on HMRC services"
+      }
+
+      When("the user clicks 'Accept all cookies'")
+      click on acceptAdditionalCookiesButton
+
+      And("refreshes the page")
+      reloadPage
+
+      Then("the optimizely object does not contain the optOut event")
+      optimizelyOptOutEvent should be(null)
+
+      And("the optimizely object contains the optIn event")
+      optimizelyOptInEvent should not be null
     }
 
     scenario("The user consenting to all cookies sets consent cookie") {
