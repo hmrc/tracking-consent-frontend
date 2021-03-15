@@ -33,6 +33,7 @@ trait AppHelpers {
     new GuiceApplicationBuilder()
       .configure(
         Map(elems: _*) ++ Map(
+          "metrics.jvm"      -> false,
           "metrics.enabled"  -> false,
           "auditing.enabled" -> false
         )
@@ -41,9 +42,11 @@ trait AppHelpers {
       .build()
 
   def buildAppWithWelshLanguageSupport[A](welshLanguageSupport: Boolean = true) =
-    buildApp("features.welsh-language-support" -> welshLanguageSupport.toString)
+    buildApp(
+      "features.welsh-language-support" -> welshLanguageSupport.toString
+    )
 
-  def getAppConfig(implicit app: Application)                                   =
+  def getAppConfig(implicit app: Application) =
     app.injector.instanceOf[AppConfig]
 
   def getMessagesApi(implicit app: Application) =
