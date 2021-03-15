@@ -41,6 +41,14 @@ trait BrowserDriver extends LazyLogging {
   def findGtmScript(containerId: String): WebElement =
     findBy(By.cssSelector(s"""script[src*="gtm.js?id=$containerId"]"""))
 
+  def findOptimizelyOptOutEvent(isOptOut: java.lang.Boolean): AnyRef =
+    driver
+      .asInstanceOf[JavascriptExecutor]
+      .executeScript(
+        "return window.optimizely.find(({type, isOptOut}) => type === 'optOut' && isOptOut === arguments[0])",
+        isOptOut
+      )
+
   def findDataLayerEvent(event: String): AnyRef =
     driver
       .asInstanceOf[JavascriptExecutor]

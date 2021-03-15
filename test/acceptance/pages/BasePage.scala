@@ -31,6 +31,10 @@ trait BasePage extends Matchers with Page with WebBrowser with BrowserDriver {
 
   def windowLoadedGtmEvent: AnyRef = findDataLayerEvent("gtm.load")
 
+  def optimizelyOptOutEvent: AnyRef = findOptimizelyOptOutEvent(true)
+
+  def optimizelyOptInEvent: AnyRef = findOptimizelyOptOutEvent(false)
+
   def measurementAllowedGtmEvent: AnyRef = findDataLayerEvent("trackingConsentMeasurementAccepted")
 
   def settingsAllowedGtmEvent: AnyRef = findDataLayerEvent("trackingConsentSettingsAccepted")
