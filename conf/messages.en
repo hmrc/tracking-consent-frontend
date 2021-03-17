@@ -14,7 +14,6 @@ banner.confirmation.accepted = You have accepted additional cookies.
 banner.confirmation.rejected = You have rejected additional cookies.
 banner.confirmation.before.link = You can
 banner.confirmation.link = change your cookie settings
-banner.confirmation.link.url = /tracking-consent/cookie-settings
 banner.confirmation.after.link = at any time.
 banner.confirmation.hide = Hide this message
 
