@@ -4,7 +4,7 @@ transitionalTestPage.title = Tudalen prawf trosiannol y gwasanaeth
 
 banner.title = Cwcis ar wasanaethau CThEM
 banner.essential.cookies = Rydym yn defnyddio rhai cwcis hanfodol i wneud i’n gwasanaethau weithio.
-banner.additional.cookies = Hoffem osod cwcis ychwanegol fel y gallwn gofio’ch gosodiadau, ddeall sut mae pobl yn defnyddio’n gwasanaethau a gwneud gwelliannau.
+banner.additional.cookies = Hoffem osod cwcis ychwanegol fel y gallwn gofio’ch gosodiadau, deall sut mae pobl yn defnyddio’n gwasanaethau a gwneud gwelliannau.
 banner.accept.additional.cookies = Derbyn cwcis ychwanegol
 banner.reject.additional.cookies = Gwrthod cwcis ychwanegol
 banner.view.cookies = Bwrw golwg dros y cwcis
