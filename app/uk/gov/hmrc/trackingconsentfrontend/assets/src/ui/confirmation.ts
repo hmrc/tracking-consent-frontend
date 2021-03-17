@@ -8,7 +8,7 @@ const confirmation = (messages: any, acceptedOrRejectedMessage: string) => `
           <p>
             ${acceptedOrRejectedMessage}
             ${messages['banner.confirmation.before.link']}
-            <a class="cbanner-govuk-link" href="${getTrackingConsentBaseUrl()}${messages['banner.confirmation.link.url']}">
+            <a class="cbanner-govuk-link" href="${getTrackingConsentBaseUrl()}${messages['banner.view.cookies.url']}">
               ${messages['banner.confirmation.link']}
             </a>            
             ${messages['banner.confirmation.after.link']}

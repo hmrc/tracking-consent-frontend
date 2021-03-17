@@ -76,7 +76,7 @@ describe('renderBanner', () => {
 
     renderBanner(userPreference);
 
-    expect(queryByText(document.body, /Cwcis ar wasanaethau Cyllid a Thollau EM/)).toBeTruthy();
+    expect(queryByText(document.body, /Cwcis ar wasanaethau CThEM/)).toBeTruthy();
   });
 
   it('should render a submit button', () => {

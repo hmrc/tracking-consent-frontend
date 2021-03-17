@@ -2,22 +2,20 @@ cookieSettings.title = Gosodiadau cwcis ar wasanaethau CThEM
 testPage.title = Tudalen prawf y gwasanaeth
 transitionalTestPage.title = Tudalen prawf trosiannol y gwasanaeth
 
-# FIXME: to translate:
-banner.title = Cwcis ar wasanaethau Cyllid a Thollau EM
-banner.essential.cookies = We use some essential cookies to make our services work.
-banner.additional.cookies = We would like to set additional cookies so we can remember your settings, understand how people use our services and make improvements.
-banner.accept.additional.cookies = Accept additional cookies
-banner.reject.additional.cookies = Reject additional cookies
-banner.view.cookies = View cookies
+banner.title = Cwcis ar wasanaethau CThEM
+banner.essential.cookies = Rydym yn defnyddio rhai cwcis hanfodol i wneud i’n gwasanaethau weithio.
+banner.additional.cookies = Hoffem osod cwcis ychwanegol fel y gallwn gofio’ch gosodiadau, ddeall sut mae pobl yn defnyddio’n gwasanaethau a gwneud gwelliannau.
+banner.accept.additional.cookies = Derbyn cwcis ychwanegol
+banner.reject.additional.cookies = Gwrthod cwcis ychwanegol
+banner.view.cookies = Bwrw golwg dros y cwcis
 banner.view.cookies.url = /tracking-consent/cookie-settings
 
-banner.confirmation.accepted = You have accepted additional cookies.
-banner.confirmation.rejected = You have rejected additional cookies.
-banner.confirmation.before.link = You can
-banner.confirmation.link =  change your cookie settings
-banner.confirmation.link.url =  /tracking-consent/cookie-settings
-banner.confirmation.after.link = at any time.
-banner.confirmation.hide = Hide this message
+banner.confirmation.accepted=Rydych wedi derbyn cwcis ychwanegol.
+banner.confirmation.rejected=Rydych wedi gwrthod cwcis ychwanegol.
+banner.confirmation.before.link=Gallwch
+banner.confirmation.link=newid eich gosodiadau cwcis
+banner.confirmation.after.link=ar unrhyw adeg.
+banner.confirmation.hide=Cuddio’r neges hon
 
 cookieSettings.intro.paragraph1 = ‘Cwcis’ yw ffeiliau sy’n cael eu cadw ar eich ffôn, llechen neu gyfrifiadur pan ydych yn ymweld â gwefan.
 cookieSettings.intro.paragraph2 = Rydym yn defnyddio 3 math o gwcis i gadw gwybodaeth am sut yr ydych yn defnyddio gwasanaethau CThEM, megis y tudalennau yr ydych yn ymweld â nhw.
