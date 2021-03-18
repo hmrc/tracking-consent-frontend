@@ -90,7 +90,7 @@ to the cookie reading logic as it would require approval by another team.
 
 * Good, because #team-plat-ui can own the new library and make changes at the same time as changes to
 tracking-consent-frontend
-* Good, because it defers the decision of which library to transitively add it to allowing us to proceed with implementation.
+* Good, because it defers the decision of which library to transitively add it to allowing us to proceed with implementation. It keeps open the option to add to either bootstrap-play or play-frontend-hmrc/play-ui at a later date.
 As a fallback we can advise teams add it on its own.
 * Good, because it's a simple solution and easy to implement and rollout.
 
