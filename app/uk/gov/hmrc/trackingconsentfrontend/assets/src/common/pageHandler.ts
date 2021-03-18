@@ -19,6 +19,8 @@ const pageHandler = (document: HTMLDocument, userPreferences: UserPreferences, p
         pageRenderer(userPreferences);
       });
     }
+
+    window.trackingConsent = { userPreferences };
   }
 };
 

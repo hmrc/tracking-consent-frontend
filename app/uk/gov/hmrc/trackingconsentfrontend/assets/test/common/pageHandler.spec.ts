@@ -80,6 +80,16 @@ describe('pageHandler', () => {
     expect(testScope.userPreferences.sendPreferences).toHaveBeenCalledWith(SERVICE_PAGE_LOAD_EVENT);
   });
 
+  it('should make the userPreferences object available in the window', () => {
+    delete window.trackingConsent;
+
+    pageHandler(thisDocument, testScope.userPreferences, pageRenderer);
+
+    expect(window.trackingConsent).toBeDefined();
+    expect(window.trackingConsent.userPreferences).toBeDefined();
+    expect(window.trackingConsent.userPreferences).toEqual(testScope.userPreferences);
+  });
+
   // See: https://developers.google.com/tag-manager/devguide#adding-data-layer-variables-to-a-page
   it('should send the preferences before GTM is enabled', () => {
     expect(testScope.userPreferences.sendPreferences).not.toHaveBeenCalled();
