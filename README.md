@@ -59,8 +59,11 @@ and client side, the contents are URL-encoded JSON with a structure described in
 the next section. However, it‘s not intended that you inspect this cookie manually – helper methods have
 been created for reading it in Scala and Javascript.
 
-Your service can be made aware of the contents of this cookie either by inspecting it on demand or, on the 
-client-side only, subscribing to updates.
+For server-side reading of the `userConsent` cookie, please use the library 
+[tracking-consent-models](https://github.com/hmrc/tracking-consent-models)
+
+For client-side inspection, you can define a `Communicator` object and pass this to the 
+`window.hmrcTrackingConsent.userPreferences.subscribe` function.
 
 ### In Scala
 
