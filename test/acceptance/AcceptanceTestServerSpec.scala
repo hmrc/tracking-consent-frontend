@@ -32,7 +32,7 @@ class AcceptanceTestServerSpec
     with BeforeAndAfterAll {
   override lazy val port = 6001
 
-  val url                    = new URL(s"http://localhost:$port/tracking-consent/cookie-settings?enableTrackingConsent=true")
+  val url                    = new URL(s"http://localhost:$port/tracking-consent/cookie-settings")
   val expectedFailureMessage = "Connection refused"
 
   private def getTestPageResponseCode = {

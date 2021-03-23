@@ -33,7 +33,7 @@ case class LanguageSwitchController @Inject() (
 ) extends LanguageController(languageUtils, cc) {
   import appConfig._
 
-  override def fallbackURL: String = routes.CookieSettingsController.cookieSettings(None).url
+  override def fallbackURL: String = routes.CookieSettingsController.cookieSettings.url
 
   override protected def languageMap: Map[String, Lang] = {
     val englishLanguageOnly = Map(en -> Lang(en))

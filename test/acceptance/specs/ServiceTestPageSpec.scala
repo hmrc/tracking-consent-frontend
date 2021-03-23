@@ -16,10 +16,8 @@
 
 package acceptance.specs
 
-import acceptance.pages.ServiceTestPageFeatureEnabled
-import acceptance.pages.ServiceTestPageFeatureEnabled._
-import acceptance.pages.ServiceTestPageFeatureDisabled
-import org.openqa.selenium.{NoSuchElementException => WebDriverNoSuchElementException}
+import acceptance.pages.ServiceTestPage
+import acceptance.pages.ServiceTestPage._
 
 class ServiceTestPageSpec extends BaseAcceptanceSpec {
   feature("Service Test page") {
@@ -28,7 +26,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       deleteAllCookies
 
       When("the user visits the service test page with enable tracking consent parameter")
-      go to ServiceTestPageFeatureEnabled
+      go to ServiceTestPage
 
       Then("the dataLayer does not contain the 'trackingConsentMeasurementAccepted' event")
       measurementAllowedGtmEvent should be(null)
@@ -42,7 +40,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       deleteAllCookies
 
       When("the user visits the service test page with enable tracking consent parameter")
-      go to ServiceTestPageFeatureEnabled
+      go to ServiceTestPage
 
       Then("the optimizely object contains the optOut event")
       optimizelyOptOutEvent should not be null
@@ -56,7 +54,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       deleteAllCookies
 
       When("the user visits the service test page with enable tracking consent parameter")
-      go to ServiceTestPageFeatureEnabled
+      go to ServiceTestPage
       eventually {
         tagName("h2").element.text shouldBe "Cookies on HMRC services"
       }
@@ -76,7 +74,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       deleteAllCookies
 
       When("the user visits the service test page with enable tracking consent parameter")
-      go to ServiceTestPageFeatureEnabled
+      go to ServiceTestPage
       eventually {
         tagName("h2").element.text shouldBe "Cookies on HMRC services"
       }
@@ -99,7 +97,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       deleteAllCookies
 
       When("the user visits the service test page with enable tracking consent parameter")
-      go to ServiceTestPageFeatureEnabled
+      go to ServiceTestPage
 
       When("the user clicks 'Accept all cookies'")
       click on acceptAdditionalCookiesButton
@@ -113,7 +111,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       deleteAllCookies
 
       When("the user visits the service test page with enable tracking consent parameter")
-      go to ServiceTestPageFeatureEnabled
+      go to ServiceTestPage
 
       When("the user clicks 'Accept all cookies'")
       click on rejectAdditionalCookiesButton
@@ -127,7 +125,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       deleteAllCookies
 
       When("the user visits the service test page with enable tracking consent parameter")
-      go to ServiceTestPageFeatureEnabled
+      go to ServiceTestPage
 
       When("the user clicks 'Accept all cookies'")
       click on rejectAdditionalCookiesButton
@@ -139,32 +137,14 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       settingsAllowedGtmEvent should be(null)
     }
 
-    scenario("The user visits a page without tracking consent enabled") {
-      Given("the user clears their cookies")
-      deleteAllCookies
-
-      When("the user visits the service test page without enable tracking consent parameter")
-      go to ServiceTestPageFeatureDisabled
-
-      Then("there should be no button 'Accept all cookies'")
-      tagName("h2").element.text shouldNot be("Cookies on HMRC services")
-      a[WebDriverNoSuchElementException] should be thrownBy acceptAdditionalCookiesButton
-    }
-
-    scenario("The user visits a page enables tracking consent enabled via cookie") {
+    scenario("The user visits a page and the cookie banner is displayed") {
       Given("the user clears their cookies")
       deleteAllCookies
 
       When("the user visits the service test page with enable tracking consent parameter")
-      go to ServiceTestPageFeatureEnabled
+      go to ServiceTestPage
 
-      Then("there should be a button 'Accept all cookies'")
-      eventually {
-        tagName("h2").element.text shouldBe "Cookies on HMRC services"
-      }
-
-      And("navigating to a page without the tracking consent parameter should also show the banner")
-      go to ServiceTestPageFeatureDisabled
+      Then("there should be the heading 'Cookies on HMRC services'")
       eventually {
         tagName("h2").element.text shouldBe "Cookies on HMRC services"
       }
@@ -175,7 +155,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       deleteAllCookies
 
       When("the user visits the service test page with enable tracking consent parameter")
-      go to ServiceTestPageFeatureEnabled
+      go to ServiceTestPage
 
       And("the banner should be displayed with the title 'Cookies on HMRC services'")
       eventually {

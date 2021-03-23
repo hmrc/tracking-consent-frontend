@@ -20,7 +20,7 @@ import org.openqa.selenium.WebElement
 import support.TestConfiguration
 
 object LegacyServiceTestPage extends BasePage {
-  val url: String = TestConfiguration.url("tracking-consent-frontend") + "/test-only-legacy?enableTrackingConsent=true"
+  val url: String = TestConfiguration.url("tracking-consent-frontend") + "/test-only-legacy"
 
   val title                   = "Legacy service test page"
   val acceptAdditionalCookies = "Accept additional cookies"

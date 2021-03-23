@@ -25,9 +25,6 @@ import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
 
 trait AppHelpers {
   implicit lazy val fakeRequest = FakeRequest("GET", "/foo")
-    .withCookies(
-      Cookie("enableTrackingConsent", "true")
-    )
 
   def buildApp[A](elems: (String, _)*) =
     new GuiceApplicationBuilder()

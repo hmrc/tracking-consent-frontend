@@ -11,7 +11,6 @@ import fixtureFrontendToolkit from '../fixtures/servicePageFrontendToolkit.html'
 // @ts-ignore
 import fixtureClassic from '../fixtures/servicePageClassic.html';
 import * as getLanguage from '../../src/interfaces/getLanguage';
-import * as isFeatureEnabled from '../../src/interfaces/isFeatureEnabled';
 import * as getTrackingConsentBaseUrl from '../../src/common/getTrackingConsentBaseUrl';
 
 describe('renderBanner', () => {
@@ -42,7 +41,6 @@ describe('renderBanner', () => {
   const assume = expect;
 
   let languageSpy;
-  let featureEnabledSpy;
   let getTrackingConsentBaseUrlSpy;
 
   beforeEach(() => {
@@ -51,7 +49,6 @@ describe('renderBanner', () => {
     userAcceptsAdditional.mockReset();
     preferenceCommunicator.sendPreferences.mockReset();
     languageSpy = spyOn(getLanguage, 'default').and.returnValue('en');
-    featureEnabledSpy = spyOn(isFeatureEnabled, 'default').and.returnValue(true);
     getTrackingConsentBaseUrlSpy = spyOn(getTrackingConsentBaseUrl, 'default').and.returnValue('https://my-example.com:1234');
   });
 
@@ -213,8 +210,7 @@ describe('renderBanner', () => {
     expect(queryByText(document.body, /Tell us whether you accept cookies/)).not.toBeTruthy();
   });
 
-  it('should render the banner if the feature enableTrackingConsent is enabled', () => {
-    featureEnabledSpy.and.returnValue(true);
+  it('should render the banner', () => {
     renderBanner(userPreference);
 
     expect(queryByText(document.body, /Cookies on HMRC services/)).toBeTruthy();

@@ -20,7 +20,7 @@ import org.openqa.selenium.WebElement
 import support.TestConfiguration
 
 object ErrorPage extends BasePage {
-  val url: String             = TestConfiguration.url("tracking-consent-frontend") + "/non-existent-page?enableTrackingConsent=true"
+  val url: String             = TestConfiguration.url("tracking-consent-frontend") + "/non-existent-page"
   val title                   = "This page can’t be found"
   val acceptAdditionalCookies = "Accept additional cookies"
   val setCookiePreferences    = "View cookies"

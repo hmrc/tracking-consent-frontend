@@ -4,7 +4,7 @@
 ->         /hmrc-frontend            hmrcfrontend.Routes
 GET        /tracking.js              controllers.Assets.at(path="/public", file="tracking.js")
 GET        /tracking/optimizely.js   controllers.Assets.at(path="/public", file="optimizely.js")
-GET        /cookie-settings          uk.gov.hmrc.trackingconsentfrontend.controllers.CookieSettingsController.cookieSettings(enableTrackingConsent: Option[String])
+GET        /cookie-settings          uk.gov.hmrc.trackingconsentfrontend.controllers.CookieSettingsController.cookieSettings
 
 + nocsrf
 POST       /audit                    uk.gov.hmrc.trackingconsentfrontend.controllers.AuditController.audit

@@ -1,9 +1,7 @@
-import * as isFeatureEnabled from '../../src/interfaces/isFeatureEnabled';
 import optimizelyCommunicatorFactory from '../../src/interfaces/optimizelyCommunicatorFactory';
 
 describe('sendPreferences', () => {
   let testScope;
-  let featureEnabledSpy;
 
   beforeEach(() => {
     testScope = { window: {} };
@@ -13,7 +11,6 @@ describe('sendPreferences', () => {
       measurement: false,
       settings: false,
     });
-    featureEnabledSpy = spyOn(isFeatureEnabled, 'default').and.returnValue(true);
   });
 
   it('should set optOut to true when measurement is set to false', () => {
@@ -21,14 +18,6 @@ describe('sendPreferences', () => {
     expect(testScope.window.optimizely).toEqual([
       { type: 'optOut', isOptOut: true },
     ]);
-  });
-
-  it('should not set optOut if the feature toggle is toggled off', () => {
-    featureEnabledSpy.and.returnValue(false);
-
-    testScope.preferenceCommunicator.sendPreferences(testScope.userPreferences);
-
-    expect(testScope.window.optimizely).toEqual(undefined);
   });
 
   it('should set optOut to false when measurement setting is set to true', () => {

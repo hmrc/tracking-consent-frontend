@@ -1,7 +1,5 @@
 import enableGtm from '../interfaces/enableGtm';
 import { UserPreferences } from '../../types/UserPreferences';
-import isFeatureEnabled from '../interfaces/isFeatureEnabled';
-import featureNames from '../constants/featureNames';
 import { SERVICE_PAGE_LOAD_EVENT } from '../constants/events';
 import getGtmContainerId from './getGtmContainerId';
 
@@ -14,11 +12,9 @@ const pageHandler = (document: HTMLDocument, userPreferences: UserPreferences, p
 
     enableGtm(gtmContainerId);
 
-    if (isFeatureEnabled(featureNames.enableTrackingConsent)) {
-      document.addEventListener('DOMContentLoaded', () => {
-        pageRenderer(userPreferences);
-      });
-    }
+    document.addEventListener('DOMContentLoaded', () => {
+      pageRenderer(userPreferences);
+    });
 
     window.trackingConsent = { userPreferences };
   }

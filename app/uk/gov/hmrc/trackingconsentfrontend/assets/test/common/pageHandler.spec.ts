@@ -3,7 +3,6 @@ import { JSDOM } from 'jsdom';
 import * as enableGtm from '../../src/interfaces/enableGtm';
 import pageHandler from '../../src/common/pageHandler';
 import userPreferencesFactory from '../../src/domain/userPreferencesFactory';
-import * as isFeatureEnabled from '../../src/interfaces/isFeatureEnabled';
 import * as getGtmContainer from '../../src/common/getGtmContainerId';
 import { SERVICE_PAGE_LOAD_EVENT } from '../../src/constants/events';
 import clearAllMocks = jest.clearAllMocks;
@@ -12,7 +11,6 @@ describe('pageHandler', () => {
   const pageRenderer = jest.fn();
   let thisDocument;
   let testScope;
-  let featureEnabledSpy;
   let getGtmContainerSpy;
   let functionCalls;
 
@@ -41,7 +39,6 @@ describe('pageHandler', () => {
       return undefined;
     });
     clearAllMocks();
-    featureEnabledSpy = spyOn(isFeatureEnabled, 'default').and.returnValue(true);
     getGtmContainerSpy = spyOn(getGtmContainer, 'default').and.returnValue('GTM-CONTAINER-ID');
   });
 
@@ -122,23 +119,5 @@ describe('pageHandler', () => {
     pageLoad();
 
     expect(pageRenderer).toHaveBeenCalledWith(testScope.userPreferences);
-  });
-
-  it('should not call the page renderer if the feature toggle is toggled off', () => {
-    featureEnabledSpy.and.returnValue(false);
-    expect(pageRenderer).not.toHaveBeenCalled();
-
-    pageHandler(thisDocument, testScope.userPreferences, pageRenderer);
-    pageLoad();
-
-    expect(pageRenderer).not.toHaveBeenCalled();
-  });
-
-  it('should send preferences if the feature toggle is toggled off', () => {
-    featureEnabledSpy.and.returnValue(false);
-
-    pageHandler(thisDocument, testScope.userPreferences, pageRenderer);
-
-    expect(testScope.userPreferences.sendPreferences).toHaveBeenCalled();
   });
 });

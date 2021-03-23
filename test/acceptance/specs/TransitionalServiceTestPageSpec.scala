@@ -16,8 +16,8 @@
 
 package acceptance.specs
 
-import acceptance.pages.{TransitionalServiceTestPageFeatureDisabled, TransitionalServiceTestPageFeatureEnabled}
-import acceptance.pages.TransitionalServiceTestPageFeatureDisabled._
+import acceptance.pages.{TransitionalServiceTestPage}
+import acceptance.pages.TransitionalServiceTestPage._
 
 class TransitionalServiceTestPageSpec extends BaseAcceptanceSpec {
   feature("Service Test page") {
@@ -27,7 +27,7 @@ class TransitionalServiceTestPageSpec extends BaseAcceptanceSpec {
       deleteAllCookies
 
       When("the user visits the service test page")
-      go to TransitionalServiceTestPageFeatureDisabled
+      go to TransitionalServiceTestPage
 
       Then("the gtm script pointed to the transitional container is injected into the page")
       eventually {
@@ -40,7 +40,7 @@ class TransitionalServiceTestPageSpec extends BaseAcceptanceSpec {
       deleteAllCookies
 
       When("the user visits the service test page")
-      go to TransitionalServiceTestPageFeatureDisabled
+      go to TransitionalServiceTestPage
 
       Then("the dataLayer contains the Window loaded event")
       eventually {
@@ -53,7 +53,7 @@ class TransitionalServiceTestPageSpec extends BaseAcceptanceSpec {
       deleteAllCookies
 
       When("the user visits the service test page")
-      go to TransitionalServiceTestPageFeatureEnabled
+      go to TransitionalServiceTestPage
 
       Then("the title should be visible")
       h1Element.getText should be(title)
@@ -64,7 +64,7 @@ class TransitionalServiceTestPageSpec extends BaseAcceptanceSpec {
       deleteAllCookies
 
       When("the user visits the service test page")
-      go to TransitionalServiceTestPageFeatureEnabled
+      go to TransitionalServiceTestPage
 
       Then("the cookie banner is visible")
       eventually {
