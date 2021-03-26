@@ -3,7 +3,7 @@
     {
       "reason": "CSRF tokens are not needed for this page because there is no server-side interaction",
       "url": "http://localhost:6001/tracking-consent/cookie-settings",
-      "ruleId": 352
+      "ruleId": 10202
     }
   ]
 }
