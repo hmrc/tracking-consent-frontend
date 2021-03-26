@@ -22,18 +22,13 @@ import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 
 @Singleton
 class AppConfig @Inject() (config: Configuration, servicesConfig: ServicesConfig) {
-  val trackingConsentPort: String          = servicesConfig.getString("tracking-consent-frontend.port")
-  val trackingConsentUrl: String           = servicesConfig.getString("tracking-consent-frontend.url")
-  val welshLanguageSupportEnabled: Boolean =
-    config.getOptional[Boolean]("features.welsh-language-support").getOrElse(false)
-  val optimizelyUrl: Option[String]        =
+  val trackingConsentPort: String   = servicesConfig.getString("tracking-consent-frontend.port")
+  val trackingConsentUrl: String    = servicesConfig.getString("tracking-consent-frontend.url")
+  val optimizelyUrl: Option[String] =
     for {
       baseUrl   <- config.getOptional[String]("optimizely.url")
       projectId <- config.getOptional[String]("optimizely.projectId")
     } yield s"$baseUrl$projectId.js"
-
-  val en: String = "en"
-  val cy: String = "cy"
 
   private val platformHost: Option[String] =
     config.getOptional[String]("platform.frontend.host")
