@@ -14,15 +14,13 @@
  * limitations under the License.
  *@
 
-@import uk.gov.hmrc.trackingconsentfrontend.views.html.components.LanguageSelect
-
 @this(
         govukLayout: GovukLayout,
         hmrcHead: HmrcHead,
         hmrcStandardHeader: HmrcStandardHeader,
         hmrcStandardFooter: HmrcStandardFooter,
         hmrcScripts: HmrcScripts,
-        languageSelect: LanguageSelect
+        hmrcLanguageSelectHelper: HmrcLanguageSelectHelper
 )
 
 @(pageTitle: Option[String] = None,
@@ -34,6 +32,6 @@
     headBlock = Some(hmrcHead(headBlock, nonce = CSPNonce.get)),
     headerBlock = Some(hmrcStandardHeader(displayHmrcBanner = true)),
     scriptsBlock = Some(hmrcScripts(scriptsBlock, nonce = CSPNonce.get)),
-    beforeContentBlock = Some(languageSelect()),
+    beforeContentBlock = Some(hmrcLanguageSelectHelper()),
     footerBlock = Some(hmrcStandardFooter())
 )(contentBlock)
