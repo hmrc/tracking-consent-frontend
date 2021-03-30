@@ -16,14 +16,28 @@
 
 package unit.views
 
+import java.io.{File, PrintWriter}
+
 import play.api.test.Helpers._
 import uk.gov.hmrc.trackingconsentfrontend.views.html.CookieSettingsPage
 import unit.SpecBase
+import sys.process._
 
 class CookieSettingsSpec extends SpecBase {
   "the cookie settings page" must {
     val cookieSettingsPage = app.injector.instanceOf[CookieSettingsPage]
     val content            = cookieSettingsPage()
+
+    "pass accessibility tests" in {
+      val file   = File.createTempFile("input-", ".html");
+      val writer = new PrintWriter(file)
+      try writer.print(content)
+      finally writer.close()
+
+      val outputCode = s"npx @axe-core/cli --exit --save target/axe-output.json file://${file.toPath}" !
+
+      if (outputCode > 0) fail("Accessibility check failed")
+    }
 
     "display the correct browser title" in {
       content.select("title").text mustBe "Cookie settings on HMRC services"
