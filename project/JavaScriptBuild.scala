@@ -22,6 +22,7 @@ object JavaScriptBuild {
 
   // Extra tasks, to make configuring Jenkins easier.
   val npmInstall    = TaskKey[Int]("npm-install")
+  val npmNpxInstall = TaskKey[Int]("npm-npx-install")
   val npmAxeInstall = TaskKey[Int]("npm-axe-install")
   val npmTest       = TaskKey[Int]("npm-test")
   val npmBackstop   = TaskKey[Int]("npm-backstop")
@@ -34,6 +35,8 @@ object JavaScriptBuild {
     // this enables 'sbt "npm <args>"' commands
     commands ++= javaScriptDirectory(base => Seq(Npm.npmCommand(base))).value,
     npmInstall := Npm.npmProcess("npm install failed")(javaScriptDirectory.value, "install"),
+    npmNpxInstall := Npm
+      .npmProcess("npm install axe failed")(javaScriptDirectory.value, "install", "npx", "-g"),
     npmAxeInstall := Npm
       .npmProcess("npm install axe failed")(javaScriptDirectory.value, "install", "@axe-core/cli", "-g"),
     npmBuild := Npm.npmProcess("npm build failed")(javaScriptDirectory.value, "run", "build"),
@@ -42,6 +45,6 @@ object JavaScriptBuild {
     npmTest := (npmTest dependsOn npmBuild).value,
     npmBackstop := Npm.npmProcess("npm backstop failed")(javaScriptDirectory.value, "run", "backstop"),
     npmBackstop := (npmBackstop dependsOn npmBuild).value,
-    (test in Test) := (test in Test).dependsOn(npmInstall).value
+    (test in Test) := (test in Test).dependsOn(npmNpxInstall).value
   )
 }
