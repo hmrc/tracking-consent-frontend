@@ -35,7 +35,7 @@ class CookieSettingsSpec extends SpecBase {
       finally writer.close()
 
       val outputCode =
-        s"axe --exit --save target/axe-output.json file://${file.toPath}" !
+        s"./run_axe.sh file://${file.toPath}" !
 
       if (outputCode > 0) fail("Accessibility check failed")
     }
