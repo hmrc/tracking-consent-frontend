@@ -31,17 +31,23 @@ class CookieSettingsSpec extends SpecBase {
   "the cookie settings page" must {
     val cookieSettingsPage = app.injector.instanceOf[CookieSettingsPage]
     val content            = cookieSettingsPage()
+    val file               = File.createTempFile("input-", ".html");
+    val writer             = new PrintWriter(file)
+    try writer.print(content)
+    finally writer.close()
 
-    "pass accessibility tests" in {
-      val file   = File.createTempFile("input-", ".html");
-      val writer = new PrintWriter(file)
-      try writer.print(content)
-      finally writer.close()
-
+    "pass axe tests" in {
       process("npm", "install")
       val outputCode = process("npm", "test", file.toPath.toString)
 
-      if (outputCode > 0) fail("Accessibility check failed")
+      if (outputCode > 0) fail("Axe tests failed")
+    }
+
+    "pass vnu tests" in {
+      process("npm", "install")
+      val outputCode = process("npm", "run", "vnu", file.toPath.toString)
+
+      if (outputCode > 0) fail("VNU tests failed")
     }
 
     "display the correct browser title" in {
