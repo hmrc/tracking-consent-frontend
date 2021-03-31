@@ -17,13 +17,17 @@
 package unit.views
 
 import java.io.{File, PrintWriter}
-
 import play.api.test.Helpers._
 import uk.gov.hmrc.trackingconsentfrontend.views.html.CookieSettingsPage
 import unit.SpecBase
+
 import sys.process._
 
 class CookieSettingsSpec extends SpecBase {
+
+  def process(args: String*): Int =
+    Process(args.toList, new File("test/resources/axe")).run().exitValue()
+
   "the cookie settings page" must {
     val cookieSettingsPage = app.injector.instanceOf[CookieSettingsPage]
     val content            = cookieSettingsPage()
@@ -34,8 +38,8 @@ class CookieSettingsSpec extends SpecBase {
       try writer.print(content)
       finally writer.close()
 
-      val outputCode =
-        s"./run_axe.sh file://${file.toPath}" !
+      process("npm", "install")
+      val outputCode = process("npm", "test", file.toPath.toString)
 
       if (outputCode > 0) fail("Accessibility check failed")
     }
