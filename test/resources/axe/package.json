@@ -2,10 +2,10 @@
   "name": "tracking-consent-frontend-axe",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "axe.js",
   "scripts": {
     "vnu": "node vnu.js",
-    "test": "node index.js"
+    "axe": "node axe.js"
   },
   "author": "",
   "license": "ISC",

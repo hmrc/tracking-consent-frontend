@@ -38,7 +38,7 @@ class CookieSettingsSpec extends SpecBase {
 
     "pass axe tests" in {
       process("npm", "install")
-      val outputCode = process("npm", "test", file.toPath.toString)
+      val outputCode = process("npm", "run", "axe", file.toPath.toString)
 
       if (outputCode > 0) fail("Axe tests failed")
     }
