@@ -1,0 +1,10 @@
+{
+  "name": "tracking-consent-frontend-axe",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "axe-core": "4.1.3",
+    "jsdom": "16.5.2",
+    "vnu-jar": "21.2.5"
+  }
+}

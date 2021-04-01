@@ -16,38 +16,23 @@
 
 package unit.views
 
-import java.io.{File, PrintWriter}
 import play.api.test.Helpers._
+import support.AccessibilityMatchers
 import uk.gov.hmrc.trackingconsentfrontend.views.html.CookieSettingsPage
 import unit.SpecBase
 
-import sys.process._
-
-class CookieSettingsSpec extends SpecBase {
-
-  def process(args: String*): Int =
-    Process(args.toList, new File("test/resources/axe")).run().exitValue()
+class CookieSettingsSpec extends SpecBase with AccessibilityMatchers {
 
   "the cookie settings page" must {
     val cookieSettingsPage = app.injector.instanceOf[CookieSettingsPage]
     val content            = cookieSettingsPage()
-    val file               = File.createTempFile("input-", ".html");
-    val writer             = new PrintWriter(file)
-    try writer.print(content)
-    finally writer.close()
 
     "pass axe tests" in {
-      process("npm", "install")
-      val outputCode = process("npm", "run", "axe", file.toPath.toString)
-
-      if (outputCode > 0) fail("Axe tests failed")
+      content must haveNoAxeViolations
     }
 
     "pass vnu tests" in {
-      process("npm", "install")
-      val outputCode = process("npm", "run", "vnu", file.toPath.toString)
-
-      if (outputCode > 0) fail("VNU tests failed")
+      content must haveNoVnuViolations
     }
 
     "display the correct browser title" in {

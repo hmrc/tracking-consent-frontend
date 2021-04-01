@@ -21,10 +21,11 @@ object JavaScriptBuild {
   val javaScriptDirectory = SettingKey[File]("javascriptDirectory")
 
   // Extra tasks, to make configuring Jenkins easier.
-  val npmInstall  = TaskKey[Int]("npm-install")
-  val npmTest     = TaskKey[Int]("npm-test")
-  val npmBackstop = TaskKey[Int]("npm-backstop")
-  val npmBuild    = TaskKey[Int]("npm-build")
+  val npmInstall              = TaskKey[Int]("npm-install")
+  val npmTest                 = TaskKey[Int]("npm-test")
+  val npmBackstop             = TaskKey[Int]("npm-backstop")
+  val npmBuild                = TaskKey[Int]("npm-build")
+  val npmAccessibilityInstall = TaskKey[Int]("npm-accessibility-install")
 
   val javaScriptSettings: Seq[Setting[_]] = Seq(
     javaScriptDirectory := (baseDirectory in Compile) {
@@ -33,11 +34,14 @@ object JavaScriptBuild {
     // this enables 'sbt "npm <args>"' commands
     commands ++= javaScriptDirectory(base => Seq(Npm.npmCommand(base))).value,
     npmInstall := Npm.npmProcess("npm install failed")(javaScriptDirectory.value, "install"),
+    npmAccessibilityInstall := Npm
+      .npmProcess("npm install failed for accessibility tools")(new File("test/resources/accessibility"), "install"),
     npmBuild := Npm.npmProcess("npm build failed")(javaScriptDirectory.value, "run", "build"),
     npmBuild := (npmBuild dependsOn npmInstall).value,
     npmTest := Npm.npmProcess("npm test failed")(javaScriptDirectory.value, "test"),
     npmTest := (npmTest dependsOn npmBuild).value,
     npmBackstop := Npm.npmProcess("npm backstop failed")(javaScriptDirectory.value, "run", "backstop"),
-    npmBackstop := (npmBackstop dependsOn npmBuild).value
+    npmBackstop := (npmBackstop dependsOn npmBuild).value,
+    (test in Test) := ((test in Test) dependsOn npmAccessibilityInstall).value
   )
 }

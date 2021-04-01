@@ -14,7 +14,6 @@ const config = {
     }
 };
 
-// loosely based on https://github.com/dequelabs/axe-core/tree/develop/doc/examples/jest_react
 axe
     .run(document.querySelector("html"), config)
     .then(results => {
