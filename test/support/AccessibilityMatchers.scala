@@ -19,24 +19,20 @@ package support
 import org.scalatest.matchers._
 import play.twirl.api.Html
 
-import java.io.{File, PrintWriter}
+import java.io.{ByteArrayInputStream, File}
 import scala.sys.process.Process
+import scala.sys.process._
 
 trait AccessibilityMatchers {
-  private def createContentFile(content: String): File = {
-    val file   = File.createTempFile("input-", ".html");
-    val writer = new PrintWriter(file)
-    try writer.print(content)
-    finally writer.close()
-    file
-  }
+  private def process(command: String): ProcessBuilder =
+    Process(s"node $command", new File("test/resources/accessibility"))
 
-  private def process(args: String*): Int =
-    Process(args.toList, new File("test/resources/accessibility")).run().exitValue()
+  private def stream(content: Html) = new ByteArrayInputStream(content.toString.getBytes("UTF-8"))
 
   class HaveNoAxeViolationsMatcher extends Matcher[Html] {
-    def apply(left: Html) = {
-      val outputCode = process("node", "axe", createContentFile(left.toString).toPath.toString)
+    def apply(left: Html): MatchResult = {
+      val outputCode =
+        (process("axe") #< stream(left)) !
 
       MatchResult(
         outputCode == 0,
@@ -47,8 +43,8 @@ trait AccessibilityMatchers {
   }
 
   class HaveNoVnuViolationsMatcher extends Matcher[Html] {
-    def apply(left: Html) = {
-      val outputCode = process("node", "vnu", createContentFile(left.toString).toPath.toString)
+    def apply(left: Html): MatchResult = {
+      val outputCode = (process("vnu") #< stream(left)) !
 
       MatchResult(
         outputCode == 0,
@@ -59,6 +55,7 @@ trait AccessibilityMatchers {
   }
 
   def haveNoAxeViolations = new HaveNoAxeViolationsMatcher
+
   def haveNoVnuViolations = new HaveNoVnuViolationsMatcher
 }
 
