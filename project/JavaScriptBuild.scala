@@ -26,6 +26,7 @@ object JavaScriptBuild {
   val npmBackstop             = TaskKey[Int]("npm-backstop")
   val npmBuild                = TaskKey[Int]("npm-build")
   val npmAccessibilityInstall = TaskKey[Int]("npm-accessibility-install")
+  val npmAccessibilityTest    = TaskKey[Int]("npm-accessibility-test")
 
   val javaScriptSettings: Seq[Setting[_]] = Seq(
     javaScriptDirectory := (baseDirectory in Compile) {
@@ -36,12 +37,15 @@ object JavaScriptBuild {
     npmInstall := Npm.npmProcess("npm install failed")(javaScriptDirectory.value, "install"),
     npmAccessibilityInstall := Npm
       .npmProcess("npm install failed for accessibility tools")(new File("test/resources/accessibility"), "install"),
+    npmAccessibilityTest := Npm
+      .npmProcess("npm test failed for accessibility tools")(new File("test/resources/accessibility"), "test"),
     npmBuild := Npm.npmProcess("npm build failed")(javaScriptDirectory.value, "run", "build"),
     npmBuild := (npmBuild dependsOn npmInstall).value,
     npmTest := Npm.npmProcess("npm test failed")(javaScriptDirectory.value, "test"),
     npmTest := (npmTest dependsOn npmBuild).value,
     npmBackstop := Npm.npmProcess("npm backstop failed")(javaScriptDirectory.value, "run", "backstop"),
     npmBackstop := (npmBackstop dependsOn npmBuild).value,
-    (test in Test) := ((test in Test) dependsOn npmAccessibilityInstall).value
+    npmAccessibilityTest := (npmAccessibilityTest dependsOn npmAccessibilityInstall).value,
+    (test in Test) := ((test in Test) dependsOn npmAccessibilityTest).value
   )
 }
