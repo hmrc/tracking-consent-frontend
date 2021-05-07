@@ -16,22 +16,22 @@
 
 package unit.testonly.views
 
-import uk.gov.hmrc.trackingconsentfrontend.testonly.views.html.TransitionalTestPage
+import uk.gov.hmrc.trackingconsentfrontend.testonly.views.html.BTestPage
 import unit.SpecBase
 
-class TransitionalTestPageSpec extends SpecBase {
+class BTestPageSpec extends SpecBase {
   "the test page page" must {
-    val testPage = app.injector.instanceOf[TransitionalTestPage]
+    val testPage = app.injector.instanceOf[BTestPage]
     val content  = testPage()
 
     "display the correct title" in {
-      content.select("title").text mustBe "Transitional service test page"
+      content.select("title").text mustBe "B service test page"
     }
 
     "display the correct page heading" in {
       val headers = content.select("h1")
       headers.size mustBe 1
-      headers.first.text mustBe "Transitional service test page"
+      headers.first.text mustBe "B service test page"
     }
 
     "inject the correct script" in {
@@ -43,7 +43,7 @@ class TransitionalTestPageSpec extends SpecBase {
     "inject the correct script with the correct gtm container attribute" in {
       val scripts = content.select("script")
 
-      scripts.get(0).attr("data-gtm-container") must be("transitional")
+      scripts.get(0).attr("data-gtm-container") must be("b")
     }
   }
 }

@@ -19,15 +19,15 @@ package acceptance.pages
 import org.openqa.selenium.WebElement
 import support.TestConfiguration
 
-object TransitionalServiceTestPage extends BasePage {
+object BServiceTestPage extends BasePage {
   val url: String =
-    TestConfiguration.url("tracking-consent-frontend") + "/test-only-transitional"
+    TestConfiguration.url("tracking-consent-frontend") + "/test-only-b"
 
-  val title                   = "Transitional service test page"
+  val title                   = "B service test page"
   val acceptAdditionalCookies = "Accept additional cookies"
   val setCookiePreferences    = "View cookies"
 
   def acceptAdditionalCookiesButton: WebElement = findButtonByPartialText(acceptAdditionalCookies)
   def setCookiePreferencesButton: WebElement    = findLabelByPartialText(setCookiePreferences)
-  def transitionalGtmScript: WebElement         = findGtmScript("GTM-TSFTCWZ")
+  def bGtmScript: WebElement                    = findGtmScript("GTM-P39VTVL")
 }

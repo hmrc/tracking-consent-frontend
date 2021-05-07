@@ -23,16 +23,16 @@ import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.test.FakeRequest
 import play.api.test.Helpers.{GET, route, _}
 
-class TransitionalTestPageISpec extends WordSpecLike with Matchers {
+class BTestPageISpec extends WordSpecLike with Matchers {
 
-  "Given a running instance of tracking consent frontend with test routes, calling GET for test-only-transitional" should {
+  "Given a running instance of tracking consent frontend with test routes, calling GET for test-only-b" should {
     "return OK with expected page" in new EnabledTestRoutesApp {
-      val request = FakeRequest(GET, "/tracking-consent/test-only-transitional")
+      val request = FakeRequest(GET, "/tracking-consent/test-only-b")
       val result  = route(app, request).get
 
       status(result)        shouldBe OK
       contentType(result)   shouldBe Some("text/html")
-      contentAsString(result) should include("Transitional service test page")
+      contentAsString(result) should include("B service test page")
     }
   }
 

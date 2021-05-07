@@ -18,12 +18,12 @@
     layout: Layout,
     paragraph: Paragraph,
     h1: H1,
-    transitionalTrackingHead: TransitionalTrackingHead
+    bTrackingHead: BTrackingHead
 )
 @()(implicit request: Request[_], messages: Messages, appConfig: AppConfig)
 
-@defining(Messages("transitionalTestPage.title")) { title =>
-    @layout(pageTitle = Some(title), headBlock = Some(transitionalTrackingHead())) {
+@defining(Messages("bTestPage.title")) { title =>
+    @layout(pageTitle = Some(title), headBlock = Some(bTrackingHead())) {
         @h1(content = Text(title))
         @paragraph(content = HtmlContent(title))
     }

@@ -16,22 +16,22 @@
 
 package acceptance.specs
 
-import acceptance.pages.{TransitionalServiceTestPage}
-import acceptance.pages.TransitionalServiceTestPage._
+import acceptance.pages.{BServiceTestPage}
+import acceptance.pages.BServiceTestPage._
 
-class TransitionalServiceTestPageSpec extends BaseAcceptanceSpec {
+class BServiceTestPageSpec extends BaseAcceptanceSpec {
   feature("Service Test page") {
 
-    scenario("GTM is loaded into the page with the transitional container") {
+    scenario("GTM is loaded into the page with the b container") {
       Given("the user clears their cookies")
       deleteAllCookies
 
       When("the user visits the service test page")
-      go to TransitionalServiceTestPage
+      go to BServiceTestPage
 
-      Then("the gtm script pointed to the transitional container is injected into the page")
+      Then("the gtm script pointed to the b container is injected into the page")
       eventually {
-        transitionalGtmScript should not be null
+        bGtmScript should not be null
       }
     }
 
@@ -40,7 +40,7 @@ class TransitionalServiceTestPageSpec extends BaseAcceptanceSpec {
       deleteAllCookies
 
       When("the user visits the service test page")
-      go to TransitionalServiceTestPage
+      go to BServiceTestPage
 
       Then("the dataLayer contains the Window loaded event")
       eventually {
@@ -53,7 +53,7 @@ class TransitionalServiceTestPageSpec extends BaseAcceptanceSpec {
       deleteAllCookies
 
       When("the user visits the service test page")
-      go to TransitionalServiceTestPage
+      go to BServiceTestPage
 
       Then("the title should be visible")
       h1Element.getText should be(title)
@@ -64,7 +64,7 @@ class TransitionalServiceTestPageSpec extends BaseAcceptanceSpec {
       deleteAllCookies
 
       When("the user visits the service test page")
-      go to TransitionalServiceTestPage
+      go to BServiceTestPage
 
       Then("the cookie banner is visible")
       eventually {

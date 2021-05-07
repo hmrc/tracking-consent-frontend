@@ -20,20 +20,20 @@ import javax.inject.{Inject, Singleton}
 import play.api.mvc._
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
-import uk.gov.hmrc.trackingconsentfrontend.testonly.views.html.TransitionalTestPage
+import uk.gov.hmrc.trackingconsentfrontend.testonly.views.html.BTestPage
 
 import scala.concurrent.Future
 
 @Singleton
-class TransitionalTestController @Inject() (
+class BTestController @Inject() (
   appConfig: AppConfig,
   mcc: MessagesControllerComponents,
-  transitionalTestPage: TransitionalTestPage
+  bTestPage: BTestPage
 ) extends FrontendController(mcc) {
 
   implicit val config: AppConfig = appConfig
 
-  val transitionalTest: Action[AnyContent] = Action.async { implicit request =>
-    Future.successful(Ok(transitionalTestPage()))
+  val bTest: Action[AnyContent] = Action.async { implicit request =>
+    Future.successful(Ok(bTestPage()))
   }
 }

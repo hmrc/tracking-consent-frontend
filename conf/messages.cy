@@ -1,6 +1,6 @@
 cookieSettings.title = Gosodiadau cwcis ar wasanaethau CThEM
 testPage.title = Tudalen prawf y gwasanaeth
-transitionalTestPage.title = Tudalen prawf trosiannol y gwasanaeth
+bTestPage.title = Tudalen prawf trosiannol y gwasanaeth
 
 banner.title = Cwcis ar wasanaethau CThEM
 banner.essential.cookies = Rydym yn defnyddio rhai cwcis hanfodol i wneud i’n gwasanaethau weithio.
