@@ -1,6 +1,6 @@
 cookieSettings.title = Cookie settings on HMRC services
 testPage.title = Service test page
-transitionalTestPage.title = Transitional service test page
+bTestPage.title = B service test page
 
 banner.title = Cookies on HMRC services
 banner.essential.cookies = We use some essential cookies to make our services work.

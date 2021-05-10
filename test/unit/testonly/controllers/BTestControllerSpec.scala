@@ -18,27 +18,27 @@ package unit.testonly.controllers
 
 import play.api.http.Status
 import play.api.test.Helpers._
-import uk.gov.hmrc.trackingconsentfrontend.testonly.controllers.TransitionalTestController
+import uk.gov.hmrc.trackingconsentfrontend.testonly.controllers.BTestController
 import unit.SpecBase
 
-class TransitionalTestControllerSpec extends SpecBase {
-  private val controller = app.injector.instanceOf[TransitionalTestController]
+class BTestControllerSpec extends SpecBase {
+  private val controller = app.injector.instanceOf[BTestController]
 
-  "TransitionalTestController" should {
+  "BTestController" should {
     "return 200" in {
-      val result = controller.transitionalTest(fakeRequest)
+      val result = controller.bTest(fakeRequest)
       status(result) mustBe Status.OK
     }
 
     "return HTML" in {
-      val result = controller.transitionalTest(fakeRequest)
+      val result = controller.bTest(fakeRequest)
       contentType(result) mustBe Some("text/html")
       charset(result) mustBe Some("utf-8")
     }
 
     "show the correct title" in {
-      val result = controller.transitionalTest(fakeRequest)
-      contentAsString(result) must include("Transitional service test page")
+      val result = controller.bTest(fakeRequest)
+      contentAsString(result) must include("B service test page")
     }
   }
 }
