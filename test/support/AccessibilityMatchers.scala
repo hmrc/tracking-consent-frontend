@@ -17,6 +17,7 @@
 package support
 
 import org.scalatest.matchers._
+import play.api.libs.json.{JsArray, Json}
 import play.twirl.api.Html
 
 import java.io.{ByteArrayInputStream, File}
@@ -29,34 +30,28 @@ trait AccessibilityMatchers {
 
   private def stream(content: Html) = new ByteArrayInputStream(content.toString.getBytes("UTF-8"))
 
-  class HaveNoAxeViolationsMatcher extends Matcher[Html] {
+  class HaveNoAccessibilityViolationsMatcher extends Matcher[Html] {
     def apply(left: Html): MatchResult = {
-      val outputCode =
-        (process("axe") #< stream(left)) !
+      val vnuOut = new StringBuilder
+      val vnuErr = new StringBuilder
+      val axeOut = new StringBuilder
+      val axeErr = new StringBuilder
+
+      (process("axe") #< stream(left)) ! ProcessLogger(axeOut append _, axeErr append _)
+      (process("vnu") #< stream(left)) ! ProcessLogger(vnuOut append _, vnuErr append _)
+
+      val axeViolations = Json.parse(axeOut.mkString).as[JsArray].value
+      val vnuViolations = Json.parse(vnuOut.mkString).as[JsArray].value
 
       MatchResult(
-        outputCode == 0,
-        s"""Axe tests failed""",
-        s"""Axe tests succeeded"""
+        axeViolations.isEmpty && vnuViolations.isEmpty,
+        s"Axe tests failed:\n$axeOut\nVNU tests failed:\n$vnuOut",
+        s"""Accessibility tests succeeded"""
       )
     }
   }
 
-  class HaveNoVnuViolationsMatcher extends Matcher[Html] {
-    def apply(left: Html): MatchResult = {
-      val outputCode = (process("vnu") #< stream(left)) !
-
-      MatchResult(
-        outputCode == 0,
-        s"""VNU tests failed""",
-        s"""VNU tests succeeded"""
-      )
-    }
-  }
-
-  def haveNoAxeViolations = new HaveNoAxeViolationsMatcher
-
-  def haveNoVnuViolations = new HaveNoVnuViolationsMatcher
+  def haveNoAccessibilityViolations = new HaveNoAccessibilityViolationsMatcher
 }
 
 object AccessibilityMatchers extends AccessibilityMatchers

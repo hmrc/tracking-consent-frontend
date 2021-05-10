@@ -27,12 +27,8 @@ class CookieSettingsSpec extends SpecBase with AccessibilityMatchers {
     val cookieSettingsPage = app.injector.instanceOf[CookieSettingsPage]
     val content            = cookieSettingsPage()
 
-    "pass axe tests" in {
-      content must haveNoAxeViolations
-    }
-
-    "pass vnu tests" in {
-      content must haveNoVnuViolations
+    "pass accessibility tests" in {
+      content must haveNoAccessibilityViolations
     }
 
     "display the correct browser title" in {

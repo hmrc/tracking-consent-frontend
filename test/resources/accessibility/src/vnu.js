@@ -7,9 +7,8 @@ async function vnu(inputStream) {
   const outputStream = runVnu(inputStream);
 
   const vnuErrors = getVnuErrors(await readStream(outputStream));
-  if (vnuErrors.length > 0) {
-    throw new Error(JSON.stringify(vnuErrors, undefined, '\t'));
-  }
+
+  return JSON.stringify(vnuErrors, undefined, '\t')
 }
 
 module.exports = vnu;

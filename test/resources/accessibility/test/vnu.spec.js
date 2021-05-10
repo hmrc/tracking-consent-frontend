@@ -20,7 +20,7 @@ describe('vnu', () => {
   it('should resolve if no violations are found by axe', async () => {
     const result = vnu(createStream('some data'));
 
-    await expect(result).resolves.toEqual(undefined);
+    await expect(result).resolves.toEqual('[]');
   });
 
   it('should pass through any violations', async () => {
@@ -28,7 +28,7 @@ describe('vnu', () => {
 
     const result = vnu(createStream('some data'));
 
-    await expect(result).rejects.toEqual(new Error('[\n\t{\n\t\t"type": "error"\n\t}\n]'));
+    await expect(result).resolves.toEqual('[\n\t{\n\t\t"type": "error"\n\t}\n]');
   });
 
   it('should pass the provided stream to VNU', async () => {

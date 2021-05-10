@@ -20,7 +20,7 @@ describe('axe', () => {
   it('should resolve if no violations are found by axe', async () => {
     const result = axe(getTestDataStream('some data'));
 
-    await expect(result).resolves.toEqual(undefined);
+    await expect(result).resolves.toEqual('[]');
   });
 
   it('should pass through any violations', async () => {
@@ -28,7 +28,7 @@ describe('axe', () => {
 
     const result = axe(getTestDataStream('some data'));
 
-    await expect(result).rejects.toEqual(new Error('[\n\t"something bad"\n]'));
+    await expect(result).resolves.toEqual('[\n\t"something bad"\n]');
   });
 
   it('should pass the provided content as a DOM element to Axe', async () => {
