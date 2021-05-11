@@ -53,7 +53,7 @@ class TrackingJsISpec extends WordSpecLike with Matchers with GuiceOneAppPerSuit
 
       val body        = result.flatMap(_.body.consumeData(materializer).map(_.utf8String))
       val awaitedBody = Await.result(body, Duration(2, SECONDS))
-      awaitedBody should include("\"cookieSettings.title\":\"Cookie settings on HMRC services\"")
+      awaitedBody should include("\"cookieSettings.title\":\"Cookie settings on HMRC services – GOV.UK\"")
     }
   }
 }

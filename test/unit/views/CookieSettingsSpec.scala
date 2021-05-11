@@ -26,7 +26,7 @@ class CookieSettingsSpec extends SpecBase {
     val content            = cookieSettingsPage()
 
     "display the correct browser title" in {
-      content.select("title").text mustBe "Cookie settings on HMRC services"
+      content.select("title").text mustBe "Cookie settings on HMRC services – GOV.UK"
     }
 
     "display the correct page heading" in {

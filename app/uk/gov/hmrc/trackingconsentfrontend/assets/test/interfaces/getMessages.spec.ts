@@ -11,7 +11,7 @@ describe('getMessages', () => {
   it('should return English messages by default', () => {
     const messages = getMessages();
 
-    expect(messages['cookieSettings.title']).toEqual('Cookie settings on HMRC services');
+    expect(messages['cookieSettings.title']).toEqual('Cookie settings on HMRC services – GOV.UK');
   });
 
   it('should return Welsh messages if appropriate', () => {
@@ -19,6 +19,6 @@ describe('getMessages', () => {
 
     const messages = getMessages();
 
-    expect(messages['cookieSettings.title']).toEqual('Gosodiadau cwcis ar wasanaethau CThEM');
+    expect(messages['cookieSettings.title']).toEqual('Gosodiadau cwcis ar wasanaethau CThEM – GOV.UK');
   });
 });
