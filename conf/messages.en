@@ -1,6 +1,9 @@
-cookieSettings.title = Cookie settings on HMRC services
-testPage.title = Service test page
-bTestPage.title = B service test page
+cookieSettings.title = Cookie settings on HMRC services – GOV.UK
+testPage.title = Service test page – GOV.UK
+bTestPage.title = B service test page – GOV.UK
+cookieSettings.heading = Cookie settings on HMRC services
+testPage.heading = Service test page
+bTestPage.heading = B service test page
 
 banner.title = Cookies on HMRC services
 banner.essential.cookies = We use some essential cookies to make our services work.

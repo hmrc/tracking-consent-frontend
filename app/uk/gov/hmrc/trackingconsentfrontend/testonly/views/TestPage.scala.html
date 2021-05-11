@@ -22,9 +22,9 @@
 )
 @()(implicit request: Request[_], messages: Messages, appConfig: AppConfig)
 
-@defining(Messages("testPage.title")) { title =>
+@defining(Messages("testPage.title"), Messages("testPage.heading")) { case (title, heading) =>
     @layout(pageTitle = Some(title), headBlock = Some(cookieHead())) {
-        @h1(content = Text(title))
+        @h1(content = Text(heading))
         @paragraph(content = HtmlContent(title))
     }
 }
