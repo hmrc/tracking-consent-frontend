@@ -17,13 +17,19 @@
 package unit.views
 
 import play.api.test.Helpers._
+import support.AccessibilityMatchers
 import uk.gov.hmrc.trackingconsentfrontend.views.html.CookieSettingsPage
 import unit.SpecBase
 
-class CookieSettingsSpec extends SpecBase {
+class CookieSettingsSpec extends SpecBase with AccessibilityMatchers {
+
   "the cookie settings page" must {
     val cookieSettingsPage = app.injector.instanceOf[CookieSettingsPage]
     val content            = cookieSettingsPage()
+
+    "pass accessibility tests" in {
+      content must haveNoAccessibilityViolations
+    }
 
     "display the correct browser title" in {
       content.select("title").text mustBe "Cookie settings on HMRC services – GOV.UK"

@@ -27,11 +27,16 @@
         headBlock: Option[Html] = None,
         scriptsBlock: Option[Html] = None
 )(contentBlock: Html)(implicit request: Request[_], messages: Messages, appConfig: AppConfig)
+
+@contentBits = {
+  <span>Some bad content not contained in landmarks</span>
+  @hmrcLanguageSelectHelper()
+}
 @govukLayout(
     pageTitle = pageTitle,
     headBlock = Some(hmrcHead(headBlock, nonce = CSPNonce.get)),
     headerBlock = Some(hmrcStandardHeader(displayHmrcBanner = true)),
     scriptsBlock = Some(hmrcScripts(scriptsBlock, nonce = CSPNonce.get)),
-    beforeContentBlock = Some(hmrcLanguageSelectHelper()),
+    beforeContentBlock = Some(contentBits),
     footerBlock = Some(hmrcStandardFooter())
 )(contentBlock)
