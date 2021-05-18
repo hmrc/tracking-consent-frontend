@@ -1,8 +1,8 @@
 import JavaScriptBuild._
-import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin.publishingSettings
 import play.sbt.PlayImport.PlayKeys.playDefaultPort
 import sbt.Keys.testOptions
-import uk.gov.hmrc.DefaultBuildSettings.{addTestReportOption, integrationTestSettings}
+import uk.gov.hmrc.DefaultBuildSettings.addTestReportOption
+import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin.publishingSettings
 
 val appName = "tracking-consent-frontend"
 
@@ -46,7 +46,7 @@ lazy val zapTestSettings =
     )
 
 lazy val microservice = Project(appName, file("."))
-  .enablePlugins(play.sbt.PlayScala, SbtAutoBuildPlugin, SbtGitVersioning, SbtDistributablesPlugin)
+  .enablePlugins(play.sbt.PlayScala, SbtDistributablesPlugin)
   .disablePlugins(JUnitXmlReportPlugin) // Required to prevent https://github.com/scalatest/scalatest/issues/1427
   .configs(AcceptanceTest, IntegrationTest, ZapTest)
   .settings(
