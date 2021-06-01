@@ -80,20 +80,15 @@ npm run analyze
 
 ## Running ZAP scan locally
 
-To run the ZAP scan, you will need a copy of the ZAP proxy running locally on port 11000: https://www.zaproxy.org/, with the 
-following options configured:
+To run the ZAP scan, use the Docker helper supplied by `dast-config-manager` (https://github.com/hmrc/dast-config-manager#running-zap-locally)
 
-* under HUD, uncheck 'Enable when using the ZAP Desktop' (stops ZAP converting requests to HTTPS)
-* under API, check 'Disable the API key'
-
-You will also need to install additional active and passive scanner rules from https://github.com/zaproxy/zap-extensions
-by following the instructions in the README.
-
-```
-./run_zap_tests.sh
-```
-
-More information on HMRC's ZAP scanning automation library can be found at https://github.com/hmrc/zap-automation
+Follow the following steps:
+1. Clone the repo at: https://github.com/hmrc/dast-config-manager
+2. Enable port forwarding: `export ZAP_FORWARD_ENABLE="true"`
+3. Configure port forwarding: `export ZAP_FORWARD_PORTS=12345`
+4. In the `dast-config-manager` directory, start the ZAP docker container: `make local-zap-running`
+5. In the `tracking-consent-frontend` directory, run the acceptance tests with ZAP proxying: `sbt -Dplay.http.router=testOnlyDoNotUseInAppConf.Routes -Dbrowser=chrome -Dzap.proxy=true acceptance:test`
+6. In the `dast-config-manager` directory, stop the ZAP docker container: `make local-zap-stop`
 
 ## Visual regression tests
 
