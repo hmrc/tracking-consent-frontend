@@ -38,5 +38,6 @@ object CookieSettingsPage extends BasePage {
   def doNotUseSettingsCookiesLabel: WebElement = findLabelByPartialText(doNotUseSettingsCookies)
   def doNotUseSettingsCookiesInput: WebElement = findInputByLabelPartialText(doNotUseSettingsCookies)
 
-  def submitButton: WebElement = findButtonByPartialText("Save changes")
+  def submitButton: WebElement      = findButtonByPartialText("Save changes")
+  def welshSubmitButton: WebElement = findButtonByPartialText("Cadw newidiadau")
 }

@@ -8,6 +8,7 @@ import fixture from '../fixtures/settingsFormMinimal.html';
 import * as scrollToTop from '../../src/common/scrollToTop';
 import * as getReferrer from '../../src/common/getReferrer';
 import * as getPathname from '../../src/common/getPathname';
+import * as getMessages from '../../src/interfaces/getMessages';
 
 describe('renderSettingsSaveConfirmationMessage', () => {
   let referrer = '/another-service?abc=def&ghi=jkl';
@@ -23,6 +24,13 @@ describe('renderSettingsSaveConfirmationMessage', () => {
     renderSettingsSaveConfirmationMessage();
 
     expect(queryByText(document.body, /Your cookie settings were saved/)).toBeTruthy();
+  });
+
+  it('should retrieve the save confirmation messages from the passed in messages', () => {
+    spyOn(getMessages, 'default').and.returnValue({ 'cookieSettings.saveConfirmation.title': 'Some test title' });
+    renderSettingsSaveConfirmationMessage();
+
+    expect(queryByText(document.body, /Some test title/)).toBeTruthy();
   });
 
   it('should not render a second banner if called multiple times', () => {
