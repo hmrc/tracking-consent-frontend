@@ -214,7 +214,7 @@ Tracking consent sends the following events to GTM via the datalayer:
   of the mechanisms above
 
 Internally this mechanism is implemented via
-[gtmCommunicatorFactory](app/uk/gov/hmrc/trackingconsentfrontend/assets/src/interfaces/gtmCommunicatorFactory.ts).
+[gtmCommunicatorFactory](js/src/interfaces/gtmCommunicatorFactory.ts).
 Messages are sent to GTM for both `SERVICE_PAGE_LOAD_EVENT` and `CONSENT_UPDATED_EVENT` events.
 
 ## Integration with Optimizely
@@ -239,7 +239,7 @@ The following should be noted as consequences of the above:
    pages in the user journey. They will not see the page change to a variation following acceptance.
 
 Internally this mechanism is implemented via
-[optimizelyCommunicatorFactory](app/uk/gov/hmrc/trackingconsentfrontend/assets/src/interfaces/optimizelyCommunicatorFactory.ts).
+[optimizelyCommunicatorFactory](js/src/interfaces/optimizelyCommunicatorFactory.ts).
 An opt-out message is sent to Optimizely for both `SERVICE_PAGE_LOAD_EVENT` and `CONSENT_UPDATED_EVENT` events.
 
 ### Optimizely integration with Google Analytics using Google Tag Manager
@@ -249,7 +249,7 @@ to Google Analytics, a special Universal Analytics GTM tag must be configured ac
 instructions on the [Optimizely website](https://help.optimizely.com/Integrate_Other_Platforms/Integrate_Optimizely_X_with_Google_Universal_Analytics_using_Google_Tag_Manager)
 This configuration must be carried out once for each GTM container.
 
-As a convenience, tracking consent hosts the [custom integration code](app/uk/gov/hmrc/trackingconsentfrontend/assets/src/entrypoints/optimizely.js) under
+As a convenience, tracking consent hosts the [custom integration code](js/src/entrypoints/optimizely.js) under
 the endpoint https://www.tax.service.gov.uk/tracking-consent/tracking/optimizely.js needed by Step 9 of the above integration guide.
 This means it is not necessary to carry out Step 9 - Custom HTML tag described in the above integration guide. The tracking consent
 helpers in `hmrc/play-frontend-hmrc` and `hmrc/play-ui` add this snippet *after* the optimizely snippet,
@@ -277,7 +277,7 @@ in [bootstrap-play](https://github.com/hmrc/bootstrap-play) that internally uses
 [play-auditing](https://github.com/hmrc/play-auditing) library.
 
 Internally this mechanism is implemented via 
-[auditCommunicatorFactory](app/uk/gov/hmrc/trackingconsentfrontend/assets/src/interfaces/auditCommunicatorFactory.ts), listening
+[auditCommunicatorFactory](js/src/interfaces/auditCommunicatorFactory.ts), listening
 to events of type `CONSENT_UPDATED_EVENT` only.
 
 ## Maintenance documentation

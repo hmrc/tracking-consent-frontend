@@ -40,6 +40,6 @@ bin
 coverage
 node_modules
 stats.json
-public/
+/public/
 **/backstop_data/html_report
 **/backstop_data/bitmaps_test
