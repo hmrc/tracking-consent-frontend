@@ -3,11 +3,9 @@ import {
   GOV_UK_BODY_CLASS, GOV_UK_LINK_CLASS,
   COOKIE_SETTINGS_NOTICE_WRAPPER_CLASS, COOKIE_SETTINGS_CONFIRMATION_CLASS,
 } from '../constants/cssClasses';
-// @ts-ignore
 import callIfNotNull from '../common/callIfNotNull';
 import scrollToTop from '../common/scrollToTop';
 import getReferrer from '../common/getReferrer';
-// @ts-ignore
 import getPathname from '../common/getPathname';
 import focusIfNotNull from '../common/focusIfNotNull';
 import cookieSettingsConfirmation from './cookieSettingsConfirmation';
