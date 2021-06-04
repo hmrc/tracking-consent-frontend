@@ -17,7 +17,7 @@
 package acceptance.specs
 
 import acceptance.pages.CookieSettingsPage
-import acceptance.pages.CookieSettingsPage._
+import acceptance.pages.CookieSettingsPage.{partialLinkText, _}
 
 class CookieSettingsPageSpec extends BaseAcceptanceSpec {
 
@@ -141,6 +141,38 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     userConsentCookie.getValue should include(
       "%22preferences%22:{%22measurement%22:true%2C%22settings%22:true}"
     )
+  }
+
+  scenario("The user saving their consent sees a confirmation banner") {
+    Given("the user clears their cookies")
+    CookieSettingsPage.deleteAllCookies
+
+    And("the user visits the cookie settings page")
+    go to CookieSettingsPage
+
+    When("clicks submit")
+    click on submitButton
+
+    Then("the user should see the banner confirming save")
+    h2Element.getText shouldBe "Your cookie settings were saved"
+  }
+
+  scenario("The user changing their language sees all content in Welsh") {
+    Given("the user clears their cookies")
+    CookieSettingsPage.deleteAllCookies
+
+    And("the user visits the cookie settings page")
+    go to CookieSettingsPage
+
+    And("the user translates the page to Welsh")
+    click on partialLinkText("Cymraeg")
+    h1Element.getText shouldBe "Gosodiadau cwcis ar wasanaethau CThEM"
+
+    When("clicks submit")
+    click on welshSubmitButton
+
+    Then("the user should see the banner confirming save")
+    h2Element.getText shouldBe "Wedi cadw’ch gosodiadau cwcis"
   }
 
   scenario("No Javascript errors occur") {

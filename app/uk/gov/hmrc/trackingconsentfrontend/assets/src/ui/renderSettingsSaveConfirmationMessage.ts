@@ -3,17 +3,16 @@ import {
   GOV_UK_BODY_CLASS, GOV_UK_LINK_CLASS,
   COOKIE_SETTINGS_NOTICE_WRAPPER_CLASS, COOKIE_SETTINGS_CONFIRMATION_CLASS,
 } from '../constants/cssClasses';
-// @ts-ignore
 import callIfNotNull from '../common/callIfNotNull';
 import scrollToTop from '../common/scrollToTop';
 import getReferrer from '../common/getReferrer';
-// @ts-ignore
-import messages from '../../../../../../../../conf/messages.en';
 import getPathname from '../common/getPathname';
 import focusIfNotNull from '../common/focusIfNotNull';
 import cookieSettingsConfirmation from './cookieSettingsConfirmation';
+import getMessages from '../interfaces/getMessages';
 
 const getReferrerLink = (referrer): HTMLAnchorElement => {
+  const messages = getMessages();
   const link = document.createElement('a');
   link.className = GOV_UK_LINK_CLASS;
   link.innerHTML = messages['cookieSettings.saveConfirmation.link.text'];
@@ -43,11 +42,12 @@ const insertReferrerLinkIfNecessary = (message: HTMLElement) => {
 };
 
 const getConfirmation = (): HTMLElement => {
-  const message = document.createElement('div');
-  message.className = COOKIE_SETTINGS_CONFIRMATION_CLASS;
-  message.innerHTML = cookieSettingsConfirmation(messages);
-  insertReferrerLinkIfNecessary(message);
-  return message;
+  const messages = getMessages();
+  const confirmation = document.createElement('div');
+  confirmation.className = COOKIE_SETTINGS_CONFIRMATION_CLASS;
+  confirmation.innerHTML = cookieSettingsConfirmation(messages);
+  insertReferrerLinkIfNecessary(confirmation);
+  return confirmation;
 };
 
 const queryConfirmation = (): HTMLElement | null => document.querySelector(`.${COOKIE_SETTINGS_NOTICE_CLASS}`);
