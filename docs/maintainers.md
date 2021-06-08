@@ -51,7 +51,7 @@ The Chrome driver is available at https://chromedriver.chromium.org/
 Change to the Javascript assets directory:
 
 ```
-cd app/uk/gov/hmrc/trackingconsentfrontend/assets
+cd js
 ```
 
 Audit dependencies:
@@ -163,7 +163,7 @@ cookie banner and required layout styles.
 1. Change to the Javascript assets directory
 
     ```shell script
-    cd app/uk/gov/hmrc/trackingconsentfrontend/assets
+    cd js
     ```
 
 1. Upgrade the version of govuk-frontend in `package.json`

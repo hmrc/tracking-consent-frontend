@@ -1,0 +1,33 @@
+{
+  "extends": [
+    "airbnb-base",
+    "airbnb-typescript"
+  ],
+  "root": true,
+  "env": {
+    "browser": true
+  },
+  "ignorePatterns": [
+    "js/src/entrypoints/optimizely.js",
+    "js/test/backstop/**/*"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "settings": {
+    "react": {
+      "version": "latest"
+    }
+  },
+  "overrides": [
+    {
+      "files": [
+        "js/test/**/*"
+      ],
+      "env": {
+        "browser": true,
+        "jest": true
+      }
+    }
+  ]
+}
