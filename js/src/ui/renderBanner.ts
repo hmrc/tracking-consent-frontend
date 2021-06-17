@@ -58,6 +58,7 @@ const renderBanner = (userPreference: UserPreferences) => {
     banner.innerHTML = bannerTemplate(messages);
     banner.setAttribute('role', 'region');
     banner.setAttribute('aria-label', messages['banner.title']);
+    banner.setAttribute('data-nosnippet', '');
 
     const acceptAdditionalButton = banner.querySelector(`.${COOKIE_BANNER_CLASS} .${COOKIE_BANNER_BUTTON_CLASS}[value=accept]`);
     callIfNotNull(acceptAdditionalButton, (element) => element.addEventListener('click', handleAcceptAdditionalClick));

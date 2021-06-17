@@ -76,6 +76,15 @@ describe('renderBanner', () => {
     expect(queryByText(document.body, /Cwcis ar wasanaethau CThEM/)).toBeTruthy();
   });
 
+  it('should have an SEO data-nosnippet attribute', () => {
+    renderBanner(userPreference);
+
+    const banner = document.querySelector('.cbanner-govuk-cookie-banner');
+
+    // @ts-ignore
+    expect(banner).toHaveAttribute('data-nosnippet');
+  });
+
   it('should render a submit button', () => {
     renderBanner(userPreference);
 
@@ -116,10 +125,11 @@ describe('renderBanner', () => {
   it('should render the banner before the govuk-frontend skiplink link', () => {
     renderBanner(userPreference);
 
-    const skipLink = document.querySelector('.govuk-skip-link');
+    // @ts-ignore
+    const skipLink = document.querySelector('.govuk-skip-link').previousSibling;
 
     // @ts-ignore
-    expect(skipLink.previousSibling.classList).toContain('cbanner-govuk-cookie-banner');
+    expect(skipLink.classList).toContain('cbanner-govuk-cookie-banner');
   });
 
   it('should render the banner after the govuk toolkit skiplink container', () => {
