@@ -116,7 +116,7 @@ describe('renderSettingsSaveConfirmationMessage', () => {
   it('should have the correct role and label', () => {
     renderSettingsSaveConfirmationMessage();
 
-    expect(getByRole(document.body, 'alert')).toBeTruthy();
+    expect(getByRole(document.body, 'alertdialog')).toBeTruthy();
   });
 
   it('should have the focus after it is rendered', () => {
