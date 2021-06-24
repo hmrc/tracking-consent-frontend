@@ -36,8 +36,6 @@
     ]
   },
   "dependencies": {
-    "govuk-frontend": "3.11.0",
-    "js-cookie": "2.2.1",
     "@babel/core": "7.10.1",
     "@babel/plugin-transform-runtime": "7.10.1",
     "@babel/preset-env": "7.10.1",
@@ -45,13 +43,15 @@
     "core-js": "3.6.5",
     "css-loader": "5.2.6",
     "dot-properties": "1.0.1",
-    "node-sass": "4.14.1",
+    "govuk-frontend": "3.11.0",
+    "js-cookie": "2.2.1",
+    "node-sass": "^6.0.1",
     "sass-loader": "8.0.2",
     "style-loader": "1.2.1",
-    "webpack": "4.43.0",
-    "webpack-cli": "3.3.11",
+    "ts-loader": "6.2.1",
     "typescript": "3.8.3",
-    "ts-loader": "6.2.1"
+    "webpack": "^5.40.0",
+    "webpack-cli": "3.3.11"
   },
   "devDependencies": {
     "@testing-library/dom": "6.15.0",
