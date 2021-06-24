@@ -59,6 +59,7 @@ cookieSettings.onValue = on
 cookieSettings.offValue = off
 cookieSettings.saveButton = Save changes
 
+cookieSettings.saveConfirmation.banner.title = Success
 cookieSettings.saveConfirmation.title = Your cookie settings were saved
 cookieSettings.saveConfirmation.paragraph1 = Other government services may set additional cookies and, if so, will have their own cookie policy and banner.
 cookieSettings.saveConfirmation.link.text =  Go back to the page you were looking at

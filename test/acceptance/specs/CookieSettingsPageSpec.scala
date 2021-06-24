@@ -154,7 +154,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     click on submitButton
 
     Then("the user should see the banner confirming save")
-    h2Element.getText shouldBe "Your cookie settings were saved"
+    h3Element.getText shouldBe "Your cookie settings were saved"
   }
 
   scenario("The user changing their language sees all content in Welsh") {
@@ -172,7 +172,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     click on welshSubmitButton
 
     Then("the user should see the banner confirming save")
-    h2Element.getText shouldBe "Wedi cadw’ch gosodiadau cwcis"
+    h3Element.getText shouldBe "Wedi cadw’ch gosodiadau cwcis"
   }
 
   scenario("No Javascript errors occur") {
