@@ -43,6 +43,8 @@ trait BasePage extends Matchers with Page with WebBrowser with BrowserDriver {
 
   def h3Element: WebElement = findBy(By.cssSelector("h3"))
 
+  def confirmationMessageBanner: WebElement = findBy(By.cssSelector("h2.govuk-notification-banner__title"))
+
   def consoleErrors: Seq[String] = {
     val logs = driver.manage().logs().get("browser").asScala
     logs.filter(_.getLevel == SEVERE).map(_.getMessage).toSeq
