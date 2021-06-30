@@ -41,7 +41,9 @@ trait BasePage extends Matchers with Page with WebBrowser with BrowserDriver {
 
   def h1Element: WebElement = findBy(By.cssSelector("h1"))
 
-  def h2Element: WebElement = findBy(By.cssSelector("h2"))
+  def h3Element: WebElement = findBy(By.cssSelector("h3"))
+
+  def confirmationMessageBanner: WebElement = findBy(By.cssSelector("h2.govuk-notification-banner__title"))
 
   def consoleErrors: Seq[String] = {
     val logs = driver.manage().logs().get("browser").asScala

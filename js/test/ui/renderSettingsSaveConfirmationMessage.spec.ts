@@ -82,7 +82,7 @@ describe('renderSettingsSaveConfirmationMessage', () => {
     const link = getByText(document.body, /Go back to the page you were looking at/);
 
     // @ts-ignore
-    const container = link.parentElement.parentElement;
+    const container = link.parentElement.parentElement.parentElement;
     expect(container).not.toEqual(null);
     // @ts-ignore
     expect(container.classList).toContain('cookie-settings__notice');
@@ -107,7 +107,7 @@ describe('renderSettingsSaveConfirmationMessage', () => {
     renderSettingsSaveConfirmationMessage();
 
     // @ts-ignore
-    const confirmationMessage = getByText(document.body, /Your cookie settings were saved/).parentNode.parentNode;
+    const confirmationMessage = getByText(document.body, /Your cookie settings were saved/).parentNode.parentNode.parentNode;
 
     // @ts-ignore
     expect(confirmationMessage.tabIndex).toEqual(-1);
@@ -116,14 +116,14 @@ describe('renderSettingsSaveConfirmationMessage', () => {
   it('should have the correct role and label', () => {
     renderSettingsSaveConfirmationMessage();
 
-    expect(getByRole(document.body, 'region', { name: 'Notice' })).toBeTruthy();
+    expect(getByRole(document.body, 'alertdialog')).toBeTruthy();
   });
 
   it('should have the focus after it is rendered', () => {
     renderSettingsSaveConfirmationMessage();
 
     // @ts-ignore
-    const confirmationMessage = getByText(document.body, /Your cookie settings were saved/).parentNode;
+    const confirmationMessage = getByText(document.body, /Your cookie settings were saved/).parentNode.parentNode;
 
     expect(document.activeElement).toEqual(confirmationMessage);
   });

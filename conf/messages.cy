@@ -59,6 +59,7 @@ cookieSettings.onValue = on
 cookieSettings.offValue = off
 cookieSettings.saveButton = Cadw newidiadau
 
+cookieSettings.saveConfirmation.banner.title = Llwyddiant
 cookieSettings.saveConfirmation.title = Wedi cadw’ch gosodiadau cwcis
 cookieSettings.saveConfirmation.paragraph1 = Gall gwasanaethau eraill y llywodraeth osod cwcis ychwanegol ac, os felly, bydd ganddynt eu polisi a’u baner cwcis eu hunain.
 cookieSettings.saveConfirmation.link.text =  Ewch yn ôl i’r dudalen yr oeddech yn edrych arni

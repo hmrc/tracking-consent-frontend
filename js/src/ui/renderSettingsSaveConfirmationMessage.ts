@@ -1,7 +1,10 @@
 import {
   COOKIE_SETTINGS_NOTICE_CLASS,
-  GOV_UK_BODY_CLASS, GOV_UK_LINK_CLASS,
-  COOKIE_SETTINGS_NOTICE_WRAPPER_CLASS, COOKIE_SETTINGS_CONFIRMATION_CLASS,
+  COOKIE_SETTINGS_NOTICE_CONTENT_CLASS,
+  GOV_UK_BODY_CLASS,
+  COOKIE_SETTINGS_NOTICE_WRAPPER_CLASS,
+  COOKIE_SETTINGS_CONFIRMATION_CLASS,
+  GOV_UK_NOTIFICATION_LINK_CLASS,
 } from '../constants/cssClasses';
 import callIfNotNull from '../common/callIfNotNull';
 import scrollToTop from '../common/scrollToTop';
@@ -14,7 +17,7 @@ import getMessages from '../interfaces/getMessages';
 const getReferrerLink = (referrer): HTMLAnchorElement => {
   const messages = getMessages();
   const link = document.createElement('a');
-  link.className = GOV_UK_LINK_CLASS;
+  link.className = GOV_UK_NOTIFICATION_LINK_CLASS;
   link.innerHTML = messages['cookieSettings.saveConfirmation.link.text'];
   link.href = referrer;
   return link;
@@ -36,7 +39,7 @@ const insertReferrerLink = (notice: HTMLElement, referrer: string) => {
 const insertReferrerLinkIfNecessary = (message: HTMLElement) => {
   const referrer = getReferrer();
   if (referrer && referrer !== getPathname()) {
-    const notice = message.querySelector(`.${COOKIE_SETTINGS_NOTICE_CLASS}`);
+    const notice = message.querySelector(`.${COOKIE_SETTINGS_NOTICE_CONTENT_CLASS}`);
     callIfNotNull(notice, (element) => insertReferrerLink(element, referrer));
   }
 };
