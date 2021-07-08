@@ -19,7 +19,7 @@ package unit
 import play.api.Application
 import play.api.i18n.MessagesApi
 import play.api.inject.guice.GuiceApplicationBuilder
-import play.api.mvc.{Cookie, Request}
+import play.api.mvc.Request
 import play.api.test.FakeRequest
 import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
 

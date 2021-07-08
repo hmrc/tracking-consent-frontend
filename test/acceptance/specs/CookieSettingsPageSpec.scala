@@ -17,7 +17,7 @@
 package acceptance.specs
 
 import acceptance.pages.CookieSettingsPage
-import acceptance.pages.CookieSettingsPage.{partialLinkText, _}
+import acceptance.pages.CookieSettingsPage._
 
 class CookieSettingsPageSpec extends BaseAcceptanceSpec {
 

@@ -16,10 +16,8 @@
 
 package unit.controllers
 
-import org.jsoup.Jsoup
 import play.api.http.Status
 import play.api.mvc.Cookie
-import play.api.test.FakeRequest
 import play.api.test.Helpers._
 import uk.gov.hmrc.trackingconsentfrontend.controllers.CookieSettingsController
 import unit.SpecBase
