@@ -24,7 +24,8 @@ import play.api.inject.guice.GuiceApplicationBuilder
 import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
 
 trait SpecBase extends PlaySpec with GuiceOneAppPerSuite with JsoupHelpers with AppHelpers {
-  val baseProperties = Map(
+
+  val baseProperties: Map[String, Any] = Map(
     "optimizely.url"       -> "https://cdn.optimizely.com/",
     "optimizely.projectId" -> "1234567",
     "metrics.jvm"          -> false,
