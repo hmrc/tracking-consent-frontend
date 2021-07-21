@@ -2,6 +2,7 @@
 // Ideally we would have a better way to identify classic services.
 // Services based on assets-frontend or govuk-frontend should not trigger this rule
 // as there is no id attribute on the body tag
+
 @import "node_modules/govuk-frontend/govuk/base";
 
 body#top {

@@ -5,6 +5,7 @@
 // Do not inject fonts, use the fonts available on the service page
 $govuk-include-default-font-face: false;
 $govuk-font-family: "GDS Transport", "nta", Arial, sans-serif;
+$govuk-typography-use-rem: true;
 
 @import "node_modules/govuk-frontend/govuk/base";
 @import "width-container";
