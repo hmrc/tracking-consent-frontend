@@ -20,9 +20,9 @@ import acceptance.pages.ErrorPage
 import acceptance.pages.ErrorPage._
 
 class ErrorPageSpec extends BaseAcceptanceSpec {
-  feature("Error page") {
+  Feature("Error page") {
 
-    scenario("GTM is loaded into the page with the default container") {
+    Scenario("GTM is loaded into the page with the default container") {
       Given("the user clears their cookies")
       deleteAllCookies
 
@@ -35,7 +35,7 @@ class ErrorPageSpec extends BaseAcceptanceSpec {
       }
     }
 
-    scenario("The dataLayer is initialised") {
+    Scenario("The dataLayer is initialised") {
       Given("the user clears their cookies")
       deleteAllCookies
 
@@ -48,7 +48,7 @@ class ErrorPageSpec extends BaseAcceptanceSpec {
       }
     }
 
-    scenario("The page has the correct title") {
+    Scenario("The page has the correct title") {
       Given("the user clears their cookies")
       deleteAllCookies
 
@@ -59,7 +59,7 @@ class ErrorPageSpec extends BaseAcceptanceSpec {
       h1Element.getText should be(title)
     }
 
-    scenario("The user sees the cookie banner") {
+    Scenario("The user sees the cookie banner") {
       Given("the user clears their cookies")
       deleteAllCookies
 

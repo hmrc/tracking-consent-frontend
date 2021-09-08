@@ -32,7 +32,7 @@ lazy val acceptanceTestSettings =
       fork in AcceptanceTest := false,
       // The following is needed due to https://stackoverflow.com/questions/24791992/assets-are-not-loaded-in-functional-test-mode
       (managedClasspath in AcceptanceTest) += (packageBin in Assets).value,
-      (test in AcceptanceTest) := (test in AcceptanceTest).dependsOn(npmBuild).value,
+      (test in AcceptanceTest) := (test in AcceptanceTest).dependsOn(a11yInstall).dependsOn(npmBuild).value,
       (testOptions in AcceptanceTest) := Seq(Tests.Filter(_ startsWith "acceptance")),
       addTestReportOption(AcceptanceTest, "acceptance-test-reports")
     )

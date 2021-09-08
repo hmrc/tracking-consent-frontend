@@ -18,7 +18,8 @@ package it
 
 import akka.actor.ActorSystem
 import akka.stream.ActorMaterializer
-import org.scalatest.{Matchers, WordSpecLike}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.Application
 import play.api.inject.guice.GuiceApplicationBuilder
@@ -29,7 +30,7 @@ import scala.concurrent.Await
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
 
-class TrackingJsISpec extends WordSpecLike with Matchers with GuiceOneAppPerSuite {
+class TrackingJsISpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite {
 
   val materializer: ActorMaterializer = ActorMaterializer()(ActorSystem("it"))
 

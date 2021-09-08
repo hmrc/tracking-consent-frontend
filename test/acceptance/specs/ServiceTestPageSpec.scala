@@ -20,12 +20,12 @@ import acceptance.pages.ServiceTestPage
 import acceptance.pages.ServiceTestPage._
 
 class ServiceTestPageSpec extends BaseAcceptanceSpec {
-  feature("Service Test page") {
-    scenario("The user's consent is not initially assumed either way") {
+  Feature("Service Test page") {
+    Scenario("The user's consent is not initially assumed either way") {
       Given("Given the user clears their cookies")
       deleteAllCookies
 
-      When("the user visits the service test page with enable tracking consent parameter")
+      When("the user visits the service test page")
       go to ServiceTestPage
 
       Then("the dataLayer does not contain the 'trackingConsentMeasurementAccepted' event")
@@ -35,11 +35,11 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       settingsAllowedGtmEvent should be(null)
     }
 
-    scenario("The user is initially opted out from Optimizely") {
+    Scenario("The user is initially opted out from Optimizely") {
       Given("Given the user clears their cookies")
       deleteAllCookies
 
-      When("the user visits the service test page with enable tracking consent parameter")
+      When("the user visits the service test page")
       go to ServiceTestPage
 
       Then("the optimizely object contains the optOut event")
@@ -49,11 +49,11 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       optimizelyOptInEvent should be(null)
     }
 
-    scenario("The user consenting to all cookies fires GTM") {
+    Scenario("The user consenting to all cookies fires GTM") {
       Given("the user clears their cookies")
       deleteAllCookies
 
-      When("the user visits the service test page with enable tracking consent parameter")
+      When("the user visits the service test page")
       go to ServiceTestPage
       eventually {
         tagName("h2").element.text shouldBe "Cookies on HMRC services"
@@ -69,11 +69,11 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       settingsAllowedGtmEvent should not be null
     }
 
-    scenario("The user consenting to all cookies opts the user into optimizely on the next page load") {
+    Scenario("The user consenting to all cookies opts the user into optimizely on the next page load") {
       Given("the user clears their cookies")
       deleteAllCookies
 
-      When("the user visits the service test page with enable tracking consent parameter")
+      When("the user visits the service test page")
       go to ServiceTestPage
       eventually {
         tagName("h2").element.text shouldBe "Cookies on HMRC services"
@@ -92,11 +92,11 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       optimizelyOptInEvent should not be null
     }
 
-    scenario("The user consenting to all cookies sets consent cookie") {
+    Scenario("The user consenting to all cookies sets consent cookie") {
       Given("the user clears their cookies")
       deleteAllCookies
 
-      When("the user visits the service test page with enable tracking consent parameter")
+      When("the user visits the service test page")
       go to ServiceTestPage
 
       When("the user clicks 'Accept all cookies'")
@@ -106,11 +106,11 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       userConsentCookie.getValue should include("%22preferences%22:{%22measurement%22:true%2C%22settings%22:true}}")
     }
 
-    scenario("The user rejecting additional cookies sets consent cookie") {
+    Scenario("The user rejecting additional cookies sets consent cookie") {
       Given("the user clears their cookies")
       deleteAllCookies
 
-      When("the user visits the service test page with enable tracking consent parameter")
+      When("the user visits the service test page")
       go to ServiceTestPage
 
       When("the user clicks 'Accept all cookies'")
@@ -120,11 +120,11 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       userConsentCookie.getValue should include("%22preferences%22:{%22measurement%22:false%2C%22settings%22:false}}")
     }
 
-    scenario("The user rejecting additional cookies does not fire GTM") {
+    Scenario("The user rejecting additional cookies does not fire GTM") {
       Given("the user clears their cookies")
       deleteAllCookies
 
-      When("the user visits the service test page with enable tracking consent parameter")
+      When("the user visits the service test page")
       go to ServiceTestPage
 
       When("the user clicks 'Accept all cookies'")
@@ -137,11 +137,11 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       settingsAllowedGtmEvent should be(null)
     }
 
-    scenario("The user visits a page and the cookie banner is displayed") {
+    Scenario("The user visits a page and the cookie banner is displayed") {
       Given("the user clears their cookies")
       deleteAllCookies
 
-      When("the user visits the service test page with enable tracking consent parameter")
+      When("the user visits the service test page")
       go to ServiceTestPage
 
       Then("there should be the heading 'Cookies on HMRC services'")
@@ -150,11 +150,11 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       }
     }
 
-    scenario("No Javascript errors occur") {
+    Scenario("No Javascript errors occur") {
       Given("the user clears their cookies")
       deleteAllCookies
 
-      When("the user visits the service test page with enable tracking consent parameter")
+      When("the user visits the service test page")
       go to ServiceTestPage
 
       And("the banner should be displayed with the title 'Cookies on HMRC services'")
@@ -164,6 +164,45 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
 
       And("no Javascript console errors are thrown")
       consoleErrors should equal(Seq.empty)
+    }
+
+    // FIXME: Add known issue into sbt-accessibility-linter for the fact that the axe-core algorithm
+    // for detecting skip links does not take into account guidance from GDS
+    // around the fact that the cookie banner should be rendered *before* the skip link
+    ignore("An accessible banner is displayed") {
+      Given("the user clears their cookies")
+      deleteAllCookies
+
+      When("the user visits the service test page")
+      go to ServiceTestPage
+
+      And("the banner should be displayed with the title 'Cookies on HMRC services'")
+      eventually {
+        tagName("h2").element.text shouldBe "Cookies on HMRC services"
+      }
+
+      And("the page is still accessible")
+      ServiceTestPage.renderedHtml should passAccessibilityChecks
+    }
+
+    // FIXME: Add known issue into sbt-accessibility-linter for the fact that the axe-core algorithm
+    // for detecting skip links does not take into account guidance from GDS
+    // around the fact that the cookie banner should be rendered *before* the skip link
+    ignore("The user consenting to all cookies displays an accessible save confirmation") {
+      Given("the user clears their cookies")
+      deleteAllCookies
+
+      When("the user visits the service test page")
+      go to ServiceTestPage
+      eventually {
+        tagName("h2").element.text shouldBe "Cookies on HMRC services"
+      }
+
+      When("the user clicks 'Accept all cookies'")
+      click on acceptAdditionalCookiesButton
+
+      Then("the page is still accessible")
+      ServiceTestPage.renderedHtml should passAccessibilityChecks
     }
   }
 }
