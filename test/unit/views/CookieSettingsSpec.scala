@@ -25,6 +25,10 @@ class CookieSettingsSpec extends SpecBase {
     val cookieSettingsPage = app.injector.instanceOf[CookieSettingsPage]
     val content            = cookieSettingsPage()
 
+    "should pass accessibility checks" in {
+      content.toString() must passAccessibilityChecks
+    }
+
     "display the correct browser title" in {
       content.select("title").text mustBe "Cookie settings on HMRC services – GOV.UK"
     }

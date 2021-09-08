@@ -17,11 +17,11 @@
 package acceptance.pages
 
 import acceptance.driver.BrowserDriver
-import org.openqa.selenium.{By, Cookie, WebElement}
-import org.scalatest.Matchers
+import org.openqa.selenium.{By, Cookie, JavascriptExecutor, WebElement}
+import org.scalatest.matchers.must.Matchers
 import org.scalatestplus.selenium.{Page, WebBrowser}
-import java.util.logging.Level.SEVERE
 
+import java.util.logging.Level.SEVERE
 import scala.collection.JavaConverters._
 
 trait BasePage extends Matchers with Page with WebBrowser with BrowserDriver {
@@ -49,4 +49,10 @@ trait BasePage extends Matchers with Page with WebBrowser with BrowserDriver {
     val logs = driver.manage().logs().get("browser").asScala
     logs.filter(_.getLevel == SEVERE).map(_.getMessage).toSeq
   }
+
+  def renderedHtml: String =
+    driver
+      .asInstanceOf[JavascriptExecutor]
+      .executeScript("return document.getElementsByTagName('html')[0].outerHTML")
+      .toString
 }

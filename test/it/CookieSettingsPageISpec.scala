@@ -16,7 +16,8 @@
 
 package it
 
-import org.scalatest.{Matchers, WordSpecLike}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.Application
 import play.api.inject.guice.GuiceApplicationBuilder
@@ -24,7 +25,7 @@ import play.api.test.FakeRequest
 import play.api.test.Helpers.{GET, route, _}
 import support.WithConfiguredApp
 
-class CookieSettingsPageISpec extends WordSpecLike with Matchers with GuiceOneAppPerSuite {
+class CookieSettingsPageISpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite {
 
   override lazy val app: Application = new GuiceApplicationBuilder()
     .configure(

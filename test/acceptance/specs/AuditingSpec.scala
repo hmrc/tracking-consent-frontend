@@ -41,7 +41,7 @@ class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
     .disable[com.kenshoo.play.metrics.PlayModule]
     .build()
 
-  scenario("Accepting all cookies on the cookie settings page sends an auditing event", Local) {
+  Scenario("Accepting all cookies on the cookie settings page sends an auditing event", Local) {
     Given("the user clears their cookies")
     deleteAllCookies
 
@@ -66,7 +66,7 @@ class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
     }
   }
 
-  scenario("The user refusing consent on the cookie settings page sends an auditing event", Local) {
+  Scenario("The user refusing consent on the cookie settings page sends an auditing event", Local) {
     Given("the user clears their cookies")
     deleteAllCookies
 
@@ -91,11 +91,11 @@ class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
     }
   }
 
-  scenario("Accepting all cookies on the cookie banner sends an audit event", Local) {
+  Scenario("Accepting all cookies on the cookie banner sends an audit event", Local) {
     Given("the user clears their cookies")
     deleteAllCookies
 
-    When("the user visits the service test page with enable tracking consent parameter")
+    When("the user visits the service test page")
     go to ServiceTestPage
 
     When("the user clicks 'Accept all cookies'")

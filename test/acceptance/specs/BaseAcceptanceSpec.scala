@@ -18,22 +18,26 @@ package acceptance.specs
 
 import acceptance.driver.BrowserDriver
 import org.scalatest.concurrent.Eventually
-import org.scalatest.{BeforeAndAfterAll, FeatureSpec, GivenWhenThen, Matchers}
+import org.scalatest.{BeforeAndAfterAll, GivenWhenThen}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatestplus.selenium.WebBrowser
 import support.AcceptanceTestServer
+import uk.gov.hmrc.scalatestaccessibilitylinter.AccessibilityMatchers
 import uk.gov.hmrc.webdriver.SingletonDriver
 
 import scala.util.Try
 
 trait BaseAcceptanceSpec
-    extends FeatureSpec
+    extends AnyFeatureSpec
     with GivenWhenThen
     with BeforeAndAfterAll
     with Matchers
     with WebBrowser
     with AcceptanceTestServer
     with BrowserDriver
-    with Eventually {
+    with Eventually
+    with AccessibilityMatchers {
 
   override def beforeAll() {
     // Ensures the browser is quit only when the JVM exits

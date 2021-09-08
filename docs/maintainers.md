@@ -29,8 +29,12 @@ sbt run
 ## Running all Scala and Javascript unit and integration tests together
 
 ```
-sbt test it:test
+sbt a11yTest it:test
 ```
+
+The above tests include accessibility checks via the
+[sbt-accessibility-linter](https://www.github.com/hmrc/sbt-accessibility-linter)
+plugin.
 
 ## Running UI acceptance tests
 
@@ -45,6 +49,8 @@ and the Chrome browser driver installed at /usr/local/bin/chromedriver
 ```
 
 The Chrome driver is available at https://chromedriver.chromium.org/
+
+Additionally, the UI acceptance run through rendered HTML through the accessibility linter.
 
 ## Running just the Javascript checks
 

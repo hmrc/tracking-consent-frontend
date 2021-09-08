@@ -16,12 +16,13 @@
 
 package it
 
-import org.scalatest.{Matchers, WordSpecLike}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 import play.api.test.FakeRequest
 import play.api.test.Helpers.{GET, route, _}
 import support.WithConfiguredApp
 
-class TestPageISpec extends WordSpecLike with Matchers {
+class TestPageISpec extends AnyWordSpec with Matchers {
 
   "Given a running instance of tracking consent frontend with test routes, calling GET for test-only" should {
     "return OK with expected page" in new WithConfiguredApp {

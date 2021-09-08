@@ -21,9 +21,10 @@ import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.Application
 import play.api.i18n.Messages
 import play.api.inject.guice.GuiceApplicationBuilder
+import uk.gov.hmrc.scalatestaccessibilitylinter.AccessibilityMatchers
 import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
 
-trait SpecBase extends PlaySpec with GuiceOneAppPerSuite with JsoupHelpers with AppHelpers {
+trait SpecBase extends PlaySpec with GuiceOneAppPerSuite with JsoupHelpers with AppHelpers with AccessibilityMatchers {
 
   val baseProperties: Map[String, Any] = Map(
     "optimizely.url"       -> "https://cdn.optimizely.com/",

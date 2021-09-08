@@ -21,7 +21,7 @@ import acceptance.pages.CookieSettingsPage._
 
 class CookieSettingsPageSpec extends BaseAcceptanceSpec {
 
-  scenario("The user's consent is initially assumed to be 'do not consent' for every option") {
+  Scenario("The user's consent is initially assumed to be 'do not consent' for every option") {
     Given("the user clears their cookies")
     deleteAllCookies
 
@@ -41,7 +41,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     doNotUseSettingsCookiesInput.isSelected should be(true)
   }
 
-  scenario("The user consenting for all cookies is remembered") {
+  Scenario("The user consenting for all cookies is remembered") {
     Given("the user clears their cookies")
     deleteAllCookies
 
@@ -67,7 +67,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     useSettingsCookiesInput.isSelected should be(true)
   }
 
-  scenario("The user refusing consent for all cookies is remembered") {
+  Scenario("The user refusing consent for all cookies is remembered") {
     Given("the user clears their cookies")
     deleteAllCookies
 
@@ -93,7 +93,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     doNotUseSettingsCookiesInput.isSelected should be(true)
   }
 
-  scenario("The user granting consent for all cookies triggers GTM") {
+  Scenario("The user granting consent for all cookies triggers GTM") {
     Given("the user clears their cookies")
     CookieSettingsPage.deleteAllCookies
 
@@ -121,7 +121,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     )
   }
 
-  scenario("The user granting consent for all cookies sets the userConsent cookie") {
+  Scenario("The user granting consent for all cookies sets the userConsent cookie") {
     Given("the user clears their cookies")
     CookieSettingsPage.deleteAllCookies
 
@@ -143,7 +143,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     )
   }
 
-  scenario("The user saving their consent sees a confirmation banner") {
+  Scenario("The user saving their consent sees a confirmation banner") {
     Given("the user clears their cookies")
     CookieSettingsPage.deleteAllCookies
 
@@ -158,7 +158,21 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     h3Element.getText                 shouldBe "Your cookie settings were saved"
   }
 
-  scenario("The user changing their language sees all content in Welsh") {
+  Scenario("The user saving their consent sees an accessible confirmation banner") {
+    Given("the user clears their cookies")
+    CookieSettingsPage.deleteAllCookies
+
+    And("the user visits the cookie settings page")
+    go to CookieSettingsPage
+
+    When("clicks submit")
+    click on submitButton
+
+    Then("the page should still pass accessibility checks")
+    CookieSettingsPage.renderedHtml should passAccessibilityChecks
+  }
+
+  Scenario("The user changing their language sees all content in Welsh") {
     Given("the user clears their cookies")
     CookieSettingsPage.deleteAllCookies
 
@@ -177,7 +191,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     h3Element.getText                 shouldBe "Wedi cadw’ch gosodiadau cwcis"
   }
 
-  scenario("No Javascript errors occur") {
+  Scenario("No Javascript errors occur") {
     Given("the user clears their cookies")
     deleteAllCookies
 

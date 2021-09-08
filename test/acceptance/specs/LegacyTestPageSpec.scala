@@ -20,12 +20,12 @@ import acceptance.pages.LegacyServiceTestPage
 import acceptance.pages.LegacyServiceTestPage._
 
 class LegacyTestPageSpec extends BaseAcceptanceSpec {
-  feature("Legacy Service Test page") {
-    scenario("No Javascript errors occur") {
+  Feature("Legacy Service Test page") {
+    Scenario("No Javascript errors occur") {
       Given("the user clears their cookies")
       deleteAllCookies
 
-      When("the user visits the legacy service test page with enable tracking consent parameter")
+      When("the user visits the legacy service test page")
       go to LegacyServiceTestPage
 
       Then("the banner should be displayed with the title 'Cookies on HMRC services'")

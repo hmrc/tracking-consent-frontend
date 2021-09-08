@@ -16,14 +16,16 @@
 
 package it
 
-import org.scalatest.{Matchers, TestSuite, WordSpecLike}
+import org.scalatest.TestSuite
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.Application
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.test.FakeRequest
 import play.api.test.Helpers.{GET, route, _}
 
-class BTestPageISpec extends WordSpecLike with Matchers {
+class BTestPageISpec extends AnyWordSpec with Matchers {
 
   "Given a running instance of tracking consent frontend with test routes, calling GET for test-only-b" should {
     "return OK with expected page" in new EnabledTestRoutesApp {

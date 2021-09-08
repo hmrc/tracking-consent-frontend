@@ -20,9 +20,9 @@ import acceptance.pages.{BServiceTestPage}
 import acceptance.pages.BServiceTestPage._
 
 class BServiceTestPageSpec extends BaseAcceptanceSpec {
-  feature("Service Test page") {
+  Feature("Service Test page") {
 
-    scenario("GTM is loaded into the page with the b container") {
+    Scenario("GTM is loaded into the page with the b container") {
       Given("the user clears their cookies")
       deleteAllCookies
 
@@ -35,7 +35,7 @@ class BServiceTestPageSpec extends BaseAcceptanceSpec {
       }
     }
 
-    scenario("The dataLayer is initialised") {
+    Scenario("The dataLayer is initialised") {
       Given("the user clears their cookies")
       deleteAllCookies
 
@@ -48,7 +48,7 @@ class BServiceTestPageSpec extends BaseAcceptanceSpec {
       }
     }
 
-    scenario("The page has the correct title") {
+    Scenario("The page has the correct title") {
       Given("the user clears their cookies")
       deleteAllCookies
 
@@ -59,7 +59,7 @@ class BServiceTestPageSpec extends BaseAcceptanceSpec {
       h1Element.getText should be(title)
     }
 
-    scenario("The user sees the cookie banner") {
+    Scenario("The user sees the cookie banner") {
       Given("the user clears their cookies")
       deleteAllCookies
 
