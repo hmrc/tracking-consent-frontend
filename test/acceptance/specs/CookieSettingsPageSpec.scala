@@ -18,6 +18,7 @@ package acceptance.specs
 
 import acceptance.pages.CookieSettingsPage
 import acceptance.pages.CookieSettingsPage._
+import acceptance.specs.tags.Local
 
 class CookieSettingsPageSpec extends BaseAcceptanceSpec {
 
@@ -158,7 +159,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     h3Element.getText                 shouldBe "Your cookie settings were saved"
   }
 
-  Scenario("The user saving their consent sees an accessible confirmation banner") {
+  Scenario("The user saving their consent sees an accessible confirmation banner", Local) {
     Given("the user clears their cookies")
     CookieSettingsPage.deleteAllCookies
 
