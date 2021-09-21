@@ -62,7 +62,7 @@ Google provides guidance on the minimum requirements [here](https://developers.g
 
 If you are using Play 2.7 or above and [CSPFilter](https://www.playframework.com/documentation/2.7.x/CspFilter), 
 the configuration can be simplified by passing a nonce to the tracking consent helpers in 
-play-frontend-hmrc or play-ui. An example of such a CSP can be found [here](https://github.com/hmrc/help-frontend/blob/9cb503dcb4551243632fe47161ef46b26b5fc247/conf/application.conf#L110)
+play-frontend-hmrc or play-ui.
 
 If you are not using CSPFilter, when developing locally you will additionally need to add `http://localhost:12345` to your
 CSP's script-src. Without it, the cookie banner will not display.
