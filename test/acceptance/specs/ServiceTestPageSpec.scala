@@ -166,10 +166,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       consoleErrors should equal(Seq.empty)
     }
 
-    // FIXME: Add known issue into sbt-accessibility-linter for the fact that the axe-core algorithm
-    // for detecting skip links does not take into account guidance from GDS
-    // around the fact that the cookie banner should be rendered *before* the skip link
-    ignore("An accessible banner is displayed") {
+    Scenario("An accessible banner is displayed") {
       Given("the user clears their cookies")
       deleteAllCookies
 
@@ -185,10 +182,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       ServiceTestPage.renderedHtml should passAccessibilityChecks
     }
 
-    // FIXME: Add known issue into sbt-accessibility-linter for the fact that the axe-core algorithm
-    // for detecting skip links does not take into account guidance from GDS
-    // around the fact that the cookie banner should be rendered *before* the skip link
-    ignore("The user consenting to all cookies displays an accessible save confirmation") {
+    Scenario("The user consenting to all cookies displays an accessible save confirmation") {
       Given("the user clears their cookies")
       deleteAllCookies
 
