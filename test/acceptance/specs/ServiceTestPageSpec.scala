@@ -18,6 +18,7 @@ package acceptance.specs
 
 import acceptance.pages.ServiceTestPage
 import acceptance.pages.ServiceTestPage._
+import acceptance.specs.tags.Local
 
 class ServiceTestPageSpec extends BaseAcceptanceSpec {
   Feature("Service Test page") {
@@ -166,7 +167,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       consoleErrors should equal(Seq.empty)
     }
 
-    Scenario("An accessible banner is displayed") {
+    Scenario("An accessible banner is displayed", Local) {
       Given("the user clears their cookies")
       deleteAllCookies
 
@@ -182,7 +183,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       ServiceTestPage.renderedHtml should passAccessibilityChecks
     }
 
-    Scenario("The user consenting to all cookies displays an accessible save confirmation") {
+    Scenario("The user consenting to all cookies displays an accessible save confirmation", Local) {
       Given("the user clears their cookies")
       deleteAllCookies
 
