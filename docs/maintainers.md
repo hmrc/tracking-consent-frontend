@@ -113,7 +113,15 @@ This is because there are subtle differences in rendering between platforms and 
 consistent with CI. To run the tests,
 
 ```shell script
+npm run build 
 npm run backstop
+```
+During the test the browser will make requests from inside a container back to the host and if 
+those requests fail you may need to supply the BACKSTOP_TEST_HOST environment variable with the correct i.p address
+of your host as below.
+
+```shell script
+env BACKSTOP_TEST_HOST=172.17.0.1 npm run backstop 
 ```
 
 On completion, Backstop will emit the results as an HTML report in backstop_data/html_report  If a failure is the

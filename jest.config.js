@@ -3,6 +3,8 @@ module.exports = {
   testURL: 'https://www.tax.service.example.com/some-service/some-page',
   moduleFileExtensions: ['js', 'ts', 'jsx'],
   testPathIgnorePatterns: ['/js/node_modules/'],
+  testEnvironment: 'jsdom',
+  testRunner: 'jest-jasmine2',
   transform: {
     '^.+\\.[t|j]sx?$': 'ts-jest',
     '^.+\\.html?$': 'html-loader-jest',

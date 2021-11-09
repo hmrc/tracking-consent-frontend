@@ -4,7 +4,8 @@ const startServer = require('./startServer');
 
 const docker = !process.env.CI;
 const port = process.env.VRT_PORT || 8888;
-const host = docker ? 'host.docker.internal' : 'localhost';
+const defaultHost = docker ? 'host.docker.internal' : 'localhost';
+const host = process.env.BACKSTOP_TEST_HOST || defaultHost;
 const config = backstopConfig({ host, port });
 const options = { config, docker };
 
