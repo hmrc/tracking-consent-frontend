@@ -1,6 +1,7 @@
 import JavaScriptBuild._
 import play.sbt.PlayImport.PlayKeys.playDefaultPort
 import sbt.Keys.testOptions
+import uk.gov.hmrc.AccessibilityLinterPlugin.autoImport.A11yTest
 import uk.gov.hmrc.DefaultBuildSettings.addTestReportOption
 import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin.publishingSettings
 
@@ -69,6 +70,7 @@ lazy val microservice = Project(appName, file("."))
     libraryDependencies ++= Seq(
       compilerPlugin("com.github.ghik" % "silencer-plugin" % "1.6.0" cross CrossVersion.full),
       "com.github.ghik" % "silencer-lib" % "1.6.0" % Provided cross CrossVersion.full
-    )
+    ),
     // ***************
+    A11yTest / unmanagedSourceDirectories += (baseDirectory.value / "test" / "a11y")
   )
