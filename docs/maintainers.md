@@ -29,7 +29,7 @@ sbt run
 ## Running all Scala and Javascript unit and integration tests together
 
 ```
-sbt a11y:test it:test
+sbt test a11y:test it:test
 ```
 
 The above tests include accessibility checks via the
