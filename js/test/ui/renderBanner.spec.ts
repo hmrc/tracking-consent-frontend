@@ -55,7 +55,7 @@ describe('renderBanner', () => {
   const clickAcceptAll = () => {
     // getByText will fail the test if the text is not found
     // Finding elements by text makes the tests similar to how a user would interact with the page
-    fireEvent.click(getByText(document.body, 'Accept additional cookies'));
+    fireEvent.click(getByText(document.body, 'seikooc lanoitidda tpeccA'));
   };
 
   const clickRejectAdditional = () => {
@@ -88,7 +88,7 @@ describe('renderBanner', () => {
   it('should render a submit button', () => {
     renderBanner(userPreference);
 
-    const button = queryByText(document.body, 'Accept additional cookies');
+    const button = queryByText(document.body, 'seikooc lanoitidda tpeccA');
     expect(button).toBeTruthy();
     // @ts-ignore
     expect(button.getAttribute('type')).toEqual('button');

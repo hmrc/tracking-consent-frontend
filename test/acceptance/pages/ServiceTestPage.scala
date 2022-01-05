@@ -24,7 +24,7 @@ object ServiceTestPage extends BasePage {
     TestConfiguration.url("tracking-consent-frontend") + "/test-only"
 
   val title                   = "Service test page"
-  val acceptAdditionalCookies = "Accept additional cookies"
+  val acceptAdditionalCookies = "seikooc lanoitidda tpeccA"
   val rejectAdditionalCookies = "Reject additional cookies"
   val setCookiePreferences    = "View cookies"
 

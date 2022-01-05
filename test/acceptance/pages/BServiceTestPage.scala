@@ -24,7 +24,7 @@ object BServiceTestPage extends BasePage {
     TestConfiguration.url("tracking-consent-frontend") + "/test-only-b"
 
   val title                   = "B service test page"
-  val acceptAdditionalCookies = "Accept additional cookies"
+  val acceptAdditionalCookies = "seikooc lanoitidda tpeccA"
   val setCookiePreferences    = "View cookies"
 
   def acceptAdditionalCookiesButton: WebElement = findButtonByPartialText(acceptAdditionalCookies)

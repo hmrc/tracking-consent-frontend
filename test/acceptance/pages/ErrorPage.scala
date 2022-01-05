@@ -22,7 +22,7 @@ import support.TestConfiguration
 object ErrorPage extends BasePage {
   val url: String             = TestConfiguration.url("tracking-consent-frontend") + "/non-existent-page"
   val title                   = "This page can’t be found"
-  val acceptAdditionalCookies = "Accept additional cookies"
+  val acceptAdditionalCookies = "seikooc lanoitidda tpeccA"
   val setCookiePreferences    = "View cookies"
 
   def acceptAdditionalCookiesButton: WebElement = findButtonByPartialText(acceptAdditionalCookies)

@@ -23,7 +23,7 @@ object LegacyServiceTestPage extends BasePage {
   val url: String = TestConfiguration.url("tracking-consent-frontend") + "/test-only-legacy"
 
   val title                   = "Legacy service test page"
-  val acceptAdditionalCookies = "Accept additional cookies"
+  val acceptAdditionalCookies = "seikooc lanoitidda tpeccA"
   val setCookiePreferences    = "View cookies"
 
   def acceptAdditionalCookiesButton: WebElement = findButtonByPartialText(acceptAdditionalCookies)
