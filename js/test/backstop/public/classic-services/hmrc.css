@@ -1,4 +1,14 @@
 /*
+	Classic services don't have the GDS Transport font, and no developers have it locally.
+	However it seems like the browsers that jenkins use do have it. So when we capture
+	visual regression test screenshots locally we end up rendering text with Arial but then
+	on jenkins it is rendered with GDS Transport and the tests fail with a mismatch. So the
+	fix here, because we don't know why jenkins browsers need it, and it's not licensed for
+	developers to use locally, is to update our fixture for classic services to include it.
+ */
+@import "/assets/govuk-frontend/3.8.1/font-gds-transport.css";
+
+/*
 	General styles that are not associated with any specific component go first.
 */
 
