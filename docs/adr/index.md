@@ -11,6 +11,7 @@
 - [ADR-0007](0007-use-eslint-for-linting-and-formatting.md) - Use eslint for linting and formatting javascript
 - [ADR-0008](0008-always-store-consents-individually.md) - Always store consents individually
 - [ADR-0009](0009-create-a-library-for-reading-the-user-consent-cookie.md) - Create a library for reading the user consent cookie
+- [ADR-0010](0010-make-visual-regression-tests-reproducible-on-jenkins.md) - Make visual regression tests reproducible on jenkins
 
 <!-- adrlogstop -->
 
