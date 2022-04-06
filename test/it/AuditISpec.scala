@@ -30,8 +30,12 @@ class AuditISpec extends AnyWordSpec with Matchers with AppendedClues with Guice
   override lazy val app: Application = new GuiceApplicationBuilder()
     .configure(
       Map(
-        "metrics.enabled"  -> false,
-        "auditing.enabled" -> false
+        "metrics.enabled"                  -> false,
+        "auditing.enabled"                 -> false,
+        "play.filters.cors.allowedOrigins" -> List(
+          "https://www.tax.service.gov.uk",
+          "https://developer.service.hmrc.gov.uk"
+        )
       )
     )
     .disable[com.kenshoo.play.metrics.PlayModule]
