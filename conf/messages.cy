@@ -18,7 +18,7 @@ banner.confirmation.rejected=Rydych wedi gwrthod cwcis ychwanegol.
 banner.confirmation.before.link=Gallwch
 banner.confirmation.link=newid eich gosodiadau cwcis
 banner.confirmation.after.link=ar unrhyw adeg.
-banner.confirmation.hide=Cuddio’r neges hon
+banner.confirmation.hide=Cuddio’r neges ynghylch cwcis
 
 cookieSettings.intro.paragraph1 = ‘Cwcis’ yw ffeiliau sy’n cael eu cadw ar eich ffôn, llechen neu gyfrifiadur pan ydych yn ymweld â gwefan.
 cookieSettings.intro.paragraph2 = Rydym yn defnyddio 3 math o gwcis i gadw gwybodaeth am sut yr ydych yn defnyddio gwasanaethau CThEM, megis y tudalennau yr ydych yn ymweld â nhw.

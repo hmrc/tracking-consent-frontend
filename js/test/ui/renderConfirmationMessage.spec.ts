@@ -20,7 +20,7 @@ describe('renderConfirmationMessage', () => {
   });
 
   const clickHide = () => {
-    fireEvent.click(getByText(document.body, 'Hide this message'));
+    fireEvent.click(getByText(document.body, 'Hide cookies message'));
   };
 
   it('should show a save confirmation', () => {
