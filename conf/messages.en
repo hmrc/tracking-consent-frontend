@@ -18,7 +18,7 @@ banner.confirmation.rejected = You have rejected additional cookies.
 banner.confirmation.before.link = You can
 banner.confirmation.link = change your cookie settings
 banner.confirmation.after.link = at any time.
-banner.confirmation.hide = Hide this message
+banner.confirmation.hide = Hide cookies message
 
 cookieSettings.intro.paragraph1 = ‘Cookies’ are files saved on your phone, tablet or computer when you visit a website.
 cookieSettings.intro.paragraph2 = We use 3 types of cookies to store information about how you use HMRC services, such as the pages you visit.
