@@ -1,0 +1,9 @@
+{
+  "1070022": "node-fetch: devDependency, no risk given our usage",
+  "1070417": "semver-regex: devDependency, no risk given our usage",
+  "1070458": "semver-regex: devDependency, no risk given our usage",
+  "1067342": "minimist: devDependency, no risk given our usage",
+  "1067367": "nanoid: devDependency, no risk given our usage",
+  "1070274": "ansi-regex: devDependency, no risk given our usage",
+  "1070440": "async: devDependency, no risk given our usage"
+}
