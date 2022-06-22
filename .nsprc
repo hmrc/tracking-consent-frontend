@@ -1,4 +1,5 @@
 {
+  "1070904": "jpeg-js: devDependency, no risk given our usage",
   "1070022": "node-fetch: devDependency, no risk given our usage",
   "1070417": "semver-regex: devDependency, no risk given our usage",
   "1070458": "semver-regex: devDependency, no risk given our usage",
