@@ -6,7 +6,7 @@ resolvers += Resolver.typesafeRepo("releases")
 
 addSbtPlugin("org.irundaia.sbt" % "sbt-sassify" % "1.4.11")
 
-addSbtPlugin("uk.gov.hmrc" % "sbt-auto-build" % "3.6.0")
+addSbtPlugin("uk.gov.hmrc" % "sbt-auto-build" % "3.7.0")
 
 addSbtPlugin("uk.gov.hmrc" % "sbt-distributables" % "2.1.0")
 
@@ -16,4 +16,4 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-gzip" % "1.0.2")
 
 addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.4.0")
 
-addSbtPlugin("uk.gov.hmrc" % "sbt-accessibility-linter" % "0.20.0")
+addSbtPlugin("uk.gov.hmrc" % "sbt-accessibility-linter" % "0.26.0")
