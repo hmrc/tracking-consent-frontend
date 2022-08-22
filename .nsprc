@@ -1,10 +1,9 @@
 {
-  "https://github.com/advisories/GHSA-xvf7-4v9q-58w6": "jpeg-js: devDependency, no risk given our usage",
   "https://github.com/advisories/GHSA-r683-j2x4-v87g": "node-fetch: devDependency, no risk given our usage",
   "https://github.com/advisories/GHSA-44c6-4v22-4mhx": "semver-regex: devDependency, no risk given our usage",
   "https://github.com/advisories/GHSA-4x5v-gmq8-25ch": "semver-regex: devDependency, no risk given our usage",
-  "https://github.com/advisories/GHSA-xvch-5gv4-984h": "minimist: devDependency, no risk given our usage",
   "https://github.com/advisories/GHSA-qrpm-p2h7-hrv2": "nanoid: devDependency, no risk given our usage",
   "https://github.com/advisories/GHSA-93q8-gq69-wqmw": "ansi-regex: devDependency, no risk given our usage",
-  "https://github.com/advisories/GHSA-fwr7-v2mv-hh25": "async: devDependency, no risk given our usage"
+  "https://github.com/advisories/GHSA-7mwh-4pqv-wmr8": "scss-tokenizer: devDependency, no risk given our usage",
+  "https://github.com/advisories/GHSA-f4c9-cqv8-9v98": "jsdom: devDependency, no risk given our usage"
 }
