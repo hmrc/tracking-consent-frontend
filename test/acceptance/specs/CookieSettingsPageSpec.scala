@@ -24,7 +24,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
 
   Scenario("The user's consent is initially assumed to be 'do not consent' for every option") {
     Given("the user clears their cookies")
-    deleteAllCookies
+    deleteAllCookies()
 
     When("the user visits the cookie settings page")
     go to CookieSettingsPage
@@ -44,7 +44,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
 
   Scenario("The user consenting for all cookies is remembered") {
     Given("the user clears their cookies")
-    deleteAllCookies
+    deleteAllCookies()
 
     And("the user visits the cookie settings page")
     go to CookieSettingsPage
@@ -59,7 +59,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     click on submitButton
 
     And("refreshes the page")
-    reloadPage
+    reloadPage()
 
     Then("the consent setting 'Use cookies that measure my website use' is selected")
     useMeasurementCookiesInput.isSelected should be(true)
@@ -70,7 +70,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
 
   Scenario("The user refusing consent for all cookies is remembered") {
     Given("the user clears their cookies")
-    deleteAllCookies
+    deleteAllCookies()
 
     And("the user visits the cookie settings page")
     go to CookieSettingsPage
@@ -85,7 +85,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     click on submitButton
 
     And("refreshes the page")
-    reloadPage
+    reloadPage()
 
     Then("the consent setting 'Do not use cookies that measure my website use' is selected")
     doNotUseMeasurementCookiesInput.isSelected should be(true)
@@ -96,7 +96,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
 
   Scenario("The user granting consent for all cookies triggers GTM") {
     Given("the user clears their cookies")
-    CookieSettingsPage.deleteAllCookies
+    CookieSettingsPage.deleteAllCookies()
 
     And("the user visits the cookie settings page")
     go to CookieSettingsPage
@@ -124,7 +124,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
 
   Scenario("The user granting consent for all cookies sets the userConsent cookie") {
     Given("the user clears their cookies")
-    CookieSettingsPage.deleteAllCookies
+    CookieSettingsPage.deleteAllCookies()
 
     And("the user visits the cookie settings page")
     go to CookieSettingsPage
@@ -146,7 +146,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
 
   Scenario("The user saving their consent sees a confirmation banner") {
     Given("the user clears their cookies")
-    CookieSettingsPage.deleteAllCookies
+    CookieSettingsPage.deleteAllCookies()
 
     And("the user visits the cookie settings page")
     go to CookieSettingsPage
@@ -161,7 +161,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
 
   Scenario("The user saving their consent sees an accessible confirmation banner", Local) {
     Given("the user clears their cookies")
-    CookieSettingsPage.deleteAllCookies
+    CookieSettingsPage.deleteAllCookies()
 
     And("the user visits the cookie settings page")
     go to CookieSettingsPage
@@ -175,7 +175,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
 
   Scenario("The user changing their language sees all content in Welsh") {
     Given("the user clears their cookies")
-    CookieSettingsPage.deleteAllCookies
+    CookieSettingsPage.deleteAllCookies()
 
     And("the user visits the cookie settings page")
     go to CookieSettingsPage
@@ -194,7 +194,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
 
   Scenario("No Javascript errors occur") {
     Given("the user clears their cookies")
-    deleteAllCookies
+    deleteAllCookies()
 
     And("the user visits the cookie settings page")
     go to CookieSettingsPage

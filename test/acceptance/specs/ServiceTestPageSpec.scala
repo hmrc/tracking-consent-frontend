@@ -24,7 +24,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
   Feature("Service Test page") {
     Scenario("The user's consent is not initially assumed either way") {
       Given("Given the user clears their cookies")
-      deleteAllCookies
+      deleteAllCookies()
 
       When("the user visits the service test page")
       go to ServiceTestPage
@@ -38,7 +38,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
 
     Scenario("The user is initially opted out from Optimizely") {
       Given("Given the user clears their cookies")
-      deleteAllCookies
+      deleteAllCookies()
 
       When("the user visits the service test page")
       go to ServiceTestPage
@@ -52,7 +52,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
 
     Scenario("The user consenting to all cookies fires GTM") {
       Given("the user clears their cookies")
-      deleteAllCookies
+      deleteAllCookies()
 
       When("the user visits the service test page")
       go to ServiceTestPage
@@ -72,7 +72,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
 
     Scenario("The user consenting to all cookies opts the user into optimizely on the next page load") {
       Given("the user clears their cookies")
-      deleteAllCookies
+      deleteAllCookies()
 
       When("the user visits the service test page")
       go to ServiceTestPage
@@ -84,7 +84,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       click on acceptAdditionalCookiesButton
 
       And("refreshes the page")
-      reloadPage
+      reloadPage()
 
       Then("the optimizely object does not contain the optOut event")
       optimizelyOptOutEvent should be(null)
@@ -95,7 +95,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
 
     Scenario("The user consenting to all cookies sets consent cookie") {
       Given("the user clears their cookies")
-      deleteAllCookies
+      deleteAllCookies()
 
       When("the user visits the service test page")
       go to ServiceTestPage
@@ -109,7 +109,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
 
     Scenario("The user rejecting additional cookies sets consent cookie") {
       Given("the user clears their cookies")
-      deleteAllCookies
+      deleteAllCookies()
 
       When("the user visits the service test page")
       go to ServiceTestPage
@@ -123,7 +123,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
 
     Scenario("The user rejecting additional cookies does not fire GTM") {
       Given("the user clears their cookies")
-      deleteAllCookies
+      deleteAllCookies()
 
       When("the user visits the service test page")
       go to ServiceTestPage
@@ -140,7 +140,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
 
     Scenario("The user visits a page and the cookie banner is displayed") {
       Given("the user clears their cookies")
-      deleteAllCookies
+      deleteAllCookies()
 
       When("the user visits the service test page")
       go to ServiceTestPage
@@ -153,7 +153,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
 
     Scenario("No Javascript errors occur") {
       Given("the user clears their cookies")
-      deleteAllCookies
+      deleteAllCookies()
 
       When("the user visits the service test page")
       go to ServiceTestPage
@@ -169,7 +169,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
 
     Scenario("An accessible banner is displayed", Local) {
       Given("the user clears their cookies")
-      deleteAllCookies
+      deleteAllCookies()
 
       When("the user visits the service test page")
       go to ServiceTestPage
@@ -185,7 +185,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
 
     Scenario("The user consenting to all cookies displays an accessible save confirmation", Local) {
       Given("the user clears their cookies")
-      deleteAllCookies
+      deleteAllCookies()
 
       When("the user visits the service test page")
       go to ServiceTestPage

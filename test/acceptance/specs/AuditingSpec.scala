@@ -43,7 +43,7 @@ class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
 
   Scenario("Accepting all cookies on the cookie settings page sends an auditing event", Local) {
     Given("the user clears their cookies")
-    deleteAllCookies
+    deleteAllCookies()
 
     And("the user visits the cookie settings page")
     go to CookieSettingsPage
@@ -68,7 +68,7 @@ class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
 
   Scenario("The user refusing consent on the cookie settings page sends an auditing event", Local) {
     Given("the user clears their cookies")
-    deleteAllCookies
+    deleteAllCookies()
 
     And("the user visits the cookie settings page")
     go to CookieSettingsPage
@@ -93,7 +93,7 @@ class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
 
   Scenario("Accepting all cookies on the cookie banner sends an audit event", Local) {
     Given("the user clears their cookies")
-    deleteAllCookies
+    deleteAllCookies()
 
     When("the user visits the service test page")
     go to ServiceTestPage
