@@ -10,7 +10,7 @@ val appName = "tracking-consent-frontend"
 lazy val unitTestSettings =
   inConfig(Test)(Defaults.testTasks) ++
     Seq(
-      testOptions in Test := Seq(Tests.Filter(_ startsWith "unit")),
+      Test / testOptions := Seq(Tests.Filter(_ startsWith "unit")),
       addTestReportOption(Test, "test-reports")
     )
 
@@ -19,9 +19,9 @@ lazy val integrationTestSettings =
   inConfig(IntegrationTest)(Defaults.testTasks) ++
     Seq(
       // The following is needed due to https://stackoverflow.com/questions/24791992/assets-are-not-loaded-in-functional-test-mode
-      (managedClasspath in IntegrationTest) += (packageBin in Assets).value,
-      (test in IntegrationTest) := (test in IntegrationTest).dependsOn(npmBuild).value,
-      (testOptions in IntegrationTest) := Seq(Tests.Filter(_ startsWith "it")),
+      (IntegrationTest / managedClasspath) += (Assets / packageBin).value,
+      (IntegrationTest / test) := (IntegrationTest / test).dependsOn(npmBuild).value,
+      (IntegrationTest / testOptions) := Seq(Tests.Filter(_ startsWith "it")),
       addTestReportOption(IntegrationTest, "it-test-reports")
     )
 
@@ -30,11 +30,11 @@ lazy val acceptanceTestSettings =
   inConfig(AcceptanceTest)(Defaults.testTasks) ++
     Seq(
       // The following is needed to preserve the -Dbrowser option to the HMRC webdriver factory library
-      fork in AcceptanceTest := false,
+      AcceptanceTest / fork := false,
       // The following is needed due to https://stackoverflow.com/questions/24791992/assets-are-not-loaded-in-functional-test-mode
-      (managedClasspath in AcceptanceTest) += (packageBin in Assets).value,
-      (test in AcceptanceTest) := (test in AcceptanceTest).dependsOn(a11yInstall).dependsOn(npmBuild).value,
-      (testOptions in AcceptanceTest) := Seq(Tests.Filter(_ startsWith "acceptance")),
+      (AcceptanceTest / managedClasspath) += (Assets / packageBin).value,
+      (AcceptanceTest / test) := (AcceptanceTest / test).dependsOn(a11yInstall).dependsOn(npmBuild).value,
+      (AcceptanceTest / testOptions) := Seq(Tests.Filter(_ startsWith "acceptance")),
       addTestReportOption(AcceptanceTest, "acceptance-test-reports")
     )
 
@@ -58,7 +58,7 @@ lazy val microservice = Project(appName, file("."))
     ),
     PlayKeys.playRunHooks += Webpack(baseDirectory.value),
     PlayKeys.devSettings ++= Seq("metrics.enabled" -> "false"),
-    pipelineStages in Assets := Seq(gzip),
+    Assets / pipelineStages := Seq(gzip),
     acceptanceTestSettings,
     unitTestSettings,
     integrationTestSettings,
