@@ -23,7 +23,7 @@ class LegacyTestPageSpec extends BaseAcceptanceSpec {
   Feature("Legacy Service Test page") {
     Scenario("No Javascript errors occur") {
       Given("the user clears their cookies")
-      deleteAllCookies
+      deleteAllCookies()
 
       When("the user visits the legacy service test page")
       go to LegacyServiceTestPage

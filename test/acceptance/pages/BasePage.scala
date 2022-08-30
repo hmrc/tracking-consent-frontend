@@ -22,7 +22,7 @@ import org.scalatest.matchers.must.Matchers
 import org.scalatestplus.selenium.{Page, WebBrowser}
 
 import java.util.logging.Level.SEVERE
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 trait BasePage extends Matchers with Page with WebBrowser with BrowserDriver {
   val url: String

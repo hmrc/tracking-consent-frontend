@@ -39,7 +39,7 @@ trait BaseAcceptanceSpec
     with Eventually
     with AccessibilityMatchers {
 
-  override def beforeAll() {
+  override def beforeAll(): Unit = {
     // Ensures the browser is quit only when the JVM exits
     // Previously this was accomplished via a call to SingletonDriver.quit()
     // in a afterAll but this resulted in a race-condition

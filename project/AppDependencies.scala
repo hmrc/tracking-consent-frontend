@@ -15,7 +15,7 @@ object AppDependencies {
     "org.scalatest"          %% "scalatest"              % "3.2.9"   % "test",
     "org.scalatestplus.play" %% "scalatestplus-play"     % "5.1.0"   % "test",
     "org.scalatestplus"      %% "selenium-3-141"         % "3.2.9.0" % "test",
-    "uk.gov.hmrc"            %% "webdriver-factory"      % "0.22.0"  % "test",
+    "uk.gov.hmrc"            %% "webdriver-factory"      % "0.29.0"  % "test",
     "com.typesafe"            % "config"                 % "1.3.2"   % "test",
     "com.github.tomakehurst"  % "wiremock-jre8"          % "2.21.0"  % "test"
   )
