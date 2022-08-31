@@ -9,14 +9,14 @@ object AppDependencies {
   )
 
   val test = Seq(
-    "org.jsoup"               % "jsoup"                  % "1.10.2"  % "test",
-    "uk.gov.hmrc"            %% "bootstrap-test-play-28" % "6.2.0"   % "test",
-    "com.vladsch.flexmark"    % "flexmark-all"           % "0.35.10" % "test",
-    "org.scalatest"          %% "scalatest"              % "3.2.9"   % "test",
-    "org.scalatestplus.play" %% "scalatestplus-play"     % "5.1.0"   % "test",
-    "org.scalatestplus"      %% "selenium-3-141"         % "3.2.9.0" % "test",
-    "uk.gov.hmrc"            %% "webdriver-factory"      % "0.29.0"  % "test",
-    "com.typesafe"            % "config"                 % "1.3.2"   % "test",
-    "com.github.tomakehurst"  % "wiremock-jre8"          % "2.21.0"  % "test"
+    "org.jsoup"               % "jsoup"                  % "1.10.2"   % "test",
+    "uk.gov.hmrc"            %% "bootstrap-test-play-28" % "6.2.0"    % "test",
+    "com.vladsch.flexmark"    % "flexmark-all"           % "0.62.2"   % "test",
+    "org.scalatest"          %% "scalatest"              % "3.2.13"   % "test",
+    "org.scalatestplus.play" %% "scalatestplus-play"     % "5.1.0"    % "test",
+    "org.scalatestplus"      %% "selenium-4-2"           % "3.2.13.0" % "test",
+    "uk.gov.hmrc"            %% "webdriver-factory"      % "0.35.0"   % "test",
+    "com.typesafe"            % "config"                 % "1.4.2"    % "test",
+    "com.github.tomakehurst"  % "wiremock-jre8"          % "2.27.2"   % "test"
   )
 }
