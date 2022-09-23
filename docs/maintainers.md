@@ -134,11 +134,24 @@ npm run backstop:approve
 If any changes are needed to the backstop configuration, for example to test on different device types or add to the
  list of scenarios, these can be made by editing the file `test/backstop/backstopConfig.js`
 
-### NPM versions and security
+## NPM versions and security
 
 Modules pulled from npm are pinned in the file packages.json. These are pinned to prevent 
 security vulnerabilities making it into production code via auto-update. If you wish to 
 upgrade a specific dependency, please discuss the implications with the platform security team.
+
+### Adding or updating NPM dependencies
+
+To minimise the security risk from accidentally installing a compromised package, you should:
+
+- Use the `--ignore-scripts` parameter when installing to prevent the package from executing scripts during installation. This can't be configured automatically in the repo because it would disable our ability to run any scripts (even the top-level ones in the project)
+
+- Run `npm run audit` post installation to check for vulnerabilities after installing before running a build or test using it
+
+  > **Note**
+  > Deliberately compromised packages tend to be quickly removed from NPM once they are discovered, but a removed package might be present in a cache somewhere so for safety we should always run this check.
+
+- Carefully consider if new dependencies are really needed, and try to avoid adding them whenever possible
 
 ## Cookie banner
 
