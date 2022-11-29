@@ -3,5 +3,6 @@
   "https://github.com/advisories/GHSA-44c6-4v22-4mhx": "semver-regex: devDependency, no risk given our usage",
   "https://github.com/advisories/GHSA-4x5v-gmq8-25ch": "semver-regex: devDependency, no risk given our usage",
   "https://github.com/advisories/GHSA-93q8-gq69-wqmw": "ansi-regex: devDependency, no risk given our usage",
-  "https://github.com/advisories/GHSA-f4c9-cqv8-9v98": "jsdom: devDependency, no risk given our usage"
+  "https://github.com/advisories/GHSA-f4c9-cqv8-9v98": "jsdom: devDependency, no risk given our usage",
+  "https://github.com/advisories/GHSA-w573-4hg7-7wgq": "decode-uri-component: devDependency, no risk given our usage"
 }
