@@ -164,9 +164,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       }
 
       And("no Javascript console errors are thrown")
-      // TODO: bug ticket opened(https://jira.tools.tax.service.gov.uk/browse/PLATUI-2109) to try and fix this issue permanently, the fix below is temporary
-      val removeUnexpectedError = consoleErrors.filter(err => !err.contains("favicon.ico"))
-      removeUnexpectedError should equal(Seq.empty)
+      consoleErrors should equal(Seq.empty)
     }
 
     Scenario("An accessible banner is displayed", Local) {
