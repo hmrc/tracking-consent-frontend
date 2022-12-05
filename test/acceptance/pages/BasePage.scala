@@ -47,7 +47,11 @@ trait BasePage extends Matchers with Page with WebBrowser with BrowserDriver {
 
   def consoleErrors: Seq[String] = {
     val logs = driver.manage().logs().get("browser").asScala
-    logs.filter(_.getLevel == SEVERE).map(_.getMessage).toSeq
+    logs
+      .filter(_.getLevel == SEVERE)
+      .map(_.getMessage)
+      .filterNot(_.contains("favicon.ico")) // TODO: temporary fix for bug ticket PLATUI-2109
+      .toSeq
   }
 
   def renderedHtml: String =
