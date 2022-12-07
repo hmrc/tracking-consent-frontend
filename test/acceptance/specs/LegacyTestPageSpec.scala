@@ -18,10 +18,11 @@ package acceptance.specs
 
 import acceptance.pages.LegacyServiceTestPage
 import acceptance.pages.LegacyServiceTestPage._
+import org.scalatest.tagobjects.Retryable
 
 class LegacyTestPageSpec extends BaseAcceptanceSpec {
   Feature("Legacy Service Test page") {
-    Scenario("No Javascript errors occur") {
+    Scenario("No Javascript errors occur", Retryable) {
       Given("the user clears their cookies")
       deleteAllCookies()
 

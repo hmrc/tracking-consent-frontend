@@ -19,6 +19,7 @@ package acceptance.specs
 import acceptance.pages.CookieSettingsPage
 import acceptance.pages.CookieSettingsPage._
 import acceptance.specs.tags.Local
+import org.scalatest.tagobjects.Retryable
 
 class CookieSettingsPageSpec extends BaseAcceptanceSpec {
 
@@ -64,7 +65,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     Then("the consent setting 'Use cookies that measure my website use' is selected")
     useMeasurementCookiesInput.isSelected should be(true)
 
-    Then("the consent setting 'Use cookies that remember my settings on the site' is selected")
+    And("the consent setting 'Use cookies that remember my settings on the site' is selected")
     useSettingsCookiesInput.isSelected should be(true)
   }
 
@@ -90,7 +91,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     Then("the consent setting 'Do not use cookies that measure my website use' is selected")
     doNotUseMeasurementCookiesInput.isSelected should be(true)
 
-    Then("the consent setting 'Do not use cookies that remember my settings on the site' is selected")
+    And("the consent setting 'Do not use cookies that remember my settings on the site' is selected")
     doNotUseSettingsCookiesInput.isSelected should be(true)
   }
 
@@ -115,11 +116,6 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
 
     And("the dataLayer contains the 'trackingConsentSettingsAccepted' event")
     settingsAllowedGtmEvent should not be null
-
-    Then("the userConsent cookie is set")
-    userConsentCookie.getValue should include(
-      "%22preferences%22:{%22measurement%22:true%2C%22settings%22:true}"
-    )
   }
 
   Scenario("The user granting consent for all cookies sets the userConsent cookie") {
@@ -192,11 +188,11 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     h3Element.getText                 shouldBe "Wedi cadw’ch gosodiadau cwcis"
   }
 
-  Scenario("No Javascript errors occur") {
+  Scenario("No Javascript errors occur", Retryable) {
     Given("the user clears their cookies")
     deleteAllCookies()
 
-    And("the user visits the cookie settings page")
+    When("the user visits the cookie settings page")
     go to CookieSettingsPage
 
     Then("no Javascript console errors are thrown")

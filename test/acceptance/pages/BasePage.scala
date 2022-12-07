@@ -50,7 +50,6 @@ trait BasePage extends Matchers with Page with WebBrowser with BrowserDriver {
     logs
       .filter(_.getLevel == SEVERE)
       .map(_.getMessage)
-      .filterNot(_.contains("favicon.ico")) // TODO: temporary fix for bug ticket PLATUI-2109
       .toSeq
   }
 
