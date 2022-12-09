@@ -1,4 +1,5 @@
 {
+  "https://github.com/advisories/GHSA-hrpp-h998-j3pp": "qs: DevDependency, no risk given our usage",
   "https://github.com/advisories/GHSA-r683-j2x4-v87g": "node-fetch: devDependency, no risk given our usage",
   "https://github.com/advisories/GHSA-44c6-4v22-4mhx": "semver-regex: devDependency, no risk given our usage",
   "https://github.com/advisories/GHSA-4x5v-gmq8-25ch": "semver-regex: devDependency, no risk given our usage",
