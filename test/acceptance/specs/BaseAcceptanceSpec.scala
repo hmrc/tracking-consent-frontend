@@ -17,7 +17,7 @@
 package acceptance.specs
 
 import acceptance.driver.BrowserDriver
-import org.scalatest.concurrent.Eventually
+import org.scalatest.concurrent.{Eventually, IntegrationPatience}
 import org.scalatest.{BeforeAndAfterAll, GivenWhenThen, Outcome, Retries}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.featurespec.AnyFeatureSpec
@@ -39,6 +39,7 @@ trait BaseAcceptanceSpec
     with BrowserDriver
     with Retries
     with Eventually
+    with IntegrationPatience
     with AccessibilityMatchers {
 
   override def beforeAll(): Unit = {
