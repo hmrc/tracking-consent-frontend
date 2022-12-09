@@ -19,6 +19,7 @@ package acceptance.specs
 import acceptance.pages.ServiceTestPage
 import acceptance.pages.ServiceTestPage._
 import acceptance.specs.tags.Local
+import org.scalatest.tagobjects.Retryable
 
 class ServiceTestPageSpec extends BaseAcceptanceSpec {
   Feature("Service Test page") {
@@ -54,7 +55,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       Given("the user clears their cookies")
       deleteAllCookies()
 
-      When("the user visits the service test page")
+      And("the user visits the service test page")
       go to ServiceTestPage
       eventually {
         tagName("h2").element.text shouldBe "Cookies on HMRC services"
@@ -74,7 +75,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       Given("the user clears their cookies")
       deleteAllCookies()
 
-      When("the user visits the service test page")
+      And("the user visits the service test page")
       go to ServiceTestPage
       eventually {
         tagName("h2").element.text shouldBe "Cookies on HMRC services"
@@ -97,7 +98,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       Given("the user clears their cookies")
       deleteAllCookies()
 
-      When("the user visits the service test page")
+      And("the user visits the service test page")
       go to ServiceTestPage
 
       When("the user clicks 'Accept all cookies'")
@@ -111,7 +112,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       Given("the user clears their cookies")
       deleteAllCookies()
 
-      When("the user visits the service test page")
+      And("the user visits the service test page")
       go to ServiceTestPage
 
       When("the user clicks 'Accept all cookies'")
@@ -125,7 +126,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       Given("the user clears their cookies")
       deleteAllCookies()
 
-      When("the user visits the service test page")
+      And("the user visits the service test page")
       go to ServiceTestPage
 
       When("the user clicks 'Accept all cookies'")
@@ -151,14 +152,14 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       }
     }
 
-    Scenario("No Javascript errors occur") {
+    Scenario("No Javascript errors occur", Retryable) {
       Given("the user clears their cookies")
       deleteAllCookies()
 
       When("the user visits the service test page")
       go to ServiceTestPage
 
-      And("the banner should be displayed with the title 'Cookies on HMRC services'")
+      Then("the banner should be displayed with the title 'Cookies on HMRC services'")
       eventually {
         tagName("h2").element.text shouldBe "Cookies on HMRC services"
       }
@@ -174,7 +175,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       When("the user visits the service test page")
       go to ServiceTestPage
 
-      And("the banner should be displayed with the title 'Cookies on HMRC services'")
+      Then("the banner should be displayed with the title 'Cookies on HMRC services'")
       eventually {
         tagName("h2").element.text shouldBe "Cookies on HMRC services"
       }
@@ -187,7 +188,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       Given("the user clears their cookies")
       deleteAllCookies()
 
-      When("the user visits the service test page")
+      And("the user visits the service test page")
       go to ServiceTestPage
       eventually {
         tagName("h2").element.text shouldBe "Cookies on HMRC services"

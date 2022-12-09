@@ -18,9 +18,10 @@ package acceptance.specs
 
 import acceptance.driver.BrowserDriver
 import org.scalatest.concurrent.Eventually
-import org.scalatest.{BeforeAndAfterAll, GivenWhenThen}
+import org.scalatest.{BeforeAndAfterAll, GivenWhenThen, Outcome, Retries}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.featurespec.AnyFeatureSpec
+import org.scalatest.time.{Seconds, Span}
 import org.scalatestplus.selenium.WebBrowser
 import support.AcceptanceTestServer
 import uk.gov.hmrc.scalatestaccessibilitylinter.AccessibilityMatchers
@@ -36,6 +37,7 @@ trait BaseAcceptanceSpec
     with WebBrowser
     with AcceptanceTestServer
     with BrowserDriver
+    with Retries
     with Eventually
     with AccessibilityMatchers {
 
@@ -50,4 +52,10 @@ trait BaseAcceptanceSpec
       Try(SingletonDriver.closeInstance())
     }
   }
+
+  override def withFixture(test: NoArgTest): Outcome =
+    if (isRetryable(test))
+      withRetry(Span(2L, Seconds))(super.withFixture(test))
+    else
+      super.withFixture(test)
 }
