@@ -70,6 +70,26 @@ CSP's script-src. Without it, the cookie banner will not display.
 Consult the [Play Framework](https://www.playframework.com/) documentation for advice on configuring your 
 CSP policy in Play. It depends on the version of Play you are using.
 
+### CSP for Google Analytics 4 (GA4)
+
+As of [July 2023](https://support.google.com/analytics/answer/11583528?hl=en), Google will only be supporting GA4 for 
+analytics. Specific CSP configuration is needed for GA4, and at the time of writing (**January 2023**), the CSP 
+properties below are required in the service's `application.conf`.
+
+**These properties should be included alongside any existing CSP configuration required for your service, such as the 
+CSP nonce.** 
+
+```
+script-src https://www.googletagmanager.com https://tagmanager.google.com;
+style-src https://tagmanager.google.com https://fonts.googleapis.com;
+img-src 'self' https://ssl.gstatic.com www.gstatic.com https://www.google-analytics.com data https//region1.google-analytics.com https://region1.analytics.google.com https://*.google-analytics.com https://*.analytics.google.com;
+font-src https://ssl.gstatic.com www.gstatic.com https://fonts.gstatic.com https://fonts.googleapis.com;
+connect-src https//region1.google-analytics.com https://region1.analytics.google.com https://*.google-analytics.com https://*.analytics.google.com;
+frame-src 'self' https://www.googletagmanager.com;
+```
+- If you have any question regarding integrating this with your service, please contact PlatUI via Slack. 
+- If you a more general question regarding CSP, you may wish to discus with PlatSec via Slack.
+
 ## How can I read and honour a user's cookie preferences?
 
 Tracking consent stores cookie preferences in the `userConsent` cookie.  Readable on the server 
