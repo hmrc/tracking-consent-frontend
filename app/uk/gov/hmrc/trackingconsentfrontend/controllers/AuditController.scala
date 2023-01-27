@@ -23,5 +23,5 @@ import scala.concurrent.Future
 
 @Singleton
 class AuditController @Inject() (mcc: MessagesControllerComponents) extends FrontendController(mcc) {
-  def audit: Action[AnyContent] = Action.async(implicit request => Future.successful(Ok))
+  def audit: Action[AnyContent] = Action.async(Future.successful(Ok))
 }

@@ -44,7 +44,7 @@ lazy val microservice = Project(appName, file("."))
   .configs(AcceptanceTest, IntegrationTest)
   .settings(
     majorVersion := 0,
-    scalaVersion := "2.13.8",
+    scalaVersion := "2.13.10",
     playDefaultPort := 12345,
     resolvers += Resolver.jcenterRepo,
     libraryDependencies ++= AppDependencies.compile ++ AppDependencies.test,
@@ -64,13 +64,7 @@ lazy val microservice = Project(appName, file("."))
     integrationTestSettings,
     publishingSettings,
     javaScriptSettings,
-    // ***************
-    // Use the silencer plugin to suppress warnings from unused imports in compiled twirl templates
-    scalacOptions += "-P:silencer:pathFilters=views;routes",
-    libraryDependencies ++= Seq(
-      compilerPlugin("com.github.ghik" % "silencer-plugin" % "1.7.9" cross CrossVersion.full),
-      "com.github.ghik" % "silencer-lib" % "1.7.9" % Provided cross CrossVersion.full
-    ),
-    // ***************
+    scalacOptions += "-Wconf:src=routes/.*:s",
+    scalacOptions += "-Wconf:cat=unused-imports&src=html/.*:s",
     A11yTest / unmanagedSourceDirectories += (baseDirectory.value / "test" / "a11y")
   )

@@ -16,7 +16,6 @@
 
 package unit.testonly.views
 
-import play.api.test.Helpers._
 import uk.gov.hmrc.trackingconsentfrontend.testonly.views.html.TestPage
 import unit.SpecBase
 

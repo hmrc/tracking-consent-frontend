@@ -300,6 +300,14 @@ Internally this mechanism is implemented via
 [auditCommunicatorFactory](js/src/interfaces/auditCommunicatorFactory.ts), listening
 to events of type `CONSENT_UPDATED_EVENT` only.
 
+## What will happen when a user revokes previously granted tracking consent?
+
+When a user grants tracking consent, GTM will be loaded on the page and that will create Google Analytics cookies on
+the tax.service.gov.uk domain. If a user then revokes their consent, these cookies will remain, but their tracking
+preference will be updated and on future navigation GTM will not be loaded and no tracking data will be sent. The Google
+analytics cookies will remain in the users browser until they expire, you can view further details about the nature of
+the cookies within [the google analytics documenation on cookie usage](https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage).
+
 ## Maintenance documentation
 Maintenance documentation for the owning team, including architectural decision records (ADRs) can be found [here](docs/maintainers.md).
 
