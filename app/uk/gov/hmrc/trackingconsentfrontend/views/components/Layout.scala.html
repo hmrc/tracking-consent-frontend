@@ -19,7 +19,7 @@
 @(pageTitle: Option[String] = None,
         headBlock: Option[Html] = None,
         scriptsBlock: Option[Html] = None
-)(contentBlock: Html)(implicit request: Request[_], messages: Messages, appConfig: AppConfig)
+)(contentBlock: Html)(implicit request: Request[_], messages: Messages)
 
 @hmrcLayout(
     pageTitle = pageTitle,
