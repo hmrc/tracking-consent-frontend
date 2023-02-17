@@ -8,6 +8,7 @@ import {
   SKIP_LINK_CONTAINER_ID,
   LEGACY_COOKIE_BANNER_ID,
   COOKIE_BANNER_BUTTON_CLASS,
+  GOV_UK_NONE_PRINT_CLASS,
 } from '../constants/cssClasses';
 import removeElement from '../common/removeElement';
 import callIfNotNull from '../common/callIfNotNull';
@@ -54,7 +55,7 @@ const renderBanner = (userPreference: UserPreferences) => {
 
   const insertBanner = () => {
     const banner = document.createElement('div');
-    banner.className = COOKIE_BANNER_CLASS;
+    banner.className = `${COOKIE_BANNER_CLASS} ${GOV_UK_NONE_PRINT_CLASS}`;
     banner.innerHTML = bannerTemplate(messages);
     banner.setAttribute('role', 'region');
     banner.setAttribute('aria-label', messages['banner.title']);

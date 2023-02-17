@@ -15,5 +15,6 @@ export const GOV_UK_BODY_CLASS = 'govuk-body';
 export const GOV_UK_NOTIFICATION_LINK_CLASS = 'govuk-notification-banner__link';
 export const GOV_UK_SKIP_LINK_CLASS = 'govuk-skip-link';
 export const SKIP_LINK_CONTAINER_ID = 'skiplink-container';
+export const GOV_UK_NONE_PRINT_CLASS = 'govuk-!-display-none-print';
 
 export const LEGACY_COOKIE_BANNER_ID = 'global-cookie-message';
