@@ -6,5 +6,6 @@
   "GHSA-93q8-gq69-wqmw": "ansi-regex: devDependency, no risk given our usage",
   "GHSA-f4c9-cqv8-9v98": "jsdom: devDependency, no risk given our usage",
   "GHSA-w573-4hg7-7wgq": "decode-uri-component: devDependency, no risk given our usage",
-  "GHSA-9c47-m6qq-7p4h": "json5: devDependency, no risk given our usage"
+  "GHSA-9c47-m6qq-7p4h": "json5: devDependency, no risk given our usage",
+  "GHSA-rc47-6667-2j5j": "http-cache-semantics: devDependency, no risk given our usage"
 }
