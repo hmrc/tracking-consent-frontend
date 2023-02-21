@@ -85,6 +85,15 @@ describe('renderBanner', () => {
     expect(banner).toHaveAttribute('data-nosnippet');
   });
 
+  it('should have no-print styling for accessibility', () => {
+    renderBanner(userPreference);
+
+    const banner = document.querySelector('.cbanner-govuk-cookie-banner');
+
+    // @ts-ignore
+    expect(banner).toHaveClass('govuk-!-display-none-print');
+  });
+
   it('should render a submit button', () => {
     renderBanner(userPreference);
 
@@ -102,6 +111,7 @@ describe('renderBanner', () => {
     // @ts-ignore
     expect(button.getAttribute('href')).toEqual('https://my-example.com:1234/tracking-consent/cookie-settings');
   });
+
   it('should render a cookie settings button based on base URL', () => {
     getTrackingConsentBaseUrlSpy.and.returnValue('http://localhost:8000');
     renderBanner(userPreference);
