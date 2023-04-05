@@ -60,7 +60,7 @@ If you wish to satisfy yourself that the back link is operating correctly, you w
 
 Because tracking consent depends on GTM, your service will need to have a CSP that is compatible with it.
 
-If you're following the current platform security content security policy guidance, you do not need to make any changes to your CSP.
+If you're following the current platform security Content Security Policy guidance, you do not need to make any changes to your CSP as it will be configured by the bootstrap-play library.
 
 To find out more about what the latest guidance is, check out the #event-content-security-policy in the HMRC Digital slack.
 
