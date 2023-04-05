@@ -56,39 +56,13 @@ This is because:
   
 If you wish to satisfy yourself that the back link is operating correctly, you will need to deploy to an environment.
 
-## Content Security Policy
-Because tracking consent depends on GTM, your service will need to have a CSP that is compatible with it. 
-Google provides guidance on the minimum requirements [here](https://developers.google.com/tag-manager/web/csp). 
+## Content Security Policy (CSP)
 
-If you are using Play 2.7 or above and [CSPFilter](https://www.playframework.com/documentation/2.7.x/CspFilter), 
-the configuration can be simplified by passing a nonce to the tracking consent helpers in 
-play-frontend-hmrc or play-ui.
+Because tracking consent depends on GTM, your service will need to have a CSP that is compatible with it.
 
-If you are not using CSPFilter, when developing locally you will additionally need to add `http://localhost:12345` to your
-CSP's script-src. Without it, the cookie banner will not display.
+If you're following the current platform security content security policy guidance, you do not need to make any changes to your CSP.
 
-Consult the [Play Framework](https://www.playframework.com/) documentation for advice on configuring your 
-CSP policy in Play. It depends on the version of Play you are using.
-
-### CSP for Google Analytics 4 (GA4)
-
-As of [July 2023](https://support.google.com/analytics/answer/11583528?hl=en), Google will only be supporting GA4 for 
-analytics. Specific CSP configuration is needed for GA4, and at the time of writing (**January 2023**), the CSP 
-properties below are required in the service's `application.conf`.
-
-**These properties should be included alongside any existing CSP configuration required for your service, such as the 
-CSP nonce.** 
-
-```
-script-src https://www.googletagmanager.com https://tagmanager.google.com;
-style-src https://tagmanager.google.com https://fonts.googleapis.com;
-img-src 'self' https://ssl.gstatic.com www.gstatic.com https://www.google-analytics.com data https//region1.google-analytics.com https://region1.analytics.google.com https://*.google-analytics.com https://*.analytics.google.com;
-font-src https://ssl.gstatic.com www.gstatic.com https://fonts.gstatic.com https://fonts.googleapis.com;
-connect-src https//region1.google-analytics.com https://region1.analytics.google.com https://*.google-analytics.com https://*.analytics.google.com;
-frame-src 'self' https://www.googletagmanager.com;
-```
-- If you have any question regarding integrating this with your service, please contact PlatUI via Slack. 
-- If you a more general question regarding CSP, you may wish to discus with PlatSec via Slack.
+To find out more about what the latest guidance is, check out the #event-content-security-policy in the HMRC Digital slack.
 
 ## How can I read and honour a user's cookie preferences?
 
