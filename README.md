@@ -28,11 +28,11 @@ If you are not able to use the above libraries, please contact #team-plat-ui for
 
 ## How do I test the integration locally?
 
-1. Use [service manager](https://github.com/hmrc/service-manager)
+1. Use [service manager 2](https://github.com/hmrc/sm2)
 to spin up tracking consent locally on port 12345:
 
     ```
-    sm --start TRACKING_CONSENT_FRONTEND
+    sm2 --start TRACKING_CONSENT_FRONTEND
     ```
 
 1. If you are not using CSPFilter, make the required modifications to your CSP policy (see below).
