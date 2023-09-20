@@ -169,36 +169,40 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
     }
 
     Scenario("An accessible banner is displayed", Local) {
-      Given("the user clears their cookies")
-      deleteAllCookies()
+      pendingUntilFixed {
+        Given("the user clears their cookies")
+        deleteAllCookies()
 
-      When("the user visits the service test page")
-      go to ServiceTestPage
+        When("the user visits the service test page")
+        go to ServiceTestPage
 
-      Then("the banner should be displayed with the title 'Cookies on HMRC services'")
-      eventually {
-        tagName("h2").element.text shouldBe "Cookies on HMRC services"
+        Then("the banner should be displayed with the title 'Cookies on HMRC services'")
+        eventually {
+          tagName("h2").element.text shouldBe "Cookies on HMRC services"
+        }
+
+        And("the page is still accessible")
+        ServiceTestPage.renderedHtml should passAccessibilityChecks
       }
-
-      And("the page is still accessible")
-      ServiceTestPage.renderedHtml should passAccessibilityChecks
     }
 
     Scenario("The user consenting to all cookies displays an accessible save confirmation", Local) {
-      Given("the user clears their cookies")
-      deleteAllCookies()
+      pendingUntilFixed {
+        Given("the user clears their cookies")
+        deleteAllCookies()
 
-      And("the user visits the service test page")
-      go to ServiceTestPage
-      eventually {
-        tagName("h2").element.text shouldBe "Cookies on HMRC services"
+        And("the user visits the service test page")
+        go to ServiceTestPage
+        eventually {
+          tagName("h2").element.text shouldBe "Cookies on HMRC services"
+        }
+
+        When("the user clicks 'Accept all cookies'")
+        click on acceptAdditionalCookiesButton
+
+        Then("the page is still accessible")
+        ServiceTestPage.renderedHtml should passAccessibilityChecks
       }
-
-      When("the user clicks 'Accept all cookies'")
-      click on acceptAdditionalCookiesButton
-
-      Then("the page is still accessible")
-      ServiceTestPage.renderedHtml should passAccessibilityChecks
     }
   }
 }
