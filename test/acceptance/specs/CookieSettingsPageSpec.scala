@@ -156,19 +156,17 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
   }
 
   Scenario("The user saving their consent sees an accessible confirmation banner", Local) {
-    pendingUntilFixed {
-      Given("the user clears their cookies")
-      CookieSettingsPage.deleteAllCookies()
+    Given("the user clears their cookies")
+    CookieSettingsPage.deleteAllCookies()
 
-      And("the user visits the cookie settings page")
-      go to CookieSettingsPage
+    And("the user visits the cookie settings page")
+    go to CookieSettingsPage
 
-      When("clicks submit")
-      click on submitButton
+    When("clicks submit")
+    click on submitButton
 
-      Then("the page should still pass accessibility checks")
-      CookieSettingsPage.renderedHtml should passAccessibilityChecks
-    }
+    Then("the page should still pass accessibility checks")
+    CookieSettingsPage.renderedHtml should passAccessibilityChecks
   }
 
   Scenario("The user changing their language sees all content in Welsh") {
