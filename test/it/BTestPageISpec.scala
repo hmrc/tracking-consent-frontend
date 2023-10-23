@@ -27,9 +27,9 @@ import play.api.test.Helpers.{GET, route, _}
 
 class BTestPageISpec extends AnyWordSpec with Matchers {
 
-  "Given a running instance of tracking consent frontend with test routes, calling GET for test-only-b" should {
+  "Given a running instance of tracking consent frontend with test routes, calling GET for test-only/b" should {
     "return OK with expected page" in new EnabledTestRoutesApp {
-      val request = FakeRequest(GET, "/tracking-consent/test-only-b")
+      val request = FakeRequest(GET, "/tracking-consent/test-only/b")
       val result  = route(app, request).get
 
       status(result)        shouldBe OK
