@@ -1,4 +1,5 @@
 {
+  "GHSA-67hx-6x53-jw92": "@babel/traverse: DevDependency, no risk given our usage",
   "GHSA-hc6q-2mpp-qw7j": "webpack: DevDependency, no risk given our usage",
   "GHSA-p8p7-x288-28g6": "jsdom: DevDependency, no risk given our usage",
   "GHSA-c2qf-rxjj-qqgw": "semver: DevDependency, no risk given our usage",
