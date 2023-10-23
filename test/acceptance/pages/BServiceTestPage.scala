@@ -21,7 +21,7 @@ import support.TestConfiguration
 
 object BServiceTestPage extends BasePage {
   val url: String =
-    TestConfiguration.url("tracking-consent-frontend") + "/test-only-b"
+    TestConfiguration.url("tracking-consent-frontend") + "/test-only/b"
 
   val title                   = "B service test page"
   val acceptAdditionalCookies = "Accept additional cookies"
