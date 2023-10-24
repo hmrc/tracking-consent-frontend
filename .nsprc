@@ -1,9 +1,6 @@
 {
   "GHSA-67hx-6x53-jw92": "@babel/traverse: DevDependency, no risk given our usage",
-  "GHSA-hc6q-2mpp-qw7j": "webpack: DevDependency, no risk given our usage",
-  "GHSA-p8p7-x288-28g6": "jsdom: DevDependency, no risk given our usage",
   "GHSA-c2qf-rxjj-qqgw": "semver: DevDependency, no risk given our usage",
-  "GHSA-rc47-6667-2j5j": "http-cache-semantics: DevDependency, no risk given our usage",
   "GHSA-hrpp-h998-j3pp": "qs: DevDependency, no risk given our usage",
   "GHSA-r683-j2x4-v87g": "node-fetch: devDependency, no risk given our usage",
   "GHSA-44c6-4v22-4mhx": "semver-regex: devDependency, no risk given our usage",
