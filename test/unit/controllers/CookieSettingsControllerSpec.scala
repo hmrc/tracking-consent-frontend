@@ -45,7 +45,7 @@ class CookieSettingsControllerSpec extends SpecBase {
     "return the page with expected Welsh translations if enabled" in {
       val requestWithLanguageCookie = fakeRequest.withCookies(Cookie("PLAY_LANG", "cy"))
       val result                    = controller.cookieSettings()(requestWithLanguageCookie)
-      contentAsString(result) must include("Gosodiadau cwcis ar wasanaethau CThEM")
+      contentAsString(result) must include("Gosodiadau cwcis ar wasanaethau CThEF")
     }
   }
 }

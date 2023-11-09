@@ -19,6 +19,6 @@ describe('getMessages', () => {
 
     const messages = getMessages();
 
-    expect(messages['cookieSettings.title']).toEqual('Gosodiadau cwcis ar wasanaethau CThEM – GOV.UK');
+    expect(messages['cookieSettings.title']).toEqual('Gosodiadau cwcis ar wasanaethau CThEF – GOV.UK');
   });
 });

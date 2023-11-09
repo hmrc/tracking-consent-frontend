@@ -178,7 +178,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
 
     And("the user translates the page to Welsh")
     click on partialLinkText("Cymraeg")
-    h1Element.getText shouldBe "Gosodiadau cwcis ar wasanaethau CThEM"
+    h1Element.getText shouldBe "Gosodiadau cwcis ar wasanaethau CThEF"
 
     When("clicks submit")
     click on welshSubmitButton
