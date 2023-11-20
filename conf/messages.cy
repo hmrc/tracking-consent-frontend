@@ -1,11 +1,11 @@
-cookieSettings.title = Gosodiadau cwcis ar wasanaethau CThEM – GOV.UK
+cookieSettings.title = Gosodiadau cwcis ar wasanaethau CThEF – GOV.UK
 testPage.title = Tudalen prawf y gwasanaeth – GOV.UK
 bTestPage.title = Tudalen prawf trosiannol y gwasanaeth – GOV.UK
-cookieSettings.heading = Gosodiadau cwcis ar wasanaethau CThEM
+cookieSettings.heading = Gosodiadau cwcis ar wasanaethau CThEF
 testPage.heading = Tudalen prawf y gwasanaeth
 bTestPage.heading = Tudalen prawf trosiannol y gwasanaeth
 
-banner.title = Cwcis ar wasanaethau CThEM
+banner.title = Cwcis ar wasanaethau CThEF
 banner.essential.cookies = Rydym yn defnyddio rhai cwcis hanfodol i wneud i’n gwasanaethau weithio.
 banner.additional.cookies = Hoffem osod cwcis ychwanegol fel y gallwn gofio’ch gosodiadau, deall sut mae pobl yn defnyddio’n gwasanaethau a gwneud gwelliannau.
 banner.accept.additional.cookies = Derbyn cwcis ychwanegol
@@ -21,7 +21,7 @@ banner.confirmation.after.link=ar unrhyw adeg.
 banner.confirmation.hide=Cuddio’r neges ynghylch cwcis
 
 cookieSettings.intro.paragraph1 = ‘Cwcis’ yw ffeiliau sy’n cael eu cadw ar eich ffôn, llechen neu gyfrifiadur pan ydych yn ymweld â gwefan.
-cookieSettings.intro.paragraph2 = Rydym yn defnyddio 3 math o gwcis i gadw gwybodaeth am sut yr ydych yn defnyddio gwasanaethau CThEM, megis y tudalennau yr ydych yn ymweld â nhw.
+cookieSettings.intro.paragraph2 = Rydym yn defnyddio 3 math o gwcis i gadw gwybodaeth am sut yr ydych yn defnyddio gwasanaethau CThEF, megis y tudalennau yr ydych yn ymweld â nhw.
 cookieSettings.intro.paragraph3 = Gallwch ddewis pa rai rydych yn fodlon i ni eu defnyddio.
 
 cookieSettings.unsupported.paragraph1 = Ni allwch newid eich gosodiadau cwcis oherwydd:
@@ -38,7 +38,7 @@ cookieSettings.measurement.title = Cwcis sy’n mesur defnydd gwefan
 cookieSettings.measurement.paragraph1 = Rydym yn defnyddio offer dadansoddol er mwyn mesur sut yr ydych yn defnyddio ein gwasanaethau er mwyn i ni allu eu gwella yn seiliedig ar anghenion defnyddwyr. Nid ydym yn caniatáu i unrhyw un arall ddefnyddio na rhannu’r data hwn.
 cookieSettings.measurement.paragraph2 = Mae’r offer hyn yn gosod cwcis sy’n cadw gwybodaeth ddienw am y canlynol:
 cookieSettings.measurement.bullet1 = sut y gwnaethoch gyrraedd y wefan
-cookieSettings.measurement.bullet2 = y tudalennau rydych yn ymweld â nhw ar wasanaethau CThEM a faint o amser rydych yn ei dreulio ar bob tudalen
+cookieSettings.measurement.bullet2 = y tudalennau rydych yn ymweld â nhw ar wasanaethau CThEF a faint o amser rydych yn ei dreulio ar bob tudalen
 cookieSettings.measurement.bullet3 = yr hyn yr ydych yn clicio arno wrth ymweld â’r wefan
 cookieSettings.measurement.settinglabel.on = Defnyddiwch gwcis sy’n mesur fy nefnydd o’r wefan
 cookieSettings.measurement.settinglabel.off = Peidiwch â defnyddio cwcis sy’n mesur fy nefnydd o’r wefan
@@ -53,7 +53,7 @@ cookieSettings.settings.settingid = settings
 cookieSettings.necessary.title = Cwcis hollol angenrheidiol
 cookieSettings.necessary.paragraph1 = Mae’r cwcis hanfodol hyn yn gwneud pethau megis cofio’ch cynnydd drwy ffurflen, megis Ffurflen Dreth.
 cookieSettings.necessary.paragraph2 =Mae angen iddynt fod ar waith drwy’r amser.
-cookieSettings.necessary.link.text = Dysgwch ragor am gwcis ar wasanaethau CThEM
+cookieSettings.necessary.link.text = Dysgwch ragor am gwcis ar wasanaethau CThEF
 
 cookieSettings.onValue = on
 cookieSettings.offValue = off

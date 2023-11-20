@@ -73,7 +73,7 @@ describe('renderBanner', () => {
 
     renderBanner(userPreference);
 
-    expect(queryByText(document.body, /Cwcis ar wasanaethau CThEM/)).toBeTruthy();
+    expect(queryByText(document.body, /Cwcis ar wasanaethau CThEF/)).toBeTruthy();
   });
 
   it('should have an SEO data-nosnippet attribute', () => {
