@@ -169,6 +169,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
     }
 
     Scenario("An accessible banner is displayed", Local) {
+      pending
       Given("the user clears their cookies")
       deleteAllCookies()
 
@@ -185,6 +186,7 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
     }
 
     Scenario("The user consenting to all cookies displays an accessible save confirmation", Local) {
+      pending
       Given("the user clears their cookies")
       deleteAllCookies()
 

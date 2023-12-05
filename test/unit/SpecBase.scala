@@ -16,6 +16,8 @@
 
 package unit
 
+import org.apache.pekko.actor.ActorSystem
+import org.apache.pekko.stream.Materializer
 import org.scalatestplus.play.PlaySpec
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.Application
@@ -37,6 +39,8 @@ trait SpecBase extends PlaySpec with GuiceOneAppPerSuite with JsoupHelpers with 
     new GuiceApplicationBuilder()
       .configure(baseProperties)
       .build()
+
+  implicit val materializer: Materializer = Materializer(ActorSystem("it"))
 
   implicit lazy val messages: Messages   = getMessages(app, fakeRequest)
   implicit lazy val appConfig: AppConfig = getAppConfig

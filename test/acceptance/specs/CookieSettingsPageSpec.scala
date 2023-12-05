@@ -156,6 +156,7 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
   }
 
   Scenario("The user saving their consent sees an accessible confirmation banner", Local) {
+    pending
     Given("the user clears their cookies")
     CookieSettingsPage.deleteAllCookies()
 

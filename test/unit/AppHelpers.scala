@@ -24,7 +24,7 @@ import play.api.test.FakeRequest
 import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
 
 trait AppHelpers {
-  implicit lazy val fakeRequest = FakeRequest("GET", "/foo")
+  implicit lazy val fakeRequest: FakeRequest[_] = FakeRequest("GET", "/foo")
 
   def buildApp[A](elems: (String, _)*) =
     new GuiceApplicationBuilder()
