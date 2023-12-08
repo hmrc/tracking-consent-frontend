@@ -41,7 +41,6 @@ class TrackingJsISpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite
         "auditing.enabled" -> false
       )
     )
-    .disable[com.kenshoo.play.metrics.PlayModule]
     .build()
 
   "Given a running instance of tracking consent frontend, calling GET for tracking.js" should {

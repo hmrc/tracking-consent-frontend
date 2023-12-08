@@ -47,7 +47,6 @@ class BTestPageISpec extends AnyWordSpec with Matchers {
           "play.http.router" -> "testOnlyDoNotUseInAppConf.Routes"
         )
       )
-      .disable[com.kenshoo.play.metrics.PlayModule]
       .build()
   }
 }
