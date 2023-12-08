@@ -38,7 +38,6 @@ class AuditISpec extends AnyWordSpec with Matchers with AppendedClues with Guice
         )
       )
     )
-    .disable[com.kenshoo.play.metrics.PlayModule]
     .build()
 
   "Given a running instance of tracking consent frontend, calling POST /audit" should {

@@ -28,7 +28,6 @@ trait WithConfiguredApp extends TestSuite {
     )
     new GuiceApplicationBuilder()
       .configure(sharedConfiguration ++ configuration)
-      .disable[com.kenshoo.play.metrics.PlayModule]
       .build()
   }
 }

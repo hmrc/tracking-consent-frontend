@@ -36,7 +36,6 @@ trait AcceptanceTestServer extends TestSuiteMixin with GuiceFakeApplicationFacto
         "tracking-consent-frontend.url"  -> "/tracking-consent/tracking.js"
       )
     )
-    .disable[com.kenshoo.play.metrics.PlayModule]
     .build()
 
   private def runSuiteWithTestServer(testName: Option[String], args: Args): Status = {

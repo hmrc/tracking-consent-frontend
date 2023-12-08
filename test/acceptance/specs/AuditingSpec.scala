@@ -38,7 +38,6 @@ class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
         "tracking-consent-frontend.b-url" -> "/tracking-consent/tracking-b.js"
       )
     )
-    .disable[com.kenshoo.play.metrics.PlayModule]
     .build()
 
   Scenario("Accepting all cookies on the cookie settings page sends an auditing event", Local) {

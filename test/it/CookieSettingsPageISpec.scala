@@ -34,7 +34,6 @@ class CookieSettingsPageISpec extends AnyWordSpec with Matchers with GuiceOneApp
         "auditing.enabled" -> false
       )
     )
-    .disable[com.kenshoo.play.metrics.PlayModule]
     .build()
 
   "Given a running instance of tracking consent frontend, calling GET for cookie-settings" should {
