@@ -41,7 +41,7 @@ plugin.
 The UI and ZAP tests are based on the template at https://github.com/hmrc/ui-test-template.g8
 with some modifications to allow them to be run as part of the microservice repository.
 
-To run the UI acceptance tests locally, you will Docker (or equivalent) to run the remote-chrome browser.
+To run the UI acceptance tests locally, you will need Docker (or equivalent) to run the remote-chrome browser.
 ```
 ./run_acceptance_tests.sh
 ```
