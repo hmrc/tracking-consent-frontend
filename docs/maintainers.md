@@ -39,18 +39,14 @@ plugin.
 ## Running UI acceptance tests
 
 The UI and ZAP tests are based on the template at https://github.com/hmrc/ui-test-template.g8
-with some modifications to allow them to be run as part of the microservice
-repository.
+with some modifications to allow them to be run as part of the microservice repository.
 
-To run the UI acceptance tests locally, you will need a copy of Chrome
-and the Chrome browser driver installed at /usr/local/bin/chromedriver
+To run the UI acceptance tests locally, you will need Docker (or equivalent) to run the remote-chrome browser.
 ```
 ./run_acceptance_tests.sh
 ```
 
-The Chrome driver is available at https://chromedriver.chromium.org/
-
-Additionally, the UI acceptance run through rendered HTML through the accessibility linter.
+Additionally, the UI acceptance tests run the accessibility linter against the rendered HTML.
 
 ## Running just the Javascript checks
 

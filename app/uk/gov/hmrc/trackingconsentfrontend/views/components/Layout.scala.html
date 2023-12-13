@@ -14,16 +14,21 @@
  * limitations under the License.
  *@
 
-@this(hmrcLayout: HmrcLayout)
+@import uk.gov.hmrc.hmrcfrontend.views.html.helpers.HmrcStandardPage
+@import uk.gov.hmrc.hmrcfrontend.views.viewmodels.hmrcstandardpage._
+
+@this(hmrcStandardPage: HmrcStandardPage)
 
 @(pageTitle: Option[String] = None,
         headBlock: Option[Html] = None,
         scriptsBlock: Option[Html] = None
 )(contentBlock: Html)(implicit request: Request[_], messages: Messages)
 
-@hmrcLayout(
+@hmrcStandardPage(HmrcStandardPageParams(
+    templateOverrides = TemplateOverrides(
+      additionalHeadBlock = headBlock,
+      additionalScriptsBlock = scriptsBlock
+    ),
     pageTitle = pageTitle,
-    additionalHeadBlock = headBlock,
-    additionalScriptsBlock = scriptsBlock,
     isWelshTranslationAvailable = true
-)(contentBlock)
+))(contentBlock)

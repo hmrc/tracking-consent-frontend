@@ -3,7 +3,6 @@ import play.sbt.PlayImport.PlayKeys.playDefaultPort
 import sbt.Keys.testOptions
 import uk.gov.hmrc.AccessibilityLinterPlugin.autoImport.A11yTest
 import uk.gov.hmrc.DefaultBuildSettings.addTestReportOption
-import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin.publishingSettings
 
 val appName = "tracking-consent-frontend"
 
@@ -43,8 +42,8 @@ lazy val microservice = Project(appName, file("."))
   .disablePlugins(JUnitXmlReportPlugin) // Required to prevent https://github.com/scalatest/scalatest/issues/1427
   .configs(AcceptanceTest, IntegrationTest)
   .settings(
-    majorVersion := 0,
-    scalaVersion := "2.13.10",
+    majorVersion := 1,
+    scalaVersion := "2.13.12",
     playDefaultPort := 12345,
     resolvers += Resolver.jcenterRepo,
     libraryDependencies ++= AppDependencies.compile ++ AppDependencies.test,
@@ -62,7 +61,6 @@ lazy val microservice = Project(appName, file("."))
     acceptanceTestSettings,
     unitTestSettings,
     integrationTestSettings,
-    publishingSettings,
     javaScriptSettings,
     scalacOptions += "-Wconf:src=routes/.*:s",
     scalacOptions += "-Wconf:cat=unused-imports&src=html/.*:s",
