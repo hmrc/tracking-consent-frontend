@@ -27,7 +27,6 @@ class CookieSettingsSpec extends SpecBase with AccessibilityMatchers {
     val content            = cookieSettingsPage()
 
     "should pass accessibility checks" in {
-      pending
       content.toString() must passAccessibilityChecks
     }
   }
