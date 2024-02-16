@@ -16,7 +16,7 @@
 
 package acceptance.specs
 
-import acceptance.pages.{BServiceTestPage}
+import acceptance.pages.BServiceTestPage
 import acceptance.pages.BServiceTestPage._
 
 class BServiceTestPageSpec extends BaseAcceptanceSpec {

@@ -35,6 +35,7 @@ trait WireMockEndpoints extends Suite with BeforeAndAfterAll with BeforeAndAfter
   val endpointServer: WireMockServer = new WireMockServer(wireMockConfig().port(endpointPort))
 
   override def beforeEach(): Unit = {
+    super.beforeEach()
     endpointMock.resetMappings()
     endpointMock.resetScenarios()
     endpointMock.register(

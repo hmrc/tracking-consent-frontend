@@ -14,7 +14,7 @@ object AppDependencies {
   val test = Seq(
     "org.jsoup"          % "jsoup"                        % "1.15.4"         % Test,
     "uk.gov.hmrc"       %% s"bootstrap-test-$playVersion" % bootstrapVersion % Test,
-    "org.scalatestplus" %% "selenium-4-2"                 % "3.2.13.0"       % Test,
-    "uk.gov.hmrc"       %% "webdriver-factory"            % "0.46.0"         % Test
+    "org.scalatestplus" %% "selenium-4-12"                % "3.2.17.0"       % Test,
+    "uk.gov.hmrc"       %% "ui-test-runner"               % "0.17.0"         % Test
   )
 }
