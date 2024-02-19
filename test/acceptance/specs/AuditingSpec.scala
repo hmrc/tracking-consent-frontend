@@ -40,74 +40,77 @@ class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
     )
     .build()
 
-  Scenario("Accepting all cookies on the cookie settings page sends an auditing event", Local) {
-    Given("the user clears their cookies")
-    deleteAllCookies()
+  Feature("Auditing") {
 
-    And("the user visits the cookie settings page")
-    go to CookieSettingsPage
+    Scenario("Accepting all cookies on the cookie settings page sends an auditing event", Local) {
+      Given("the user clears their cookies")
+      deleteAllCookies()
 
-    When("the user says yes to all cookies")
-    click on useMeasurementCookiesLabel
-    click on useSettingsCookiesLabel
+      And("the user visits the cookie settings page")
+      go to CookieSettingsPage
 
-    And("clicks submit")
-    endpointServer.resetRequests()
-    click on submitButton
+      When("the user says yes to all cookies")
+      click on useMeasurementCookiesLabel
+      click on useSettingsCookiesLabel
 
-    Then("an audit event is sent")
-    eventually {
-      val requests = endpointServer.findAll(anyRequestedFor(anyUrl()))
-      requests.size                   should be(1)
-      requests.get(0).getBodyAsString should include(
-        "{\\\"measurement\\\":true,\\\"settings\\\":true}"
-      )
+      And("clicks submit")
+      endpointServer.resetRequests()
+      click on submitButton
+
+      Then("an audit event is sent")
+      eventually {
+        val requests = endpointServer.findAll(anyRequestedFor(anyUrl()))
+        requests.size                   should be(1)
+        requests.get(0).getBodyAsString should include(
+          "{\\\"measurement\\\":true,\\\"settings\\\":true}"
+        )
+      }
     }
-  }
 
-  Scenario("The user refusing consent on the cookie settings page sends an auditing event", Local) {
-    Given("the user clears their cookies")
-    deleteAllCookies()
+    Scenario("The user refusing consent on the cookie settings page sends an auditing event", Local) {
+      Given("the user clears their cookies")
+      deleteAllCookies()
 
-    And("the user visits the cookie settings page")
-    go to CookieSettingsPage
+      And("the user visits the cookie settings page")
+      go to CookieSettingsPage
 
-    When("the user chooses no for all categories of cookie")
-    click on doNotUseMeasurementCookiesLabel
-    click on doNotUseSettingsCookiesLabel
+      When("the user chooses no for all categories of cookie")
+      click on doNotUseMeasurementCookiesLabel
+      click on doNotUseSettingsCookiesLabel
 
-    And("clicks submit")
-    endpointServer.resetRequests()
-    click on submitButton
+      And("clicks submit")
+      endpointServer.resetRequests()
+      click on submitButton
 
-    Then("an audit event is sent")
-    eventually {
-      val requests = endpointServer.findAll(anyRequestedFor(anyUrl()))
-      requests.size                   should be(1)
-      requests.get(0).getBodyAsString should include(
-        "{\\\"measurement\\\":false,\\\"settings\\\":false}"
-      )
+      Then("an audit event is sent")
+      eventually {
+        val requests = endpointServer.findAll(anyRequestedFor(anyUrl()))
+        requests.size                   should be(1)
+        requests.get(0).getBodyAsString should include(
+          "{\\\"measurement\\\":false,\\\"settings\\\":false}"
+        )
+      }
     }
-  }
 
-  Scenario("Accepting all cookies on the cookie banner sends an audit event", Local) {
-    Given("the user clears their cookies")
-    deleteAllCookies()
+    Scenario("Accepting all cookies on the cookie banner sends an audit event", Local) {
+      Given("the user clears their cookies")
+      deleteAllCookies()
 
-    When("the user visits the service test page")
-    go to ServiceTestPage
+      When("the user visits the service test page")
+      go to ServiceTestPage
 
-    When("the user clicks 'Accept all cookies'")
-    endpointServer.resetRequests()
-    click on acceptAdditionalCookiesButton
+      When("the user clicks 'Accept all cookies'")
+      endpointServer.resetRequests()
+      click on acceptAdditionalCookiesButton
 
-    Then("an audit event is sent")
-    eventually {
-      val requests = endpointServer.findAll(anyRequestedFor(anyUrl()))
-      requests.size                   should be(1)
-      requests.get(0).getBodyAsString should include(
-        "{\\\"measurement\\\":true,\\\"settings\\\":true}"
-      )
+      Then("an audit event is sent")
+      eventually {
+        val requests = endpointServer.findAll(anyRequestedFor(anyUrl()))
+        requests.size                   should be(1)
+        requests.get(0).getBodyAsString should include(
+          "{\\\"measurement\\\":true,\\\"settings\\\":true}"
+        )
+      }
     }
   }
 }

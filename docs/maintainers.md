@@ -38,12 +38,9 @@ plugin.
 
 ## Running UI acceptance tests
 
-The UI and ZAP tests are based on the template at https://github.com/hmrc/ui-test-template.g8
-with some modifications to allow them to be run as part of the microservice repository.
-
-To run the UI acceptance tests locally, you will need Docker (or equivalent) to run the remote-chrome browser.
+To execute the UI acceptance tests on your local machine, ensure that you have [selenium-grid](https://github.com/hmrc/docker-selenium-grid) installed. Once set up, you can proceed with running the tests with.
 ```
-./run_acceptance_tests.sh
+./run_acceptance_tests.sh 
 ```
 
 Additionally, the UI acceptance tests run the accessibility linter against the rendered HTML.

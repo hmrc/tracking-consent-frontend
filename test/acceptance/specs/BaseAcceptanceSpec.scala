@@ -16,47 +16,32 @@
 
 package acceptance.specs
 
-import acceptance.driver.BrowserDriver
 import org.scalatest.concurrent.{Eventually, IntegrationPatience}
-import org.scalatest.{BeforeAndAfterAll, GivenWhenThen, Outcome, Retries}
-import org.scalatest.matchers.should.Matchers
 import org.scalatest.featurespec.AnyFeatureSpec
-import org.scalatest.time.{Seconds, Span}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.{BeforeAndAfterEach, GivenWhenThen, Retries}
 import org.scalatestplus.selenium.WebBrowser
 import support.AcceptanceTestServer
 import uk.gov.hmrc.scalatestaccessibilitylinter.AccessibilityMatchers
-import uk.gov.hmrc.webdriver.SingletonDriver
-
-import scala.util.Try
+import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
 
 trait BaseAcceptanceSpec
     extends AnyFeatureSpec
     with GivenWhenThen
-    with BeforeAndAfterAll
+    with BeforeAndAfterEach
     with Matchers
     with WebBrowser
     with AcceptanceTestServer
-    with BrowserDriver
     with Retries
+    with Browser
     with Eventually
     with IntegrationPatience
+    with ScreenshotOnFailure
     with AccessibilityMatchers {
 
-  override def beforeAll(): Unit = {
-    // Ensures the browser is quit only when the JVM exits
-    // Previously this was accomplished via a call to SingletonDriver.quit()
-    // in a afterAll but this resulted in a race-condition
-    // with the driver left in an inconsistent state resulting in
-    // session not found
-    super.beforeAll()
-    sys.addShutdownHook {
-      Try(SingletonDriver.closeInstance())
-    }
-  }
+  override def beforeEach(): Unit =
+    startBrowser()
 
-  override def withFixture(test: NoArgTest): Outcome =
-    if (isRetryable(test))
-      withRetry(Span(2L, Seconds))(super.withFixture(test))
-    else
-      super.withFixture(test)
+  override def afterEach(): Unit =
+    quitBrowser()
 }
