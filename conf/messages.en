@@ -10,7 +10,7 @@ banner.essential.cookies = We use some essential cookies to make our services wo
 banner.additional.cookies = We would like to set additional cookies so we can remember your settings, understand how people use our services and make improvements.
 banner.accept.additional.cookies = Accept additional cookies
 banner.reject.additional.cookies = Reject additional cookies
-banner.view.cookies = View cookies
+banner.view.cookies = View cookie preferences
 banner.view.cookies.url = /tracking-consent/cookie-settings
 
 banner.confirmation.accepted = You have accepted additional cookies.
