@@ -106,7 +106,7 @@ describe('renderBanner', () => {
   it('should render the view cookies link', () => {
     renderBanner(userPreference);
 
-    const button = queryByText(document.body, 'View cookies');
+    const button = queryByText(document.body, 'View cookie preferences');
     expect(button).toBeTruthy();
     // @ts-ignore
     expect(button.getAttribute('href')).toEqual('https://my-example.com:1234/tracking-consent/cookie-settings');
@@ -116,7 +116,7 @@ describe('renderBanner', () => {
     getTrackingConsentBaseUrlSpy.and.returnValue('http://localhost:8000');
     renderBanner(userPreference);
 
-    const button = queryByText(document.body, 'View cookies');
+    const button = queryByText(document.body, 'View cookie preferences');
     expect(button).toBeTruthy();
     // @ts-ignore
     expect(button.getAttribute('href')).toEqual('http://localhost:8000/tracking-consent/cookie-settings');
@@ -126,7 +126,7 @@ describe('renderBanner', () => {
     getTrackingConsentBaseUrlSpy.and.returnValue('http://localhost:8000');
     renderBanner(userPreference);
 
-    const link = queryByText(document.body, 'View cookies');
+    const link = queryByText(document.body, 'View cookie preferences');
     expect(link).toBeTruthy();
     // @ts-ignore
     expect(link.getAttribute('href')).toEqual('http://localhost:8000/tracking-consent/cookie-settings');

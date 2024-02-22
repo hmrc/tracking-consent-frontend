@@ -26,7 +26,7 @@ object ServiceTestPage extends BasePage {
   val title                   = "Service test page"
   val acceptAdditionalCookies = "Accept additional cookies"
   val rejectAdditionalCookies = "Reject additional cookies"
-  val setCookiePreferences    = "View cookies"
+  val setCookiePreferences    = "View cookie preferences"
 
   def acceptAdditionalCookiesButton: WebElement = findButtonByPartialText(acceptAdditionalCookies)
   def rejectAdditionalCookiesButton: WebElement = findButtonByPartialText(rejectAdditionalCookies)

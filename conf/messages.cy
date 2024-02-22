@@ -10,7 +10,7 @@ banner.essential.cookies = Rydym yn defnyddio rhai cwcis hanfodol i wneud i’n 
 banner.additional.cookies = Hoffem osod cwcis ychwanegol fel y gallwn gofio’ch gosodiadau, deall sut mae pobl yn defnyddio’n gwasanaethau a gwneud gwelliannau.
 banner.accept.additional.cookies = Derbyn cwcis ychwanegol
 banner.reject.additional.cookies = Gwrthod cwcis ychwanegol
-banner.view.cookies = Bwrw golwg dros y cwcis
+banner.view.cookies = Bwrw golwg dros ddewisiadau cwcis
 banner.view.cookies.url = /tracking-consent/cookie-settings
 
 banner.confirmation.accepted=Rydych wedi derbyn cwcis ychwanegol.
