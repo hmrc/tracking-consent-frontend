@@ -100,7 +100,7 @@ describe('renderBanner', () => {
     const button = queryByText(document.body, 'Accept additional cookies');
     expect(button).toBeTruthy();
     // @ts-ignore
-    expect(button.getAttribute('type')).toEqual('button');
+    expect(button.getAttribute('type')).toEqual('submit');
   });
 
   it('should render the view cookies link', () => {

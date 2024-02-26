@@ -13,10 +13,10 @@ const banner = (messages) => {
       </div>
     </div>
     <div class="cbanner-govuk-button-group">
-      <button value="accept" type="button" name="cookies" class="cbanner-govuk-button" data-module="cbanner-govuk-button">
+      <button value="accept" type="submit" name="cookies" class="cbanner-govuk-button" data-module="cbanner-govuk-button">
         ${messages['banner.accept.additional.cookies']}
       </button>
-      <button value="reject" type="button" name="cookies" class="cbanner-govuk-button" data-module="cbanner-govuk-button">
+      <button value="reject" type="submit" name="cookies" class="cbanner-govuk-button" data-module="cbanner-govuk-button">
         ${messages['banner.reject.additional.cookies']}
       </button>
       <a class="cbanner-govuk-link" href="${trackingConsentSettingsPageUrl}">${messages['banner.view.cookies']}</a>
