@@ -13,7 +13,7 @@ To install multiple versions of Node.js, you may find it easier to use a node ve
 To run the application locally with the test-only endpoints enabled,
 
 ```
-./run.sh
+sbt run -Dapplication.router=testOnlyDoNotUseInAppConf.Routes
 ```
 
 The cookie banner should be available at http://localhost:12345/tracking-consent/test-only
@@ -38,7 +38,7 @@ plugin.
 
 ## Running UI acceptance tests
 
-To execute the UI acceptance tests on your local machine, ensure that you have [selenium-grid](https://github.com/hmrc/docker-selenium-grid) installed. Once set up, you can proceed with running the tests with.
+To execute the UI acceptance tests on your local machine, ensure that you have [local-selenium-grid](https://github.com/hmrc/local-selenium-grid) installed and running. Once set up, you can proceed with running the tests with.
 ```
 ./run_acceptance_tests.sh 
 ```
