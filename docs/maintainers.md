@@ -13,7 +13,7 @@ To install multiple versions of Node.js, you may find it easier to use a node ve
 To run the application locally with the test-only endpoints enabled,
 
 ```
-sbt run -Dapplication.router=testOnlyDoNotUseInAppConf.Routes
+./run-with-test-endpoints.sh
 ```
 
 The cookie banner should be available at http://localhost:12345/tracking-consent/test-only
