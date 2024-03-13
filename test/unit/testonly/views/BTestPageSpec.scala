@@ -25,7 +25,7 @@ class BTestPageSpec extends SpecBase {
     val content  = testPage()
 
     "display the correct title" in {
-      content.select("title").text mustBe "B service test page – GOV.UK"
+      content.select("title").first().text mustBe "B service test page – GOV.UK"
     }
 
     "display the correct page heading" in {
