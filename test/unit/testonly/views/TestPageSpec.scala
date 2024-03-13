@@ -25,7 +25,7 @@ class TestPageSpec extends SpecBase {
     val content  = testPage()
 
     "display the correct title" in {
-      content.select("title").text mustBe "Service test page – GOV.UK"
+      content.select("title").first().text mustBe "Service test page – GOV.UK"
     }
 
     "display the correct page heading" in {
