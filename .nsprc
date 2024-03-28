@@ -1,4 +1,5 @@
 {
+  "GHSA-rv95-896h-c2vc": "Express.js Open Redirect in malformed URLs, only used locally for visual regression testing - never publicly hosted so no risk given our usage",
   "GHSA-67hx-6x53-jw92": "@babel/traverse: DevDependency, no risk given our usage",
   "GHSA-c2qf-rxjj-qqgw": "semver: DevDependency, no risk given our usage",
   "GHSA-hrpp-h998-j3pp": "qs: DevDependency, no risk given our usage",
