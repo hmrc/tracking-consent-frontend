@@ -17,8 +17,7 @@
 package acceptance.driver
 
 import com.typesafe.scalalogging.LazyLogging
-import org.openqa.selenium.remote.RemoteWebDriver
-import org.openqa.selenium.{By, JavascriptExecutor, WebElement}
+import org.openqa.selenium.{By, JavascriptExecutor, WebDriver, WebElement}
 import uk.gov.hmrc.selenium.webdriver.Driver
 
 trait BrowserDriver extends LazyLogging {
@@ -26,7 +25,7 @@ trait BrowserDriver extends LazyLogging {
     s"Instantiating Browser: ${sys.props.getOrElse("browser", "'browser' System property not set. This is required")}"
   )
 
-  implicit def driver: RemoteWebDriver = Driver.instance
+  implicit def driver: WebDriver = Driver.instance
 
   def findBy(by: By): WebElement = driver.findElement(by)
 
