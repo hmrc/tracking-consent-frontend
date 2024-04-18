@@ -16,7 +16,6 @@
 ///  }
 ///
 /// @access public
-@import "node_modules/govuk-frontend/govuk/base";
 
 @mixin govuk-width-container($width: $govuk-page-width) {
 
@@ -67,13 +66,5 @@
       margin-right: auto;
       margin-left: auto;
     }
-  }
-
-  @include govuk-if-ie8 {
-    width: $width;
-    // Since media queries are not supported in IE8,
-    // we need to duplicate this margin that centers the page.
-    margin-right: auto;
-    margin-left: auto;
   }
 }

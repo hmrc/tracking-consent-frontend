@@ -16,6 +16,11 @@ import { UserPreferences } from '../../types/UserPreferences';
 import getMessages from '../interfaces/getMessages';
 
 const renderBanner = (userPreference: UserPreferences) => {
+  if (window.getComputedStyle(document.documentElement).getPropertyValue('font-size') === '10px') {
+    // hmrc services using assets-frontend still have a root font size of 10px (rather than 16px)
+    document.body.classList.add('root-font-size-10px');
+  }
+
   const messages = getMessages();
 
   const hideQuestion = () => {
