@@ -47,15 +47,15 @@ module.exports = ({ host, port }) => ({
       readySelector: '.cbanner-govuk-cookie-banner',
     },
     {
-      label: 'Tracking Consent - Cookie Banner - Tab to Link',
-      url: `http://${host}:${port}/`,
-      onReadyScript: 'tabToCookiesLink.js',
-      readySelector: '.cbanner-govuk-cookie-banner',
-    },
-    {
       label: 'Tracking Consent - Cookie Banner - Tab to accept additional',
       url: `http://${host}:${port}/`,
       onReadyScript: 'tabToAcceptAdditional.js',
+      readySelector: '.cbanner-govuk-cookie-banner',
+    },
+    {
+      label: 'Tracking Consent - Cookie Banner - Tab to reject additional',
+      url: `http://${host}:${port}/`,
+      onReadyScript: 'tabToRejectAdditional.js',
       readySelector: '.cbanner-govuk-cookie-banner',
     },
     {
@@ -96,15 +96,15 @@ module.exports = ({ host, port }) => ({
       readySelector: '.cbanner-govuk-cookie-banner',
     },
     {
-      label: 'Tracking Consent - Cookie Banner - Assets Frontend - Tab to Link',
-      url: `http://${host}:${port}/assets-frontend.html`,
-      onReadyScript: 'tabToCookiesLink.js',
-      readySelector: '.cbanner-govuk-cookie-banner',
-    },
-    {
       label: 'Tracking Consent - Cookie Banner - Assets Frontend - Tab to accept additional',
       url: `http://${host}:${port}/assets-frontend.html`,
       onReadyScript: 'tabToAcceptAdditional.js',
+      readySelector: '.cbanner-govuk-cookie-banner',
+    },
+    {
+      label: 'Tracking Consent - Cookie Banner - Assets Frontend - Tab to reject additional',
+      url: `http://${host}:${port}/assets-frontend.html`,
+      onReadyScript: 'tabToRejectAdditional.js',
       readySelector: '.cbanner-govuk-cookie-banner',
     },
     {
@@ -139,7 +139,7 @@ module.exports = ({ host, port }) => ({
       hoverSelector: '.cbanner-govuk-button[value=reject]',
     },
     {
-      label: 'Tracking Consent - Cookie Banner - Classic Services - Tab to Link',
+      label: 'Tracking Consent - Cookie Banner - Classic Services - Tab to Skip Link',
       url: `http://${host}:${port}/classic-services.html`,
       onReadyScript: 'tabToSkipLink.js',
       readySelector: '.cbanner-govuk-cookie-banner',
@@ -147,13 +147,19 @@ module.exports = ({ host, port }) => ({
     {
       label: 'Tracking Consent - Cookie Banner - Classic Services - Tab to accept additional',
       url: `http://${host}:${port}/classic-services.html`,
-      onReadyScript: 'tabToCookiesLink.js',
+      onReadyScript: 'tabToAcceptAdditional.js',
+      readySelector: '.cbanner-govuk-cookie-banner',
+    },
+    {
+      label: 'Tracking Consent - Cookie Banner - Classic Services - Tab to reject additional',
+      url: `http://${host}:${port}/classic-services.html`,
+      onReadyScript: 'tabToRejectAdditional.js',
       readySelector: '.cbanner-govuk-cookie-banner',
     },
     {
       label: 'Tracking Consent - Cookie Banner - Classic Services - Tab to Cookie Settings',
       url: `http://${host}:${port}/classic-services.html`,
-      onReadyScript: 'tabToAcceptAdditional.js',
+      onReadyScript: 'tabToViewCookies.js',
       readySelector: '.cbanner-govuk-cookie-banner',
     },
   ],
@@ -173,7 +179,8 @@ module.exports = ({ host, port }) => ({
       '--no-sandbox',
     ],
   },
-  asyncCaptureLimit: 5,
+  misMatchThreshold: 0,
+  asyncCaptureLimit: 5, // try reducing this in case of issues on Apple Silicon
   asyncCompareLimit: 50,
   debug: false,
   debugWindow: false,
