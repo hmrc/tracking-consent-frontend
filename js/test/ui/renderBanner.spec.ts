@@ -256,6 +256,14 @@ describe('renderBanner', () => {
     expect(queryByText(document.body, /GOV.UK uses cookies to make the site simpler/)).toBeFalsy();
   });
 
+  it('should add the root font size class for legacy services', () => {
+    document.getElementsByTagName('html')[0].style.fontSize = '10px';
+
+    renderBanner(userPreference);
+
+    expect(document.body.classList.contains('cbanner-root-font-size-10px')).toBeTruthy();
+  });
+
   describe('Meta tests', () => {
     it('should reset state between tests', () => {
       expect(queryByText(document.body, cookieBannerHeadingMatcher)).toBeFalsy();

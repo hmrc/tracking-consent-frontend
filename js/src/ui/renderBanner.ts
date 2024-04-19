@@ -70,6 +70,16 @@ const renderBanner = (userPreference: UserPreferences) => {
     insertBeforeSkipLink(banner);
   };
 
+  const addRootFontSizeClassForLegacyServices = () => {
+    // Services still using assets-frontend will have a root font size of 10px (rather than 16px)
+    const computedStyle = window.getComputedStyle(document.documentElement);
+    const rootFontSize = computedStyle.getPropertyValue('font-size');
+    if (rootFontSize === '10px') {
+      // add this class so that cookie banner fonts are styled proportionally
+      document.body.classList.add('cbanner-root-font-size-10px');
+    }
+  };
+
   const removeLegacyCookieBanner = () => {
     const legacyBanner = document.querySelector(`#${LEGACY_COOKIE_BANNER_ID}`);
 
@@ -78,6 +88,7 @@ const renderBanner = (userPreference: UserPreferences) => {
 
   removeLegacyCookieBanner();
   if (!userPreference.getUserHasSavedCookiePreferences()) {
+    addRootFontSizeClassForLegacyServices();
     insertBanner();
   }
 };
