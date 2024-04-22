@@ -1,7 +1,4 @@
 // Mixins taken from node_modules/govuk-frontend/govuk/core/_typography
-@import "node_modules/govuk-frontend/govuk/base";
-
-$govuk-typography-use-rem: false;
 
 %govuk-heading-m {
   @include govuk-text-colour;
