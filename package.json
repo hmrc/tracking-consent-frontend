@@ -56,7 +56,7 @@
   "devDependencies": {
     "@testing-library/dom": "6.15.0",
     "@testing-library/jest-dom": "5.1.1",
-    "@types/jest": "25.1.4",
+    "@types/jest": "27.5.2",
     "@typescript-eslint/eslint-plugin": "4.10.0",
     "@typescript-eslint/parser": "^4.0.0",
     "backstopjs": "^5.4.4",
@@ -75,7 +75,7 @@
     "jest": "^27.3.1",
     "jsdom": "16.2.2",
     "node-sass": "^7.0.3",
-    "sass-loader": "12.1.0",
+    "sass-loader": "13.3.3",
     "standardx": "5.0.0",
     "stylelint": "13.13.1",
     "stylelint-config-recommended": "3.0.0",
