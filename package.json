@@ -41,7 +41,7 @@
     "@babel/plugin-transform-runtime": "7.10.1",
     "@babel/preset-env": "7.10.1",
     "babel-loader": "9.1.0",
-    "core-js": "3.6.5",
+    "core-js": "3.23.3",
     "css-loader": "5.2.6",
     "dot-properties": "1.0.1",
     "govuk-frontend": "5.3.0",
@@ -50,8 +50,8 @@
     "style-loader": "1.2.1",
     "ts-loader": "9.4.1",
     "typescript": "3.8.3",
-    "webpack": "5.40.0",
-    "webpack-cli": "4.10.0"
+    "webpack": "5.91.0",
+    "webpack-cli": "5.1.4"
   },
   "devDependencies": {
     "@testing-library/dom": "6.15.0",
