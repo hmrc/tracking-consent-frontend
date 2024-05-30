@@ -17,7 +17,7 @@ describe('userPreferencesFactory', () => {
     spyOn(Cookies, 'set').and.callFake((cookieName, value) => {
       testScope.cookieData[cookieName] = value;
     });
-    spyOn(Cookies, 'getJSON').and.callFake((cookieName) => testScope.cookieData[cookieName]);
+    spyOn(Cookies, 'get').and.callFake((cookieName) => testScope.cookieData[cookieName]);
     spyOn(Date.prototype, 'toISOString').and.callFake(() => testScope.fakeDatetime);
   });
 
@@ -363,13 +363,13 @@ describe('userPreferencesFactory', () => {
       expect(new Date().toISOString()).toEqual(123);
     });
     it('cookies should be settable and gettable', () => {
-      expect(Cookies.getJSON('abcdef')).toBeUndefined();
+      expect(Cookies.get('abcdef')).toBeUndefined();
       Cookies.set('abcdef', 'this is my cookie value');
-      expect(Cookies.getJSON('abcdef')).toBe('this is my cookie value');
+      expect(Cookies.get('abcdef')).toBe('this is my cookie value');
     });
     it('cookies should be settable with an object', () => {
-      Cookies.set('abcdef', { thisIs: 'AnObject' });
-      expect(Cookies.getJSON('abcdef')).toEqual({ thisIs: 'AnObject' });
+      Cookies.set('abcdef', JSON.stringify({ thisIs: 'AnObject' }));
+      expect(JSON.parse(Cookies.get('abcdef'))).toEqual({ thisIs: 'AnObject' });
     });
   });
 });

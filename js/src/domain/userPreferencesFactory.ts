@@ -21,15 +21,15 @@ const userPreferencesFactory = (): UserPreferences => {
   };
 
   const storePreferences = (preferences: Preferences) => {
-    Cookies.set(
-      COOKIE_CONSENT,
+    Cookies.set(COOKIE_CONSENT,
       {
         version: COOKIE_VERSION,
         datetimeSet: new Date().toISOString(),
         preferences,
-      },
-      { sameSite: 'strict', expires: 365 },
-    );
+      }, {
+        sameSite: 'strict',
+        expires: 365,
+      });
   };
 
   const allThePreferences = (hasConsented: boolean) => fromEntries(cookieTypes.map(
@@ -63,7 +63,7 @@ const userPreferencesFactory = (): UserPreferences => {
   };
 
   const validateCookie = (): Cookie | undefined => {
-    const cookie = Cookies.getJSON(COOKIE_CONSENT);
+    const cookie = Cookies.get(COOKIE_CONSENT);
     if (cookie === null || cookie === undefined || cookie.preferences === undefined) {
       return undefined;
     }
@@ -75,6 +75,21 @@ const userPreferencesFactory = (): UserPreferences => {
 
     return cookie;
   };
+
+  // const validateCookie = (): Cookie | undefined => {
+  //  let cookie = Cookies.get(COOKIE_CONSENT)
+  //  if (cookie === null || cookie === undefined || cookie.preferences === undefined) {
+  //    return undefined;
+  //  }
+  //  let cookieJson = JSON.parse(cookie);
+
+  //  const { version } = cookie;
+  //  if (version !== COOKIE_VERSION) {
+  //    return undefined;
+  //  }
+
+  //  return cookie;
+  // };
 
   const getPreferences = (): Preferences | undefined => {
     const cookie = validateCookie();
