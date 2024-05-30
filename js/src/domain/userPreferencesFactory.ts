@@ -76,21 +76,6 @@ const userPreferencesFactory = (): UserPreferences => {
     return cookie;
   };
 
-  // const validateCookie = (): Cookie | undefined => {
-  //  let cookie = Cookies.get(COOKIE_CONSENT)
-  //  if (cookie === null || cookie === undefined || cookie.preferences === undefined) {
-  //    return undefined;
-  //  }
-  //  let cookieJson = JSON.parse(cookie);
-
-  //  const { version } = cookie;
-  //  if (version !== COOKIE_VERSION) {
-  //    return undefined;
-  //  }
-
-  //  return cookie;
-  // };
-
   const getPreferences = (): Preferences | undefined => {
     const cookie = validateCookie();
     if (cookie === undefined) {
