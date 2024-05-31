@@ -1,4 +1,5 @@
 # Tracking Consent Frontend
+
 Tracking Consent Frontend is a solution intended to address the need for users visiting the public-facing HMRC tax platform 
 (www.tax.service.gov.uk) to provide their explicit informed consent to the use of non-essential cookies.
 
