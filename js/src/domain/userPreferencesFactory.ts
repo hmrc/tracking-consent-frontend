@@ -22,11 +22,11 @@ const userPreferencesFactory = (): UserPreferences => {
 
   const storePreferences = (preferences: Preferences) => {
     Cookies.set(COOKIE_CONSENT,
-      {
+      JSON.stringify({
         version: COOKIE_VERSION,
         datetimeSet: new Date().toISOString(),
         preferences,
-      }, {
+      }), {
         sameSite: 'strict',
         expires: 365,
       });
@@ -63,17 +63,21 @@ const userPreferencesFactory = (): UserPreferences => {
   };
 
   const validateCookie = (): Cookie | undefined => {
-    const cookie = Cookies.get(COOKIE_CONSENT);
-    if (cookie === null || cookie === undefined || cookie.preferences === undefined) {
+    try {
+      const cookie = JSON.parse(Cookies.get(COOKIE_CONSENT));
+      if (cookie === null || cookie === undefined || cookie.preferences === undefined) {
+        return undefined;
+      }
+
+      const { version } = cookie;
+      if (version !== COOKIE_VERSION) {
+        return undefined;
+      }
+
+      return cookie;
+    } catch (e) {
       return undefined;
     }
-
-    const { version } = cookie;
-    if (version !== COOKIE_VERSION) {
-      return undefined;
-    }
-
-    return cookie;
   };
 
   const getPreferences = (): Preferences | undefined => {

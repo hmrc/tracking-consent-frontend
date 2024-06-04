@@ -22,11 +22,11 @@ describe('userPreferencesFactory', () => {
   });
 
   const setConsentCookie = (obj) => {
-    testScope.cookieData.userConsent = { version: '2021.1', ...obj };
+    testScope.cookieData.userConsent = JSON.stringify({ version: '2021.1', ...obj });
   };
 
   const expectTrackingPreferenceToHaveBeenSetWith = (preference) => {
-    expect(Cookies.set).toHaveBeenCalledWith('userConsent', preference, expect.anything());
+    expect(Cookies.set).toHaveBeenCalledWith('userConsent', JSON.stringify(preference), expect.anything());
     expect(Cookies.set).toHaveBeenCalledTimes(1);
   };
 
@@ -264,40 +264,40 @@ describe('userPreferencesFactory', () => {
         measurement: true,
         settings: true,
       });
-      expect(Cookies.set).toHaveBeenCalledWith('userConsent', {
+      expect(Cookies.set).toHaveBeenCalledWith('userConsent', JSON.stringify({
         version: '2021.1',
         datetimeSet: testScope.fakeDatetime,
         preferences: {
           measurement: true,
           settings: true,
         },
-      }, { sameSite: 'strict', expires: 365 });
+      }), { sameSite: 'strict', expires: 365 });
     });
     it('should save other preferences to the cookie', () => {
       testScope.userPreference.setPreferences({
         measurement: false,
         settings: true,
       });
-      expect(Cookies.set).toHaveBeenCalledWith('userConsent', {
+      expect(Cookies.set).toHaveBeenCalledWith('userConsent', JSON.stringify({
         version: '2021.1',
         datetimeSet: testScope.fakeDatetime,
         preferences: {
           measurement: false,
           settings: true,
         },
-      }, { sameSite: 'strict', expires: 365 });
+      }), { sameSite: 'strict', expires: 365 });
     });
     it('should save only preferences specified', () => {
       testScope.userPreference.setPreferences({
         measurement: true,
       });
-      expect(Cookies.set).toHaveBeenCalledWith('userConsent', {
+      expect(Cookies.set).toHaveBeenCalledWith('userConsent', JSON.stringify({
         version: '2021.1',
         datetimeSet: testScope.fakeDatetime,
         preferences: {
           measurement: true,
         },
-      }, { sameSite: 'strict', expires: 365 });
+      }), { sameSite: 'strict', expires: 365 });
     });
 
     it('should call preference communicator', () => {
@@ -366,10 +366,6 @@ describe('userPreferencesFactory', () => {
       expect(Cookies.get('abcdef')).toBeUndefined();
       Cookies.set('abcdef', 'this is my cookie value');
       expect(Cookies.get('abcdef')).toBe('this is my cookie value');
-    });
-    it('cookies should be settable with an object', () => {
-      Cookies.set('abcdef', JSON.stringify({ thisIs: 'AnObject' }));
-      expect(JSON.parse(Cookies.get('abcdef'))).toEqual({ thisIs: 'AnObject' });
     });
   });
 });
