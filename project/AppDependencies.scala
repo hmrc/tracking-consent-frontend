@@ -15,6 +15,6 @@ object AppDependencies {
     "org.jsoup"          % "jsoup"                        % "1.15.4"         % Test,
     "uk.gov.hmrc"       %% s"bootstrap-test-$playVersion" % bootstrapVersion % Test,
     "org.scalatestplus" %% "selenium-4-12"                % "3.2.17.0"       % Test,
-    "uk.gov.hmrc"       %% "ui-test-runner"               % "0.26.0"         % Test
+    "uk.gov.hmrc"       %% "ui-test-runner"               % "0.30.0"         % Test
   )
 }

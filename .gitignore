@@ -45,3 +45,8 @@ stats.json
 **/backstop_data/bitmaps_test
 /backstop.config-for-docker.json
 .bsp
+.bloop/
+.metals/
+.vscode/
+project/.bloop/
+project/metals.sbt
