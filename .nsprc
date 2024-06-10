@@ -14,5 +14,6 @@
   "GHSA-72xf-g2v4-qvf3": "tough-cookie: devDependency, no risk given our usage",
   "GHSA-7fh5-64p2-3v2j": "postcss: devDependency, no risk given our usage",
   "GHSA-78xj-cgh5-2h22": "ip: devDependency, no risk given our usage",
+  "GHSA-2p57-rm9w-gvfp": "ip: devDependency, no risk given our usage",
   "GHSA-f5x3-32g6-xq36": "node-sass: devDependency, no risk given our usage"
 }
