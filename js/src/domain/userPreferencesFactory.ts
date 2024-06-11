@@ -21,15 +21,16 @@ const userPreferencesFactory = (): UserPreferences => {
   };
 
   const storePreferences = (preferences: Preferences) => {
-    Cookies.set(COOKIE_CONSENT,
-      JSON.stringify({
+    Cookies.set(COOKIE_CONSENT, JSON.stringify(
+      {
         version: COOKIE_VERSION,
         datetimeSet: new Date().toISOString(),
         preferences,
-      }), {
-        sameSite: 'strict',
-        expires: 365,
-      });
+      },
+    ), {
+      sameSite: 'strict',
+      expires: 365,
+    });
   };
 
   const allThePreferences = (hasConsented: boolean) => fromEntries(cookieTypes.map(
