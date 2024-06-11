@@ -1,6 +1,8 @@
 module.exports = {
   modulePathIgnorePatterns: ['<rootDir>/node_modules/'],
-  testURL: 'https://www.tax.service.example.com/some-service/some-page',
+  testEnvironmentOptions: {
+    url: 'https://www.tax.service.example.com/some-service/some-page'
+  },
   moduleFileExtensions: ['js', 'ts', 'jsx'],
   testPathIgnorePatterns: ['/js/node_modules/'],
   testEnvironment: 'jsdom',
