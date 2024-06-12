@@ -5,6 +5,7 @@ import uk.gov.hmrc.AccessibilityLinterPlugin.autoImport.A11yTest
 import uk.gov.hmrc.DefaultBuildSettings.addTestReportOption
 
 val appName = "tracking-consent-frontend"
+val scala3_3 = "3.3.3"
 
 lazy val unitTestSettings =
   inConfig(Test)(Defaults.testTasks) ++
@@ -43,7 +44,7 @@ lazy val microservice = Project(appName, file("."))
   .configs(AcceptanceTest, IntegrationTest)
   .settings(
     majorVersion := 1,
-    scalaVersion := "2.13.12",
+    scalaVersion := scala3_3,
     playDefaultPort := 12345,
     resolvers += Resolver.jcenterRepo,
     libraryDependencies ++= AppDependencies.compile ++ AppDependencies.test,
