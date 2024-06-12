@@ -3,7 +3,7 @@ import enableGtm from '../../src/interfaces/enableGtm';
 
 describe('enableGtm', () => {
   beforeEach(() => {
-    delete window.dataLayer;
+    window.dataLayer = [];
     document.getElementsByTagName('html')[0].innerHTML = '<head><script/></head>';
   });
 

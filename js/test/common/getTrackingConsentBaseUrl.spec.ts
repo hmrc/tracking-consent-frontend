@@ -4,7 +4,6 @@ import fixture from '../fixtures/servicePageWithBannerMinimal.html';
 
 describe('getTrackingConsentBaseUrl', () => {
   beforeEach(() => {
-    delete window.location;
     document.getElementsByTagName('html')[0].innerHTML = fixture;
   });
 
