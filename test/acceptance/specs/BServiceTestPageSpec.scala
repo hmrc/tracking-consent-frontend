@@ -17,7 +17,7 @@
 package acceptance.specs
 
 import acceptance.pages.BServiceTestPage
-import acceptance.pages.BServiceTestPage._
+import acceptance.pages.BServiceTestPage.*
 
 class BServiceTestPageSpec extends BaseAcceptanceSpec {
   Feature("Service Test page") {

@@ -17,7 +17,7 @@
 package acceptance.specs
 
 import acceptance.pages.LegacyServiceTestPage
-import acceptance.pages.LegacyServiceTestPage._
+import acceptance.pages.LegacyServiceTestPage.*
 import org.scalatest.tagobjects.Retryable
 
 class LegacyTestPageSpec extends BaseAcceptanceSpec {

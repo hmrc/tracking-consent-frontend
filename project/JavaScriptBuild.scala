@@ -1,6 +1,6 @@
-import com.typesafe.sbt.packager.Keys._
-import sbt.Keys._
-import sbt._
+import com.typesafe.sbt.packager.Keys.*
+import sbt.Keys.*
+import sbt.*
 
 /**
   * Enables running NPM scripts
@@ -17,7 +17,7 @@ object JavaScriptBuild {
   val npmBackstop = TaskKey[Int]("npm-backstop")
   val npmBuild    = TaskKey[Int]("npm-build")
 
-  val javaScriptSettings: Seq[Setting[_]] = Seq(
+  val javaScriptSettings: Seq[Setting[?]] = Seq(
     npmInstall := Npm.npmProcess("npm install failed")(baseDirectory.value, "install"),
     npmBuild := Npm.npmProcess("npm build failed")(baseDirectory.value, "run", "build"),
     npmBuild := (npmBuild dependsOn npmInstall).value,

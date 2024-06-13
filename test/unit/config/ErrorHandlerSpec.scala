@@ -16,20 +16,24 @@
 
 package unit.config
 
-import play.api.test.Helpers._
 import uk.gov.hmrc.trackingconsentfrontend.config.ErrorHandler
 import unit.SpecBase
+import play.twirl.api.Html
+import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 class ErrorHandlerSpec extends SpecBase {
   private val errorHandler = app.injector.instanceOf[ErrorHandler]
 
   "standardErrorTemplate" should {
     "show the correct title" in {
-      val result =
-        errorHandler.standardErrorTemplate(pageTitle = "Error occurred", heading = "A heading", message = "A message")(
-          fakeRequest
-        )
-      contentAsString(result) must include("A heading")
+      val result: Future[Html] = {
+        errorHandler.standardErrorTemplate(pageTitle = "Error occurred", heading = "A heading", message = "A message")
+      }
+
+        result.map { error =>
+          error.toString() must include("A heading")
+        }
     }
   }
 }

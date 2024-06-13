@@ -17,7 +17,7 @@
 package acceptance.specs
 
 import acceptance.pages.CookieSettingsPage
-import acceptance.pages.CookieSettingsPage._
+import acceptance.pages.CookieSettingsPage.*
 import acceptance.specs.tags.Local
 import org.scalatest.tagobjects.Retryable
 

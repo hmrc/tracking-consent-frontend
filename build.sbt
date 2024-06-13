@@ -1,4 +1,4 @@
-import JavaScriptBuild._
+import JavaScriptBuild.*
 import play.sbt.PlayImport.PlayKeys.playDefaultPort
 import sbt.Keys.testOptions
 import uk.gov.hmrc.AccessibilityLinterPlugin.autoImport.A11yTest
@@ -51,10 +51,10 @@ lazy val microservice = Project(appName, file("."))
     TwirlKeys.templateImports ++= Seq(
       "views.html.helper.CSPNonce",
       "uk.gov.hmrc.trackingconsentfrontend.config.AppConfig",
-      "uk.gov.hmrc.trackingconsentfrontend.views.html.components._",
-      "uk.gov.hmrc.govukfrontend.views.html.components._",
-      "uk.gov.hmrc.hmrcfrontend.views.html.components._",
-      "uk.gov.hmrc.hmrcfrontend.views.html.helpers._"
+      "uk.gov.hmrc.trackingconsentfrontend.views.html.components.*",
+      "uk.gov.hmrc.govukfrontend.views.html.components.*",
+      "uk.gov.hmrc.hmrcfrontend.views.html.components.*",
+      "uk.gov.hmrc.hmrcfrontend.views.html.helpers.*"
     ),
     PlayKeys.playRunHooks += Webpack(baseDirectory.value),
     PlayKeys.devSettings ++= Seq("metrics.enabled" -> "false"),

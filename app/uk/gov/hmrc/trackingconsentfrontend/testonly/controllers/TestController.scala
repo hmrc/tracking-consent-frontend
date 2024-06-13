@@ -17,7 +17,7 @@
 package uk.gov.hmrc.trackingconsentfrontend.testonly.controllers
 
 import javax.inject.{Inject, Singleton}
-import play.api.mvc._
+import play.api.mvc.*
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
 import uk.gov.hmrc.trackingconsentfrontend.testonly.views.html.TestPage
@@ -28,7 +28,7 @@ import scala.concurrent.Future
 class TestController @Inject() (appConfig: AppConfig, mcc: MessagesControllerComponents, testPage: TestPage)
     extends FrontendController(mcc) {
 
-  implicit val config: AppConfig = appConfig
+  given config: AppConfig = appConfig
 
   val test: Action[AnyContent] = Action.async { implicit request =>
     Future.successful(Ok(testPage()))

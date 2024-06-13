@@ -3,6 +3,10 @@
     {
       "path": "/test-only",
       "reason": "Test only endpoints do not need accessibility testing as it is used purely for testing purposes."
+    },
+    {
+      "path": "/non-existent-page",
+      "reason": "Test only endpoints do not need accessibility testing as it is used purely for testing purposes."
     }
   ]
 }

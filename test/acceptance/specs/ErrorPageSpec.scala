@@ -17,7 +17,7 @@
 package acceptance.specs
 
 import acceptance.pages.ErrorPage
-import acceptance.pages.ErrorPage._
+import acceptance.pages.ErrorPage.*
 
 class ErrorPageSpec extends BaseAcceptanceSpec {
   Feature("Error page") {

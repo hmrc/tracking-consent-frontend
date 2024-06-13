@@ -24,7 +24,7 @@ import play.api.test.FakeRequest
 import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
 
 trait AppHelpers {
-  implicit lazy val fakeRequest: FakeRequest[_] = FakeRequest("GET", "/foo")
+  given fakeRequest: FakeRequest[?] = FakeRequest("GET", "/foo")
 
   def buildApp[A](elems: (String, _)*) =
     new GuiceApplicationBuilder()
@@ -48,7 +48,7 @@ trait AppHelpers {
   def getMessagesApi(implicit app: Application) =
     app.injector.instanceOf[MessagesApi]
 
-  def getMessages(implicit app: Application, request: Request[_]) = {
+  def getMessages(implicit app: Application, request: Request[?]) = {
     val messagesApi: MessagesApi = getMessagesApi(app)
     messagesApi.preferred(request)
   }

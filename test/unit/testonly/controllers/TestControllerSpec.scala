@@ -17,7 +17,7 @@
 package unit.testonly.controllers
 
 import play.api.http.Status
-import play.api.test.Helpers._
+import play.api.test.Helpers.*
 import uk.gov.hmrc.trackingconsentfrontend.testonly.controllers.TestController
 import unit.SpecBase
 
