@@ -1,5 +1,10 @@
 const loader = require('../src/loaders/message-format-loader');
 
 module.exports = {
-  process: loader,
+  process: () => {
+    console.log('HERE')
+    return {
+      code: loader()
+    }
+  },
 };
