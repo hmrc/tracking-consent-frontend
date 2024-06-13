@@ -5,7 +5,6 @@ describe('messageFormatLoader', () => {
 banner.paragraph1.beforeLink = We use
 banner.paragraph1.link.text = cookies to collect information
 `;
-
   it('should translate a messages file', () => {
     const output = loader(messages);
 
