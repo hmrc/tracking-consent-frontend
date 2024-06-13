@@ -78,6 +78,9 @@ describe('pageHandler', () => {
   });
 
   it('should make the userPreferences object available in the window', () => {
+    // @ts-ignore
+    delete window.trackingConsent;
+
     pageHandler(thisDocument, testScope.userPreferences, pageRenderer);
 
     expect(window.trackingConsent).toBeDefined();
