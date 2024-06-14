@@ -4,7 +4,7 @@ import sbt.Keys.testOptions
 import uk.gov.hmrc.AccessibilityLinterPlugin.autoImport.A11yTest
 import uk.gov.hmrc.DefaultBuildSettings.addTestReportOption
 
-val appName = "tracking-consent-frontend"
+val appName  = "tracking-consent-frontend"
 val scala3_3 = "3.3.3"
 
 lazy val unitTestSettings =

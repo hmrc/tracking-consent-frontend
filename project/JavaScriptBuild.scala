@@ -2,14 +2,13 @@ import com.typesafe.sbt.packager.Keys.*
 import sbt.Keys.*
 import sbt.*
 
-/**
-  * Enables running NPM scripts
+/** Enables running NPM scripts
   *
-  * This assumes that NPM is available, up-to-date, configured appropriately, etc. It makes not guarantees apart
-  * from being able to invoke NPM with arguments.
+  * This assumes that NPM is available, up-to-date, configured appropriately, etc. It makes not guarantees apart from
+  * being able to invoke NPM with arguments.
   *
-  * Additionally to this, there is some wiring to make 'npm test' run whenever 'sbt test' is run, and to
-  * run 'npm run build' when doing the dist command (which is part of the distTgz command run in Jenkins)
+  * Additionally to this, there is some wiring to make 'npm test' run whenever 'sbt test' is run, and to run 'npm run
+  * build' when doing the dist command (which is part of the distTgz command run in Jenkins)
   */
 object JavaScriptBuild {
   val npmInstall  = TaskKey[Int]("npm-install")
