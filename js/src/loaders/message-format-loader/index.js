@@ -15,9 +15,6 @@ const process = (content) => {
 
   const strippedMessages = stripDoubleQuotesFromMessages(messages);
 
-  // return {
-  //   code: `module.exports = ${JSON.stringify(strippedMessages, null, 2)}`
-  // }
   return `module.exports = ${JSON.stringify(strippedMessages, null, 2)}`;
 
 };
