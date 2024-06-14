@@ -31,7 +31,7 @@ class ErrorHandler @Inject() (val messagesApi: MessagesApi, errorPage: ErrorTemp
 ) extends FrontendErrorHandler {
 
   override def standardErrorTemplate(pageTitle: String, heading: String, message: String)(using
-    request: RequestHeader,
+    request: RequestHeader
   ): Future[Html] = Future {
     errorPage(pageTitle, heading, message)
   }

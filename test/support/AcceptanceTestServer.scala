@@ -54,9 +54,7 @@ trait AcceptanceTestServer extends TestSuiteMixin with GuiceFakeApplicationFacto
     }
   }
 
-  /**
-    * Invoke suite with a test server if running locally.
-    * See org.scalatest.SuiteMixin.run
+  /** Invoke suite with a test server if running locally. See org.scalatest.SuiteMixin.run
     */
   abstract override def run(testName: Option[String], args: Args): Status =
     if (env == "local") {

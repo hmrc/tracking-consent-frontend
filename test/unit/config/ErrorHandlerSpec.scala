@@ -27,13 +27,12 @@ class ErrorHandlerSpec extends SpecBase {
 
   "standardErrorTemplate" should {
     "show the correct title" in {
-      val result: Future[Html] = {
+      val result: Future[Html] =
         errorHandler.standardErrorTemplate(pageTitle = "Error occurred", heading = "A heading", message = "A message")
-      }
 
-        result.map { error =>
-          error.toString() must include("A heading")
-        }
+      result.map { error =>
+        error.toString() must include("A heading")
+      }
     }
   }
 }

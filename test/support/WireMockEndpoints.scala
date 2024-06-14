@@ -43,9 +43,9 @@ trait WireMockEndpoints extends Suite with BeforeAndAfterAll with BeforeAndAfter
         .willReturn(aResponse().withStatus(204))
     );
   }
-  override def afterAll(): Unit  =
+  override def afterAll(): Unit   =
     endpointServer.stop()
-  override def beforeAll(): Unit =
+  override def beforeAll(): Unit  =
     endpointServer.start()
 }
 
