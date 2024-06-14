@@ -6,7 +6,7 @@
     },
     {
       "path": "/non-existent-page",
-      "reason": "Test only endpoints do not need accessibility testing as it is used purely for testing purposes."
+      "reason": "This path is used to check for a non-existent page, but many status errors would fail this check as they have the same elements"
     }
   ]
 }
