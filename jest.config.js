@@ -3,12 +3,11 @@ module.exports = {
   testEnvironmentOptions: {
     url: 'https://www.tax.service.example.com/some-service/some-page'
   },
-  moduleFileExtensions: ['js', 'ts', 'jsx'],
+  moduleFileExtensions: ['js', 'ts'],
   testPathIgnorePatterns: ['/js/node_modules/'],
   testEnvironment: 'jsdom',
   testRunner: 'jest-jasmine2',
   transform: {
-    '^.+\\.[t|j]sx?$': 'ts-jest',
     '^.+\\.html?$': 'jest-html-loader',
     '^.+\\.(en|cy|conf)?$': './js/test/messageFormatJestTransformer.js',
   },
