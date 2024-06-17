@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.trackingconsentfrontend.config
 
-import javax.inject.Inject
+import javax.inject.{Inject,Singleton}
 import play.api.i18n.MessagesApi
 import play.api.mvc.RequestHeader
 import play.twirl.api.Html
@@ -25,6 +25,7 @@ import uk.gov.hmrc.trackingconsentfrontend.views.html.components.ErrorTemplate
 
 import scala.concurrent.{ExecutionContext, Future}
 
+@Singleton
 class ErrorHandler @Inject() (val messagesApi: MessagesApi, errorPage: ErrorTemplate)(using
   appConfig: AppConfig,
   protected val ec: ExecutionContext
@@ -32,7 +33,6 @@ class ErrorHandler @Inject() (val messagesApi: MessagesApi, errorPage: ErrorTemp
 
   override def standardErrorTemplate(pageTitle: String, heading: String, message: String)(using
     request: RequestHeader
-  ): Future[Html] = Future {
-    errorPage(pageTitle, heading, message)
+  ): Future[Html] = 
+    Future.successful(errorPage(pageTitle, heading, message))
   }
-}
