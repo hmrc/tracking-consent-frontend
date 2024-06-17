@@ -1,7 +1,7 @@
 {
   "extends": [
     "airbnb-base",
-    "airbnb-typescript"
+    "airbnb-typescript/base"
   ],
   "root": true,
   "env": {
@@ -13,11 +13,6 @@
   ],
   "parserOptions": {
     "project": "./tsconfig.json"
-  },
-  "settings": {
-    "react": {
-      "version": "latest"
-    }
   },
   "overrides": [
     {
