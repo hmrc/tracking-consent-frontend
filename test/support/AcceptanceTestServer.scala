@@ -20,7 +20,7 @@ import org.scalatest.{Args, Status, TestSuite, TestSuiteMixin}
 import org.scalatestplus.play.guice.GuiceFakeApplicationFactory
 import play.api.Application
 import play.api.inject.guice.GuiceApplicationBuilder
-import TestConfiguration._
+import TestConfiguration.*
 import play.api.test.TestServer
 
 trait AcceptanceTestServer extends TestSuiteMixin with GuiceFakeApplicationFactory { this: TestSuite =>
@@ -54,9 +54,7 @@ trait AcceptanceTestServer extends TestSuiteMixin with GuiceFakeApplicationFacto
     }
   }
 
-  /**
-    * Invoke suite with a test server if running locally.
-    * See org.scalatest.SuiteMixin.run
+  /** Invoke suite with a test server if running locally. See org.scalatest.SuiteMixin.run
     */
   abstract override def run(testName: Option[String], args: Args): Status =
     if (env == "local") {

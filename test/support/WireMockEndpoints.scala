@@ -21,7 +21,7 @@ import java.net.ServerSocket
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.client.WireMock
 import com.github.tomakehurst.wiremock.client.WireMock.{aResponse, post}
-import com.github.tomakehurst.wiremock.core.WireMockConfiguration._
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration.*
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, Suite}
 import scala.util.Try
 
@@ -43,9 +43,9 @@ trait WireMockEndpoints extends Suite with BeforeAndAfterAll with BeforeAndAfter
         .willReturn(aResponse().withStatus(204))
     );
   }
-  override def afterAll(): Unit  =
+  override def afterAll(): Unit   =
     endpointServer.stop()
-  override def beforeAll(): Unit =
+  override def beforeAll(): Unit  =
     endpointServer.start()
 }
 

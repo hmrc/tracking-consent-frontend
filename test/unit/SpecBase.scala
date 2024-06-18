@@ -40,8 +40,8 @@ trait SpecBase extends PlaySpec with GuiceOneAppPerSuite with JsoupHelpers with 
       .configure(baseProperties)
       .build()
 
-  implicit val materializer: Materializer = Materializer(ActorSystem("it"))
+  given materializer: Materializer = Materializer(ActorSystem("it"))
 
-  implicit lazy val messages: Messages   = getMessages(app, fakeRequest)
-  implicit lazy val appConfig: AppConfig = getAppConfig
+  given messages: Messages   = getMessages(app, fakeRequest)
+  given appConfig: AppConfig = getAppConfig
 }

@@ -17,7 +17,7 @@
 package uk.gov.hmrc.trackingconsentfrontend.controllers
 
 import javax.inject.{Inject, Singleton}
-import play.api.mvc._
+import play.api.mvc.*
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import scala.concurrent.Future
 

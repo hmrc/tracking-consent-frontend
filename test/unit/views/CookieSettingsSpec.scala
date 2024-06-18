@@ -16,7 +16,7 @@
 
 package unit.views
 
-import play.api.test.Helpers._
+import play.api.test.Helpers.*
 import uk.gov.hmrc.trackingconsentfrontend.views.html.CookieSettingsPage
 import unit.SpecBase
 

@@ -18,7 +18,7 @@
   errorTemplate: ErrorTemplate
 )
 
-@()(implicit request: Request[_], messages: Messages, appConfig: AppConfig)
+@()(implicit request: Request[?], messages: Messages, appConfig: AppConfig)
 @errorTemplate(
  messages("global.error.pageNotFound404.title"),
  messages("global.error.pageNotFound404.heading"),

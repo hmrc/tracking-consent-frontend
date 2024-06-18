@@ -1,10 +1,11 @@
-import JavaScriptBuild._
+import JavaScriptBuild.*
 import play.sbt.PlayImport.PlayKeys.playDefaultPort
 import sbt.Keys.testOptions
 import uk.gov.hmrc.AccessibilityLinterPlugin.autoImport.A11yTest
 import uk.gov.hmrc.DefaultBuildSettings.addTestReportOption
 
-val appName = "tracking-consent-frontend"
+val appName  = "tracking-consent-frontend"
+val scala3_3 = "3.3.3"
 
 lazy val unitTestSettings =
   inConfig(Test)(Defaults.testTasks) ++
@@ -43,17 +44,17 @@ lazy val microservice = Project(appName, file("."))
   .configs(AcceptanceTest, IntegrationTest)
   .settings(
     majorVersion := 1,
-    scalaVersion := "2.13.12",
+    scalaVersion := scala3_3,
     playDefaultPort := 12345,
     resolvers += Resolver.jcenterRepo,
     libraryDependencies ++= AppDependencies.compile ++ AppDependencies.test,
     TwirlKeys.templateImports ++= Seq(
       "views.html.helper.CSPNonce",
       "uk.gov.hmrc.trackingconsentfrontend.config.AppConfig",
-      "uk.gov.hmrc.trackingconsentfrontend.views.html.components._",
-      "uk.gov.hmrc.govukfrontend.views.html.components._",
-      "uk.gov.hmrc.hmrcfrontend.views.html.components._",
-      "uk.gov.hmrc.hmrcfrontend.views.html.helpers._"
+      "uk.gov.hmrc.trackingconsentfrontend.views.html.components.*",
+      "uk.gov.hmrc.govukfrontend.views.html.components.*",
+      "uk.gov.hmrc.hmrcfrontend.views.html.components.*",
+      "uk.gov.hmrc.hmrcfrontend.views.html.helpers.*"
     ),
     PlayKeys.playRunHooks += Webpack(baseDirectory.value),
     PlayKeys.devSettings ++= Seq("metrics.enabled" -> "false"),

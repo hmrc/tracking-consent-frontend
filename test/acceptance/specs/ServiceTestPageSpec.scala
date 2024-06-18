@@ -17,7 +17,7 @@
 package acceptance.specs
 
 import acceptance.pages.ServiceTestPage
-import acceptance.pages.ServiceTestPage._
+import acceptance.pages.ServiceTestPage.*
 import acceptance.specs.tags.Local
 import org.scalatest.tagobjects.Retryable
 
