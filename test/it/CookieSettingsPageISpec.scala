@@ -30,8 +30,9 @@ class CookieSettingsPageISpec extends AnyWordSpec with Matchers with GuiceOneApp
   override lazy val app: Application = new GuiceApplicationBuilder()
     .configure(
       Map(
-        "metrics.enabled"  -> false,
-        "auditing.enabled" -> false
+        "metrics.enabled"                      -> false,
+        "auditing.enabled"                     -> false,
+        "help-frontend.base-url-local-testing" -> "http://localhost:9240"
       )
     )
     .build()
@@ -80,7 +81,7 @@ class CookieSettingsPageISpec extends AnyWordSpec with Matchers with GuiceOneApp
       val request = FakeRequest(GET, "/tracking-consent/cookie-settings")
       val result  = route(appWithConfiguration(configuration), request).get
 
-      contentAsString(result) should include("""<a href="/help/cookie-details"""")
+      contentAsString(result) should include("""<a href="https://www.example.com/help/cookie-details"""")
     }
   }
 }
