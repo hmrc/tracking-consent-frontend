@@ -37,7 +37,7 @@ class AppConfig @Inject() (config: Configuration, servicesConfig: ServicesConfig
     config.getOptional[String]("help-frontend.base-url-local-testing")
 
   private val helpFrontendHost: String = platformHost match {
-    // if on a environment with Platform host set, use relative URLs
+    // if on a environment with Platform host set, use relative URLs (for other tax domains e.g. Developer Hub)
     case Some(host) => ""
     case _          => localHelpFrontendBaseUrl.getOrElse("")
   }
