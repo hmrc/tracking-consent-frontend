@@ -73,7 +73,7 @@ class CookieSettingsPageISpec extends AnyWordSpec with Matchers with GuiceOneApp
       contentAsString(result) should include("""<a href="http://localhost:9240/help/cookie-details"""")
     }
 
-    "return a link to the cookie details page when running on the platform" in new WithConfiguredApp {
+    "return a relative link to the cookie details page when running on the platform" in new WithConfiguredApp {
       val configuration = Map(
         "platform.frontend.host" -> "https://www.example.com"
       )
@@ -81,7 +81,7 @@ class CookieSettingsPageISpec extends AnyWordSpec with Matchers with GuiceOneApp
       val request = FakeRequest(GET, "/tracking-consent/cookie-settings")
       val result  = route(appWithConfiguration(configuration), request).get
 
-      contentAsString(result) should include("""<a href="https://www.example.com/help/cookie-details"""")
+      contentAsString(result) should include("""<a href="/help/cookie-details"""")
     }
   }
 }

@@ -29,7 +29,7 @@ class AppConfigSpec extends SpecBase {
   )
 
   "cookieDetailsUrl" should {
-    "return using the Platform host if set" in {
+    "return a relative URL if the Platform host is set" in {
       val config        = Configuration.from(
         baseConfigMap ++ Map(
           "platform.frontend.host"               -> "www.staging.tax.service.gov.uk",
@@ -38,7 +38,7 @@ class AppConfigSpec extends SpecBase {
       )
       val serviceConfig = new ServicesConfig(config)
       val appConfig     = AppConfig(config, serviceConfig)
-      appConfig.cookieDetailsUrl must be("www.staging.tax.service.gov.uk/help/cookie-settings")
+      appConfig.cookieDetailsUrl must be("/help/cookie-settings")
     }
 
     "return using the local host if Platform host not set" in {

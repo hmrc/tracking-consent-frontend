@@ -36,8 +36,11 @@ class AppConfig @Inject() (config: Configuration, servicesConfig: ServicesConfig
   private val localHelpFrontendBaseUrl =
     config.getOptional[String]("help-frontend.base-url-local-testing")
 
-  private val helpFrontendHost: String =
-    platformHost.orElse(localHelpFrontendBaseUrl).getOrElse("")
+  private val helpFrontendHost: String = platformHost match {
+    // if on a environment with Platform host set, use relative URLs
+    case Some(host) => ""
+    case _          => localHelpFrontendBaseUrl.getOrElse("")
+  }
 
   private val cookieDetailsPath: String =
     config.get[String]("help-frontend.cookie-details-path")
