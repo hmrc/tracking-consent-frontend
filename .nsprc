@@ -10,10 +10,10 @@
   "GHSA-9c47-m6qq-7p4h": "json5: devDependency, no risk given our usage",
   "GHSA-rc47-6667-2j5j": "http-cache-semantics: devDependency, no risk given our usage",
   "GHSA-p8p7-x288-28g6": "request: devDependency, no risk given our usage",
-  "GHSA-j8xg-fqg3-53r7": "word-wrap : devDependency, no risk given our usage",
   "GHSA-72xf-g2v4-qvf3": "tough-cookie: devDependency, no risk given our usage",
   "GHSA-7fh5-64p2-3v2j": "postcss: devDependency, no risk given our usage",
   "GHSA-78xj-cgh5-2h22": "ip: devDependency, no risk given our usage",
   "GHSA-2p57-rm9w-gvfp": "ip: devDependency, no risk given our usage",
-  "GHSA-f5x3-32g6-xq36": "node-sass: devDependency, no risk given our usage"
+  "GHSA-f5x3-32g6-xq36": "node-sass: devDependency, no risk given our usage",
+  "GHSA-3h5v-q93c-6h6q": "ws via jest-environment-jsdom: devDependency, no risk given our usage"
 }
