@@ -30,8 +30,9 @@ class CookieSettingsPageISpec extends AnyWordSpec with Matchers with GuiceOneApp
   override lazy val app: Application = new GuiceApplicationBuilder()
     .configure(
       Map(
-        "metrics.enabled"  -> false,
-        "auditing.enabled" -> false
+        "metrics.enabled"                      -> false,
+        "auditing.enabled"                     -> false,
+        "help-frontend.base-url-local-testing" -> "http://localhost:9240"
       )
     )
     .build()
@@ -72,7 +73,7 @@ class CookieSettingsPageISpec extends AnyWordSpec with Matchers with GuiceOneApp
       contentAsString(result) should include("""<a href="http://localhost:9240/help/cookie-details"""")
     }
 
-    "return a link to the cookie details page when running on the platform" in new WithConfiguredApp {
+    "return a relative link to the cookie details page when running on the platform" in new WithConfiguredApp {
       val configuration = Map(
         "platform.frontend.host" -> "https://www.example.com"
       )
