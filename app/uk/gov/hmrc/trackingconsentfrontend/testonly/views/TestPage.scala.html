@@ -17,12 +17,13 @@
 @this(
     layout: Layout,
     paragraph: Paragraph,
-    h1: H1
+    h1: H1,
+    cookieHead: CookieHead
 )
 @()(implicit request: Request[?], messages: Messages, appConfig: AppConfig)
 
 @defining((Messages("testPage.title"), Messages("testPage.heading"))) { case (title, heading) =>
-    @layout(pageTitle = Some(title)) {
+    @layout(pageTitle = Some(title), headBlock = Some(cookieHead())) {
         @h1(content = Text(heading))
         @paragraph(content = HtmlContent(title))
     }
