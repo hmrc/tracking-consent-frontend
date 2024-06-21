@@ -20,16 +20,15 @@
     <head>
         <!-- Suppress requests for favicon.ico to prevent console errors occurring -->
         <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
-
-            <!--[if !IE]>-->
+        <!--[if !IE]>-->
         <script
             @{CSPNonce.attr}
                 src="@appConfig.trackingConsentUrl"
                 id="tracking-consent-script-tag"
                 data-gtm-container="a"
                 data-language="@messages.lang.code"
-                ></script>
-            <!--<![endif]-->
+        ></script>
+        <!--<![endif]-->
         @optimizelySnippet()
     </head>
     <body>
