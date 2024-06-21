@@ -1,6 +1,6 @@
 module.exports = ({ host, port }) => ({
   id: 'backstop_default',
-  dockerCommandTemplate: 'docker run --rm -i --mount type=bind,source="{cwd}",target=/src backstopjs/backstopjs:{version} {backstopCommand} {args}',
+  dockerCommandTemplate: 'docker run --rm -i --add-host=host.docker.internal:host-gateway --mount type=bind,source="{cwd}",target=/src backstopjs/backstopjs:{version} {backstopCommand} {args}',
   viewports: [
     {
       label: 'phone',
