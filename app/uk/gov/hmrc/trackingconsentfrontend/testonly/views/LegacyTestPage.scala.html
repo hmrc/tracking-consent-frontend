@@ -14,14 +14,23 @@
  * limitations under the License.
  *@
 
-@this(cookieHead: CookieHead)
+@this(optimizelySnippet: OptimizelySnippet)
 @()(implicit request: Request[?], appConfig: AppConfig, messages: Messages)
 <html>
     <head>
         <!-- Suppress requests for favicon.ico to prevent console errors occurring -->
         <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 
-        @cookieHead()
+            <!--[if !IE]>-->
+        <script
+            @{CSPNonce.attr}
+                src="@appConfig.trackingConsentUrl"
+                id="tracking-consent-script-tag"
+                data-gtm-container="a"
+                data-language="@messages.lang.code"
+                ></script>
+            <!--<![endif]-->
+        @optimizelySnippet()
     </head>
     <body>
         <h1>Legacy service test page</h1>
