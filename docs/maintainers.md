@@ -113,6 +113,9 @@ During the test the browser will make requests from inside a container back to t
 those requests fail you may need to supply the BACKSTOP_TEST_HOST environment variable with the correct i.p address
 of your host as below.
 
+> ⚠️ **If you are using Linux**: Ensure port 8888 is open - In Ubuntu you can do this with `sudo ufw allow 8888`.
+> You may want to `sudo ufw deny 8888` after.
+
 ```shell script
 env BACKSTOP_TEST_HOST=172.17.0.1 npm run backstop 
 ```
