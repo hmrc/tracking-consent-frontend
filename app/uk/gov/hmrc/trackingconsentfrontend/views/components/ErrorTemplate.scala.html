@@ -17,12 +17,11 @@
 @this(
  layout: Layout,
  paragraph: Paragraph,
- h1: H1,
- cookieHead: CookieHead
+ h1: H1
 )
 
 @(pageTitle: String, heading: String, message: String)(implicit request: RequestHeader, messages: Messages, appConfig: AppConfig)
-@layout(pageTitle = Some(pageTitle), headBlock = Some(cookieHead())) {
+@layout(pageTitle = Some(pageTitle)) {
  @h1(content = Text(heading))
  @paragraph(content = Text(message))
 }
