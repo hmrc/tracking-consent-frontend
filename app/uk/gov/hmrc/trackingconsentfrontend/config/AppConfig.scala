@@ -18,10 +18,9 @@ package uk.gov.hmrc.trackingconsentfrontend.config
 
 import javax.inject.{Inject, Singleton}
 import play.api.Configuration
-import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 
 @Singleton
-class AppConfig @Inject() (config: Configuration, servicesConfig: ServicesConfig) {
+class AppConfig @Inject() (config: Configuration) {
   private def getServiceHost(platformHost: Option[String], localConfigKey: String): String =
     platformHost match {
       // if on a environment with Platform host set, use relative URLs (for other tax domains e.g. Developer Hub)
