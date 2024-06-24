@@ -166,6 +166,17 @@ Where possible, mixins and variables are imported rather than copied.
 Requirement 5 is achieved by only importing modules and styles actually used by the cookie banner i.e. button, button group, 
 cookie banner and required layout styles.
 
+### Use of `HmrcTrackingConsentFrontendSnippet` from `play-frontend-hmrc`
+The advised solution for adding the tracking banner is to enable `HmrcTrackingConsentFrontendSnippet` from `play-frontend-hmrc`
+by adding the configuration `tracking-consent-frontend { gtm.container = "a" }` (or other container.)
+
+This won't work for the pages hosted within `tracking-consent-frontend` because the above configuration will inject the
+banner to ALL pages within a service. However, `tracking-consent-frontend` contains the `CookieSettingsPage.scala.html`
+which requires a different Javascript file (`settingsPage.js`) to be called in the GTM snippet.
+
+This is why all pages in `tracking-consent-frontend` use a snippet within the service, rather than the `play-frontend-hmrc`
+library version.
+
 ### Upgrading to new versions of govuk-frontend
 
 1. Change to the Javascript assets directory

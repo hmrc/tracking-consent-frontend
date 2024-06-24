@@ -17,45 +17,40 @@
 package unit.config
 
 import play.api.Configuration
-import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
 import unit.SpecBase
 
 class AppConfigSpec extends SpecBase {
   val baseConfigMap = Map(
-    "tracking-consent-frontend.port"    -> 12345,
-    "tracking-consent-frontend.url"     -> "/tracking-consent/tracking.js",
+    "tracking-consent-frontend.path"    -> "/tracking-consent/tracking.js",
     "help-frontend.cookie-details-path" -> "/help/cookie-settings"
   )
 
   "cookieDetailsUrl" should {
     "return a relative URL if the Platform host is set" in {
-      val config        = Configuration.from(
+      val config    = Configuration.from(
         baseConfigMap ++ Map(
           "platform.frontend.host"               -> "www.staging.tax.service.gov.uk",
           "help-frontend.base-url-local-testing" -> "http://localhost:9240"
         )
       )
-      val serviceConfig = new ServicesConfig(config)
-      val appConfig     = AppConfig(config, serviceConfig)
+      val appConfig = AppConfig(config)
       appConfig.cookieDetailsUrl must be("/help/cookie-settings")
     }
 
     "return using the local host if Platform host not set" in {
-      val config        = Configuration.from(
+      val config    = Configuration.from(
         baseConfigMap ++ Map(
           "help-frontend.base-url-local-testing" -> "http://localhost:9240"
         )
       )
-      val serviceConfig = new ServicesConfig(config)
-      val appConfig     = AppConfig(config, serviceConfig)
+      val appConfig = AppConfig(config)
       appConfig.cookieDetailsUrl must be("http://localhost:9240/help/cookie-settings")
     }
 
     "return using the relative path if both local host and Platform host are not set" in {
-      val config        = Configuration.from(baseConfigMap)
-      val serviceConfig = new ServicesConfig(config)
-      val appConfig     = AppConfig(config, serviceConfig)
+      val config    = Configuration.from(baseConfigMap)
+      val appConfig = AppConfig(config)
       appConfig.cookieDetailsUrl must be("/help/cookie-settings")
     }
   }
