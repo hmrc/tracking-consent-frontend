@@ -28,12 +28,12 @@ import uk.gov.hmrc.trackingconsentfrontend.config.AppConfig
 trait SpecBase extends PlaySpec with GuiceOneAppPerSuite with JsoupHelpers with AppHelpers {
 
   val baseProperties: Map[String, Any] = Map(
-    "optimizely.url"                 -> "https://cdn.optimizely.com/",
-    "optimizely.projectId"           -> "1234567",
-    "metrics.jvm"                    -> false,
-    "metrics.enabled"                -> false,
-    "auditing.enabled"               -> false,
-    "tracking-consent-frontend.path" -> "/tracking-consent/tracking.js"
+    "optimizely.url"                -> "https://cdn.optimizely.com/",
+    "optimizely.projectId"          -> "1234567",
+    "metrics.jvm"                   -> false,
+    "metrics.enabled"               -> false,
+    "auditing.enabled"              -> false,
+    "tracking-consent-frontend.url" -> "/tracking-consent/tracking.js"
   )
 
   override def fakeApplication(): Application =

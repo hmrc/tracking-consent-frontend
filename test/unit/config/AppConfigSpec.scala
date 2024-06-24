@@ -22,7 +22,7 @@ import unit.SpecBase
 
 class AppConfigSpec extends SpecBase {
   val baseConfigMap = Map(
-    "tracking-consent-frontend.path"    -> "/tracking-consent/tracking.js",
+    "tracking-consent-frontend.url"     -> "/tracking-consent/tracking.js",
     "help-frontend.cookie-details-path" -> "/help/cookie-settings"
   )
 
