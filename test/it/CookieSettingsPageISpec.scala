@@ -51,10 +51,9 @@ class CookieSettingsPageISpec extends AnyWordSpec with Matchers with GuiceOneApp
   "Given a running instance of tracking consent frontend, calling GET with Optimizely configured" should {
     "return OK with expected page with Optimizely snippet" in new WithConfiguredApp {
       val configuration = Map(
-        "play.http.router"              -> "testOnlyDoNotUseInAppConf.Routes",
-        "optimizely.url"                -> "https://cdn.optimizely.com/js/",
-        "optimizely.projectId"          -> "a1b2c3d4e5",
-        "tracking-consent-frontend.url" -> "/tracking-consent/tracking.js"
+        "play.http.router"     -> "testOnlyDoNotUseInAppConf.Routes",
+        "optimizely.url"       -> "https://cdn.optimizely.com/js/",
+        "optimizely.projectId" -> "a1b2c3d4e5"
       )
       val request       = FakeRequest(GET, "/tracking-consent/cookie-settings")
       val result        = route(appWithConfiguration(configuration), request).get
@@ -76,8 +75,7 @@ class CookieSettingsPageISpec extends AnyWordSpec with Matchers with GuiceOneApp
 
     "return a relative link to the cookie details page when running on the platform" in new WithConfiguredApp {
       val configuration = Map(
-        "platform.frontend.host"        -> "https://www.example.com",
-        "tracking-consent-frontend.url" -> "/tracking-consent/tracking.js"
+        "platform.frontend.host" -> "https://www.example.com"
       )
 
       val request = FakeRequest(GET, "/tracking-consent/cookie-settings")
