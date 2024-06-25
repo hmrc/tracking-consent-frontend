@@ -41,7 +41,7 @@ class AppConfig @Inject() (config: Configuration) {
     getServiceHost(platformHost, "tracking-consent-frontend.base-url-local-testing")
 
   private val trackingJsPath =
-    config.get[String]("tracking-consent-frontend.url")
+    config.get[String]("tracking-consent-frontend.path")
 
   val trackingConsentUrl: String =
     s"$trackingConsentFrontendHost$trackingJsPath"

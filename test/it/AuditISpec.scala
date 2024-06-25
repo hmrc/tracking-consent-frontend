@@ -35,8 +35,7 @@ class AuditISpec extends AnyWordSpec with Matchers with AppendedClues with Guice
         "play.filters.cors.allowedOrigins" -> List(
           "https://www.tax.service.gov.uk",
           "https://developer.service.hmrc.gov.uk"
-        ),
-        "tracking-consent-frontend.url"    -> "/tracking-consent/tracking.js"
+        )
       )
     )
     .build()

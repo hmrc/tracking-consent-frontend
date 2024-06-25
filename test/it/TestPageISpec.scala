@@ -27,8 +27,7 @@ class TestPageISpec extends AnyWordSpec with Matchers {
   "Given a running instance of tracking consent frontend with test routes, calling GET for test-only" should {
     "return OK with expected page" in new WithConfiguredApp {
       val configuration = Map(
-        "play.http.router"              -> "testOnlyDoNotUseInAppConf.Routes",
-        "tracking-consent-frontend.url" -> "/tracking-consent/tracking.js"
+        "play.http.router" -> "testOnlyDoNotUseInAppConf.Routes"
       )
       val request       = FakeRequest(GET, "/tracking-consent/test-only")
       val result        = route(appWithConfiguration(configuration), request).get
@@ -40,8 +39,7 @@ class TestPageISpec extends AnyWordSpec with Matchers {
 
     "return OK with expected page without Optimizely if not configured" in new WithConfiguredApp {
       val configuration = Map(
-        "play.http.router"              -> "testOnlyDoNotUseInAppConf.Routes",
-        "tracking-consent-frontend.url" -> "/tracking-consent/tracking.js"
+        "play.http.router" -> "testOnlyDoNotUseInAppConf.Routes"
       )
       val request       = FakeRequest(GET, "/tracking-consent/test-only")
       val result        = route(appWithConfiguration(configuration), request).get
@@ -54,10 +52,9 @@ class TestPageISpec extends AnyWordSpec with Matchers {
 
     "return OK with expected page with Optimizely if enabled via configuration" in new WithConfiguredApp {
       val configuration = Map(
-        "play.http.router"              -> "testOnlyDoNotUseInAppConf.Routes",
-        "optimizely.url"                -> "https://cdn.optimizely.com/js/",
-        "optimizely.projectId"          -> "a1b2c3d4e5",
-        "tracking-consent-frontend.url" -> "/tracking-consent/tracking.js"
+        "play.http.router"     -> "testOnlyDoNotUseInAppConf.Routes",
+        "optimizely.url"       -> "https://cdn.optimizely.com/js/",
+        "optimizely.projectId" -> "a1b2c3d4e5"
       )
 
       val request = FakeRequest(GET, "/tracking-consent/test-only")

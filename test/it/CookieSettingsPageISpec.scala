@@ -32,8 +32,7 @@ class CookieSettingsPageISpec extends AnyWordSpec with Matchers with GuiceOneApp
       Map(
         "metrics.enabled"                      -> false,
         "auditing.enabled"                     -> false,
-        "help-frontend.base-url-local-testing" -> "http://localhost:9240",
-        "tracking-consent-frontend.url"        -> "/tracking-consent/tracking.js"
+        "help-frontend.base-url-local-testing" -> "http://localhost:9240"
       )
     )
     .build()

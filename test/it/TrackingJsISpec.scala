@@ -37,9 +37,8 @@ class TrackingJsISpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite
   override lazy val app: Application = new GuiceApplicationBuilder()
     .configure(
       Map(
-        "metrics.enabled"               -> false,
-        "auditing.enabled"              -> false,
-        "tracking-consent-frontend.url" -> "/tracking-consent/tracking.js"
+        "metrics.enabled"  -> false,
+        "auditing.enabled" -> false
       )
     )
     .build()
