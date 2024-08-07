@@ -27,7 +27,7 @@ class LegacyTestPageSpec extends BaseAcceptanceSpec {
     // regarding Google Tag Manager.
     // This will be reinstated once the issue has been resolved.
 
-    //Scenario("No Javascript errors occur", Retryable) {
+    // Scenario("No Javascript errors occur", Retryable) {
     //  Given("the user clears their cookies")
     //  deleteAllCookies()
 
@@ -41,6 +41,6 @@ class LegacyTestPageSpec extends BaseAcceptanceSpec {
 
     //  And("no Javascript console errors are thrown")
     //  consoleErrors should equal(Seq.empty)
-    //}
+    // }
   }
 }
