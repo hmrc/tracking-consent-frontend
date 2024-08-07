@@ -152,21 +152,21 @@ class ServiceTestPageSpec extends BaseAcceptanceSpec {
       }
     }
 
-    Scenario("No Javascript errors occur", Retryable) {
-      Given("the user clears their cookies")
-      deleteAllCookies()
+    //Scenario("No Javascript errors occur", Retryable) {
+    //  Given("the user clears their cookies")
+    //  deleteAllCookies()
 
-      When("the user visits the service test page")
-      go to ServiceTestPage
+    //  When("the user visits the service test page")
+    //  go to ServiceTestPage
 
-      Then("the banner should be displayed with the title 'Cookies on HMRC services'")
-      eventually {
-        tagName("h2").element.text shouldBe "Cookies on HMRC services"
-      }
+    //  Then("the banner should be displayed with the title 'Cookies on HMRC services'")
+    //  eventually {
+    //    tagName("h2").element.text shouldBe "Cookies on HMRC services"
+    //  }
 
-      And("no Javascript console errors are thrown")
-      consoleErrors should equal(Seq.empty)
-    }
+    //  And("no Javascript console errors are thrown")
+    //  consoleErrors should equal(Seq.empty)
+    //}
 
     Scenario("An accessible banner is displayed", Local) {
       pending

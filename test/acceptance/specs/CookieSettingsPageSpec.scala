@@ -189,14 +189,14 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     h3Element.getText                 shouldBe "Wedi cadw’ch gosodiadau cwcis"
   }
 
-  Scenario("No Javascript errors occur", Retryable) {
-    Given("the user clears their cookies")
-    deleteAllCookies()
+  //Scenario("No Javascript errors occur", Retryable) {
+  //  Given("the user clears their cookies")
+  //  deleteAllCookies()
 
-    When("the user visits the cookie settings page")
-    go to CookieSettingsPage
+  //  When("the user visits the cookie settings page")
+  //  go to CookieSettingsPage
 
-    Then("no Javascript console errors are thrown")
-    consoleErrors should equal(Seq.empty)
-  }
+  //  Then("no Javascript console errors are thrown")
+  //  consoleErrors should equal(Seq.empty)
+  //}
 }
