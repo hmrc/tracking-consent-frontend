@@ -189,18 +189,14 @@ class CookieSettingsPageSpec extends BaseAcceptanceSpec {
     h3Element.getText                 shouldBe "Wedi cadw’ch gosodiadau cwcis"
   }
 
-  // This test has been commented out until a resolution has been found for a bug
-  // regarding Google Tag Manager.
-  // This will be reinstated once the issue has been resolved.
+  Scenario("No Javascript errors occur", Retryable) {
+    Given("the user clears their cookies")
+    deleteAllCookies()
 
-  // Scenario("No Javascript errors occur", Retryable) {
-  //  Given("the user clears their cookies")
-  //  deleteAllCookies()
+    When("the user visits the cookie settings page")
+    go to CookieSettingsPage
 
-  //  When("the user visits the cookie settings page")
-  //  go to CookieSettingsPage
-
-  //  Then("no Javascript console errors are thrown")
-  //  consoleErrors should equal(Seq.empty)
-  // }
+    Then("no Javascript console errors are thrown")
+    consoleErrors should equal(Seq.empty)
+  }
 }
