@@ -16,28 +16,36 @@
 
 package acceptance.pages
 
-import org.openqa.selenium.WebElement
+import acceptance.pages.ServiceTestPage.get
+import org.openqa.selenium.By
+import uk.gov.hmrc.selenium.webdriver.Driver
 import support.TestConfiguration
+import uk.gov.hmrc.selenium.component.PageObject
 
-object CookieSettingsPage extends BasePage {
-  val url: String = TestConfiguration.url("tracking-consent-frontend") + "/cookie-settings"
+object CookieSettingsPage extends PageObject {
+  private val url: String = TestConfiguration.url("tracking-consent-frontend") + "/cookie-settings"
 
-  val useMeasurementCookies                  = "Use cookies that measure my website use"
-  def useMeasurementCookiesLabel: WebElement = findLabelByPartialText(useMeasurementCookies)
-  def useMeasurementCookiesInput: WebElement = findInputByLabelPartialText(useMeasurementCookies)
+  def goToCookieSettingsPage(): Unit = get(url)
 
-  val doNotUseMeasurementCookies                  = "Do not use cookies that measure my website use"
-  def doNotUseMeasurementCookiesLabel: WebElement = findLabelByPartialText(doNotUseMeasurementCookies)
-  def doNotUseMeasurementCookiesInput: WebElement = findInputByLabelPartialText(doNotUseMeasurementCookies)
+  def deleteAllCookies(): Unit = Driver.instance.manage().deleteAllCookies()
 
-  val useSettingsCookies                  = "Use cookies that remember my settings on services"
-  def useSettingsCookiesLabel: WebElement = findLabelByPartialText(useSettingsCookies)
-  def useSettingsCookiesInput: WebElement = findInputByLabelPartialText(useSettingsCookies)
+  def labelByPartialText(partialText: String): By =
+    By.xpath(s"""//label[contains(text(),'$partialText')]""")
 
-  val doNotUseSettingsCookies                  = "Do not use cookies that remember my settings on services"
-  def doNotUseSettingsCookiesLabel: WebElement = findLabelByPartialText(doNotUseSettingsCookies)
-  def doNotUseSettingsCookiesInput: WebElement = findInputByLabelPartialText(doNotUseSettingsCookies)
+  def inputByLabelPartialText(partialText: String): By =
+    By.xpath(s"""//input[@id=(//label[contains(text(), '$partialText')]/@for)]""")
 
-  def submitButton: WebElement      = findButtonByPartialText("Save changes")
-  def welshSubmitButton: WebElement = findButtonByPartialText("Cadw newidiadau")
+  def clickUseMeasurementCookies(): Unit = click(labelByPartialText("Use cookies that measure my website use"))
+
+  def clickDoNotUseMeasurementCookies(): Unit = click(
+    labelByPartialText("Do not use cookies that measure my website use")
+  )
+
+  def clickUseSettingsCookies(): Unit = click(labelByPartialText("Use cookies that remember my settings on services"))
+
+  def clickDoNotUseSettingsCookies(): Unit = click(
+    labelByPartialText("Do not use cookies that remember my settings on services")
+  )
+
+  def clickSubmitButton(): Unit = click(By.xpath(s"""//button[contains(text(),'Save changes')]"""))
 }

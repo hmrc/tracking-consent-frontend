@@ -16,19 +16,21 @@
 
 package acceptance.pages
 
-import org.openqa.selenium.WebElement
+import org.openqa.selenium.By
 import support.TestConfiguration
+import uk.gov.hmrc.selenium.component.PageObject
+import uk.gov.hmrc.selenium.webdriver.Driver
 
-object ServiceTestPage extends BasePage {
-  val url: String =
+object ServiceTestPage extends PageObject {
+  private val url: String =
     TestConfiguration.url("tracking-consent-frontend") + "/test-only"
 
-  val title                   = "Service test page"
-  val acceptAdditionalCookies = "Accept additional cookies"
-  val rejectAdditionalCookies = "Reject additional cookies"
-  val setCookiePreferences    = "View cookie preferences"
+  def goToServiceTestPage(): Unit = get(url)
 
-  def acceptAdditionalCookiesButton: WebElement = findButtonByPartialText(acceptAdditionalCookies)
-  def rejectAdditionalCookiesButton: WebElement = findButtonByPartialText(rejectAdditionalCookies)
-  def setCookiePreferencesButton: WebElement    = findLabelByPartialText(setCookiePreferences)
+  def deleteAllCookies(): Unit = Driver.instance.manage().deleteAllCookies()
+
+  def clickAcceptAdditionalCookiesButton(): Unit = click(
+    By.xpath(s"""//button[contains(text(),'Accept additional cookies')]""")
+  )
+
 }
