@@ -38,12 +38,16 @@ plugin.
 
 ## Running UI acceptance tests
 
-To execute the UI acceptance tests on your local machine, ensure that you have [local-selenium-grid](https://github.com/hmrc/local-selenium-grid) installed and running. Once set up, you can proceed with running the tests with.
+## Running UI journey tests
+
+The UI journey tests are located in the [accessibility-statement-frontend-ui-tests](https://github.com/hmrc/accessibility-statement-frontend-ui-tests). Running these locally or in 
+Jenkins will also run the accessibility assessment via [ui-test-runner](https://github.com/hmrc/ui-test-runner).
+
+There is a single acceptance test for end-to-end testing of Javascript events triggering auditing, using `ui-test-runner`
+and WireMock. To test on your local machine, run the test with:
 ```
 ./run_acceptance_tests.sh 
 ```
-
-Additionally, the UI acceptance tests run the accessibility linter against the rendered HTML.
 
 ## Running just the Javascript checks
 
@@ -79,15 +83,8 @@ npm run analyze
 
 ## Running ZAP scan locally
 
-To run the ZAP scan, use the Docker helper supplied by `dast-config-manager` (https://github.com/hmrc/dast-config-manager#running-zap-locally)
-
-Follow the following steps:
-1. Clone the repo at: https://github.com/hmrc/dast-config-manager
-2. Enable port forwarding: `export ZAP_FORWARD_ENABLE="true"`
-3. Configure port forwarding: `export ZAP_FORWARD_PORTS=12345`
-4. In the `dast-config-manager` directory, start the ZAP docker container: `make local-zap-running`
-5. In the `tracking-consent-frontend` directory, run the acceptance tests with ZAP proxying: `sbt -Dplay.http.router=testOnlyDoNotUseInAppConf.Routes -Dbrowser=chrome -Dzap.proxy=true acceptance:test`
-6. In the `dast-config-manager` directory, stop the ZAP docker container: `make local-zap-stop`
+To run the ZAP scan, use  `dast-config-manager` and follow the instructions:
+[Running ZAP locally](https://github.com/hmrc/dast-config-manager?tab=readme-ov-file#running-zap-locally)
 
 ## Visual regression tests
 
