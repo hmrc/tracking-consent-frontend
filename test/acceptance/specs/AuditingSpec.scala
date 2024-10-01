@@ -18,14 +18,31 @@ package acceptance.specs
 
 import acceptance.pages.{CookieSettingsPage, ServiceTestPage}
 import acceptance.pages.ServiceTestPage.*
-import acceptance.pages.CookieSettingsPage.{doNotUseMeasurementCookiesLabel, doNotUseSettingsCookiesLabel, submitButton, useMeasurementCookiesLabel, useSettingsCookiesLabel}
-import acceptance.specs.tags.Local
+import acceptance.pages.CookieSettingsPage.*
 import com.github.tomakehurst.wiremock.client.WireMock.{anyRequestedFor, anyUrl}
+import org.scalatest.concurrent.{Eventually, IntegrationPatience}
+import org.scalatest.featurespec.AnyFeatureSpec
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.{BeforeAndAfterEach, GivenWhenThen, Retries}
+import org.scalatestplus.selenium.WebBrowser
 import play.api.Application
 import play.api.inject.guice.GuiceApplicationBuilder
-import support.WireMockEndpoints
+import support.{AcceptanceTestServer, WireMockEndpoints}
+import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
 
-class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
+class AuditingSpec
+    extends AnyFeatureSpec
+    with GivenWhenThen
+    with BeforeAndAfterEach
+    with Matchers
+    with AcceptanceTestServer
+    with Retries
+    with Browser
+    with Eventually
+    with IntegrationPatience
+    with ScreenshotOnFailure
+    with WireMockEndpoints {
+
   implicit override lazy val app: Application = new GuiceApplicationBuilder()
     .configure(
       Map(
@@ -40,22 +57,28 @@ class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
     )
     .build()
 
+  override def beforeEach(): Unit =
+    startBrowser()
+
+  override def afterEach(): Unit =
+    quitBrowser()
+
   Feature("Auditing") {
 
-    Scenario("Accepting all cookies on the cookie settings page sends an auditing event", Local) {
+    Scenario("Accepting all cookies on the cookie settings page sends an auditing event") {
       Given("the user clears their cookies")
-      deleteAllCookies()
+      CookieSettingsPage.deleteAllCookies()
 
       And("the user visits the cookie settings page")
-      go to CookieSettingsPage
+      goToCookieSettingsPage()
 
       When("the user says yes to all cookies")
-      click on useMeasurementCookiesLabel
-      click on useSettingsCookiesLabel
+      clickUseMeasurementCookies()
+      clickUseSettingsCookies()
 
       And("clicks submit")
       endpointServer.resetRequests()
-      click on submitButton
+      clickSubmitButton()
 
       Then("an audit event is sent")
       eventually {
@@ -67,20 +90,20 @@ class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
       }
     }
 
-    Scenario("The user refusing consent on the cookie settings page sends an auditing event", Local) {
+    Scenario("The user refusing consent on the cookie settings page sends an auditing event") {
       Given("the user clears their cookies")
-      deleteAllCookies()
+      CookieSettingsPage.deleteAllCookies()
 
       And("the user visits the cookie settings page")
-      go to CookieSettingsPage
+      goToCookieSettingsPage()
 
       When("the user chooses no for all categories of cookie")
-      click on doNotUseMeasurementCookiesLabel
-      click on doNotUseSettingsCookiesLabel
+      clickDoNotUseMeasurementCookies()
+      clickDoNotUseSettingsCookies()
 
       And("clicks submit")
       endpointServer.resetRequests()
-      click on submitButton
+      clickSubmitButton()
 
       Then("an audit event is sent")
       eventually {
@@ -92,16 +115,16 @@ class AuditingSpec extends BaseAcceptanceSpec with WireMockEndpoints {
       }
     }
 
-    Scenario("Accepting all cookies on the cookie banner sends an audit event", Local) {
+    Scenario("Accepting all cookies on the cookie banner sends an audit event") {
       Given("the user clears their cookies")
-      deleteAllCookies()
+      ServiceTestPage.deleteAllCookies()
 
       When("the user visits the service test page")
-      go to ServiceTestPage
+      goToServiceTestPage()
 
       When("the user clicks 'Accept all cookies'")
       endpointServer.resetRequests()
-      click on acceptAdditionalCookiesButton
+      clickAcceptAdditionalCookiesButton()
 
       Then("an audit event is sent")
       eventually {
