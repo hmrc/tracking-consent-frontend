@@ -29,7 +29,7 @@ lazy val acceptanceTestSettings =
 lazy val sharedSettings = Seq(
   libraryDependencies ++= AppDependencies.compile ++ AppDependencies.test,
   majorVersion := 1,
-  scalaVersion := "3.3.3"
+  scalaVersion := "3.3.4"
 )
 
 lazy val microservice = Project(appName, file("."))
@@ -55,7 +55,7 @@ lazy val microservice = Project(appName, file("."))
     unitTestSettings,
     javaScriptSettings,
     scalacOptions += "-Wconf:src=routes/.*:s",
-    scalacOptions += "-Wconf:cat=unused-imports&src=html/.*:s"
+    scalacOptions += "-Wconf:msg=unused-imports&src=html/.*:s"
   )
 
 lazy val it = project
