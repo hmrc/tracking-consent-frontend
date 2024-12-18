@@ -41,7 +41,6 @@
     "dot-properties": "1.0.1",
     "govuk-frontend": "5.3.0",
     "js-cookie": "^3.0.5",
-    "postcss": "^8.4.38",
     "style-loader": "4.0.0",
     "ts-loader": "9.4.1",
     "typescript": "5.4.5",
