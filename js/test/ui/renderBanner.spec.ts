@@ -2,7 +2,7 @@
 import {
   fireEvent, getByRole, getByText, queryByText,
 } from '@testing-library/dom';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import renderBanner from '../../src/ui/renderBanner';
 // @ts-ignore
 import fixture from '../fixtures/servicePage.html';

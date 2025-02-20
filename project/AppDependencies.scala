@@ -2,8 +2,8 @@ import sbt.*
 
 object AppDependencies {
 
-  private val bootstrapVersion = "9.5.0"
-  private val frontendVersion  = "11.10.0"
+  private val bootstrapVersion = "9.9.0"
+  private val frontendVersion  = "11.11.0"
   private val playVersion      = "play-30"
 
   val compile = Seq(
@@ -12,9 +12,9 @@ object AppDependencies {
   )
 
   val test = Seq(
-    "org.jsoup"          % "jsoup"                        % "1.15.4"         % Test,
+    "org.jsoup"          % "jsoup"                        % "1.18.3"         % Test,
     "uk.gov.hmrc"       %% s"bootstrap-test-$playVersion" % bootstrapVersion % Test,
     "org.scalatestplus" %% "selenium-4-21"                % "3.2.19.0"       % Test,
-    "uk.gov.hmrc"       %% "ui-test-runner"               % "0.38.0"         % Test
+    "uk.gov.hmrc"       %% "ui-test-runner"               % "0.45.0"         % Test
   )
 }
