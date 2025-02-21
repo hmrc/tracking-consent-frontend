@@ -1,4 +1,4 @@
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import getGtmContainerId from '../../src/common/getGtmContainerId';
 import { A_CONTAINER_ID, SDES_CONTAINER_ID } from '../../src/constants/gtm';
 

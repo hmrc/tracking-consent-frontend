@@ -4,7 +4,7 @@ import {
   getByText,
   fireEvent,
 } from '@testing-library/dom';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 // @ts-ignore
 import fixture from '../fixtures/servicePageWithBannerMinimal.html';
 import renderConfirmationMessage from '../../src/ui/renderConfirmationMessage';

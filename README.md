@@ -22,7 +22,7 @@ Tracking consent is designed to be used in conjunction with HMRC's frontend libr
 
 Integration guidelines for play-frontend-hmrc can be found [here](https://github.com/hmrc/play-frontend-hmrc#integrating-with-tracking-consent).
 
-Integration guidelines for older services using play-ui can be found [here](https://github.com/hmrc/play-ui#integrating-with-tracking-consent)
+Integration guidelines for older services using play-ui can be found [here](https://github.com/hmrc/play-ui#integrating-with-tracking-consent).
 
 If you are not able to use the above libraries, please contact #team-plat-ui for integration advice.
 
@@ -60,7 +60,8 @@ If you wish to satisfy yourself that the back link is operating correctly, you w
 
 Because tracking consent depends on GTM, your service will need to have a CSP that is compatible with it.
 
-If you're following the current platform security Content Security Policy guidance, you do not need to make any changes to your CSP as it will be configured by the bootstrap-play library.
+If you're following the current platform security Content Security Policy guidance,
+you do not need to make any changes to your CSP as it will be configured by the bootstrap-play library.
 
 To find out more about what the latest guidance is, check out the #event-content-security-policy in the HMRC Digital slack.
 
@@ -76,10 +77,10 @@ client-side only, subscribing to updates.
 
 ### In Scala
 
-For reading the cookie in server-side Scala, refer to the README in [hmrc/tracking-consent-models](https://www.github.com/hmrc/tracking-consent-models)
+For reading the cookie in server-side Scala, refer to the README in [hmrc/tracking-consent-models](https://www.github.com/hmrc/tracking-consent-models).
 
-Your service will need to regularly update the version of this library in order to take advantage of changes to the underlying
-cookie model.
+It's no longer maintained, but for an example of how you could read the user consent cookie within your service in scala,
+you can view the implementation.
 
 ### In Javascript
 
@@ -279,8 +280,8 @@ to events of type `CONSENT_UPDATED_EVENT` only.
 When a user grants tracking consent, GTM will be loaded on the page and that will create Google Analytics cookies on
 the tax.service.gov.uk domain. If a user then revokes their consent, these cookies will remain, but their tracking
 preference will be updated and on future navigation GTM will not be loaded and no tracking data will be sent. The Google
-analytics cookies will remain in the users browser until they expire, you can view further details about the nature of
-the cookies within [the google analytics documenation on cookie usage](https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage).
+Analytics cookies will remain in the users browser until they expire, you can view further details about the nature of
+the cookies within [the Google Analytics documentation on cookie usage](https://support.google.com/analytics/answer/11397207?hl=en).
 
 ## Maintenance documentation
 Maintenance documentation for the owning team, including architectural decision records (ADRs) can be found [here](docs/maintainers.md).
