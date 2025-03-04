@@ -81,5 +81,27 @@ class CookieConsentFilterSpec extends SpecBase {
         cookies(result).head mustBe expectedCookie
       }
     }
+
+    "does not change other cookies" when {
+      "maxAge is defined" in {
+        val otherCookie             = Cookie(name = "mdtp", value = "cookieVal", maxAge = Some(12345), httpOnly = true)
+        val request                 = FakeRequest().withCookies(otherCookie)
+        val action: EssentialAction = Action(_ => Ok("success"))
+
+        val result = cookieConsentFilter.apply(action)(request).run()
+
+        cookies(result).head mustBe otherCookie
+      }
+
+      "maxAge is not defined" in {
+        val otherCookie             = Cookie(name = "mdtp", value = "cookieVal", httpOnly = true)
+        val request                 = FakeRequest().withCookies(otherCookie)
+        val action: EssentialAction = Action(_ => Ok("success"))
+
+        val result = cookieConsentFilter.apply(action)(request).run()
+
+        cookies(result).head mustBe otherCookie
+      }
+    }
   }
 }
