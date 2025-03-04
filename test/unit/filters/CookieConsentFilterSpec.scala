@@ -35,9 +35,9 @@ class CookieConsentFilterSpec extends SpecBase {
   "CookieConsentFilter" should {
     "modify userConsent cookie" when {
       "cookie is httpOnly and max age is defined" in {
-        val incorrectCookie = Cookie(name = "userConsent", value = "cookieVal", maxAge = Some(100), httpOnly = true)
-        val expectedCookie = Cookie(name = "userConsent", value = "cookieVal", maxAge = Some(100), httpOnly = false)
-        val request = FakeRequest().withCookies(incorrectCookie)
+        val incorrectCookie         = Cookie(name = "userConsent", value = "cookieVal", maxAge = Some(100), httpOnly = true)
+        val expectedCookie          = Cookie(name = "userConsent", value = "cookieVal", maxAge = Some(100), httpOnly = false)
+        val request                 = FakeRequest().withCookies(incorrectCookie)
         val action: EssentialAction = Action(_ => Ok("success"))
 
         val result = cookieConsentFilter.apply(action)(request).run()
@@ -46,9 +46,10 @@ class CookieConsentFilterSpec extends SpecBase {
       }
 
       "cookie is httpOnly and max age is not defined" in {
-        val incorrectCookie = Cookie(name = "userConsent", value = "cookieVal", httpOnly = true)
-        val expectedCookie = Cookie(name = "userConsent", value = "cookieVal", maxAge = Some(31556926), httpOnly = false)
-        val request = FakeRequest().withCookies(incorrectCookie)
+        val incorrectCookie         = Cookie(name = "userConsent", value = "cookieVal", httpOnly = true)
+        val expectedCookie          =
+          Cookie(name = "userConsent", value = "cookieVal", maxAge = Some(31556926), httpOnly = false)
+        val request                 = FakeRequest().withCookies(incorrectCookie)
         val action: EssentialAction = Action(_ => Ok("success"))
 
         val result = cookieConsentFilter.apply(action)(request).run()
@@ -59,9 +60,9 @@ class CookieConsentFilterSpec extends SpecBase {
 
     "modify mdtpurr cookie" when {
       "cookie is httpOnly and max age is defined" in {
-        val incorrectCookie = Cookie(name = "mdtpurr", value = "cookieVal", maxAge = Some(100), httpOnly = true)
-        val expectedCookie = Cookie(name = "mdtpurr", value = "cookieVal", maxAge = Some(100), httpOnly = false)
-        val request = FakeRequest().withCookies(incorrectCookie)
+        val incorrectCookie         = Cookie(name = "mdtpurr", value = "cookieVal", maxAge = Some(100), httpOnly = true)
+        val expectedCookie          = Cookie(name = "mdtpurr", value = "cookieVal", maxAge = Some(100), httpOnly = false)
+        val request                 = FakeRequest().withCookies(incorrectCookie)
         val action: EssentialAction = Action(_ => Ok("success"))
 
         val result = cookieConsentFilter.apply(action)(request).run()
@@ -70,9 +71,9 @@ class CookieConsentFilterSpec extends SpecBase {
       }
 
       "cookie is httpOnly and max age is not defined" in {
-        val incorrectCookie = Cookie(name = "mdtpurr", value = "cookieVal", httpOnly = true)
-        val expectedCookie = Cookie(name = "mdtpurr", value = "cookieVal", maxAge = Some(31556926), httpOnly = false)
-        val request = FakeRequest().withCookies(incorrectCookie)
+        val incorrectCookie         = Cookie(name = "mdtpurr", value = "cookieVal", httpOnly = true)
+        val expectedCookie          = Cookie(name = "mdtpurr", value = "cookieVal", maxAge = Some(31556926), httpOnly = false)
+        val request                 = FakeRequest().withCookies(incorrectCookie)
         val action: EssentialAction = Action(_ => Ok("success"))
 
         val result = cookieConsentFilter.apply(action)(request).run()
