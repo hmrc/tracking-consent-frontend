@@ -28,8 +28,7 @@ class CookieConsentFilter @Inject() (implicit ec: ExecutionContext) extends Esse
     next(requestHeader).map { result =>
       val modifiedCookies =
         requestHeader.cookies.withFilter(c => c.name == "userConsent" || c.name == "mdtpurr").map { c =>
-          if (c.httpOnly) c.copy(httpOnly = false, maxAge = c.maxAge.orElse(Some(yearInSeconds)))
-          else c
+          c.copy(httpOnly = false, maxAge = c.maxAge.orElse(Some(yearInSeconds)))
         }
 
       result.withCookies(modifiedCookies.toSeq: _*)
