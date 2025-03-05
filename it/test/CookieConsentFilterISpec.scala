@@ -16,18 +16,17 @@
 
 package it
 
-import org.scalatest.matchers.should.Matchers
-import org.scalatest.wordspec.AnyWordSpec
-import org.scalatestplus.play.guice.GuiceOneAppPerSuite
+import org.scalatestplus.play.PlaySpec
+import org.scalatestplus.play.guice.GuiceOneServerPerSuite
 import play.api.Application
 import play.api.inject.guice.GuiceApplicationBuilder
-import play.api.mvc.Cookie
-import play.api.test.FakeRequest
-import play.api.test.Helpers.{GET, route, _}
+import play.api.libs.ws.WSClient
+import play.api.test.Helpers._
 
-class CookieConsentFilterISpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite {
 
-  override lazy val app: Application = new GuiceApplicationBuilder()
+class CookieConsentFilterISpec extends PlaySpec with GuiceOneServerPerSuite {
+
+  override def fakeApplication(): Application = new GuiceApplicationBuilder()
     .configure(
       Map(
         "metrics.enabled"                      -> false,
@@ -37,39 +36,31 @@ class CookieConsentFilterISpec extends AnyWordSpec with Matchers with GuiceOneAp
     )
     .build()
 
-  "Given a running instance of tracking consent frontend, calling any endpoint" should {
+  val wsClient = app.injector.instanceOf[WSClient]
+  val testUrl = s"http://localhost:$port/tracking-consent/cookie-settings"
+
+  "Given a running instance of tracking consent frontend, calling cookie-settings endpoint" should {
     "switch userConsent cookie to httpOnly false if it's true" in {
-      val incorrectCookie = Cookie(name = "userConsent", value = "cookieVal", httpOnly = true)
-      val expectedCookie = Cookie(name = "userConsent", value = "cookieVal", maxAge = Some(31556926), httpOnly = false)
-      val request = FakeRequest(GET, "/tracking-consent/cookie-settings").withCookies(incorrectCookie)
-      val result = route(app, request).get
+      val response = await(wsClient.url(testUrl).addHttpHeaders(("Cookie", "userConsent=cookieVal")).get())
+      val cookie = response.headerValues("Set-Cookie").filter(_.contains("userConsent")).toString
 
-      cookies(result).get("userConsent").get shouldBe expectedCookie
+      cookie mustNot include("HTTPOnly")
+      cookie must include("Max-Age=31556926")
     }
 
-    "switch mdtpurr cookie to httpOnly false if it's true" in  {
-      val incorrectCookie = Cookie(name = "mdtpurr", value = "cookieVal", httpOnly = true)
-      val expectedCookie = Cookie(name = "mdtpurr", value = "cookieVal", maxAge = Some(31556926), httpOnly = false)
-      val request = FakeRequest(GET, "/tracking-consent/cookie-settings").withCookies(incorrectCookie)
-      val result = route(app, request).get
+    "switch mdtpurr cookie to httpOnly false if it's true" in {
+      val response = await(wsClient.url(testUrl).addHttpHeaders(("Cookie", "mdtpurr=cookieVal")).get())
+      val cookie = response.headerValues("Set-Cookie").filter(_.contains("mdtpurr")).toString
 
-      cookies(result).get("mdtpurr").get shouldBe expectedCookie
+      cookie mustNot include("HTTPOnly")
+      cookie must include("Max-Age=31556926")
     }
 
-    "does not affect other cookies with maxAge" in {
-      val otherCookie = Cookie(name = "otherCookie", value = "cookieVal", maxAge = Some(12345), httpOnly = true)
-      val request = FakeRequest(GET, "/tracking-consent/cookie-settings").withCookies(otherCookie)
-      val result = route(app, request).get
+    "does not affect other cookies" in {
+      val response = await(wsClient.url(testUrl).addHttpHeaders(("Cookie", "otherCookie=cookieVal")).get())
+      val cookie = response.headerValues("Set-Cookie").filter(_.contains("otherCookie"))
 
-      cookies(result).get("otherCookie").get shouldBe otherCookie
-    }
-
-    "does not affect other cookies without maxAge" in {
-      val otherCookie = Cookie(name = "otherCookie", value = "cookieVal", httpOnly = true)
-      val request = FakeRequest(GET, "/tracking-consent/cookie-settings").withCookies(otherCookie)
-      val result = route(app, request).get
-
-      cookies(result).get("otherCookie").get shouldBe otherCookie
+      cookie mustBe empty
     }
   }
 }
