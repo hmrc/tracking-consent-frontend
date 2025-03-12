@@ -215,7 +215,7 @@ Messages are sent to GTM for both `SERVICE_PAGE_LOAD_EVENT` and `CONSENT_UPDATED
 ## Integration with Optimizely
 
 [Optimizely](https://www.optimizely.com) is a client-side solution for A/B testing that relies on cookies.
-It supports a [mechanism](https://help.optimizely.com/Account_Settings/Enable_opt-in_options_for_Optimizely_cookies_and_local_storage)
+It supports a [mechanism](https://support.optimizely.com/hc/en-us/articles/4410284177677-Enable-opt-in-options-for-cookies-and-local-storage)
 for opting a user out of cookie and local storage that is implemented by tracking consent. However, for this to work correctly it
 is imperative that:
 * tracking consent is loaded *synchronously* in the HEAD element – there must be *no* async attribute
@@ -239,16 +239,9 @@ An opt-out message is sent to Optimizely for both `SERVICE_PAGE_LOAD_EVENT` and 
 
 ### Optimizely integration with Google Analytics using Google Tag Manager
 
-In order for analytics data relating to Optimizely experiments to be successfully communicated
-to Google Analytics, a special Universal Analytics GTM tag must be configured according to the
-instructions on the [Optimizely website](https://help.optimizely.com/Integrate_Other_Platforms/Integrate_Optimizely_X_with_Google_Universal_Analytics_using_Google_Tag_Manager)
-This configuration must be carried out once for each GTM container.
-
-As a convenience, tracking consent hosts the [custom integration code](js/src/entrypoints/optimizely.js) under
-the endpoint https://www.tax.service.gov.uk/tracking-consent/tracking/optimizely.js needed by Step 9 of the above integration guide.
-This means it is not necessary to carry out Step 9 - Custom HTML tag described in the above integration guide. The tracking consent
-helpers in `hmrc/play-frontend-hmrc` and `hmrc/play-ui` add this snippet *after* the optimizely snippet,
-to ensure the Optimizely object is available when it runs.
+Due to changes to Optimizely the configuration with Google Analytics using Google Tag Manger does not require any additional code.
+Tracking-consent-frontend contains `/tracking-consent/tracking/optimizely.js` endpoint, but it will return empty js file.
+The endpoint is still visible to do not trigger any errors for services that use old `play-frontend-hmrc` library which is pointing to this endpoint.
 
 ## Integration with internal auditing
 
