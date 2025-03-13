@@ -24,5 +24,6 @@
   "GHSA-m6fv-jmcg-4jfg": "send: devDependency, no risk given our usage",
   "GHSA-cm22-4g7w-348p": "serve-statuc: devDependency, no risk given our usage",
   "GHSA-72xf-g2v4-qvf3": "tough-cookie: devDependency, no risk given our usage",
-  "GHSA-3h5v-q93c-6h6q": "ws via jest-environment-jsdom: devDependency, no risk given our usage"
+  "GHSA-3h5v-q93c-6h6q": "ws via jest-environment-jsdom: devDependency, no risk given our usage",
+  "GHSA-968p-4wvh-cqc8": "babel: we don't use .replace with user supplied data, no impact to us"
 }
