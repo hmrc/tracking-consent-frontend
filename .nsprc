@@ -24,5 +24,7 @@
   "GHSA-m6fv-jmcg-4jfg": "send: devDependency, no risk given our usage",
   "GHSA-cm22-4g7w-348p": "serve-statuc: devDependency, no risk given our usage",
   "GHSA-72xf-g2v4-qvf3": "tough-cookie: devDependency, no risk given our usage",
-  "GHSA-3h5v-q93c-6h6q": "ws via jest-environment-jsdom: devDependency, no risk given our usage"
+  "GHSA-3h5v-q93c-6h6q": "ws via jest-environment-jsdom: devDependency, no risk given our usage",
+  "1103026": "babel/helpers: inefficient RexExp complexity in generated code with .replace when transpiling named capturing groups, no risk given our usage",
+  "1103025": "babel/runtime: inefficient RexExp complexity in generated code with .replace when transpiling named capturing groups, no risk given our usage"
 }
