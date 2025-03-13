@@ -21,6 +21,5 @@
 @appConfig.optimizelyUrl.map { url =>
 <!--[if !IE]>-->
 <script @{CSPNonce.attr} type="text/javascript" src="@url"></script>
-<script @{CSPNonce.attr} src='@routes.Assets.versioned("optimizely.js")'></script>
 <!--<![endif]-->
 }
