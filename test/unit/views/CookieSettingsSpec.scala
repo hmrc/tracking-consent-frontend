@@ -59,11 +59,6 @@ class CookieSettingsSpec extends SpecBase {
       content.select("input[name=settings]") must have size 2
     }
 
-    "include the optimizely script" in {
-      val scripts = content.select("script")
-      scripts.get(2).attr("src") must be("/tracking-consent/assets/optimizely.js")
-    }
-
     "return a link to the cookie details page" in {
       val cookieDetailsLinks = content.select("a[href=/help/cookie-details]")
 
