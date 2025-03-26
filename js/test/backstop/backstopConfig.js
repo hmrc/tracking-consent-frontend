@@ -173,7 +173,7 @@ module.exports = ({ host, port }) => ({
   report: [
     'browser',
   ],
-  engine: 'puppeteer',
+  engine: 'playwright',
   engineOptions: {
     args: [
       '--no-sandbox',

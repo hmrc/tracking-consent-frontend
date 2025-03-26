@@ -54,7 +54,9 @@
     "@types/jest": "^29.5.14",
     "@typescript-eslint/eslint-plugin": "^7.17.0",
     "@typescript-eslint/parser": "^7.17.0",
-    "backstopjs": "^5.4.4",
+    "backstopjs": "6.3.25",
+    "playwright-chromium": "^1.49.1",
+    "playwright-core": "^1.49.1",
     "better-npm-audit": "^3.7.3",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "19.0.4",
@@ -76,5 +78,14 @@
     "stylelint-config-standard": "20.0.0",
     "stylelint-scss": "3.16.0",
     "ts-jest": "^29.1.4"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "ie 8",
+    "ie 9",
+    "iOS 9"
+  ],
+  "overrides": {
+    "playwright": "$playwright-core"
   }
 }
