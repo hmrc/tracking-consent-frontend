@@ -41,6 +41,7 @@
     "dot-properties": "1.1.0",
     "govuk-frontend": "5.8.0",
     "js-cookie": "^3.0.5",
+    "playwright": "1.49.1",
     "style-loader": "4.0.0",
     "ts-loader": "9.5.2",
     "typescript": "5.4.5",
@@ -54,7 +55,7 @@
     "@types/jest": "^29.5.14",
     "@typescript-eslint/eslint-plugin": "^7.17.0",
     "@typescript-eslint/parser": "^7.17.0",
-    "backstopjs": "^5.4.4",
+    "backstopjs": "6.3.25",
     "better-npm-audit": "^3.7.3",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "19.0.4",
@@ -69,6 +70,8 @@
     "jest-jasmine2": "^29.7.0",
     "jsdom": "16.2.2",
     "node-sass": "9.0.0",
+    "playwright-chromium": "1.49.1",
+    "playwright-core": "1.49.1",
     "sass-loader": "14.2.1",
     "standardx": "5.0.0",
     "stylelint": "13.13.1",
@@ -76,5 +79,8 @@
     "stylelint-config-standard": "20.0.0",
     "stylelint-scss": "3.16.0",
     "ts-jest": "^29.1.4"
+  },
+  "overrides": {
+    "playwright": "$playwright-core"
   }
 }
