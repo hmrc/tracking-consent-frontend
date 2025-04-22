@@ -24,7 +24,6 @@ import org.scalatest.concurrent.{Eventually, IntegrationPatience}
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.{BeforeAndAfterEach, GivenWhenThen, Retries}
-import org.scalatestplus.selenium.WebBrowser
 import play.api.Application
 import play.api.inject.guice.GuiceApplicationBuilder
 import support.{AcceptanceTestServer, WireMockEndpoints}

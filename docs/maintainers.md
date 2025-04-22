@@ -29,14 +29,12 @@ sbt run
 ## Running all Scala and Javascript unit and integration tests together
 
 ```
-sbt test a11y:test it:test
+sbt test it/test
 ```
 
 The above tests include accessibility checks via the
 [sbt-accessibility-linter](https://www.github.com/hmrc/sbt-accessibility-linter)
 plugin.
-
-## Running UI acceptance tests
 
 ## Running UI journey tests
 
