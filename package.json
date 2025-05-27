@@ -39,7 +39,7 @@
     "core-js": "3.40.0",
     "css-loader": "7.1.2",
     "dot-properties": "1.1.0",
-    "govuk-frontend": "5.8.0",
+    "govuk-frontend": "5.10.1",
     "js-cookie": "^3.0.5",
     "playwright": "1.49.1",
     "style-loader": "4.0.0",
