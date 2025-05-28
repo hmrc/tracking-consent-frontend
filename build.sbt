@@ -39,7 +39,6 @@ lazy val microservice = Project(appName, file("."))
   .settings(
     sharedSettings,
     playDefaultPort := 12345,
-    resolvers += Resolver.jcenterRepo,
     TwirlKeys.templateImports ++= Seq(
       "views.html.helper.CSPNonce",
       "uk.gov.hmrc.trackingconsentfrontend.config.AppConfig",
