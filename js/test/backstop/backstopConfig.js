@@ -1,4 +1,7 @@
+const { platform } = require('node:process')
+
 module.exports = ({ host, port }) => ({
+  dockerCommandTemplate: `docker run ${platform === 'linux' ? '--add-host host.docker.internal:host-gateway' : ''} --rm -it --mount type=bind,source="{cwd}",target=/src backstopjs/backstopjs:{version} {backstopCommand} {args}`,
   id: 'backstop_default',
   viewports: [
     {
