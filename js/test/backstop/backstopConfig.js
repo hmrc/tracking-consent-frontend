@@ -1,6 +1,5 @@
 module.exports = ({ host, port }) => ({
   id: 'backstop_default',
-  dockerCommandTemplate: 'docker run --rm -i --add-host=host.docker.internal:host-gateway --mount type=bind,source="{cwd}",target=/src backstopjs/backstopjs:{version} {backstopCommand} {args}',
   viewports: [
     {
       label: 'phone',
@@ -161,6 +160,23 @@ module.exports = ({ host, port }) => ({
       url: `http://${host}:${port}/classic-services.html`,
       onReadyScript: 'tabToViewCookies.js',
       readySelector: '.cbanner-govuk-cookie-banner',
+    },
+    {
+      label: 'Tracking Consent - Cookie Banner - Rebranded service',
+      url: `http://${host}:${port}/`,
+      enableRebrand: true, // won't work if you override onReadyScript
+    },
+    {
+      label: 'Tracking Consent - Cookie Banner - Rebranded service - Click accept additional',
+      url: `http://${host}:${port}/`,
+      enableRebrand: true,
+      clickSelector: '.cbanner-govuk-button[value=accept]',
+    },
+    {
+      label: 'Tracking Consent - Cookie Banner - Rebranded service - Click reject additional',
+      url: `http://${host}:${port}/`,
+      enableRebrand: true,
+      clickSelector: '.cbanner-govuk-button[value=reject]',
     },
   ],
   paths: {
