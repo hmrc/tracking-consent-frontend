@@ -4,7 +4,7 @@
 
 // Do not inject fonts, use the fonts available on the service page
 $govuk-include-default-font-face: false;
-$govuk-font-family: "GDS Transport", "nta", Arial, sans-serif;
+$govuk-font-family: "GDS Transport", "nta", arial, sans-serif;
 
 @import "node_modules/govuk-frontend/dist/govuk/base";
 @import "width-container";
@@ -44,6 +44,7 @@ $govuk-font-family: "GDS Transport", "nta", Arial, sans-serif;
 // the following is only needed while we support assets-frontend based services...
 // it comes at the cost of larger CSS for everyone
 $govuk-root-font-size: 10px;
+
 .cbanner-root-font-size-10px {
   /* stylelint-disable */
   @import "typography";
