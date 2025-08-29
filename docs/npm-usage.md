@@ -12,7 +12,6 @@ Where possible, we try to minimise the amount of npm packages we depend on. The 
 | css-loader                        | Allows us to use modern css with webpack | https://www.npmjs.com/package/css-loader |
 | dot-properties                    | Adds stringify and parse methods on properties, used in `loaders/message-format-loader` | https://www.npmjs.com/package/dot-properties |
 | govuk-frontend                    | Nunjucks library we keep parity with | https://github.com/alphagov/govuk-frontend/ |
-| html-loader                       | Exports HTML as string, used in `loaders/html-loader` | https://www.npmjs.com/package/html-loader |
 | js-cookie                         | Lightweight library for handling cookies | https://www.npmjs.com/package/js-cookie |
 | playwright                        | Web testing and automation framework | https://playwright.dev/ |
 | style-loader                      | Creates style nodes from JS Strings | https://www.npmjs.com/package/style-loader |
@@ -42,6 +41,7 @@ Everything in devDependencies is for local development and testing purposes only
 | identity-obj-proxy                | Allows Jest to mock an object as css modules                                            | https://www.npmjs.com/package/identity-obj-proxy |
 | jest                              | JavaScript Testing Framework                                                            | https://jestjs.io/ |
 | jest-environment-jsdom            | JSDom testing environment                                                               | https://jestjs.io/docs/next/configuration#testenvironment-string |
+| jest-html-loader                  | html-loader for transforming with jest - OUTDATED: depends on old html-loader           | https://jestjs.io/docs/next/configuration#testenvironment-string |
 | jest-jasmine2                     | Test runner for Jest                                                                    | https://jestjs.io/docs/configuration#testrunner-string |
 | jsdom                             | Emulates the DOM for testing                                                            | https://www.npmjs.com/package/jsdom |
 | node-sass                         | A library for binding node.js to LibSass - Deprecated                                   | https://www.npmjs.com/package/node-sass |

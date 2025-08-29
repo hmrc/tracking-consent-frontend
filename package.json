@@ -40,7 +40,6 @@
     "css-loader": "7.1.2",
     "dot-properties": "1.1.0",
     "govuk-frontend": "5.10.1",
-    "html-loader": "5.1.0",
     "js-cookie": "^3.0.5",
     "playwright": "1.49.1",
     "style-loader": "4.0.0",
@@ -67,8 +66,9 @@
     "identity-obj-proxy": "3.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "jest-html-loader": "^1.0.0",
     "jest-jasmine2": "^29.7.0",
-    "jsdom": "^16.7.0",
+    "jsdom": "^16.2.2",
     "node-sass": "9.0.0",
     "playwright-chromium": "1.49.1",
     "playwright-core": "1.49.1",
@@ -80,6 +80,6 @@
   },
   "overrides": {
     "playwright": "$playwright-core",
-    "glob": "^11.0.3"
+    "rimraf": "^4.0.0"
   }
 }

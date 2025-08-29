@@ -10,7 +10,7 @@ module.exports = {
   testRunner: 'jest-jasmine2',
   transform: {
     '^.+\\.ts?$': 'ts-jest',
-    '^.+\\.html?$': './js/src/loaders/html-loader/index.js',
+    '^.+\\.html?$': 'jest-html-loader',
     '^.+\\.(en|cy|conf)?$': './js/test/messageFormatJestTransformer.js',
   },
   moduleNameMapper: {
