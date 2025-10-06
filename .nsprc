@@ -1,19 +1,4 @@
 {
-  "GHSA-93q8-gq69-wqmw": "ansi-regex: devDependency, no risk given our usage",
-  "GHSA-3xgq-45jj-v275": "cross-spawn: vulnerability relating to unsatized user input, no risk given our usage",
   "GHSA-pfq8-rq6v-vf5m": "html-minifier REDoS: test dependency, no risk given our usage",
-  "GHSA-rc47-6667-2j5j": "http-cache-semantics: devDependency, no risk given our usage",
-  "GHSA-pxg6-pf52-xh8x": "jshttp/cookie: devDependency, no risk given our usage",
-  "GHSA-9c47-m6qq-7p4h": "json5: devDependency, no risk given our usage",
-  "GHSA-f5x3-32g6-xq36": "node-sass: devDependency, no risk given our usage",
-  "GHSA-hrpp-h998-j3pp": "qs: DevDependency, no risk given our usage",
-  "GHSA-p8p7-x288-28g6": "request: devDependency, no risk given our usage",
-  "GHSA-c2qf-rxjj-qqgw": "semver: DevDependency, no risk given our usage",
-  "GHSA-72xf-g2v4-qvf3": "tough-cookie: devDependency, no risk given our usage",
-  "GHSA-3h5v-q93c-6h6q": "ws via jest-environment-jsdom: devDependency, no risk given our usage",
-  "GHSA-968p-4wvh-cqc8": "babel: we don't use .replace with user supplied data, no impact to us",
-  "GHSA-v6h2-p8h4-qcjw": "brace-expansion: devDependency, no risk given our usage",
-  "GHSA-8cj5-5rvv-wf4v": "tar-fs: devDependency, no risk given our usage (pulled in by Puppeteer)",
-  "GHSA-fjxv-7rqg-78g4": "form-data: devDependency, no risk given our usage",
-  "GHSA-52f5-9888-hmc6": "tmp: devDependency, no risk given our usage"
+  "GHSA-vj76-c3g6-qr5v": "tar-fs symlink validation bypass: test dependency, no risk given our usage"
 }
