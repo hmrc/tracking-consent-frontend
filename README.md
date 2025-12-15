@@ -20,7 +20,7 @@ If you have a public-facing microservice running under `www.tax.service.gov.uk`,
 ## How do I integrate with tracking consent?
 Tracking consent is designed to be used in conjunction with HMRC's frontend libraries.
 
-Integration guidelines for play-frontend-hmrc can be found [here](https://github.com/hmrc/play-frontend-hmrc#integrating-with-tracking-consent).
+Integration guidelines for play-frontend-hmrc can be found [here](https://github.com/hmrc/play-frontend-hmrc/blob/main/docs/creating-pages.md#integrating-with-tracking-consent).
 
 Integration guidelines for older services using play-ui can be found [here](https://github.com/hmrc/play-ui#integrating-with-tracking-consent).
 
