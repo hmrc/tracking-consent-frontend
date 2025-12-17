@@ -41,7 +41,6 @@ Everything in devDependencies is for local development and testing purposes only
 | identity-obj-proxy                | Allows Jest to mock an object as css modules                                            | https://www.npmjs.com/package/identity-obj-proxy |
 | jest                              | JavaScript Testing Framework                                                            | https://jestjs.io/ |
 | jest-environment-jsdom            | JSDom testing environment                                                               | https://jestjs.io/docs/next/configuration#testenvironment-string |
-| jest-html-loader                  | html-loader for transforming with jest - OUTDATED: depends on old html-loader           | https://jestjs.io/docs/next/configuration#testenvironment-string |
 | jest-jasmine2                     | Test runner for Jest                                                                    | https://jestjs.io/docs/configuration#testrunner-string |
 | jsdom                             | Emulates the DOM for testing                                                            | https://www.npmjs.com/package/jsdom |
 | node-sass                         | A library for binding node.js to LibSass - Deprecated                                   | https://www.npmjs.com/package/node-sass |
