@@ -13,8 +13,7 @@
     "backstop": "node js/test/backstop/backstop.js test",
     "backstop:server": "node js/test/backstop/server.js",
     "backstop:approve": "node js/test/backstop/backstop.js approve",
-    "test": "jest --collectCoverage js && npm run lint",
-    "prepare": "husky"
+    "test": "jest --collectCoverage js && npm run lint"
   },
   "eslintConfig": {
     "rules": {
@@ -62,7 +61,6 @@
     "eslint-config-airbnb-typescript": "18.0.0",
     "eslint-plugin-import": "^2.29.1",
     "express": "^5.1.0",
-    "husky": "9.1.7",
     "identity-obj-proxy": "3.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
