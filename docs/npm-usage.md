@@ -37,7 +37,6 @@ Everything in devDependencies is for local development and testing purposes only
 | eslint-config-airbnb-typescript   | Enhances Airbnb's ESLint config with TypeScript support                                 | https://www.npmjs.com/package/eslint-config-airbnb-typescript |
 | eslint-plugin-import              | Supports linting of ES6+ import/export syntax                                           | https://www.npmjs.com/package/eslint-plugin-import |
 | express                           | Web framework for node.js                                                               | https://www.npmjs.com/package/express |
-| husky                             | Lints commit messages, code and run tests on commit/push                                | https://typicode.github.io/husky/ |
 | identity-obj-proxy                | Allows Jest to mock an object as css modules                                            | https://www.npmjs.com/package/identity-obj-proxy |
 | jest                              | JavaScript Testing Framework                                                            | https://jestjs.io/ |
 | jest-environment-jsdom            | JSDom testing environment                                                               | https://jestjs.io/docs/next/configuration#testenvironment-string |
