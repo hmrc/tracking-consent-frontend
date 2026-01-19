@@ -77,6 +77,8 @@
   },
   "overrides": {
     "playwright": "$playwright-core",
-    "rimraf": "^4.0.0"
+    "rimraf": "^4.0.0",
+    "diff": "^8.0.3",
+    "tar": "^7.5.3"
   }
 }
