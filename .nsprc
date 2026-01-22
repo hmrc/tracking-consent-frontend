@@ -1,5 +1,4 @@
 {
   "GHSA-7mvr-c777-76hp": "Playwright browser install without SSL: PLATUI-4022 created to uplift, devDependency only",
-  "GHSA-6rw7-vpxm-498p": "qs: devDependency only, no risk given our usage"
-
+  "GHSA-xxjr-mmjv-4gpg": "lodash prototype pollution using _.unset and _.omit: devDependency only, no risk given our usage"
 }
