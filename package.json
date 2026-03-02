@@ -76,6 +76,7 @@
     "ts-jest": "^29.1.4"
   },
   "overrides": {
+    "serialize-javascript": "^7.0.3",
     "playwright": "$playwright-core",
     "rimraf": "^4.0.0",
     "diff": "^8.0.3",
