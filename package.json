@@ -80,6 +80,7 @@
     "playwright": "$playwright-core",
     "rimraf": "^4.0.0",
     "diff": "^8.0.3",
-    "tar": "^7.5.7"
+    "tar": "^7.5.7",
+    "@tootallnate/once": "^3.0.1"
   }
 }
