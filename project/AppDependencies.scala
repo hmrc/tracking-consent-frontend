@@ -2,7 +2,7 @@ import sbt.*
 
 object AppDependencies {
 
-  private val bootstrapVersion = "10.6.0"
+  private val bootstrapVersion = "10.7.0"
   private val frontendVersion  = "12.32.0"
   private val playVersion      = "play-30"
 
@@ -15,6 +15,6 @@ object AppDependencies {
     "org.jsoup"          % "jsoup"                        % "1.18.3"         % Test,
     "uk.gov.hmrc"       %% s"bootstrap-test-$playVersion" % bootstrapVersion % Test,
     "org.scalatestplus" %% "selenium-4-21"                % "3.2.19.0"       % Test,
-    "uk.gov.hmrc"       %% "ui-test-runner"               % "0.52.0"         % Test
+    "uk.gov.hmrc"       %% "ui-test-runner"               % "0.53.0"         % Test
   )
 }
