@@ -12,6 +12,7 @@ import fixtureFrontendToolkit from '../fixtures/servicePageFrontendToolkit.html'
 import fixtureClassic from '../fixtures/servicePageClassic.html';
 import * as getLanguage from '../../src/interfaces/getLanguage';
 import * as getTrackingConsentBaseUrl from '../../src/common/getTrackingConsentBaseUrl';
+import * as withUseServiceNavigationQueryParam from '../../src/interfaces/withUseServiceNavigationQueryParam';
 
 describe('renderBanner', () => {
   const userAcceptsAdditional = jest.fn();
@@ -42,6 +43,7 @@ describe('renderBanner', () => {
 
   let languageSpy;
   let getTrackingConsentBaseUrlSpy;
+  let withUseServiceNavigationQueryParamSpy;
 
   beforeEach(() => {
     document.getElementsByTagName('html')[0].innerHTML = fixture;
@@ -50,6 +52,7 @@ describe('renderBanner', () => {
     preferenceCommunicator.sendPreferences.mockReset();
     languageSpy = spyOn(getLanguage, 'default').and.returnValue('en');
     getTrackingConsentBaseUrlSpy = spyOn(getTrackingConsentBaseUrl, 'default').and.returnValue('https://my-example.com:1234');
+    withUseServiceNavigationQueryParamSpy = jest.spyOn(withUseServiceNavigationQueryParam, 'default');
   });
 
   const clickAcceptAll = () => {
@@ -130,6 +133,17 @@ describe('renderBanner', () => {
     expect(link).toBeTruthy();
     // @ts-ignore
     expect(link.getAttribute('href')).toEqual('http://localhost:8000/tracking-consent/cookie-settings');
+  });
+
+  it('should propagate the context of use of service nav to cookie settings link', () => {
+    withUseServiceNavigationQueryParamSpy.mockReturnValue('updated-cookie-settings-link');
+    renderBanner(userPreference);
+
+    const link = queryByText(document.body, 'View cookie preferences');
+    expect(link).toBeTruthy();
+    // @ts-ignore
+    expect(link.getAttribute('href')).toEqual('updated-cookie-settings-link');
+    expect(document.body.innerHTML.match(/updated-cookie-settings-link/g)?.length).toEqual(1);
   });
 
   it('should render the banner before the govuk-frontend skiplink link', () => {
