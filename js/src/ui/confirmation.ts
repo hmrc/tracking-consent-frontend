@@ -1,4 +1,5 @@
 import getTrackingConsentBaseUrl from '../common/getTrackingConsentBaseUrl';
+import withUseServiceNavigationQueryParam from '../interfaces/withUseServiceNavigationQueryParam';
 
 const confirmation = (messages: any, acceptedOrRejectedMessage: string) => `
     <div class="cbanner-govuk-grid-row">
@@ -8,7 +9,7 @@ const confirmation = (messages: any, acceptedOrRejectedMessage: string) => `
           <p>
             ${acceptedOrRejectedMessage}
             ${messages['banner.confirmation.before.link']}
-            <a class="cbanner-govuk-link" href="${getTrackingConsentBaseUrl()}${messages['banner.view.cookies.url']}">
+            <a class="cbanner-govuk-link" href="${withUseServiceNavigationQueryParam(getTrackingConsentBaseUrl() + messages['banner.view.cookies.url'])}">
               ${messages['banner.confirmation.link']}
             </a>            
             ${messages['banner.confirmation.after.link']}
