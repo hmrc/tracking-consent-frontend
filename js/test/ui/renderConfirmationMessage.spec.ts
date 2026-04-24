@@ -9,14 +9,17 @@ import '@testing-library/jest-dom';
 import fixture from '../fixtures/servicePageWithBannerMinimal.html';
 import renderConfirmationMessage from '../../src/ui/renderConfirmationMessage';
 import * as getTrackingConsentBaseUrl from '../../src/common/getTrackingConsentBaseUrl';
+import * as withUseServiceNavigationQueryParam from '../../src/interfaces/withUseServiceNavigationQueryParam';
 
 describe('renderConfirmationMessage', () => {
   const youveAcceptedAdditionalMatcher = /You have accepted additional cookies/;
   let getTrackingConsentBaseUrlSpy;
+  let withUseServiceNavigationQueryParamSpy;
 
   beforeEach(() => {
     document.getElementsByTagName('html')[0].innerHTML = fixture;
     getTrackingConsentBaseUrlSpy = spyOn(getTrackingConsentBaseUrl, 'default').and.returnValue('http://localhost:12345');
+    withUseServiceNavigationQueryParamSpy = jest.spyOn(withUseServiceNavigationQueryParam, 'default');
   });
 
   const clickHide = () => {
@@ -85,5 +88,16 @@ describe('renderConfirmationMessage', () => {
     const button = queryByText(document.body, /change your cookie settings/);
     // @ts-ignore
     expect(button.getAttribute('href')).toEqual('https://www.tax.service.gov.uk/tracking-consent/cookie-settings');
+  });
+
+  it('should propagate the context of use of service nav to cookie settings link', () => {
+    withUseServiceNavigationQueryParamSpy.mockReturnValue('updated-cookie-settings-link');
+    renderConfirmationMessage('You have accepted additional cookies');
+
+    const button = queryByText(document.body, /change your cookie settings/);
+    expect(button).toBeTruthy();
+    // @ts-ignore
+    expect(button.getAttribute('href')).toEqual('updated-cookie-settings-link');
+    expect(document.body.innerHTML.match(/updated-cookie-settings-link/g)?.length).toEqual(1);
   });
 });

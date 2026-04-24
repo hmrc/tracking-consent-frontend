@@ -1,7 +1,10 @@
 import getTrackingConsentBaseUrl from '../common/getTrackingConsentBaseUrl';
+import withUseServiceNavigationQueryParam from '../interfaces/withUseServiceNavigationQueryParam';
 
 const banner = (messages) => {
-  const trackingConsentSettingsPageUrl = `${getTrackingConsentBaseUrl()}${messages['banner.view.cookies.url']}`;
+  const trackingConsentSettingsPageUrl = withUseServiceNavigationQueryParam(
+    getTrackingConsentBaseUrl() + messages['banner.view.cookies.url'],
+  );
   return `<div class="cbanner-govuk-cookie-banner__message cbanner-govuk-width-container">
     <div class="cbanner-govuk-grid-row">
       <div class="cbanner-govuk-grid-column-two-thirds">
