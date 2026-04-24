@@ -59,6 +59,7 @@ class CookieSettingsControllerSpec extends SpecBase {
 
       linkToCookieDetails mustBe Some("/help/cookie-details")
     }
+
     "propagate use of service navigation to link to cookie details page" in {
       val result = route(app, FakeRequest("GET", "/tracking-consent/cookie-settings?useServiceNavigation")).value
 
