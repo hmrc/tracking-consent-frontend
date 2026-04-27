@@ -14,10 +14,12 @@
  * limitations under the License.
  *@
 
-@this()
-@()(implicit messages: Messages, appConfig: AppConfig)
+@import uk.gov.hmrc.hmrcfrontend.config.ServiceNavigationConfig
+
+@this(serviceNavigationConfig: ServiceNavigationConfig)
+@()(implicit messages: Messages, appConfig: AppConfig, request: RequestHeader)
 <p class="govuk-body">
-    <a href="@appConfig.cookieDetailsUrl" class="govuk-link">
+    <a href="@{serviceNavigationConfig.propagateViaQueryParam(appConfig.cookieDetailsUrl)}" class="govuk-link" id="link-to-cookie-details-page">
         @messages("cookieSettings.necessary.link.text")
     </a>
 </p>

@@ -14,7 +14,9 @@
  * limitations under the License.
  *@
 
-@this(optimizelySnippet: OptimizelySnippet)
+@import uk.gov.hmrc.hmrcfrontend.config.ServiceNavigationConfig
+
+@this(optimizelySnippet: OptimizelySnippet, serviceNavConfig: ServiceNavigationConfig)
 
 @()(implicit appConfig: AppConfig, request: RequestHeader, messages: Messages)
 <!--[if !IE]>-->
@@ -24,6 +26,7 @@
   id="tracking-consent-script-tag"
   data-gtm-container="a"
   data-language="@messages.lang.code"
+  @if(serviceNavConfig.forceServiceNavigation) {data-use-service-nav}
 ></script>
 <!--<![endif]-->
 @optimizelySnippet()

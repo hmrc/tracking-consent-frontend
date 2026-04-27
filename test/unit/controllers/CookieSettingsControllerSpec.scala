@@ -16,8 +16,10 @@
 
 package unit.controllers
 
+import org.jsoup.Jsoup
 import play.api.http.Status
 import play.api.mvc.Cookie
+import play.api.test.FakeRequest
 import play.api.test.Helpers.*
 import uk.gov.hmrc.trackingconsentfrontend.controllers.CookieSettingsController
 import unit.SpecBase
@@ -46,6 +48,26 @@ class CookieSettingsControllerSpec extends SpecBase {
       val requestWithLanguageCookie = fakeRequest.withCookies(Cookie("PLAY_LANG", "cy"))
       val result                    = controller.cookieSettings()(requestWithLanguageCookie)
       contentAsString(result) must include("Gosodiadau cwcis ar wasanaethau CThEF")
+    }
+
+    "link to cookie details page" in {
+      val result = route(app, FakeRequest("GET", "/tracking-consent/cookie-settings")).value
+
+      val linkToCookieDetails = Option(
+        Jsoup.parse(contentAsString(result)).getElementById("link-to-cookie-details-page")
+      ).map(_.attr("href"))
+
+      linkToCookieDetails mustBe Some("/help/cookie-details")
+    }
+
+    "propagate use of service navigation to link to cookie details page" in {
+      val result = route(app, FakeRequest("GET", "/tracking-consent/cookie-settings?useServiceNavigation")).value
+
+      val linkToCookieDetails = Option(
+        Jsoup.parse(contentAsString(result)).getElementById("link-to-cookie-details-page")
+      ).map(_.attr("href"))
+
+      linkToCookieDetails mustBe Some("/help/cookie-details?useServiceNavigation")
     }
   }
 }
