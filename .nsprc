@@ -3,5 +3,10 @@
   "GHSA-3ppc-4f35-3m26": "minimatch ReDoS issue - repeated wildcards: devDependency only, no risk given our usage",
   "GHSA-23c5-xmqv-rm74": "minimatch ReDoS issue - nested *(): devDependency only, no risk given our usage",
   "GHSA-7r86-cg39-jmmj": "minimatch ReDoS issue - matchOne(): devDependency only, no risk given our usage",
-  "GHSA-vpq2-c234-7xj6": "@tootallnate/once: devDependency only, no risk given our usage"
+  "GHSA-vpq2-c234-7xj6": "@tootallnate/once: devDependency only, no risk given our usage",
+  "GHSA-fv7c-fp4j-7gwp": "@babel/plugin-transform-modules-systemjs arbitrary code when compiling malicious input: pulled in via preset-env, no risk given our usage",
+  "GHSA-v2v4-37r5-5v8g": "ip-address: devDependency only, no risk given our usage",
+  "GHSA-rpmf-866q-6p89": "basic-ftp malicious FTP server can cause client-side DoS: devDependency only, no risk given our usage",
+  "GHSA-q3j6-qgpj-74h6": "fast-uri vulnerable to path traversal: pulled in via eslint, no risk given our usage",
+  "GHSA-v39h-62p7-jpjc": "fast-uri vulnerable to host confusion: pulled in via eslint, no risk given our usage"
 }
