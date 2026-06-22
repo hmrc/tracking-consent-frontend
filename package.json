@@ -13,7 +13,8 @@
     "backstop": "node js/test/backstop/backstop.js test",
     "backstop:server": "node js/test/backstop/server.js",
     "backstop:approve": "node js/test/backstop/backstop.js approve",
-    "test": "jest --collectCoverage js && npm run lint"
+    "test": "jest --collectCoverage js && npm run lint",
+    "install:playwright": "playwright install"
   },
   "eslintConfig": {
     "rules": {
@@ -40,7 +41,7 @@
     "dot-properties": "1.1.0",
     "govuk-frontend": "5.10.1",
     "js-cookie": "^3.0.5",
-    "playwright": "1.49.1",
+    "playwright": "^1.49.1",
     "style-loader": "4.0.0",
     "ts-loader": "9.5.2",
     "typescript": "5.4.5",
@@ -77,7 +78,6 @@
   },
   "overrides": {
     "serialize-javascript": "^7.0.3",
-    "playwright": "$playwright-core",
     "rimraf": "^4.0.0",
     "diff": "^8.0.3",
     "tar": "^7.5.7"
