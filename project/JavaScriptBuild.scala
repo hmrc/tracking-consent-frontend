@@ -11,13 +11,17 @@ import sbt.*
   * build' when doing the dist command (which is part of the distTgz command run in Jenkins)
   */
 object JavaScriptBuild {
-  val npmInstall  = TaskKey[Int]("npm-install")
-  val npmTest     = TaskKey[Int]("npm-test")
-  val npmBackstop = TaskKey[Int]("npm-backstop")
-  val npmBuild    = TaskKey[Int]("npm-build")
+  val npmInstall           = TaskKey[Int]("npm-install")
+  val npmInstallPlaywright = TaskKey[Int]("npm-install-playwright")
+  val npmTest              = TaskKey[Int]("npm-test")
+  val npmBackstop          = TaskKey[Int]("npm-backstop")
+  val npmBuild             = TaskKey[Int]("npm-build")
 
   val javaScriptSettings: Seq[Setting[?]] = Seq(
     npmInstall := Npm.npmProcess("npm install failed")(baseDirectory.value, "install"),
+    npmInstallPlaywright := Npm
+      .npmProcess("npm install playwright failed")(baseDirectory.value, "run", "install:playwright"),
+    npmInstallPlaywright := (npmInstallPlaywright dependsOn npmInstall).value,
     npmBuild := Npm.npmProcess("npm build failed")(baseDirectory.value, "run", "build"),
     npmBuild := (npmBuild dependsOn npmInstall).value,
     npmTest := Npm.npmProcess("npm test failed")(baseDirectory.value, "test"),
