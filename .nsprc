@@ -1,9 +1,10 @@
 {
   "GHSA-7mvr-c777-76hp": "Playwright browser install without SSL: PLATUI-4022 created to uplift, devDependency only",
-  "GHSA-3ppc-4f35-3m26": "minimatch ReDoS issue - repeated wildcards: devDependency only, no risk given our usage",
-  "GHSA-23c5-xmqv-rm74": "minimatch ReDoS issue - nested *(): devDependency only, no risk given our usage",
-  "GHSA-7r86-cg39-jmmj": "minimatch ReDoS issue - matchOne(): devDependency only, no risk given our usage",
   "GHSA-vpq2-c234-7xj6": "@tootallnate/once: devDependency only, no risk given our usage",
   "GHSA-h67p-54hq-rp68": "js-yaml quadratic-complexity DoS in merge key: pulled in via devDependency, no risk given our usage",
-  "GHSA-4x5r-pxfx-6jf8": "babel/core: arbitrary file read via sourceMappingURL comment: devDependency only, no risk given our usage"
+  "GHSA-52cp-r559-cp3m": "js-yaml YAML merge-key chains: pulled in via devDependency, no risk given our usage",
+  "GHSA-4x5r-pxfx-6jf8": "babel/core: arbitrary file read via sourceMappingURL comment: devDependency only, no risk given our usage",
+  "GHSA-3jxr-9vmj-r5cp": "brace-expansion: devDependency, no risk given our usage",
+  "GHSA-mh99-v99m-4gvg": "brace-expansion: devDependency, no risk given our usage",
+  "GHSA-v422-hmwv-36x6": "body-parser: devDependency, no risk given our usage"
 }

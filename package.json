@@ -80,6 +80,9 @@
     "serialize-javascript": "^7.0.3",
     "rimraf": "^4.0.0",
     "diff": "^8.0.3",
-    "tar": "^7.5.7"
+    "tar": "^7.5.7",
+    "postcss": "^8.5.18",
+    "fast-uri": "^3.1.4",
+    "immutable": "^5.1.8"
   }
 }
