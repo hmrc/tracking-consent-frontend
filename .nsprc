@@ -3,8 +3,14 @@
   "GHSA-vpq2-c234-7xj6": "@tootallnate/once: devDependency only, no risk given our usage",
   "GHSA-h67p-54hq-rp68": "js-yaml quadratic-complexity DoS in merge key: pulled in via devDependency, no risk given our usage",
   "GHSA-52cp-r559-cp3m": "js-yaml YAML merge-key chains: pulled in via devDependency, no risk given our usage",
+  "GHSA-5p4m-2wfm-xmqj": "js-yaml: Quadratic CPU consumption in !!omap resolution: pulled in via devDependency, no risk given our usage",
   "GHSA-4x5r-pxfx-6jf8": "babel/core: arbitrary file read via sourceMappingURL comment: devDependency only, no risk given our usage",
   "GHSA-3jxr-9vmj-r5cp": "brace-expansion: devDependency, no risk given our usage",
   "GHSA-mh99-v99m-4gvg": "brace-expansion: devDependency, no risk given our usage",
-  "GHSA-v422-hmwv-36x6": "body-parser: devDependency, no risk given our usage"
+  "GHSA-rgw5-rvv9-x895": "brace-expansion: devDependency, no risk given our usage",
+  "GHSA-v422-hmwv-36x6": "body-parser: devDependency, no risk given our usage",
+  "GHSA-7p8r-x3mc-p8w7": "fast-uri: devDependency only, pulled in via eslint, no risk given our usage",
+  "GHSA-22jq-vg5j-6vgg": "ip-address: devDependency only, no risk given our usage",
+  "GHSA-4xrf-jv44-h6hh": "ip-address: devDependency only, no risk given our usage",
+  "GHSA-mwp4-54f8-5fhr": "ip-address: devDependency only, no risk given our usage"
 }

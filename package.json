@@ -77,12 +77,12 @@
     "ts-jest": "^29.1.4"
   },
   "overrides": {
-    "serialize-javascript": "^7.0.3",
-    "rimraf": "^4.0.0",
     "diff": "^8.0.3",
-    "tar": "^7.5.7",
-    "postcss": "^8.5.18",
     "fast-uri": "^3.1.4",
-    "immutable": "^5.1.8"
+    "immutable": "^5.1.8",
+    "postcss": "^8.5.23",
+    "rimraf": "^4.0.0",
+    "serialize-javascript": "^7.0.3",
+    "tar": "^7.5.7"
   }
 }
