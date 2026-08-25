@@ -7,7 +7,7 @@
   "scripts": {
     "start": "webpack --mode production --watch",
     "build": "webpack --mode production",
-    "audit": "better-npm-audit audit",
+    "audit": "npm outdated; better-npm-audit audit",
     "lint": "stylelint \"js/styles/**/*.scss\" && eslint js",
     "lint:fix": "stylelint --fix \"js/styles/**/*.scss\" && eslint js --fix",
     "backstop": "node js/test/backstop/backstop.js test",
