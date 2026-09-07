@@ -83,6 +83,8 @@
     "postcss": "^8.5.23",
     "rimraf": "^4.0.0",
     "serialize-javascript": "^7.0.3",
-    "tar": "^7.5.7"
+    "tar": "^7.5.7",
+    "browserslist": "^4.28.7",
+    "postcss-selector-parser": "^7.1.3"
   }
 }

@@ -10,9 +10,15 @@
   "GHSA-rgw5-rvv9-x895": "brace-expansion: devDependency, no risk given our usage",
   "GHSA-v422-hmwv-36x6": "body-parser: devDependency, no risk given our usage",
   "GHSA-7p8r-x3mc-p8w7": "fast-uri: devDependency only, pulled in via eslint, no risk given our usage",
+  "GHSA-5jgf-p345-68v8": "fast-uri: devDependency only, pulled in via eslint, no risk given our usage",
+  "GHSA-f65p-4m7j-42xc": "fast-uri: devDependency only, pulled in via eslint, no risk given our usage",
+  "GHSA-fph4-wmhf-6fwf": "fast-uri: devDependency only, pulled in via eslint, no risk given our usage",
+  "GHSA-jqff-g426-hqxp": "fast-uri: devDependency only, pulled in via eslint, no risk given our usage",
   "GHSA-22jq-vg5j-6vgg": "ip-address: devDependency only, no risk given our usage",
   "GHSA-4xrf-jv44-h6hh": "ip-address: devDependency only, no risk given our usage",
   "GHSA-mwp4-54f8-5fhr": "ip-address: devDependency only, no risk given our usage",
   "GHSA-2v37-7h3g-55p8": "nanoid: devDependency only, no risk given our usage",
-  "GHSA-jmr9-qjv8-65gv": "extract-zip: devDependency only, no risk given our usage"
+  "GHSA-jmr9-qjv8-65gv": "extract-zip: devDependency only, no risk given our usage",
+  "GHSA-x5fp-wj9c-mxmx": "qs: devDependency only, no risk given our usage",
+  "GHSA-4mjr-xmp4-gh2g": "qs: devDependency only, no risk given our usage"
 }
