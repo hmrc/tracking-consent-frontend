@@ -8,7 +8,6 @@ const enableGtm = (containerId: string | undefined) => {
     throw new Error('Unable to enable GTM because no container has been specified');
   }
 
-  // eslint-disable-next-line no-param-reassign
   window[dataLayer] = window[dataLayer] || [];
   window[dataLayer].push({
     trackingConsentLoaded: true,
