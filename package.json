@@ -74,7 +74,7 @@
     "standardx": "^7.0.0",
     "stylelint": "^16.21.0",
     "stylelint-config-gds": "^2.0.0",
-    "ts-jest": "^29.1.4"
+    "ts-jest": "^29.4.12"
   },
   "overrides": {
     "diff": "^8.0.3",
