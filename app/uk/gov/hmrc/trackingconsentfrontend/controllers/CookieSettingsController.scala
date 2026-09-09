@@ -33,6 +33,7 @@ class CookieSettingsController @Inject() (
 
   given config: AppConfig = appConfig
 
+  // Just adding a comment to trigger a new build
   def cookieSettings(): Action[AnyContent] = Action.async { implicit request =>
     Future.successful(
       Ok(cookieSettingsPage())
