@@ -11,7 +11,7 @@
     "backstop": "node js/test/backstop/backstop.js test",
     "backstop:server": "node js/test/backstop/server.js",
     "backstop:approve": "node js/test/backstop/backstop.js approve",
-    "test": "jest --collectCoverage js &&",
+    "test": "jest --collectCoverage js",
     "install:playwright": "playwright install"
   },
   "standardx": {
