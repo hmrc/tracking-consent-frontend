@@ -52,7 +52,7 @@
     "playwright-chromium": "1.49.1",
     "playwright-core": "1.49.1",
     "sass": "^1.103.1",
-    "sass-loader": "15.0.0",
+    "sass-loader": "16.0.8",
     "standardx": "^7.0.0",
     "ts-jest": "^29.4.12"
   },
