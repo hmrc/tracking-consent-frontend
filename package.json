@@ -69,7 +69,7 @@
     "jsdom": "^16.2.2",
     "playwright-chromium": "1.49.1",
     "playwright-core": "1.49.1",
-    "sass": "^1.99.0",
+    "sass": "^1.103.1",
     "sass-loader": "14.2.1",
     "standardx": "^7.0.0",
     "stylelint": "^16.26.1",
