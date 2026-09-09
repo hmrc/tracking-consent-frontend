@@ -32,10 +32,6 @@ sbt run
 sbt test it/test
 ```
 
-The above tests include accessibility checks via the
-[sbt-accessibility-linter](https://www.github.com/hmrc/sbt-accessibility-linter)
-plugin.
-
 ## Running UI journey tests
 
 The UI journey tests are located in the [accessibility-statement-frontend-ui-tests](https://github.com/hmrc/accessibility-statement-frontend-ui-tests). Running these locally or in 
@@ -59,12 +55,6 @@ Audit dependencies:
  
 ```
 npm audit
-```
-
-Run static analysis and auto fix:
-
-```
-npm run fixlint
 ```
 
 Run unit tests and coverage:

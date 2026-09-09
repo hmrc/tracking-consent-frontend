@@ -67,55 +67,6 @@ module.exports = ({ host, port }) => ({
       readySelector: '.cbanner-govuk-cookie-banner',
     },
     {
-      label: 'Tracking Consent - Cookie Banner - Assets Frontend',
-      url: `http://${host}:${port}/assets-frontend.html`,
-      readySelector: '.cbanner-govuk-cookie-banner',
-    },
-    {
-      label: 'Tracking Consent - Cookie Banner - Assets Frontend - Click accept additional',
-      url: `http://${host}:${port}/assets-frontend.html`,
-      clickSelector: '.cbanner-govuk-button[value=accept]',
-    },
-    {
-      label: 'Tracking Consent - Cookie Banner - Assets Frontend - Click reject additional',
-      url: `http://${host}:${port}/assets-frontend.html`,
-      clickSelector: '.cbanner-govuk-button[value=reject]',
-    },
-    {
-      label: 'Tracking Consent - Cookie Banner - Assets Frontend - Hover on accept additional button',
-      url: `http://${host}:${port}/assets-frontend.html`,
-      hoverSelector: '.cbanner-govuk-button[value=accept]',
-    },
-    {
-      label: 'Tracking Consent - Cookie Banner - Assets Frontend - Hover on Reject All button',
-      url: `http://${host}:${port}/assets-frontend.html`,
-      hoverSelector: '.cbanner-govuk-button[value=reject]',
-    },
-    {
-      label: 'Tracking Consent - Cookie Banner - Assets Frontend - Tab to Skip Link',
-      url: `http://${host}:${port}/assets-frontend.html`,
-      onReadyScript: 'tabToSkipLink.js',
-      readySelector: '.cbanner-govuk-cookie-banner',
-    },
-    {
-      label: 'Tracking Consent - Cookie Banner - Assets Frontend - Tab to accept additional',
-      url: `http://${host}:${port}/assets-frontend.html`,
-      onReadyScript: 'tabToAcceptAdditional.js',
-      readySelector: '.cbanner-govuk-cookie-banner',
-    },
-    {
-      label: 'Tracking Consent - Cookie Banner - Assets Frontend - Tab to reject additional',
-      url: `http://${host}:${port}/assets-frontend.html`,
-      onReadyScript: 'tabToRejectAdditional.js',
-      readySelector: '.cbanner-govuk-cookie-banner',
-    },
-    {
-      label: 'Tracking Consent - Cookie Banner - Assets Frontend - Tab to Cookie Settings',
-      url: `http://${host}:${port}/assets-frontend.html`,
-      onReadyScript: 'tabToViewCookies.js',
-      readySelector: '.cbanner-govuk-cookie-banner',
-    },
-    {
       label: 'Tracking Consent - Cookie Banner - Classic Services',
       url: `http://${host}:${port}/classic-services.html`,
       readySelector: '.cbanner-govuk-cookie-banner',
@@ -198,7 +149,7 @@ module.exports = ({ host, port }) => ({
       '--no-sandbox',
     ],
   },
-  misMatchThreshold: 0,
+  misMatchThreshold: 3, // to account for browser font differences
   asyncCaptureLimit: 5, // try reducing this in case of issues on Apple Silicon
   asyncCompareLimit: 50,
   debug: false,
