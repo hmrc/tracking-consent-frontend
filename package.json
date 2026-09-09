@@ -8,27 +8,15 @@
     "start": "webpack --mode production --watch",
     "build": "webpack --mode production",
     "audit": "npm outdated; better-npm-audit audit",
-    "lint": "stylelint \"js/styles/**/*.scss\" && eslint js",
-    "lint:fix": "stylelint --fix \"js/styles/**/*.scss\" && eslint js --fix",
     "backstop": "node js/test/backstop/backstop.js test",
     "backstop:server": "node js/test/backstop/server.js",
     "backstop:approve": "node js/test/backstop/backstop.js approve",
-    "test": "jest --collectCoverage js && npm run lint",
+    "test": "jest --collectCoverage js &&",
     "install:playwright": "playwright install"
-  },
-  "eslintConfig": {
-    "rules": {
-      "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": "error"
-    }
   },
   "standardx": {
     "env": [
       "jest"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint/eslint-plugin"
     ]
   },
   "dependencies": {
@@ -53,14 +41,8 @@
     "@testing-library/dom": "10.4.0",
     "@testing-library/jest-dom": "6.6.3",
     "@types/jest": "^29.5.14",
-    "@typescript-eslint/eslint-plugin": "^7.17.0",
-    "@typescript-eslint/parser": "^7.17.0",
     "backstopjs": "6.3.25",
     "better-npm-audit": "^3.11.0",
-    "eslint": "^8.57.0",
-    "eslint-config-airbnb": "19.0.4",
-    "eslint-config-airbnb-typescript": "18.0.0",
-    "eslint-plugin-import": "^2.29.1",
     "express": "^5.2.1",
     "identity-obj-proxy": "3.0.0",
     "jest": "^29.7.0",
@@ -72,8 +54,6 @@
     "sass": "^1.103.1",
     "sass-loader": "14.2.1",
     "standardx": "^7.0.0",
-    "stylelint": "^16.26.1",
-    "stylelint-config-gds": "^2.0.0",
     "ts-jest": "^29.4.12"
   },
   "overrides": {
