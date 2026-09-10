@@ -9,9 +9,7 @@ const host = process.env.BACKSTOP_TEST_HOST || defaultHost;
 const config = backstopConfig({ host, port });
 const options = { config, docker };
 
-// eslint-disable-next-line no-console
 const log = console.log.bind(console);
-// eslint-disable-next-line no-console
 const warn = console.warn.bind(console);
 
 const runBackstop = async (command) => {

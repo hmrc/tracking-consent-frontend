@@ -7,7 +7,6 @@ const optimizelyCommunicatorFactory = (window: Window): Communicator => ({
       window.optimizely.push({ type: 'optOut', isOptOut });
     };
 
-    // eslint-disable-next-line no-param-reassign
     window.optimizely = window.optimizely || [];
     const preferences = userPreferences.getPreferences() || {};
     setOptimizelyOptOut(preferences.measurement !== true);

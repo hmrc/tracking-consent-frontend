@@ -28,14 +28,8 @@ Everything in devDependencies is for local development and testing purposes only
 | @testing-library/dom              | Allows testing of the DOM                                                               | https://www.npmjs.com/package/@testing-library/dom |
 | @testing-library/jest-dom         | Custom jest matchers that assert on various states of the DOM                           | https://www.npmjs.com/package/@testing-library/jest-dom |
 | @types/jest                       | Type definitions for Jest                                                               | https://www.npmjs.com/package/@types/jest |
-| @typescript-eslint/eslint-plugin  | Load in rules and rule configurations from typescript-eslint                            | https://typescript-eslint.io/packages/eslint-plugin |
-| @typescript-eslint/parser         | Parses TypeScript into ESLint compatible nodes                                          | https://typescript-eslint.io/packages/parser/ |
 | backstopjs                        | Automate visual regression testing                                                      | https://www.npmjs.com/package/backstopjs |
 | better-npm-audit                  | Provides a clearer npm audit                                                            | https://www.npmjs.com/package/better-npm-audit |
-| eslint                            | Linting tool that identifies and reports on ECMACode/JavaScript                         | https://eslint.org/ |
-| eslint-config-airbnb              | Provides Airbnb's .eslintrc as an extensible shared config                              | https://www.npmjs.com/package/eslint-config-airbnb |
-| eslint-config-airbnb-typescript   | Enhances Airbnb's ESLint config with TypeScript support                                 | https://www.npmjs.com/package/eslint-config-airbnb-typescript |
-| eslint-plugin-import              | Supports linting of ES6+ import/export syntax                                           | https://www.npmjs.com/package/eslint-plugin-import |
 | express                           | Web framework for node.js                                                               | https://www.npmjs.com/package/express |
 | identity-obj-proxy                | Allows Jest to mock an object as css modules                                            | https://www.npmjs.com/package/identity-obj-proxy |
 | jest                              | JavaScript Testing Framework                                                            | https://jestjs.io/ |
@@ -47,6 +41,4 @@ Everything in devDependencies is for local development and testing purposes only
 | playwright-core                   | No-browser variant of playwright                                                        | N/A (See playwright docs) |
 | sass-loader                       | Loads a sass/scss file and compiles to css                                              | https://www.npmjs.com/package/sass-loader |
 | standardx                         | Allows us to follow the JavaScript Standard Style                                       | https://www.npmjs.com/package/standardx |
-| stylelint                         | CSS Linter                                                                              | https://stylelint.io/ |
-| stylelint-config-gds              | Stylelint config as per conventions of Government Digital Service (GDS)                 | https://github.com/alphagov/stylelint-config-gds |
 | ts-jest                           | Jest transformer that lets us test projects written in TypeScript                       | https://kulshekhar.github.io/ts-jest/ |

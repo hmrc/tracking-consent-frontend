@@ -5,7 +5,6 @@ import cookieTypes from '../constants/cookieTypes';
 import renderSettingsSaveConfirmationMessage from './renderSettingsSaveConfirmationMessage';
 
 const setAsChecked = (element) => {
-  // eslint-disable-next-line no-param-reassign
   element.checked = true;
 };
 

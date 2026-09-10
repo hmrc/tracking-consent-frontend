@@ -146,7 +146,7 @@ describe('User Preference Factory', () => {
 
       expect(() => {
         settingsFormHandler(testScope.userPref);
-      }).toThrowError(new Error('Could not initiate form without on value being set'));
+      }).toThrow(new Error('Could not initiate form without on value being set'));
     });
     it('should error if the form doesn\'t have off value', () => {
       const querySelector = document.querySelector('form[data-module=cookie-settings]');
@@ -156,7 +156,7 @@ describe('User Preference Factory', () => {
 
       expect(() => {
         settingsFormHandler(testScope.userPref);
-      }).toThrowError(new Error('Could not initiate form without off value being set'));
+      }).toThrow(new Error('Could not initiate form without off value being set'));
     });
     it('should default to the error message for the on value', () => {
       const querySelector = document.querySelector('form[data-module=cookie-settings]');
@@ -170,7 +170,7 @@ describe('User Preference Factory', () => {
 
       expect(() => {
         settingsFormHandler(testScope.userPref);
-      }).toThrowError(new Error('Could not initiate form without on value being set'));
+      }).toThrow(new Error('Could not initiate form without on value being set'));
     });
   });
 });

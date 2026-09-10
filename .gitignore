@@ -1,11 +1,9 @@
 !.nsprc
 !.nvmrc
 !.babelrc
-!.stylelintrc
 !.gitignore
 !.scalafmt.conf
 !.browserslistrc
-!.eslintrc.json
 .cache
 /.classpath
 db
