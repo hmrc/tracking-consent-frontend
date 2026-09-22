@@ -29,11 +29,11 @@
     "dot-properties": "1.1.2",
     "govuk-frontend": "5.10.1",
     "js-cookie": "^3.0.5",
-    "playwright": "^1.62.1",
+    "playwright": "^1.63.0",
     "style-loader": "4.0.0",
     "ts-loader": "9.6.2",
     "typescript": "5.4.5",
-    "webpack": "5.110.3",
+    "webpack": "5.111.0",
     "webpack-cli": "7.2.3"
   },
   "devDependencies": {
@@ -49,9 +49,9 @@
     "jest-environment-jsdom": "^30.5.1",
     "jest-jasmine2": "^30.5.1",
     "jsdom": "^16.2.2",
-    "playwright-chromium": "1.62.1",
-    "playwright-core": "1.62.1",
-    "sass": "^1.103.1",
+    "playwright-chromium": "1.63.0",
+    "playwright-core": "1.63.0",
+    "sass": "^1.104.1",
     "sass-loader": "15.0.0",
     "standardx": "^7.0.0",
     "ts-jest": "^29.4.12"
