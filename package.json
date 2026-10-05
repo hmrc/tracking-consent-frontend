@@ -51,10 +51,10 @@
     "jsdom": "^16.2.2",
     "playwright-chromium": "1.63.0",
     "playwright-core": "1.63.0",
-    "sass": "^1.104.1",
+    "sass": "^1.105.0",
     "sass-loader": "15.0.0",
     "standardx": "^7.0.0",
-    "ts-jest": "^29.4.12"
+    "ts-jest": "^29.4.14"
   },
   "overrides": {
     "diff": "^8.0.3",
