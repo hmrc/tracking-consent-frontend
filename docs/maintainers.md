@@ -37,12 +37,6 @@ sbt test it/test
 The UI journey tests are located in the [accessibility-statement-frontend-ui-tests](https://github.com/hmrc/accessibility-statement-frontend-ui-tests). Running these locally or in 
 Jenkins will also run the accessibility assessment via [ui-test-runner](https://github.com/hmrc/ui-test-runner).
 
-There is a single acceptance test for end-to-end testing of Javascript events triggering auditing, using `ui-test-runner`
-and WireMock. To test on your local machine, run the test with:
-```
-./run_acceptance_tests.sh 
-```
-
 ## Running just the Javascript checks
 
 Change to the Javascript assets directory:
