@@ -1,6 +1,7 @@
 import JavaScriptBuild.*
 import play.sbt.PlayImport.PlayKeys.playDefaultPort
 import sbt.Keys.testOptions
+import scoverage.ScoverageKeys
 import uk.gov.hmrc.DefaultBuildSettings
 import uk.gov.hmrc.DefaultBuildSettings.addTestReportOption
 
@@ -40,7 +41,12 @@ lazy val microservice = Project(appName, file("."))
     javaScriptSettings,
     scalacOptions += "-Wconf:src=views/.*:s",
     scalacOptions += "-Wconf:src=routes/.*:s",
-    scalacOptions += "-Wconf:msg=unused-imports&src=html/.*:s"
+    scalacOptions += "-Wconf:msg=unused-imports&src=html/.*:s",
+    ScoverageKeys.coverageExcludedFiles := "<empty>;Reverse.*;.*handlers.*;.*components.*;" +
+      ".*Routes.*;.*viewmodels.govuk.*;",
+    ScoverageKeys.coverageMinimumStmtTotal := 80,
+    ScoverageKeys.coverageFailOnMinimum := true,
+    ScoverageKeys.coverageHighlighting := true
   )
 
 lazy val it = project
