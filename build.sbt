@@ -13,19 +13,6 @@ lazy val unitTestSettings =
       addTestReportOption(Test, "test-reports")
     )
 
-lazy val AcceptanceTest         = config("acceptance") extend Test
-lazy val acceptanceTestSettings =
-  inConfig(AcceptanceTest)(Defaults.testTasks) ++
-    Seq(
-      // The following is needed to preserve the -Dbrowser option to the HMRC webdriver factory library
-      AcceptanceTest / fork := false,
-      // The following is needed due to https://stackoverflow.com/questions/24791992/assets-are-not-loaded-in-functional-test-mode
-      (AcceptanceTest / managedClasspath) += (Assets / packageBin).value,
-      (AcceptanceTest / test) := (AcceptanceTest / test).dependsOn(npmBuild).value,
-      (AcceptanceTest / testOptions) := Seq(Tests.Filter(_ startsWith "acceptance")),
-      addTestReportOption(AcceptanceTest, "acceptance-test-reports")
-    )
-
 lazy val sharedSettings = Seq(
   libraryDependencies ++= AppDependencies.compile ++ AppDependencies.test,
   majorVersion := 1,
@@ -35,7 +22,6 @@ lazy val sharedSettings = Seq(
 lazy val microservice = Project(appName, file("."))
   .enablePlugins(play.sbt.PlayScala, SbtDistributablesPlugin)
   .disablePlugins(JUnitXmlReportPlugin) // Required to prevent https://github.com/scalatest/scalatest/issues/1427
-  .configs(AcceptanceTest)
   .settings(
     sharedSettings,
     playDefaultPort := 12345,
@@ -50,7 +36,6 @@ lazy val microservice = Project(appName, file("."))
     PlayKeys.playRunHooks += Webpack(baseDirectory.value),
     PlayKeys.devSettings ++= Seq("metrics.enabled" -> "false"),
     Assets / pipelineStages := Seq(gzip),
-    acceptanceTestSettings,
     unitTestSettings,
     javaScriptSettings,
     scalacOptions += "-Wconf:src=views/.*:s",
