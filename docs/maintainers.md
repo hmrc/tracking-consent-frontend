@@ -32,6 +32,12 @@ sbt run
 sbt test it/test
 ```
 
+## Running all Scala and Javascript unit and integration tests with coverage check
+
+```
+sbt clean coverage test it/test coverageReport
+```
+
 ## Running UI journey tests
 
 The UI journey tests are located in the [accessibility-statement-frontend-ui-tests](https://github.com/hmrc/accessibility-statement-frontend-ui-tests). Running these locally or in 
