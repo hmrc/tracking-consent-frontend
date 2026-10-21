@@ -14,11 +14,6 @@
     "test": "jest --collectCoverage js",
     "install:playwright": "playwright install"
   },
-  "standardx": {
-    "env": [
-      "jest"
-    ]
-  },
   "dependencies": {
     "@babel/core": "7.26.9",
     "@babel/plugin-transform-runtime": "7.26.9",
@@ -53,7 +48,6 @@
     "playwright-core": "1.64.1",
     "sass": "^1.105.2",
     "sass-loader": "15.0.0",
-    "standardx": "^7.0.0",
     "ts-jest": "^29.4.15"
   },
   "overrides": {
