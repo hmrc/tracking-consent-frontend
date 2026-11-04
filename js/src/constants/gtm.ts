@@ -5,4 +5,5 @@ export const C_CONTAINER_ID = 'GTM-MTGZWNQ';
 export const D_CONTAINER_ID = 'GTM-MWXH5Z3';
 export const E_CONTAINER_ID = 'GTM-56HJH7C';
 export const F_CONTAINER_ID = 'GTM-MGQJ86G';
+export const G_CONTAINER_ID = 'GTM-NB57MS2X';
 export const SDES_CONTAINER_ID = 'GTM-WT6TT3X';
