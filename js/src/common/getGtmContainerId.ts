@@ -5,6 +5,7 @@ import {
   D_CONTAINER_ID,
   E_CONTAINER_ID,
   F_CONTAINER_ID,
+  G_CONTAINER_ID,
   SDES_CONTAINER_ID,
   TRANSITIONAL_CONTAINER_ID,
 } from '../constants/gtm';
@@ -18,6 +19,7 @@ const gtmContainers = {
   d: D_CONTAINER_ID,
   e: E_CONTAINER_ID,
   f: F_CONTAINER_ID,
+  g: G_CONTAINER_ID,
   sdes: SDES_CONTAINER_ID,
 };
 
