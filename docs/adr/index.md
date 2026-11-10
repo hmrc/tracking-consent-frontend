@@ -13,6 +13,7 @@
 * [ADR-0009](0009-create-a-library-for-reading-the-user-consent-cookie.md) - Create a library for reading the user consent cookie
 * [ADR-0010](0010-make-visual-regression-tests-reproducible-on-jenkins.md) - Make visual regression tests reproducible on jenkins
 * [ADR-0011](0011-handle-cookies-extended-by-cookie-consent-filter.md) - Handle cookies extended by CookieConsentFilter
+* [ADR-0012](0012-should-we-add-youtube-cookie-consent.md) - Should we add YouTube cookie consent in `tracking-consent-frontend`?
 * [ADR-1](template.md) - [short title of solved problem and solution]
 
 <!-- adrlogstop -->
