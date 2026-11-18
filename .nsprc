@@ -39,6 +39,7 @@
   "GHSA-2883-xcg3-v3hh": "js-yaml: Quadratic CPU consumption in !!omap resolution: pulled in via devDependency, no risk given our usage",
   "GHSA-2v37-7h3g-55p8": "nanoid: devDependency only, no risk given our usage",
   "GHSA-g3hv-75wg-m249": "minimatch: devDependency only, no risk given our usage (only in tests)",
+  "GHSA-fc5q-39xc-vjpf": "picomatch: no risk given our usage as we do not take user-supplied input",
   "GHSA-x5fp-wj9c-mxmx": "qs: devDependency only, no risk given our usage",
   "GHSA-4mjr-xmp4-gh2g": "qs: devDependency only, no risk given our usage",
   "GHSA-6pq8-jhm2-2vcw": "qs: devDependency only, no risk given our usage",
