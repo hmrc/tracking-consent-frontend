@@ -1,6 +1,6 @@
 export const TRANSITIONAL_CONTAINER_ID = 'GTM-TSFTCWZ';
 export const A_CONTAINER_ID = 'GTM-NDC2ZX2K';
-export const B_CONTAINER_ID = 'GTM-P39VTVL';
+export const B_CONTAINER_ID = 'GTM-TT3Z7D9H';
 export const C_CONTAINER_ID = 'GTM-MTGZWNQ';
 export const D_CONTAINER_ID = 'GTM-MWXH5Z3';
 export const E_CONTAINER_ID = 'GTM-56HJH7C';
